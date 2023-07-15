@@ -1,28 +1,52 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2016",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
+    "module": "CommonJS",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "preserveValueImports": false,
+    "removeComments": true, //컴파일시 주석제거
+    "noUnusedLocals": true, //쓰지않는 지역변수 있으면 에러내기
+    "noUnusedParameters": true, //쓰지않는 파라미터 있으면 에러내기
+    "noFallthroughCasesInSwitch": true, //switch문 이상하면 에러내기
+    "allowUnreachableCode": true, // return 으로 도달 할 수 없는 소스를 짯을 경우 error 처리하지 말까요? false
+    "strictNullChecks": true, //null, undefined 타입에 이상한 짓 할시 에러내기
+    "strictFunctionTypes": false, //함수파라미터 타입체크 강하게
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["src/components/*"], // 꼭~
+      "@atoms/*": ["src/atoms/*"], // 꼭~
+      "@hooks/*": ["src/hooks/*"], // 꼭~
+      "@app/*": ["src/app/*"], // 꼭~
+      "@styles/*": ["src/styles/*"], // 꼭~
+      "@public/*": ["public/*"], // 꼭~
+      "@assets/*": ["public/assets/*"], // 꼭~
+      "@utils/*": ["src/utils/*"], // 꼭~
+      "@apis/*": ["src/apis/*"], // 꼭~
+      "@lib/*": ["lib/*"] // 꼭~
+    },
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "./@types/*.d.ts",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
