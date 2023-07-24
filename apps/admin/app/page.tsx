@@ -1,10 +1,9 @@
-import { Button, Header } from "ui";
-
+import { Button, Header } from 'ui';
 export default function Page() {
   return (
-    <>
-      <Header text="Web" />
+    <div className='bg-red-500 text-red-200'>
+      <Header text='admin' />
       <Button />
-    </>
+    </div>
   );
 }

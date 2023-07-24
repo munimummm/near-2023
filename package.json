@@ -10,14 +10,24 @@
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
+    "@types/config": "3.3.0",
     "@typescript-eslint/eslint-plugin": "6.1.0",
     "@typescript-eslint/parser": "6.1.0",
-    "eslint": "7.32.0",
+    "autoprefixer": "10.4.14",
+    "eslint": "8.45.0",
     "eslint-config-custom": "*",
-    "eslint-plugin-react": "7.33.0",
+    "eslint-config-next": "^13.4.10",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^5.0.0-canary-7118f5dd7-20230705",
     "husky": "8.0.3",
     "lint-staged": "13.2.3",
+    "postcss": "8.4.27",
     "prettier": "2.8.8",
+    "tailwindcss": "3.3.3",
     "turbo": "latest",
     "typescript": "5.1.6"
   },
@@ -27,7 +37,9 @@
     "packages/*"
   ],
   "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{ts,tsx,md}": "prettier --write"
+    "apps/**/*.{js,ts,tsx,ts}": ["eslint --cache --fix"],
+    "apps/**/*.{ts,tsx,md}": ["prettier --write"],
+    "packages/**/*.{js,ts,tsx,ts}": ["eslint --cache --fix"],
+    "packages/**/*.{ts,tsx,md}": ["prettier --write"]
   }
 }
