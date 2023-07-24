@@ -10,12 +10,16 @@
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
+    "@typescript-eslint/eslint-plugin": "6.1.0",
+    "@typescript-eslint/parser": "6.1.0",
     "eslint": "7.32.0",
     "eslint-config-custom": "*",
+    "eslint-plugin-react": "7.33.0",
     "husky": "8.0.3",
     "lint-staged": "13.2.3",
     "prettier": "2.8.8",
-    "turbo": "latest"
+    "turbo": "latest",
+    "typescript": "5.1.6"
   },
   "packageManager": "npm@9.5.1",
   "workspaces": [

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   '**/*.{ts,tsx}': [
     // 모든 서브패키지의 타입을 체크
     () => 'npm exec --ws -- tsc --skipLibCheck --noEmit',
