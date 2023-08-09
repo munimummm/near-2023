@@ -1,10 +1,8 @@
 {
   "name": "config",
   "version": "0.0.0",
-  "main": "index.js",
   "license": "MIT",
   "files": [
-    ".eslintrc.cjs",
     "./tailwind/tailwind.config.js",
     "./tailwind/postcss.config.js"
   ]

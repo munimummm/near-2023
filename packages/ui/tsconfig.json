@@ -1,29 +1,5 @@
 {
   "extends": "tsconfig/react-library.json",
-  "compilerOptions": {
-    "target": "ES2016",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": false,
-    "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "moduleResolution": "Node",
-    "module": "CommonJS",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "preserveValueImports": false,
-    "removeComments": true, //컴파일시 주석제거
-    "noUnusedLocals": true, //쓰지않는 지역변수 있으면 에러내기
-    "noUnusedParameters": true, //쓰지않는 파라미터 있으면 에러내기
-    "noFallthroughCasesInSwitch": true, //switch문 이상하면 에러내기
-    "allowUnreachableCode": true, // return 으로 도달 할 수 없는 소스를 짯을 경우 error 처리하지 말까요? false
-    "strictNullChecks": true, //null, undefined 타입에 이상한 짓 할시 에러내기
-    "strictFunctionTypes": false, //함수파라미터 타입체크 강하게
-    "jsx": "preserve",
-    "incremental": true
-  },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }

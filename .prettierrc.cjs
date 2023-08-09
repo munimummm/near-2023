@@ -12,6 +12,5 @@ module.exports = {
   useTabs: false, // 탭 사용 여부
   // 산문 래핑 설정
   proseWrap: 'preserve',
-  // 객체 속성 key 값에 인용 부호 사용 여부 (ex: { 'key': 'xkieo-xxxx' })
   quoteProps: 'as-needed',
 };

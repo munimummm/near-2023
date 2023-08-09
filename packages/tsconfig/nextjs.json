@@ -16,6 +16,6 @@
     "strict": false,
     "target": "es5"
   },
-  "include": ["src", "next-env.d.ts"],
+  "include": ["apps/**/*.{ts,tsx}", "next-env.d.ts"],
   "exclude": ["node_modules"]
 }
