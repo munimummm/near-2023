@@ -2,10 +2,10 @@
   "name": "near-2023",
   "private": true,
   "scripts": {
-    "build-dev": "dotenv -e ../../.env.development turbo run build",
-    "build-prod": "dotenv -e ../../.env.production turbo run build",
-    "dev": "dotenv -e ../../.env.development turbo run dev",
-    "dev-prod": "dotenv -e ../../.env.production turbo run dev",
+    "build-dev": "dotenv -e .env.development -- turbo run build",
+    "build-prod": "dotenv -e .env.production -- turbo run build",
+    "dev": "dotenv -e .env.development -- turbo run dev",
+    "dev-local": "dotenv -e .env.development.local -- turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
@@ -21,6 +21,6 @@
   "workspaces": [
     "apps/*",
     "packages/*",
-    "supabase/*"
+    "supabase"
   ]
 }
