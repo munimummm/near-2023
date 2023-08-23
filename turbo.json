@@ -1,0 +1,37 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "globalEnv": [
+    "NODE_ENV",
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+    "NEXT_PUBLIC_SUPABASE_SERVICE_KEY"
+  ],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "dist/**",
+        "storybook-static/**"
+      ]
+    },
+    "start": {
+      "outputs": []
+    },
+    "lint": {
+      "dependsOn": ["format:check"],
+      "outputs": []
+    },
+    "dev": {
+      "cache": false
+    },
+    "deploy": {
+      "outputs": []
+    },
+    "storybook": {
+      "outputs": []
+    }
+  }
+}

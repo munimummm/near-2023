@@ -1,0 +1,9 @@
+{
+  "name": "@near/config",
+  "version": "0.0.0",
+  "license": "MIT",
+  "files": [
+    "./tailwind/tailwind.config.js",
+    "./tailwind/postcss.config.js"
+  ]
+}
