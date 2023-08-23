@@ -6,6 +6,7 @@
     "build-prod": "dotenv -e .env.production -- turbo run build",
     "dev": "dotenv -e .env.development -- turbo run dev",
     "dev-local": "dotenv -e .env.development.local -- turbo run dev",
+    "storybook": "turbo run storybook --filter=storybook",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install"
