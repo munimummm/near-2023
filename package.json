@@ -9,7 +9,8 @@
     "storybook": "turbo run storybook --filter=storybook",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "chromatic": "turbo run chromatic --filter=storybook "
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",

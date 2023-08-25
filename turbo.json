@@ -32,6 +32,9 @@
     },
     "storybook": {
       "outputs": []
+    },
+    "chromatic": {
+      "outputs": []
     }
   }
 }
