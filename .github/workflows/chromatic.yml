@@ -1,6 +1,8 @@
 name: 'Chromatic Deployment'
 
 on:
+  push:
+    branches: [support/monorepo-setting]
   pull_request:
     branches: [main]
     paths:
