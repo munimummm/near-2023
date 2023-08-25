@@ -2,7 +2,7 @@ name: 'Chromatic Deployment'
 
 on:
   pull_request:
-    branches: [main]
+    branches: [dev]
     paths:
       - apps/storybook/src/**
 
@@ -19,6 +19,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.16.0'
+
+      - name: Install npm
+        run: npm install
 
       - name: Publish Chromatic
         id: chromatic
