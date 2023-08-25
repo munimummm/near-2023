@@ -1,10 +1,6 @@
 name: 'Chromatic Deployment'
 
 on:
-  # push:
-  #   branches: [support/monorepo-setting]
-  #   paths:
-  #     - apps/storybook/src/**
   pull_request:
     branches: [dev]
     paths:
