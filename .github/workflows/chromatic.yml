@@ -4,7 +4,7 @@ on:
   push:
     branches: [support/monorepo-setting]
   pull_request:
-    branches: [main]
+    branches: [dev]
     paths:
       - apps/storybook/src/**
 
