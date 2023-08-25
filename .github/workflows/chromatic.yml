@@ -1,6 +1,10 @@
 name: 'Chromatic Deployment'
 
 on:
+  push:
+    branches: [support/monorepo-setting]
+    paths:
+      - apps/storybook/src/**
   pull_request:
     branches: [dev]
     paths:
@@ -19,6 +23,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.16.0'
+
+      - name: Install npm
+        run: npm install
 
       - name: Publish Chromatic
         id: chromatic
