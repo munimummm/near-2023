@@ -13,9 +13,9 @@ const meta = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
+  // argTypes: {
+  //   backgroundColor: { control: 'color' },
+  // },
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -37,6 +37,7 @@ export const Secondary: Story = {
 
 export const Large: Story = {
   args: {
+    primary: true,
     size: 'large',
     label: 'Button',
   },
@@ -44,6 +45,7 @@ export const Large: Story = {
 
 export const Small: Story = {
   args: {
+    primary: true,
     size: 'small',
     label: 'Button',
   },

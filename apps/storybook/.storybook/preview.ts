@@ -1,4 +1,7 @@
 import type { Preview } from '@storybook/react';
+import { CUSTOM_VIEWPORT } from './CustomViewport';
+import ko from 'axe-core/locales/ko.json';
+import '../src/index.css';
 
 const preview: Preview = {
   parameters: {
@@ -7,6 +10,20 @@ const preview: Preview = {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/,
+      },
+    },
+    viewport: {
+      viewports: CUSTOM_VIEWPORT,
+    },
+    a11y: {
+      config: {
+        locale: ko,
+        rules: [
+          {
+            id: 'color-contrast',
+            enabled: false,
+          },
+        ],
       },
     },
   },
