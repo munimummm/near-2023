@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface TabProps {
   label: string;
   value: string;
