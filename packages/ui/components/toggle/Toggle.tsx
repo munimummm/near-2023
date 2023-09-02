@@ -1,22 +1,37 @@
-import Image from 'next/image';
+'use client';
+
 import ToggleOn from '../../assets/icons/toggle/icon_toggle_on.svg';
 import ToggleOff from '../../assets/icons/toggle/icon_toggle_off.svg';
+import { useState } from 'react';
 
 interface ToggleProps {
-  isToggleOn: boolean;
-  size: 'lg' | 'md' | 'sm';
+  size?: 'lg' | 'md' | 'sm';
+  isToggleOn?: boolean;
 }
 
-const Toggle = ({ isToggleOn, size }: ToggleProps) => {
+function Toggle({ size = 'lg', isToggleOn = false }: ToggleProps) {
+  const [toggle, setToggle] = useState(isToggleOn);
+
   return (
-    <Image
-      className='cursor-pointer'
-      src={isToggleOn ? ToggleOn : ToggleOff}
-      width={size === 'lg' ? 80 : size === 'md' ? 56 : 40}
-      height={size === 'lg' ? 40 : size === 'md' ? 24 : 16}
-      alt='토글 아이콘'
-    />
+    <button
+      className='p-0 bg-transparent border-none cursor-default focus:outline-none'
+      onClick={() => {
+        setToggle((prev) => !prev);
+      }}
+    >
+      {toggle ? (
+        <ToggleOn
+          width={size === 'lg' ? '80' : size === 'md' ? '60' : '40'}
+          height={size === 'lg' ? '40' : size === 'md' ? '30' : '21'}
+        />
+      ) : (
+        <ToggleOff
+          width={size === 'lg' ? '80' : size === 'md' ? '60' : '40'}
+          height={size === 'lg' ? '40' : size === 'md' ? '30' : '21'}
+        />
+      )}
+    </button>
   );
-};
+}
 
 export default Toggle;
