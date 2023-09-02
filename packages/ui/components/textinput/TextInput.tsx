@@ -1,9 +1,14 @@
-// import IconTextInputError from '../../assets/icons/textinput/icon_textinput_error.svg';
+import IconError from '../../assets/icons/textinput/icon_error.svg';
+import IconSuccess from '../../assets/icons/textinput/icon_success.svg';
+import IconSearch from '../../assets/icons/textinput/icon_search.svg';
+import IconCancel from '../../assets/icons/textinput/icon_cancel.svg';
+import { useState } from 'react';
+
 type InputType = {
   [key: string]: string;
 };
 
-interface TextInputProps {
+export interface TextInputProps {
   placeholder?: string;
   state: 'enabled' | 'error' | 'success' | 'disabled' | 'search';
   borderRadius?: boolean;
@@ -17,7 +22,7 @@ const TextInputStyle = {
   error: 'border-text-red border-2 focus:outline-text-red',
   success: 'border-[#00AE46] border-2  focus:outline-[#00AE46]',
   disabled: 'bg-[#F0F0F0] text-[#C8C8C8]',
-  search: 'pl-10 active:pr-10',
+  search: 'pl-[52px] active:pr-10',
 };
 const InputSize: InputType = {
   lg: 'w-[403px] h-[48px]',
@@ -30,24 +35,27 @@ function TextInput({
   borderRadius = false,
   size,
 }: TextInputProps) {
+  const [isFocused, setIsFocused] = useState(false);
+  // const [text, setText] = useState('');
+
   const stateIcon = () => {
     switch (state) {
       case 'success':
-        return (
-          <div className='absolute text-green-500 transform -translate-y-1/2 right-3 top-1/2' />
-        );
+        return <IconSuccess />;
       case 'error':
-        return (
-          <div className='absolute text-red-500 transform -translate-y-1/2 right-3 top-1/2' />
-        );
+        return <IconError stroke='#CC3B3B' />;
+      case 'search':
+        return <IconSearch />;
       default:
         return null;
     }
   };
 
   return (
-    <div className='relative w-[380px] h-10 '>
+    <div className='relative w-[380px] h-10  '>
       <input
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         type='text'
         placeholder={placeholder}
         className={` ${CommonStyle}
@@ -57,9 +65,20 @@ function TextInput({
         `}
         disabled={state === 'disabled'}
       />
-      {stateIcon()}
+      <div
+        className={`absolute inset-y-0 flex items-center 
+        ${state === 'search' ? 'left-4' : 'right-4'}`}
+      >
+        {stateIcon()}
+      </div>
+      {state === 'search' && isFocused && (
+        <div className='absolute inset-y-0 flex items-center right-4'>
+          <IconCancel />
+        </div>
+      )}
     </div>
   );
 }
 
 export default TextInput;
+// cancel 이벤트 추가
