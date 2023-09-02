@@ -1,73 +1,83 @@
-import Image from 'next/image';
-import IconTagDeleteWhite from '../../assets/icons/tag/icon_tag_white.svg';
-import IconTagDeleteGray from '../../assets/icons/tag/icon_tag_gray.svg';
-import IconTagDeleteStroke from '../../assets/icons/tag/icon_tag_stroke.svg';
+'use client';
 
-type TagType = {
-  [key: string]: string;
-};
+import { useMemo } from 'react';
+import IconTagDelete from '../../assets/icons/tag/icon_tag_delete.svg';
 
 interface TagProps {
-  type: 'color' | 'gray' | 'transparent' | 'stroke';
-  size: 'lg' | 'sm';
-  label: string;
-  isButton: boolean;
+  mode?: 'Main' | 'Gray' | 'Transparent' | 'Stroke';
+  size?: 'sm' | 'lg';
+  label?: string;
+  hasDelete?: boolean;
 }
 
-const BgSize: TagType = {
-  lg: 'px-6 py-1.5 gap-3',
-  sm: 'px-4 py-2 gap-2',
+const getModeClasses = (mode: string) => {
+  switch (mode) {
+    case 'Main': {
+      return 'bg-[#312E81] text-white border-none';
+    }
+    case 'Gray': {
+      return 'bg-[#E1E1E1] text-[#242424] border-none';
+    }
+    case 'Transparent': {
+      return 'bg-white bg-opacity-70 backdrop-blur-sm text-[#242424] border-none';
+    }
+    case 'Stroke': {
+      return 'bg-white text-[#1E1B4B] border border-[#312E81] hover:border-[#312E81]';
+    }
+    default: {
+      return 'bg-[#312E81] text-white border-none';
+    }
+  }
 };
 
-const TextSize: TagType = {
-  lg: 'text-base',
-  sm: 'text-xs',
+const getSizeClasses = (size: string) => {
+  switch (size) {
+    case 'sm': {
+      return 'px-4 py-2 gap-2 text-xs';
+    }
+    case 'lg': {
+      return 'px-6 py-1.5 gap-3 text-base';
+    }
+    default: {
+      return 'px-6 py-1.5 gap-3';
+    }
+  }
 };
 
-const BgType: TagType = {
-  color: 'bg-indigo-900',
-  gray: 'bg-neutral-200',
-  transparent: 'bg-white bg-opacity-70 backdrop-blur-sm',
-  stroke: 'border border-indigo-900 ',
-};
+const BASE_CLASSES =
+  'flex justify-center items-center rounded-full font-medium tracking-tight cursor-default focus:outline-none';
 
-const TextType: TagType = {
-  color: 'text-white font-medium',
-  gray: 'text-neutral-800 font-normal',
-  transparent: 'text-neutral-800 font-normal',
-  stroke: 'text-indigo-950 font-medium',
-};
+const Tag = ({
+  mode = 'Main',
+  size = 'lg',
+  label = 'Tag',
+  hasDelete = false,
+}: TagProps) => {
+  const computedClasses = useMemo(() => {
+    const modeClass = getModeClasses(mode);
+    const sizeClass = getSizeClasses(size);
 
-const Tag = ({ type, size, label, isButton }: TagProps) => {
+    return [modeClass, sizeClass].join(' ');
+  }, [mode, size]);
+
   return (
-    <div
-      className={`inline-flex items-center justify-between rounded-full
-      ${BgSize[size ?? 'lg']} 
-      ${BgType[type ?? 'color']}
-    `}
-    >
-      <span
-        className={`text-base tracking-tight 
-        ${TextSize[size ?? 'lg']} 
-        ${TextType[type] ?? 'color'}`}
-      >
-        {label}
-      </span>
-
-      {isButton ? (
-        <Image
+    <button className={`${BASE_CLASSES} ${computedClasses}`}>
+      {label}
+      {hasDelete ? (
+        <IconTagDelete
           className='cursor-pointer'
-          src={
-            type === 'color'
-              ? IconTagDeleteWhite
-              : type === 'stroke'
-              ? IconTagDeleteStroke
-              : IconTagDeleteGray
+          width={size === 'lg' ? 13 : 9}
+          height={size === 'lg' ? 13 : 9}
+          fill={
+            mode === 'Main'
+              ? 'white'
+              : mode === 'Stroke'
+              ? '#1E1B4B'
+              : '#242424'
           }
-          alt='태그 닫기 버튼'
         />
       ) : null}
-    </div>
+    </button>
   );
 };
 
