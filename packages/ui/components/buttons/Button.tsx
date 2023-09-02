@@ -1,92 +1,90 @@
-import { ReactNode } from 'react';
+'use client';
 
-type ButtonType = {
-  [key: string]: string;
-};
+import { ReactNode, useMemo } from 'react';
 
 interface ButtonProps {
-  size: 'lg' | 'sm';
-  type: 'main' | 'secondary' | 'ghost' | 'outline' | 'text' | 'danger';
-  state: 'default' | 'hover' | 'active' | 'disabled';
-  rounded: 'rounded' | 'rounded-full';
-  label?: string;
-  imageRight?: ReactNode;
-  imageLeft?: ReactNode;
+  mode?: 'Main' | 'Secondary' | 'Ghost' | 'Outline' | 'Text' | 'Danger';
+  size?: 'sm' | 'lg';
+  isRounded?: boolean;
+  isDisabled?: boolean;
+  label?: ReactNode;
+  onClick?: () => void;
 }
 
-const ButtonSize: ButtonType = {
-  lg: 'gap-3 py-[17px]',
-  sm: 'gap-2 py-2',
+const getModeClasses = (mode: string) => {
+  switch (mode) {
+    case 'Main': {
+      return 'border-none bg-[#312E81] text-white active:bg-[#1E1B4B] disabled:bg-[#E1E1E1] disabled:text-[#ACACAC]';
+    }
+    case 'Secondary': {
+      return 'border-none bg-[#EEF2FF] text-[#312E81] active:bg-[#E0E7FF] disabled:bg-[#F9F9F9] disabled:text-[#E0E0E0]';
+    }
+    case 'Ghost': {
+      return 'border-none bg-[#F9F9F9] text-[#A3A3A3] active:bg-[#E1E1E1] disabled:bg-[#F9F9F9] disabled:text-[#E0E0E0]';
+    }
+    case 'Outline': {
+      return 'border border-[#312E81] bg-white text-[#312E81] hover:bg-[#EEF2FF] hover:border-[#312E81] active:bg-[#E0E7FF] disabled:bg-white disabled:text-[#A3A3A3] disabled:border-[#A3A3A3]';
+    }
+    case 'Text': {
+      return 'border-none bg-transparent text-[#242424] hover:bg-[#EEF2FF] active:bg-white active:text-[#312E81] disabled:bg-transparent disabled:text-[#A3A3A3]';
+    }
+    case 'Danger': {
+      return 'border-none bg-[#CC3C3B] text-white hover:bg-[#A32F2F] active:bg-[#822626] disabled:bg-[#E1E1E1] disabled:text-[#E0E0E0]';
+    }
+    default: {
+      return 'border-none bg-[#312E81] text-white active:bg-[#1E1B4B] disabled:bg-[#E1E1E1] disabled:text-[#ACACAC]';
+    }
+  }
 };
 
-const ButtonRounded: ButtonType = {
-  rounded: 'rounded',
-  'rounded-full': 'rounded-full',
+const getSizeClasses = (size: string) => {
+  switch (size) {
+    case 'sm': {
+      return 'py-2 gap-2';
+    }
+    case 'lg': {
+      return 'py-[15px] gap-3';
+    }
+    default: {
+      return 'py-[15px] gap-3';
+    }
+  }
 };
 
-const ButtonStyle = {
-  main: {
-    default: 'bg-indigo-900',
-    hover: 'hover:bg-indigo-900 hover:shadow hover:text-white',
-    active: 'bg-indigo-950',
-    disabled: 'bg-neutral-200 text-neutral-400',
-  },
-  secondary: {
-    default: 'bg-indigo-50 text-indigo-900',
-    hover: 'hover:bg-indigo-50 hover:text-indigo-900 hover:shadow',
-    active: 'bg-indigo-100 text-indigo-900',
-    disabled: 'bg-stone-50 text-neutral-200',
-  },
-  ghost: {
-    default: 'bg-stone-50 text-neutral-400 ',
-    hover: 'hover:bg-stone-50 hover:text-neutral-400 hover:shadow',
-    active: 'bg-neutral-200 text-neutral-400',
-    disabled: 'bg-stone-50 text-neutral-200',
-  },
-  outline: {
-    default: 'bg-white text-indigo-900 border border-indigo-900',
-    hover:
-      'hover:bg-indigo-50 hover:text-indigo-900 hover:border hover:border-indigo-900',
-    active: 'bg-indigo-100 border border-indigo-900',
-    disabled: 'bg-white text-neutral-400 border border-neutral-400',
-  },
-  text: {
-    default: 'bg-transparent text-neutral-800',
-    hover: 'hover:bg-indigo-50 hover:text-neutral-800',
-    active: 'bg-transparent text-indigo-900',
-    disabled: 'bg-transparent text-neutral-400',
-  },
-  danger: {
-    default: 'bg-red-600 text-white',
-    hover: 'hover:bg-[#a32f2f] hover:bg-opacity-20 hover:text-white',
-    active: 'bg-[#822626] text-white',
-    disabled: 'bg-neutral-200 text-neutral-400',
-  },
-};
+const getRoundedClasses = (isRounded: boolean) =>
+  isRounded ? 'rounded-full' : 'rounded';
 
-const Button = ({
-  size,
-  type,
-  state,
-  rounded,
-  label,
-  imageRight,
-  imageLeft,
-}: ButtonProps) => {
+const BASE_CLASSES =
+  'box-border px-4 flex items-center justify-center cursor-pointer font-bold text-base inline-block outline-none focus:outline-none hover:shadow disabled:hover:shadow-none disabled:cursor-not-allowed';
+
+function Button({
+  mode = 'Main',
+  size = 'lg',
+  isRounded = false,
+  isDisabled = false,
+  label = 'Button',
+  onClick,
+  ...props
+}: ButtonProps) {
+  const computedClasses = useMemo(() => {
+    const modeClass = getModeClasses(mode);
+    const sizeClass = getSizeClasses(size);
+    const roundedClass = getRoundedClasses(isRounded);
+
+    return [modeClass, sizeClass, roundedClass].join(' ');
+  }, [mode, size, isRounded]);
+
   return (
     <button
-      className={`inline-flex items-center justify-center px-4 text-base font-bold 
-      ${ButtonRounded[rounded ?? 'rounded']}
-      ${ButtonSize[size ?? 'lg']}
-      ${ButtonStyle[type ?? 'main'][state ?? 'default']}
-      `}
-      disabled={state === 'disabled'}
+      type='button'
+      className={`${BASE_CLASSES} ${computedClasses}`}
+      disabled={isDisabled}
+      onClick={onClick}
+      {...props}
     >
-      {imageLeft}
       {label}
-      {imageRight}
     </button>
   );
-};
+}
 
 export default Button;
