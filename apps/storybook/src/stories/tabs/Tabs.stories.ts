@@ -8,6 +8,12 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    size: {
+      control: 'radio',
+      options: ['lg', 'sm'],
+    },
+  },
 } satisfies Meta<typeof Tabs>;
 
 export default meta;
@@ -21,7 +27,5 @@ export const Default: Story = {
       { label: 'Tab 2', value: 'tab2' },
       { label: 'Tab 3', value: 'tab3' },
     ],
-    selected: 'tab1',
-    onSelect: (value) => console.log(`Selected tab: ${value}`),
   },
 };
