@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from 'ui';
+import Checkbox from 'ui/components/checkbox/Checkbox';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: 'Example/Buttont1',
-  component: Button,
+  title: 'Components/Checkbox',
+  component: Checkbox,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'centered',
@@ -13,40 +13,17 @@ const meta = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  // argTypes: {
-  //   backgroundColor: { control: 'color' },
-  // },
-} satisfies Meta<typeof Button>;
+  argTypes: {},
+} satisfies Meta<typeof Checkbox>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Primary: Story = {
+export const Main: Story = {
   args: {
-    primary: true,
-    label: 'Button',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    label: 'Button',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    primary: true,
-    size: 'large',
-    label: 'Button',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    primary: true,
-    size: 'small',
-    label: 'Button',
+    isDisabled: false,
+    singleText: '',
+    multipleText: '',
   },
 };
