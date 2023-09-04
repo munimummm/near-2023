@@ -12,4 +12,6 @@ export * from './components/pagination/Pagination';
 export * from './components/pagination/DotPagination';
 export * from './components/tabs/Tabs';
 export * from './components/tooltip/Tooltip';
-export * from './components/comments/Comments';
+export * from './components/comments/Comment';
+export * from './components/comments/CommentAuthor';
+export * from './components/comments/CommentInput';
