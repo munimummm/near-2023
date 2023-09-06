@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/react';
 import { CUSTOM_VIEWPORT } from './CustomViewport';
 import ko from 'axe-core/locales/ko.json';
-import '../src/index.css';
+import './globals.css';
 
 const preview: Preview = {
   parameters: {
