@@ -1,12 +1,12 @@
 'use client';
 
-// import Button from './buttons/Button';
-import IconProfileImageDefault from '../assets/icons/profile/icon_profile_default.svg';
+import { useState } from 'react';
+import Button from '../buttons/Button';
+import IconProfileImageDefault from '../../assets/icons/profile/icon_profile_default.svg';
 import TextArea from './TextArea';
-// import { useState } from 'react';
 
 function CommentBox() {
-  // const [isButtonDisabled, setButtonDisabled] = useState(false);
+  const [isButtonDisabled, setButtonDisabled] = useState(false);
   return (
     <div className='w-[434px] h-[157px] '>
       <div className='flex mb-[10px]'>
@@ -18,17 +18,17 @@ function CommentBox() {
           height={119}
           maxLength={200}
           placeholder='내용을 작성해주세요.'
-          // setParentExceeding={setButtonDisabled}
+          setParentExceeding={setButtonDisabled}
         />
       </div>
       <div className='flex justify-end text-xl font-bold'>
-        {/* <Button
+        <Button
           mode='Secondary'
           size='sm'
           isRounded={false}
           label='댓글등록'
           isDisabled={isButtonDisabled}
-        /> */}
+        />
       </div>
     </div>
   );
