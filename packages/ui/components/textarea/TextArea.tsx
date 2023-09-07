@@ -11,9 +11,9 @@ interface TextAreaProps {
 }
 
 const styles = {
-  textareaContainer: 'relative w-full h-full',
+  textareaContainer: 'relative w-full h-full rounded bg-[#F9F9F9]',
   textareaDefault:
-    'w-full h-full p-3 pb-8 text-sm text-left resize-none text-text-gray',
+    'w-full h-full p-3 pb-8 text-sm text-left resize-none text-text-gray rounded bg-[#F9F9F9]',
   textareaFocused: 'focus:text-black focus:outline-none',
   textareaExceeding: 'focus:outline-text-red',
   counterContainer: 'absolute right-2 bottom-3',
