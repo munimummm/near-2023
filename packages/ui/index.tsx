@@ -12,3 +12,4 @@ export * from './components/pagination/DotPagination';
 export * from './components/tabs/Tabs';
 export * from './components/tooltip/Tooltip';
 export * from './components/footer/Footer';
+export * from './Header';
