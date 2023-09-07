@@ -1,4 +1,4 @@
-import type { StorybookConfig } from '@storybook/react-vite';
+import type { StorybookConfig } from '@storybook/nextjs';
 
 import { join, dirname } from 'path';
 
@@ -29,11 +29,32 @@ const config: StorybookConfig = {
     },
   ],
   framework: {
-    name: getAbsolutePath('@storybook/react-vite'),
+    name: getAbsolutePath('@storybook/nextjs'),
     options: {},
   },
   docs: {
     autodocs: 'tag',
+  },
+  webpackFinal: async (config) => {
+    const imageRule = config.module?.rules?.find((rule) => {
+      const test = (rule as { test: RegExp }).test;
+
+      if (!test) {
+        return false;
+      }
+
+      return test.test('.svg');
+    }) as { [key: string]: any };
+
+    imageRule.exclude = /\.svg$/;
+
+    config.module?.rules?.push({
+      test: /\.svg$/,
+      // use: [getAbsolutePath('@near/svgr')],
+      use: [getAbsolutePath('@svgr/webpack')],
+    });
+
+    return config;
   },
 };
 export default config;
