@@ -13,3 +13,5 @@ export * from './components/tabs/Tabs';
 export * from './components/tooltip/Tooltip';
 export * from './components/logo/Logo';
 export * from './Header';
+export * from './components/textarea/TextArea';
+export * from './components/textarea/CommentBox';
