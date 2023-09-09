@@ -1,4 +1,5 @@
 // component exports
+export * from './Header';
 export * from './components/buttons/Button';
 export * from './components/checkbox/Checkbox';
 export * from './components/toggle/Toggle';
@@ -12,4 +13,9 @@ export * from './components/pagination/DotPagination';
 export * from './components/tabs/Tabs';
 export * from './components/tooltip/Tooltip';
 export * from './components/footer/Footer';
-export * from './Header';
+export * from './components/comments/Comment';
+export * from './components/comments/CommentAuthor';
+export * from './components/comments/CommentInput';
+export * from './components/logo/Logo';
+export * from './components/textarea/TextArea';
+export * from './components/textarea/CommentBox';
