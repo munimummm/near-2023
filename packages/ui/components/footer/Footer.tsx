@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Logo from '../logo/Logo';
 interface FooterLinkProps {
   href: string;
   label: string;
@@ -6,7 +7,7 @@ interface FooterLinkProps {
 
 function FooterLink({ href, label }: FooterLinkProps) {
   return (
-    <Link href={href} className='px-6 py-4 text-base'>
+    <Link href={href} className='py-4 pr-5 text-lg'>
       {label}
     </Link>
   );
@@ -22,21 +23,25 @@ function Footer() {
   ];
   return (
     <footer className='bg-white '>
-      <div className='flex mb-4 '>
-        <section className='flex items-start py-4 ml-5 mr-4'>
-          {/* <h2 className='text-base font-bold text-theme-main'>NEAR</h2> */}
+      <div className='flex items-start mb-4'>
+        <section className='flex justify-center pt-5 ml-[47px] mr-[59.5px] '>
+          <Logo />
         </section>
-        <nav className='flex flex-wrap items-center ml-auto font-normal text-theme-main_dark'>
+        <nav className='flex flex-wrap items-start ml-auto font-normal text-theme-main_dark'>
           {links.map((link) => (
             <FooterLink key={link.href} href={link.href} label={link.label} />
           ))}
         </nav>
       </div>
       <hr className='mb-4 border border-theme-main ' />
+      {/* 컴포넌트로 변경할 예정 */}
       <section className='text-center'>
-        {/* <p className='text-base font-normal text-center text-text-gray'>
-          Copyright © 2023 고장난 로켓 <br /> All Rights Reserved
-        </p> */}
+        <p className='text-base font-normal text-center text-text-gray'>
+          Copyright © 2023 고장난 로켓
+        </p>
+        <p className='text-base font-normal text-center text-text-gray'>
+          All Rights Reserved
+        </p>
       </section>
     </footer>
   );
