@@ -15,7 +15,7 @@ const meta = {
     },
     size: {
       control: 'radio',
-      options: ['lg', 'sm'],
+      options: ['lg', 'md', 'sm', 'xs'],
     },
     borderRadius: {
       control: 'boolean',
@@ -25,34 +25,10 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Enabled: Story = {
+export const Main: Story = {
   args: {
     state: 'enabled',
-    placeholder: 'Enabled State',
-  },
-};
-
-export const Error: Story = {
-  args: {
-    state: 'error',
-    placeholder: 'Error State',
-  },
-};
-export const Success: Story = {
-  args: {
-    state: 'success',
-    placeholder: 'Success State',
-  },
-};
-export const Disabled: Story = {
-  args: {
-    state: 'disabled',
-    placeholder: 'Disabled State',
-  },
-};
-export const Search: Story = {
-  args: {
-    state: 'search',
-    placeholder: 'Search State',
+    placeholder: 'Placeholder',
+    size: 'sm',
   },
 };

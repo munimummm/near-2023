@@ -1,14 +1,12 @@
 'use client';
 
 import { useRecoilValue, userEmailState } from '@near/store';
-import { Header } from 'ui';
 
 export default function Page() {
   const recoilTest = useRecoilValue(userEmailState);
 
   return (
     <div className='flex flex-col gap-1 p-6 bg-blue-700'>
-      <Header text='[Client]' />
       <span className='text-white'>
         process.env.NODE_ENV:<b>{process.env.NODE_ENV}</b>
       </span>
