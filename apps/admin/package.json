@@ -12,6 +12,7 @@
     "@near/apis": "*",
     "@near/config": "*",
     "@near/react-query": "*",
+    "@near/react-quill": "*",
     "@near/store": "*",
     "@near/svgr": "*",
     "next": "^13.4.1",
