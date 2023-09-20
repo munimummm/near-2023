@@ -21,4 +21,5 @@ export * from './components/textarea/TextArea';
 export * from './components/textarea/CommentBox';
 export * from './components/imagebox/ImageBox';
 export * from './components/footer/FooterShadowButton';
-
+export * from './components/texteditor/TextEditorReader';
+export * from './components/texteditor/TextEditorWriter';
