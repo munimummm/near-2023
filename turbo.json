@@ -10,7 +10,12 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "dist/**",
+        "storybook-static/**"
+      ]
     },
     "start": {
       "outputs": []
@@ -23,6 +28,12 @@
       "cache": false
     },
     "deploy": {
+      "outputs": []
+    },
+    "storybook": {
+      "outputs": []
+    },
+    "chromatic": {
       "outputs": []
     }
   }

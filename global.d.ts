@@ -1,3 +1,4 @@
+
 export {}
 
    export interface AdoptApplicationDetailProps {
@@ -220,8 +221,3 @@ export {}
         user_id: string
         volunteer_review_img_id: number
     }
-
-
-
-
-
