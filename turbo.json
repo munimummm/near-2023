@@ -5,7 +5,10 @@
     "NODE_ENV",
     "NEXT_PUBLIC_SUPABASE_URL",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY",
-    "NEXT_PUBLIC_SUPABASE_SERVICE_KEY"
+    "NEXT_PUBLIC_SUPABASE_SERVICE_KEY",
+    "NEXT_PUBLIC_FIGMA_TOKEN",
+    "NEXT_PUBLIC_FIGMA_FILE_KEY",
+    "NEXT_PUBLIC_FIGMA_NODE_ID"
   ],
   "pipeline": {
     "build": {
@@ -31,6 +34,8 @@
       "outputs": []
     },
     "storybook": {
+      "cache": false,
+      "persistent": true,
       "outputs": []
     },
     "chromatic": {
