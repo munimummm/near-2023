@@ -3,6 +3,10 @@ interface IconWrapperProps {
 }
 
 function IconWrapper({ children }: IconWrapperProps) {
-  return <div className='flex mb:gap-1 gap-[0.375rem]'>{children}</div>;
+  return (
+    <div className='flex mobile:gap-1 tablet:gap-[0.375rem] desktop:gap-[0.375rem]'>
+      {children}
+    </div>
+  );
 }
 export default IconWrapper;
