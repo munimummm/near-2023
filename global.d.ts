@@ -6,10 +6,8 @@ export {}
         comment: string
         education_completation: boolean
         family_type: 'spouse' | 'siblings' | 'parents' | 'inmate'
-        residence_type: 'apartmentwithelevator' |
-                        'apartmentwithstairs' |
-                        'officetelswithelevator' |
-                        'officetelswithstairs' |
+        residence_type: 'apartment' |
+                        'officetels' |
                         'housewithyard' |
                         'house'
     }
