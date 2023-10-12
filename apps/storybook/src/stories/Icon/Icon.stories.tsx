@@ -8,16 +8,22 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    state: {
+      control: 'radio',
+      options: ['default', 'active'],
+    },
+  },
 } satisfies Meta<typeof Icon>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Search: Story = {
   args: {
-    icon: 'ic_search_sm',
-    color: '#545454',
+    icon: 'ic_search',
+    sizes: 'sm',
+    state: 'default',
   },
 };
