@@ -42,7 +42,7 @@ module.exports = {
         // => @media (min-width: 1440px) { ... }
       },
       maxWidth: {
-        mw: '1920px',
+        mw: '1440px',
       },
     },
   },
