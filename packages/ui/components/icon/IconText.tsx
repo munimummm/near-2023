@@ -1,12 +1,12 @@
 import { Icon } from './Icon';
 import clsx from 'clsx';
 import IconWrapper from './IconWrapper';
-import type { IconResponsiveSize, Iconname } from './Icon';
+import type { IconResponsiveSize, IconName } from './Icon';
 
 type ExtractIconResponsiveSize = Extract<IconResponsiveSize, 'xs' | 'sm'>;
 
 interface IconTextProps {
-  icon: Iconname;
+  icon: IconName;
   sizes: ExtractIconResponsiveSize;
   text: string;
 }

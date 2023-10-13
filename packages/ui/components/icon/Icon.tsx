@@ -6,6 +6,20 @@ const ICON_NAME = {
   ic_noti_active: 'ic_noti_active',
   ic_hamburger: 'ic_hamburger',
   ic_x: 'ic_x',
+  ic_error: 'ic_error',
+  ic_calender: 'ic_calender',
+  ic_more: 'ic_more',
+  ic_arrow_right: 'ic_arrow_right',
+  ic_chevron_right: 'ic_chevron_right',
+  ic_chevron_down: 'ic_chevron_down',
+  ic_chevron_down_bold: 'ic_chevron_down_bold',
+  ic_heart: 'ic_heart',
+  ic_heart_fill: 'ic_heart_fill',
+  ic_share: 'ic_share',
+  ic_visible: 'ic_visible',
+  ic_hidden: 'ic_hidden',
+  ic_caution: 'ic_caution',
+  ic_add: 'ic_add',
 } as const;
 
 const ICON_RESPONSIVE_SIZE = {
@@ -19,19 +33,20 @@ const ICON_RESPONSIVE_SIZE = {
 const States = {
   default: '#545454',
   active: '#ff3434',
-  negative: '#ff4343',
+  negative: '#cc3b3b',
   positive: '#545454',
+  mild: '#A3A3A3',
 } as const;
 
-export type Iconname = (typeof ICON_NAME)[keyof typeof ICON_NAME];
+export type IconName = (typeof ICON_NAME)[keyof typeof ICON_NAME];
 
 export type IconResponsiveSize =
   (typeof ICON_RESPONSIVE_SIZE)[keyof typeof ICON_RESPONSIVE_SIZE];
 
 interface IconProps {
-  icon: Iconname;
+  icon: IconName;
   sizes: IconResponsiveSize;
-  state: 'default' | 'active' | 'negative' | 'positive';
+  state: 'default' | 'active' | 'negative' | 'positive' | 'mild';
 
   //state: 'default' | 'active' | 'negative'
 }
@@ -41,7 +56,7 @@ export function Icon({ icon, state, sizes }: IconProps) {
   const { width, height, path, viewBox } = SVGICON[icon].size[sizes];
 
   return (
-    <i id={type}>
+    <i id={type} className='flex items-center'>
       <svg
         width={width}
         height={height}

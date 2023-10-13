@@ -11,7 +11,27 @@ const meta = {
   argTypes: {
     icon: {
       control: 'radio',
-      options: ['ic_search', 'ic_noti', 'ic_noti_active'],
+      options: [
+        'ic_search',
+        'ic_noti',
+        'ic_noti_active',
+        'ic_hamburger',
+        'ic_x',
+        'ic_error',
+        'ic_calender',
+        'ic_more',
+        'ic_arrow_right',
+        'ic_chevron_right',
+        'ic_chevron_down',
+        'ic_chevron_down_bold',
+        'ic_heart',
+        'ic_heart_fill',
+        'ic_share',
+        'ic_visible',
+        'ic_hidden',
+        'ic_caution',
+        'ic_add',
+      ],
     },
   },
 } satisfies Meta<typeof IconText>;
