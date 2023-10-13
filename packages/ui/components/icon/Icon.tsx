@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
 import SVGICON from './icon.json';
-import IconWrapper from './IconWrapper';
-import clsx from 'clsx';
+
 const ICON_NAME = {
   ic_search: 'ic_search',
-  // ic_search_sm: 'ic_search_sm',
+  ic_noti: 'ic_noti',
+  ic_noti_active: 'ic_noti_active',
+  ic_hamburger: 'ic_hamburger',
+  ic_x: 'ic_x',
 } as const;
 
 const ICON_RESPONSIVE_SIZE = {
@@ -22,9 +23,11 @@ const States = {
   positive: '#545454',
 } as const;
 
-type Iconname = (typeof ICON_NAME)[keyof typeof ICON_NAME];
+export type Iconname = (typeof ICON_NAME)[keyof typeof ICON_NAME];
+
 export type IconResponsiveSize =
   (typeof ICON_RESPONSIVE_SIZE)[keyof typeof ICON_RESPONSIVE_SIZE];
+
 interface IconProps {
   icon: Iconname;
   sizes: IconResponsiveSize;
@@ -34,11 +37,11 @@ interface IconProps {
 }
 export function Icon({ icon, state, sizes }: IconProps) {
   const { type } = SVGICON[icon];
+
   const { width, height, path, viewBox } = SVGICON[icon].size[sizes];
-  const texts = useRef<HTMLSpanElement>(null);
 
   return (
-    <i aria-label={type}>
+    <i id={type}>
       <svg
         width={width}
         height={height}

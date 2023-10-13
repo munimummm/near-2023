@@ -1,11 +1,17 @@
 import { Icon } from './Icon';
 import clsx from 'clsx';
 import IconWrapper from './IconWrapper';
-import type { IconResponsiveSize } from './Icon';
-interface test {
-  sizes: IconResponsiveSize;
+import type { IconResponsiveSize, Iconname } from './Icon';
+
+type ExtractIconResponsiveSize = Extract<IconResponsiveSize, 'xs' | 'sm'>;
+
+interface IconTextProps {
+  icon: Iconname;
+  sizes: ExtractIconResponsiveSize;
+  text: string;
 }
-function Text({ sizes = 'sm' }: test) {
+
+function Text({ sizes = 'sm', text }: IconTextProps) {
   return (
     <span
       className={clsx(
@@ -14,16 +20,16 @@ function Text({ sizes = 'sm' }: test) {
         sizes === 'sm' && 'tablet:text-base desktop:text-base',
       )}
     >
-      Home
+      {text}
     </span>
   );
 }
 
-export function IconText({ sizes }: test) {
+export function IconText({ sizes, text, icon }: IconTextProps) {
   return (
     <IconWrapper>
-      <Icon icon={'ic_search'} sizes={sizes} state={'default'} />
-      <Text sizes={sizes} />
+      <Icon icon={icon} sizes={sizes} state={'default'} />
+      <Text icon={icon} sizes={sizes} text={text} />
     </IconWrapper>
   );
 }

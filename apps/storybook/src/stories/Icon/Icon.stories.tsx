@@ -20,7 +20,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Search: Story = {
+export const Main: Story = {
   args: {
     icon: 'ic_search',
     sizes: 'sm',

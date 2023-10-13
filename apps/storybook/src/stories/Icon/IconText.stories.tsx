@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { IconText } from 'ui/components/icon/IconText';
+import { IconText } from 'ui/index';
 
 const meta = {
   title: 'Components/IconText',
@@ -9,10 +9,10 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    // state: {
-    //   control: 'radio',
-    //   options: ['default', 'active', 'negative', 'active'],
-    // },
+    icon: {
+      control: 'radio',
+      options: ['ic_search', 'ic_noti', 'ic_noti_active'],
+    },
   },
 } satisfies Meta<typeof IconText>;
 
@@ -20,10 +20,11 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Search: Story = {
+export const Main: Story = {
   args: {
-    // icon: 'ic_search',
+    icon: 'ic_search',
     sizes: 'sm',
+    text: 'Home',
     // state: 'default',
   },
 };
