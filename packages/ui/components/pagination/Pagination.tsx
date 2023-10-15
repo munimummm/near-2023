@@ -22,10 +22,10 @@ function Pagination({ total }: PaginationProps) {
       {pages.map((page) => (
         <div className='p-2.5' key={page}>
           <button
-            className={`w-2.5 h-2.5 flex items-center text-sm font-normal leading-5 tracking-tighter text-center ${
+            className={`w-2.5 h-2.5 flex items-center text-sm leading-5 -tracking-[-0.014] text-center ${
               currentPage === page
-                ? ' text-theme-main'
-                : 'bg-white text-text-gray'
+                ? 'text-theme-main font-medium'
+                : 'bg-white text-text-gray font-normal'
             }`}
             onClick={() => handlePageChange(page)}
           >
@@ -35,6 +35,7 @@ function Pagination({ total }: PaginationProps) {
       ))}
       <button
         onClick={() => handlePageChange(Math.min(total, currentPage + 1))}
+        className='hover:text-theme-main'
       >
         <IconChevronRight />
       </button>
