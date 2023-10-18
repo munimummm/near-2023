@@ -31,6 +31,7 @@ const meta = {
         'ic_hidden',
         'ic_caution',
         'ic_add',
+        'ic_check',
       ],
     },
   },

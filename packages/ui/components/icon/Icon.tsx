@@ -32,9 +32,9 @@ const ICON_RESPONSIVE_SIZE = {
 
 const States = {
   default: '#545454',
-  active: '#ff3434',
+  active: '#3730a3',
   negative: '#cc3b3b',
-  positive: '#545454',
+  positive: '#00AE46',
   mild: '#A3A3A3',
 } as const;
 

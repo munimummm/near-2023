@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     state: {
       control: 'radio',
-      options: ['default', 'active', 'negative', 'mild'],
+      options: ['default', 'active', 'negative', 'positive', 'mild'],
     },
   },
 } satisfies Meta<typeof Icon>;
