@@ -17,10 +17,10 @@ const Profile = ({ nickname, daysAgo }: ProfileProps) => {
         <IconProfileImageDefault className='md:hidden object-cover w-full h-full' />
       </div>
       <div className=''>
-        <div className='md:relative z-0 '>
+        <div className='md:relative z-0'>
           <IconProfileNotificationDot className={'hidden md:block absolute left-0 top-0.5'}/>
         </div>
-        <IconProfileMdLgDefault className={'hidden md:block w-10 h-10'}/>
+        <IconProfileMdLgDefault className={'hidden md:block bg-orange-400'}/>
       </div>
       <div className='flex flex-col gap-1'>
         <span className='text-sm font-bold text-black'>{nickname}</span>
