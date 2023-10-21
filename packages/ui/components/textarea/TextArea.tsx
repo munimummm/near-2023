@@ -5,8 +5,8 @@ import { ChangeEvent, useState } from 'react';
 interface TextAreaProps {
   placeholder?: string;
   maxLength?: number;
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
   setParentExceeding?: (exceeding: boolean) => void;
 }
 
@@ -14,7 +14,7 @@ const styles = {
   textareaContainer: 'relative w-full h-full rounded bg-[#F9F9F9]',
   textareaDefault:
     'w-full h-full p-3 pb-8 text-sm text-left resize-none text-text-gray rounded bg-[#F9F9F9]',
-  textareaFocused: 'focus:text-black focus:outline-none',
+  textareaFocused: 'focus:text-black focus:outline-theme-main',
   textareaExceeding: 'focus:outline-text-red',
   counterContainer: 'absolute right-2 bottom-3',
   counterText: 'text-sm text-black',

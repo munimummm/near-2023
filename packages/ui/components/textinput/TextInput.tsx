@@ -10,11 +10,12 @@ export interface TextInputProps {
   placeholder?: string;
   state: 'enabled' | 'error' | 'success' | 'disabled' | 'search';
   borderRadius?: boolean;
-  size?: 'lg' | 'md' | 'sm' | 'xs';
+  height: 'lg' | 'md' | 'sm';
+  width: string;
 }
 
 const CommonStyle =
-  'w-full h-full pl-5 pr-10 rounded-[4px] focus-outline-4 active:bg-gray-3 active:text-[#333333] f ';
+  'w-full h-full pl-5 pr-10 rounded-[4px] focus-outline-4 active:bg-gray-3 active:text-[#333333]  ';
 
 const TextInputStyle = {
   enabled:
@@ -25,20 +26,31 @@ const TextInputStyle = {
   search: 'pl-[52px] active:pr-10 focus:',
 };
 
-const InputSize = {
-  lg: 'w-[403px] h-[48px] text-base',
-  md: 'w-[380px] h-[40px] text-sm',
-  sm: 'w-[416px] h-[32px] text-sm',
-  xs: 'w-[349px] h-[32px] text-sm',
+// const InputSize = {
+//   lg: 'w-[403px] h-[48px] text-base',
+//   md: 'w-[380px] h-[40px] text-sm',
+//   sm: 'w-[416px] h-[32px] text-sm',
+//   xs: 'w-[349px] h-[32px] text-sm',
+// };
+const HeightSize = {
+  lg: ` h-[40px] text-base`,
+  md: ` h-[40px] text-sm`,
+  sm: ` h-[32px] text-sm`,
+  xs: 'h-[24px] text-xs',
 };
 
 function TextInput({
   placeholder,
   state,
   borderRadius = false,
-  size = 'sm',
+  height = 'sm',
+  width = '349px',
 }: TextInputProps) {
   const [text, setText] = useState('');
+
+  const handleCancelClick = () => {
+    setText('');
+  };
 
   const stateIcon = () => {
     switch (state) {
@@ -53,12 +65,8 @@ function TextInput({
     }
   };
 
-  const handleCancelClick = () => {
-    setText('');
-  };
-
   return (
-    <div className={`relative ${InputSize[size]} `}>
+    <div className={`relative ${HeightSize[height]} w-[${width}]  `}>
       <input
         type='text'
         value={text}
