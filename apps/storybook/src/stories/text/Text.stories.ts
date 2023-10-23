@@ -15,6 +15,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Main: Story = {
   args: {
-    
+    content: '긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트'
   },
 };

@@ -1,17 +1,14 @@
 'use client'
 
 interface TextProps {
-
+    content: string
 }
 
-const Text = () => {
+const Text = ({ content } : TextProps) => {
     return (
-        <div className={'w-[480px] h-[120px] px-4 text-center md:w-[768px] md:h-[312px] lg:w-[1440px] lg:h-[336px]'}>
+        <div className={'w-[30rem] h-[7.5rem] px-4 text-center md:w-[48rem] md:h-[19.5rem] lg:w-[90rem] lg:h-[21rem]'}>
             <div className={'md:font-semibold md:text-base'}>
-                긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트
-                긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트
-                긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트
-                긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트긴텍스트
+                {content}
             </div>
         </div>
     )

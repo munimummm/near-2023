@@ -15,6 +15,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Main: Story = {
   args: {
-    
+    content : '가나다라마바사자차카타파하가나다라마바사자차카타파하가나다라마바사자차카타파하가나다라마바사자차카타파하가나다라마바사자차카타파하'
   },
 };
