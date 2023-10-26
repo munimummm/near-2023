@@ -15,6 +15,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Main: Story = {
   args: {
-    time:'2023.3.5'
+    time:'2023.3.5',
+    number: '09'
   },
 };
