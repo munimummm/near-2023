@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, ReactNode } from 'react';
 import IconError from '../../assets/icons/textinput/icon_error.svg';
 

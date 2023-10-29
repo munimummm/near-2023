@@ -1,3 +1,4 @@
+'use client';
 import { useState, useRef, ChangeEvent } from 'react';
 import Image from 'next/image';
 import IconImageDefault from '../../assets/icons/imagebox/icon_imagebox_default.svg';

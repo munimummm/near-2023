@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import IconChevronLeft from '../../assets/icons/pagination/icon_chevron_left.svg';
 import IconChevronRight from '../../assets/icons/pagination/icon_chevron_right.svg';
