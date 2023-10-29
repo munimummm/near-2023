@@ -15,8 +15,8 @@ function FooterLink({ href, label }: FooterLinkProps) {
     <Link
       href={href}
       className='text-lg flex
-       mobile:w-[81px] mobile:px-[10px] 
-        tablet:w-[114px] tablet:px-6 tablet:py-3 tablet:items-center tablet:justify-center
+        mobile:w-[81px] mobile:px-[10px] 
+        tablet:w-[100px] tablet:px-6 tablet:py-3 tablet:items-center tablet:justify-center
         desktop:w-[120px] desktop:text-xl
           '
     >
@@ -27,8 +27,6 @@ function FooterLink({ href, label }: FooterLinkProps) {
 
 function Footer() {
   const [{ width }] = useInnerWidthState();
-  const footerSize =
-    width <= 480 ? 'w-[480px]' : width <= 768 ? 'w-[768px]' : 'w-[1220px]';
 
   const links = [
     { href: '/Home', label: 'Home' },
@@ -38,8 +36,8 @@ function Footer() {
     { href: '/Contact', label: 'Contact' },
   ];
   return (
-    <footer className={`bg-white  ${footerSize}`}>
-      <div className='flex mobile:mb-[46.5px] tablet:mb-[51px] tablet:items-center  desktop:mb-[63px]'>
+    <footer className={`bg-white w-full`}>
+      <div className='flex mobile:mb-[46.5px] tablet:mb-[51px] tablet:items-center desktop:mb-[63px]'>
         <section
           className='flex justify-center items-center  
         mobile:ml-[40px] mobile:mr-[43px] mobile:h-[30px]
@@ -49,15 +47,14 @@ function Footer() {
         >
           <Logo size={width > 1439 ? 'lg' : 'sm'} />
         </section>
-        <nav className='flex font-normal text-theme-main_dark mobile:gap-1 mobile:items-start mobile:flex-wrap tablet:gap-0 tablet:items-center tablet:justify-center desktop:gap-4 '>
+        <nav className='flex flex-wrap font-normal text-theme-main_dark mobile:gap-1 mobile:items-start tablet:gap-0 tablet:items-center tablet:justify-center desktop:gap-4 '>
           {links.map((link) => (
             <FooterLink key={link.href} href={link.href} label={link.label} />
           ))}
-          {/* 링크 수정예정 */}
         </nav>
       </div>
-      <hr className='border border-theme-main mobile:mb-[22.5px] tablet:mb-[51px] desktop:mb-[63px] ' />
-      <section className='text-center'>
+      <hr className='border border-theme-main w-full mobile:mb-[22.5px] tablet:mb-[51px] desktop:mb-[63px] ' />
+      <section className='w-full text-center'>
         <Copyright size={width > 767 ? 'lg' : 'sm'} />
       </section>
     </footer>
