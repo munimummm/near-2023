@@ -12,19 +12,15 @@ const authOptions: NextAuthOptions = {
     },
 
     callbacks: {
-        async jwt({ token, account, profile }) {
-            if (account) {
-              token.accessToken = account.access_token
-            //   token.id = profile.id
-            }
-            return token
-        },
-
-        async session({ session, token, user }) {
-            session.accessToken = token.accessToken
-            session.user.id = token.id
-            return session
-        }
+        async jwt({ token, user }) {
+            console.log('[...nextauth].ts > jwt()');
+            return { ...token, ...user };
+          },
+          async session({ session, token }) {
+            console.log('[...nextauth].ts > session()');
+            session.user = token as any;
+            return session;
+          },
     },
 
 }
