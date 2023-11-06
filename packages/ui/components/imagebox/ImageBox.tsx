@@ -5,47 +5,94 @@ import IconCancel from '../../assets/icons/imagebox/icon_cancel.svg';
 
 interface ImageButtonProps {
   onClick: () => void;
+  size?: 'sm' | 'lg';
 }
 
 interface ImagePreviewProps {
   image: File;
+  size?: 'sm' | 'lg';
+}
+interface DeleteButtonProps {
   onDelete: () => void;
+  size?: 'sm' | 'lg';
+}
+interface TitleImageProps {
+  size?: 'sm' | 'lg';
+}
+interface ImageBoxProps {
+  size?: 'sm' | 'lg';
 }
 
 const ImageBoxStyles = {
   imageButton:
-    'flex items-center justify-center w-20 h-20 bg-white border-[1.5px] border-text-gray rounded',
-  imagePreview: 'relative w-20 h-20 rounded-lg border-text-gray',
+    'flex items-center justify-center  bg-white border-[1.5px] border-text-gray rounded',
+  imagePreview: 'relative  rounded-lg border-text-gray',
   imagePreviewImage: 'object-cover w-full h-full rounded-md',
   deleteButton:
-    'absolute flex top-[-10px] right-[-10px] w-[20px] h-[20px] rounded-full bg-black',
+    'absolute flex items-center justify-center  rounded-full bg-theme-main ',
+  titleImage: 'rounded-b-lg bg-theme-main text-text-white',
+};
+const sizes = {
+  sm: {
+    button: 'w-20 h-20',
+    preview: 'w-20 h-20',
+    deleteButton: 'top-[-8px] right-[-8px] w-[16px] h-[16px]',
+    titleImage: 'w-[80px] h-[16px]',
+  },
+  lg: {
+    button: 'w-40 h-40',
+    preview: 'w-40 h-40',
+    deleteButton: 'top-[-16px] right-[-16px] w-[32px] h-[32px]',
+    titleImage: 'w-[160px] h-[32px]',
+  },
 };
 
-function ImageButton({ onClick }: ImageButtonProps) {
+function ImageButton({ onClick, size = 'sm' }: ImageButtonProps) {
+  const sizeClasses = sizes[size].button;
   return (
-    <button onClick={onClick} className={ImageBoxStyles.imageButton}>
+    <button
+      onClick={onClick}
+      className={`${ImageBoxStyles.imageButton} ${sizeClasses}`}
+    >
       <IconImageDefault />
     </button>
   );
 }
 
-function ImagePreview({ image, onDelete }: ImagePreviewProps) {
+export function ImagePreview({ image, size = 'sm' }: ImagePreviewProps) {
+  const sizeClasses = sizes[size].preview;
   return (
-    <div className={ImageBoxStyles.imagePreview}>
+    <div className={`${ImageBoxStyles.imagePreview} ${sizeClasses}`}>
       <Image
         className={ImageBoxStyles.imagePreviewImage}
         fill
         src={URL.createObjectURL(image)}
         alt={`Preview`}
       />
-      <button onClick={onDelete} className={ImageBoxStyles.deleteButton}>
-        <IconCancel stroke='#ffffff' />
-      </button>
+    </div>
+  );
+}
+function DeleteButton({ onDelete, size = 'sm' }: DeleteButtonProps) {
+  const sizeClasses = sizes[size].deleteButton;
+  return (
+    <button
+      onClick={onDelete}
+      className={`${ImageBoxStyles.deleteButton} ${sizeClasses}`}
+    >
+      <IconCancel />
+    </button>
+  );
+}
+export function TitleImage({ size = 'sm' }: TitleImageProps) {
+  const sizeClasses = sizes[size].titleImage;
+  return (
+    <div className={`${ImageBoxStyles.titleImage} ${sizeClasses}`}>
+      대표사진
     </div>
   );
 }
 
-function ImageBox() {
+function ImageBox({ size = 'sm' }: ImageBoxProps) {
   const [uploadedImages, setUploadedImages] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -66,16 +113,18 @@ function ImageBox() {
   };
 
   return (
-    <div className='flex space-x-4'>
-      <ImageButton onClick={() => fileInputRef.current?.click()} />
+    <div className='flex space-x-4 '>
+      <ImageButton size={size} onClick={() => fileInputRef.current?.click()} />
 
       <div className='flex flex-wrap space-x-4'>
         {uploadedImages.map((image, index) => (
-          <ImagePreview
-            key={index}
-            image={image}
-            onDelete={() => handleDeleteImage(index)}
-          />
+          <div key={index} className='relative'>
+            <ImagePreview size={size} image={image} />
+            <DeleteButton
+              size={size}
+              onDelete={() => handleDeleteImage(index)}
+            />
+          </div>
         ))}
         <input
           type='file'

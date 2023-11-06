@@ -13,10 +13,6 @@ const meta = {
       control: 'radio',
       options: ['enabled', 'error', 'success', 'disabled', 'search'],
     },
-    size: {
-      control: 'radio',
-      options: ['lg', 'md', 'sm', 'xs'],
-    },
     borderRadius: {
       control: 'boolean',
     },
@@ -29,6 +25,7 @@ export const Main: Story = {
   args: {
     state: 'enabled',
     placeholder: 'Placeholder',
-    size: 'sm',
+    height: 'sm',
+    width: '349px',
   },
 };
