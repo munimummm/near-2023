@@ -1,14 +1,14 @@
 import { Meta, StoryObj } from '@storybook/react';
-import FooterShadowButton from 'ui/components/footer/FooterShadowButton';
+import FooterShadowButtons from 'ui/components/footer/FooterShadowButtons';
 const meta = {
-  title: 'Components/Footer/FooterShadowButton',
-  component: FooterShadowButton,
+  title: 'Components/Footer/FooterShadowButtons',
+  component: FooterShadowButtons,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
   argTypes: {},
-} satisfies Meta<typeof FooterShadowButton>;
+} satisfies Meta<typeof FooterShadowButtons>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 

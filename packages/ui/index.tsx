@@ -20,5 +20,5 @@ export * from './components/logo/Logo';
 export * from './components/textarea/TextArea';
 export * from './components/textarea/CommentBox';
 export * from './components/imagebox/ImageBox';
-export * from './components/footer/FooterShadowButton';
+export * from './components/footer/FooterShadowBox';
 export * from './components/icon/IconText';
