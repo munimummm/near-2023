@@ -1,30 +1,33 @@
-import { useState } from 'react';
+'use client';
+
 import TextInput from '../textinput/TextInput';
+import { useController, Control } from 'react-hook-form';
 
 interface RadioButtonProps {
   name: string;
   value?: string;
   label?: string;
-  disabled?: boolean;
+  isDisabled?: boolean;
   labelType?: 'notext' | 'singletext' | 'multipletext' | 'textinput';
   multipleLabel?: string;
-  initialSelected?: string;
+  control?: Control;
 }
 
 function RadioButton({
   name,
+  control,
   value,
   label,
-  disabled,
+  isDisabled,
   labelType = 'singletext',
   multipleLabel,
-  initialSelected = '',
 }: RadioButtonProps) {
-  const [selectedValue, setSelectedValue] = useState(initialSelected);
-
-  const selectChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value);
-  };
+  const {
+    field: { onChange, value: selectedValue },
+  } = useController({
+    name,
+    control,
+  });
 
   const isChecked = selectedValue === value;
 
@@ -33,7 +36,7 @@ function RadioButton({
       <label
         className={`inline-flex 
         ${labelType === 'multipletext' ? 'items-start' : ' items-center'}
-          cursor-pointer ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}
+          cursor-pointer ${isDisabled ? 'cursor-not-allowed opacity-50' : ''}`}
       >
         <input
           type='radio'
@@ -41,14 +44,14 @@ function RadioButton({
           name={name}
           value={value}
           checked={isChecked}
-          disabled={disabled}
-          onChange={selectChange}
+          disabled={isDisabled}
+          onChange={onChange}
         />
         <span
           className={`w-5 h-5 mr-4 border rounded-full ${
             isChecked
               ? 'border-theme-main border-[6px]'
-              : `border-[#797979] ${disabled ? 'border-[6px]' : ''}`
+              : `border-[#797979] ${isDisabled ? 'border-[6px]' : ''}`
           }`}
         ></span>
         {labelType === 'singletext' && (
@@ -73,10 +76,9 @@ function RadioButton({
             </span>
             <div className='flex items-center justify-start'>
               <TextInput
-                state={isChecked ? 'enabled' : 'disabled'}
+                isDisabled={!isChecked || isDisabled}
                 borderRadius
-                width='163px'
-                height='sm'
+                name={`${name}_textInput`}
               />
             </div>
           </div>
