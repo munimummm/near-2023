@@ -9,12 +9,11 @@ export default function CommentInput() {
       <div className='w-[24px] h-[24px] '>
         <IconProfileImageDefault className='object-cover w-full h-full' />
       </div>
-      <TextInput
-        width='349px'
-        height='sm'
+      {/* <TextInput
         placeholder='내용을 작성해주세요'
         state={'enabled'}
-      />
+        name='comment'
+      /> */}
     </div>
   );
 }

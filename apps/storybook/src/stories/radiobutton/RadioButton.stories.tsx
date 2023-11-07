@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import RadioButton from 'ui/components/radiobuttons/RadioButton';
+import { FormDecorator } from '../../../.storybook/decorators/FormDecorator';
 
 const meta = {
   title: 'Components/RadioButton',
@@ -8,11 +9,8 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {
-    disabled: {
-      control: 'boolean',
-    },
-  },
+  argTypes: {},
+  decorators: [FormDecorator],
 } satisfies Meta<typeof RadioButton>;
 
 export default meta;
