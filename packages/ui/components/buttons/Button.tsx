@@ -17,9 +17,9 @@ interface ButtonProps {
   className?: string;
 }
 
-/* Button 공통 스타일 */
+/* 기본 Button 공통 스타일 */
 const ButtonBaseStyle =
-  'box-border inline-flex justify-center items-center border-[1.5px] rounded-[40px] text-center active:shadow-none disabled:shadow-none disabled:cursor-not-allowed mobile:h-8 mobile:px-4 mobile:gap-2 mobile:text-sm mobile:font-normal mobile:leading-tight tablet:h-10 tablet:px-6 tablet:gap-3 tablet:text-sm tablet:font-normal tablet:leading-tight desktop:h-[58px] desktop:px-4 desktop:gap-3 desktop:text-lg desktop:font-semibold desktop:leading-7';
+  'box-border inline-flex justify-center items-center border-[0.0938rem] rounded-[2.5rem] text-center active:shadow-none disabled:shadow-none disabled:cursor-not-allowed mobile:h-8 mobile:px-4 mobile:gap-2 mobile:text-sm mobile:font-normal mobile:leading-tight tablet:h-10 tablet:px-6 tablet:gap-3 tablet:text-sm tablet:font-normal tablet:leading-tight desktop:h-[3.625rem] desktop:px-4 desktop:gap-3 desktop:text-lg desktop:font-semibold desktop:leading-7';
 
 /* Button mode 별 스타일 */
 const ButtonModeStyle = {
@@ -78,7 +78,7 @@ const ButtonModeStyle = {
  * - `타입` — `React.MouseEventHandler<HTMLButtonElement>` | `undefined`
  *
  * @param onlyIcon
- * — *Large 사이즈의 경우 ```min-width: 160px``` 조건이 있어 아이콘만 넣어야 할 경우 true로 설정. (Figma 참고)*
+ * — *Large 사이즈의 경우 ```min-width: 10rem``` 조건이 있어 아이콘만 넣어야 할 경우 true로 설정. (Figma 참고)*
  * - `필수 파라미터` — X
  * - `기본값` — false
  * - `타입` — `boolean`
@@ -89,7 +89,7 @@ const ButtonModeStyle = {
  * - `기본값` — ""
  * - `타입` — `string`
  */
-function Button({
+export function Button({
   type = 'button',
   mode = 'main',
   isDisabled = false,
@@ -104,7 +104,7 @@ function Button({
       className={clsx(
         ButtonBaseStyle,
         ButtonModeStyle[mode],
-        `${onlyIcon ? '' : 'desktop:min-w-[160px]'}`,
+        `${onlyIcon ? '' : 'desktop:min-w-[10rem]'}`,
         className,
       )}
       disabled={isDisabled}
@@ -115,4 +115,31 @@ function Button({
   );
 }
 
-export default Button;
+const ButtonXLBaseStyle =
+  'w-[26.25rem] h-[3.625rem] box-border inline-flex justify-center items-center border-[0.0938rem] rounded-full text-center active:shadow-none disabled:shadow-none disabled:cursor-not-allowed gap-3 text-lg font-semibold leading-7';
+
+export function ButtonXL({
+  type = 'button',
+  mode = 'main',
+  isDisabled = false,
+  children,
+  onClick,
+  onlyIcon = false,
+  className = '',
+}: ButtonProps) {
+  return (
+    <button
+      type={type}
+      className={clsx(
+        ButtonXLBaseStyle,
+        ButtonModeStyle[mode],
+        `${onlyIcon ? '' : 'desktop:min-w-[10rem]'}`,
+        className,
+      )}
+      disabled={isDisabled}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}

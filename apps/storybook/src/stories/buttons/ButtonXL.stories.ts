@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Button } from 'ui/components/buttons/Button';
+import { ButtonXL } from 'ui/components/buttons/Button';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: 'Components/Button',
-  component: Button,
+  title: 'Components/ButtonXL',
+  component: ButtonXL,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'centered',
@@ -14,7 +14,7 @@ const meta = {
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   args: {
-    children: 'Button',
+    children: 'ButtonXL',
     onClick: () => alert('버튼 클릭'),
   },
   argTypes: {
@@ -37,7 +37,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof ButtonXL>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
