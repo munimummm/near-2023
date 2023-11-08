@@ -1,88 +1,80 @@
-'use client';
+import { ReactNode } from 'react';
+import '../../globals.css';
 
-import { ReactNode, useMemo } from 'react';
+type ButtonType = {
+  type: 'button' | 'submit' | 'reset';
+  mode: 'main' | 'secondary' | 'ghost' | 'outline' | 'text' | 'danger';
+};
 
 interface ButtonProps {
-  mode?: 'Main' | 'Secondary' | 'Ghost' | 'Outline' | 'Text' | 'Danger';
-  size?: 'sm' | 'lg';
-  isRounded?: boolean;
+  type?: ButtonType['type'];
+  mode?: ButtonType['mode'];
   isDisabled?: boolean;
-  label?: ReactNode;
-  onClick?: () => void;
+  children?: ReactNode;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onlyIcon?: boolean;
 }
 
-const getModeClasses = (mode: string) => {
-  switch (mode) {
-    case 'Main': {
-      return 'border-none bg-[#312E81] text-white active:bg-[#1E1B4B] disabled:bg-[#E1E1E1] disabled:text-[#ACACAC]';
-    }
-    case 'Secondary': {
-      return 'border-none bg-[#EEF2FF] text-[#312E81] active:bg-[#E0E7FF] disabled:bg-[#F9F9F9] disabled:text-[#E0E0E0]';
-    }
-    case 'Ghost': {
-      return 'border-none bg-[#F9F9F9] text-[#A3A3A3] active:bg-[#E1E1E1] disabled:bg-[#F9F9F9] disabled:text-[#E0E0E0]';
-    }
-    case 'Outline': {
-      return 'border border-[#312E81] bg-white text-[#312E81] hover:bg-[#EEF2FF] hover:border-[#312E81] active:bg-[#E0E7FF] disabled:bg-white disabled:text-[#A3A3A3] disabled:border-[#A3A3A3]';
-    }
-    case 'Text': {
-      return 'border-none bg-transparent text-[#242424] hover:bg-[#EEF2FF] active:bg-white active:text-[#312E81] disabled:bg-transparent disabled:text-[#A3A3A3]';
-    }
-    case 'Danger': {
-      return 'border-none bg-[#CC3C3B] text-white hover:bg-[#A32F2F] active:bg-[#822626] disabled:bg-[#E1E1E1] disabled:text-[#E0E0E0]';
-    }
-    default: {
-      return 'border-none bg-[#312E81] text-white active:bg-[#1E1B4B] disabled:bg-[#E1E1E1] disabled:text-[#ACACAC]';
-    }
-  }
-};
-
-const getSizeClasses = (size: string) => {
-  switch (size) {
-    case 'sm': {
-      return 'py-2 gap-2';
-    }
-    case 'lg': {
-      return 'py-[15px] gap-3';
-    }
-    default: {
-      return 'py-[15px] gap-3';
-    }
-  }
-};
-
-const getRoundedClasses = (isRounded: boolean) =>
-  isRounded ? 'rounded-full' : 'rounded';
-
-const BASE_CLASSES =
-  'box-border px-4 flex items-center justify-center cursor-pointer font-bold text-base inline-block outline-none focus:outline-none hover:shadow disabled:hover:shadow-none disabled:cursor-not-allowed';
-
+/**
+ *
+ * @author `송용수`
+ *
+ * @desc Button UI 컴포넌트
+ *
+ * @param type
+ * — html `<button>` 태그의 type 속성에 들어가는 값.
+ * - `필수 파라미터` — `X`
+ * - `기본값` — `'button'`
+ * - `타입` — `string` (`'button'` | `'submit'` | `'reset'`)
+ *
+ * @param mode
+ * — *버튼 색상 관련 테마를 제어하는 값. (Figma 참고)*
+ * - `필수 파라미터` — `X`
+ * - `기본값` — `'main'`
+ * - `타입` — `string` (`'main'` | `'secondary'` | `'ghost'` | `'outline'` | `'text'` | `'danger'`)
+ *
+ * @param isDisabled
+ * — *html `<button>` 태그의 disabled 속성을 제어하는 값.*
+ * - `필수 파라미터` — X
+ * - `기본값` — `false`
+ * - `타입` — `boolean`
+ *
+ * @param children
+ * — *해당 컴포넌트의 내부에 들어가는 요소.*
+ * - `필수 파라미터` — `X`
+ * - `기본값` — 없음
+ * - `타입` — `ReactNode`
+ *
+ * @param onClick
+ * — *클릭 시 일어나는 `onClick` 이벤트.*
+ * - `필수 파라미터` — X
+ * - `기본값` — 없음
+ * - `타입` — `React.MouseEventHandler<HTMLButtonElement>` | `undefined`
+ *
+ * @param onlyIcon
+ * — *Large 사이즈의 경우 ```min-width: 160px``` 조건이 있어 아이콘만 넣어야 할 경우 true로 설정. (Figma 참고)*
+ * - `필수 파라미터` — X
+ * - `기본값` — false
+ * - `타입` — `boolean`
+ */
 function Button({
-  mode = 'Main',
-  size = 'lg',
-  isRounded = false,
+  type = 'button',
+  mode = 'main',
   isDisabled = false,
-  label = 'Button',
+  children,
   onClick,
-  ...props
+  onlyIcon = false,
 }: ButtonProps) {
-  const computedClasses = useMemo(() => {
-    const modeClass = getModeClasses(mode);
-    const sizeClass = getSizeClasses(size);
-    const roundedClass = getRoundedClasses(isRounded);
-
-    return [modeClass, sizeClass, roundedClass].join(' ');
-  }, [mode, size, isRounded]);
-
   return (
     <button
-      type='button'
-      className={`${BASE_CLASSES} ${computedClasses}`}
+      type={type}
+      className={`btn-base btn-${mode}
+      ${onlyIcon ? '' : 'desktop:min-w-[160px]'}
+      `}
       disabled={isDisabled}
       onClick={onClick}
-      {...props}
     >
-      {label}
+      {children}
     </button>
   );
 }
