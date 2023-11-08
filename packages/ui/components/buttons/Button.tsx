@@ -78,9 +78,9 @@ function Button({
     <button
       type={type}
       className={clsx(
-        className,
         `btn-base btn-${mode}`,
         `${onlyIcon ? '' : 'desktop:min-w-[160px]'}`,
+        className,
       )}
       disabled={isDisabled}
       onClick={onClick}
