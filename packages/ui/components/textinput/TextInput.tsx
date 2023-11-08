@@ -37,7 +37,7 @@ const TextInputStyle = {
 
 const InputSize = {
   lg: `h-10 text-base`,
-  md: `h-10 text-sm`,
+  md: `h-8 text-sm`,
   sm: 'h-6 text-xs',
 };
 const WidthSize: WidthType = {
