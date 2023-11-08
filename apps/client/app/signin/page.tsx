@@ -5,7 +5,7 @@ import { useForm, useController, UseControllerProps } from 'react-hook-form';
 import Checkbox from 'ui/components/checkbox/Checkbox';
 import Button from 'ui/components/buttons/Button';
 import { useState } from 'react';
-
+import { clsx } from 'clsx';
 interface LoginProps {
   email?: string;
   password?: string;
@@ -28,14 +28,28 @@ export default function SignInPage() {
             <Logo size='lg' />
           </legend>
           <option
-            className={
-              'inline-block mt-20 active:text-theme-main_dark font-normal text-[#8B8B8B]'
-            }
+            onClick={() => setUserType((prev) => !prev)}
+            className={clsx(
+              'inline-block mt-20 font-normal text-[#8B8B8B]',
+              userType
+                ? 'text-theme-main_dark active:text-theme-main_dark'
+                : null,
+            )}
           >
             개인회원
           </option>
           <span className='mx-4 text-[#8B8B8B]'>|</span>
-          <option className='inline-block text-[#8B8B8B]'>보호소 회원</option>
+          <option
+            onClick={() => setUserType((prev) => !prev)}
+            className={clsx(
+              'inline-block font-normal text-[#8B8B8B]',
+              userType
+                ? 'text-theme-main_dark active:text-theme-main_dark'
+                : null,
+            )}
+          >
+            보호소 회원
+          </option>
           <div className='flex flex-col gap-6 my-6'>
             <TextInput
               name={'email'}
@@ -58,7 +72,7 @@ export default function SignInPage() {
             <Checkbox />
             <span>로그인 상태 유지</span>
           </section>
-          <Button size='lg' label='로그인' isRounded />
+          <Button>로그인</Button>
         </fieldset>
       </form>
       아이디 찾기 | 비밀번호 찾기 | 회원가입
