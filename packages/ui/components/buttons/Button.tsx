@@ -143,3 +143,32 @@ export function ButtonXL({
     </button>
   );
 }
+
+const ButtonETCBaseStyle =
+  'w-[13rem] h-[3.625rem] box-border inline-flex justify-center items-center border-[0.0938rem] rounded-full text-center active:shadow-none disabled:shadow-none disabled:cursor-not-allowed gap-3 text-lg font-semibold leading-7';
+
+export function ButtonETC({
+  type = 'button',
+  mode = 'main',
+  isDisabled = false,
+  children,
+  onClick,
+  onlyIcon = false,
+  className = '',
+}: ButtonProps) {
+  return (
+    <button
+      type={type}
+      className={clsx(
+        ButtonETCBaseStyle,
+        ButtonModeStyle[mode],
+        `${onlyIcon ? '' : 'desktop:min-w-[10rem]'}`,
+        className,
+      )}
+      disabled={isDisabled}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
