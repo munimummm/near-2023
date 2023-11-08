@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { clsx } from 'clsx';
 import '../../globals.css';
 
 type ButtonType = {
@@ -13,6 +14,7 @@ interface ButtonProps {
   children?: ReactNode;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   onlyIcon?: boolean;
+  className?: string;
 }
 
 /**
@@ -56,6 +58,12 @@ interface ButtonProps {
  * - `필수 파라미터` — X
  * - `기본값` — false
  * - `타입` — `boolean`
+ *
+ * @param className
+ * — *추가 스타일 변경 필요할 경우 삽입*
+ * - `필수 파라미터` — X
+ * - `기본값` — ""
+ * - `타입` — `string`
  */
 function Button({
   type = 'button',
@@ -64,13 +72,16 @@ function Button({
   children,
   onClick,
   onlyIcon = false,
+  className = '',
 }: ButtonProps) {
   return (
     <button
       type={type}
-      className={`btn-base btn-${mode}
-      ${onlyIcon ? '' : 'desktop:min-w-[160px]'}
-      `}
+      className={clsx(
+        className,
+        `btn-base btn-${mode}`,
+        `${onlyIcon ? '' : 'desktop:min-w-[160px]'}`,
+      )}
       disabled={isDisabled}
       onClick={onClick}
     >
