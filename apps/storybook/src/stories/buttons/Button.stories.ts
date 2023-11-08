@@ -13,14 +13,28 @@ const meta = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
+  args: {
+    children: 'Button',
+    onClick: () => alert('버튼 클릭'),
+  },
   argTypes: {
-    mode: {
-      control: 'radio',
-      options: ['Main', 'Secondary', 'Ghost', 'Outline', 'Text', 'Danger'],
+    children: {
+      control: 'text',
     },
-    size: {
-      control: 'radio',
-      options: ['lg', 'sm'],
+    mode: {
+      table: {
+        disable: true,
+      },
+    },
+    type: {
+      table: {
+        disable: true,
+      },
+    },
+    onClick: {
+      table: {
+        disable: true,
+      },
     },
   },
 } satisfies Meta<typeof Button>;
@@ -31,10 +45,48 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Main: Story = {
   args: {
-    mode: 'Main',
-    label: 'Button',
-    size: 'lg',
-    isRounded: false,
+    mode: 'main',
     isDisabled: false,
+    type: 'button',
+  },
+};
+
+export const Secondary: Story = {
+  args: {
+    mode: 'secondary',
+    isDisabled: false,
+    type: 'button',
+  },
+};
+
+export const Ghost: Story = {
+  args: {
+    mode: 'ghost',
+    isDisabled: false,
+    type: 'button',
+  },
+};
+
+export const Outline: Story = {
+  args: {
+    mode: 'outline',
+    isDisabled: false,
+    type: 'button',
+  },
+};
+
+export const Text: Story = {
+  args: {
+    mode: 'text',
+    isDisabled: false,
+    type: 'button',
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    mode: 'danger',
+    isDisabled: false,
+    type: 'button',
   },
 };
