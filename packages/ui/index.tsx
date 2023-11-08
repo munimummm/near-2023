@@ -22,6 +22,3 @@ export * from './components/textarea/CommentBox';
 export * from './components/imagebox/ImageBox';
 export * from './components/footer/FooterShadowBox';
 export * from './components/icon/IconText';
-export * from './components/footer/FooterShadowButtons';
-export * from './components/carousel/home/TopCarousel';
-export * from './components/carousel/home/BottomCarousel';

@@ -11,7 +11,6 @@
   "dependencies": {
     "@near/apis": "*",
     "@near/config": "*",
-    "@near/embla-carousel": "*",
     "@near/react-query": "*",
     "@near/store": "*",
     "@near/svgr": "*",
