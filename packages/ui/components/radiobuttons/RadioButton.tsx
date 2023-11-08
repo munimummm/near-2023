@@ -50,8 +50,8 @@ function RadioButton({
         <span
           className={`w-5 h-5 mr-4 border rounded-full ${
             isChecked
-              ? 'border-theme-main border-[6px]'
-              : `border-[#797979] ${isDisabled ? 'border-[6px]' : ''}`
+              ? 'border-theme-main border-[0.375rem]'
+              : `border-[#797979] ${isDisabled ? 'border-[0.375rem]' : ''}`
           }`}
         ></span>
         {labelType === 'singletext' && (
@@ -71,7 +71,7 @@ function RadioButton({
         )}
         {labelType === 'textinput' && (
           <div className='flex items-center justify-center'>
-            <span className='items-center justify-center text-base font-normal tracking-normal align-left mr-[19px]'>
+            <span className='items-center justify-center text-base font-normal tracking-normal align-left mr-[1.1875rem]'>
               {label}
             </span>
             <div className='flex items-center justify-start'>

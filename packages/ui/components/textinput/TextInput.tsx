@@ -12,7 +12,7 @@ type WidthType = Record<number, string>;
 
 export interface TextInputProps extends UseControllerProps {
   placeholder?: string;
-  state?: 'enabled' | 'error' | 'success' | 'search' | 'password';
+  state?: 'default' | 'enabled' | 'error' | 'success' | 'search' | 'password';
   borderRadius?: boolean;
   size?: 'lg' | 'md' | 'sm';
   isDisabled?: boolean;
@@ -21,15 +21,18 @@ export interface TextInputProps extends UseControllerProps {
 }
 
 const CommonStyle =
-  'w-full h-full pl-5 pr-10 rounded-[4px] focus-outline-4 active:bg-gray-3 active:text-[#333333] ';
+  'w-full h-full pl-5 pr-10 rounded-[0.25rem] focus-outline-4 active:bg-gray-3 active:text-[#333333] ';
 
 const TextInputStyle = {
+  default:
+    'font-normal bg-white text-[#C8C8C8] border-text-gray  border outline-text-gray focus:outline-theme-main focus:bg-white focus:text-[#333333]',
   enabled:
     'font-normal bg-gray-3 text-[#C8C8C8] focus:outline-theme-main focus:bg-white focus:text-[#333333]',
   error: 'border-text-red border-2 focus:outline-text-red',
   success: 'border-[#00AE46] border-2  focus:outline-[#00AE46]',
-  search: 'pl-[52px] active:pr-10 focus:',
-  password: '',
+  search: 'pl-[3.25rem] active:pr-10 focus:',
+  password:
+    'font-normal bg-white text-[#C8C8C8] border-text-gray  border outline-text-gray focus:outline-theme-main focus:bg-white focus:text-[#333333]',
 };
 
 const InputSize = {
@@ -38,14 +41,14 @@ const InputSize = {
   sm: 'h-6 text-xs',
 };
 const WidthSize: WidthType = {
-  640: 'w-[640px]',
-  720: 'w-[720px]',
-  439: 'w-[439px]',
-  380: 'w-[380px]',
-  420: 'w-[420px]',
-  600: 'w-[600px]',
-  416: 'w-[416px]',
-  349: 'w-[349px]',
+  640: 'w-[40rem]',
+  720: 'w-[45rem]',
+  439: 'w-[27.4375rem]',
+  380: 'w-[23.75rem]',
+  420: 'w-[26.25rem]',
+  600: 'w-[37.5rem]',
+  416: 'w-[26rem]',
+  349: 'w-[21.8125rem]',
 };
 
 function TextInput({
@@ -91,7 +94,7 @@ function TextInput({
   };
 
   return (
-    <div className={`relative ${InputSize[size]} ${WidthSize[width]}`}>
+    <div className={`relative ${InputSize[size]} ${WidthSize[width]} `}>
       <input
         {...field}
         type={state === 'password' ? passwordType : type}
@@ -99,7 +102,7 @@ function TextInput({
         className={`
         ${CommonStyle}
         ${TextInputStyle[state]}     
-        ${borderRadius ? 'rounded-[60px]' : ''}
+        ${borderRadius ? 'rounded-[3.75rem]' : ''}
         `}
         disabled={isDisabled}
       />
@@ -121,13 +124,3 @@ function TextInput({
   );
 }
 export default TextInput;
-
-//인풋사이즈
-// 601 40
-// 720 40
-// 439 40
-// 380 40
-// 420 40
-// 600 40
-// 416 32
-// 349 32

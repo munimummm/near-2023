@@ -32,13 +32,13 @@ const styles = {
   textareaExceeding: 'focus:outline-text-red outline-text-red',
   counterContainer: 'absolute right-2 bottom-3',
   counterText: 'text-sm text-black',
-  exceedingMessageContainer: 'mt-[11px] ml-[11px] ',
+  exceedingMessageContainer: 'mt-[0.6875rem] ml-[0.6875rem] ',
   exceedingMessageText: 'text-sm text-text-red',
 };
 const WidthSize = {
-  sm: 'w-[435px]',
-  md: 'w-[720px]',
-  lg: 'w-[864px]',
+  sm: 'w-[27.1875rem]',
+  md: 'w-[45rem]',
+  lg: 'w-[54rem]',
 };
 
 function TextArea({
@@ -62,7 +62,7 @@ function TextArea({
   const maxText = field.value?.length >= maxLength;
 
   return (
-    <div className={`h-[259px] ${WidthSize[size]}`}>
+    <div className={`h-[16.1875rem] ${WidthSize[size]}`}>
       <div className={styles.textareaContainer}>
         <textarea
           {...field}
