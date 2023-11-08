@@ -20,3 +20,6 @@ export * from './components/logo/Logo';
 export * from './components/textarea/TextArea';
 export * from './components/textarea/CommentBox';
 export * from './components/footer/FooterShadowButton';
+export * from './components/carousel/Carousel';
+export * from './components/carousel/home/TopCarousel';
+export * from './components/carousel/home/BottomCarousel';
