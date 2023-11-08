@@ -27,47 +27,10 @@
   .layout_max_width {
     @apply mx-auto desktop:max-w-mw;
   }
-
-  /* Button 공통 스타일 */
-  .btn-base {
-    @apply box-border inline-flex justify-center items-center border-[1.5px] rounded-[40px] text-center active:shadow-none disabled:shadow-none disabled:cursor-not-allowed mobile:h-8 mobile:px-4 mobile:gap-2 mobile:text-sm mobile:font-normal mobile:leading-tight tablet:h-10 tablet:px-6 tablet:gap-3 tablet:text-sm tablet:font-normal tablet:leading-tight desktop:h-[58px] desktop:px-4 desktop:gap-3 desktop:text-lg desktop:font-semibold desktop:leading-7;
-  }
-
-  /* Button mode="main" */
-  .btn-main {
-    @apply text-white bg-theme-main border-theme-main hover:bg-theme-main hover:border-theme-main hover:text-white hover:shadow-button active:bg-theme-main_dark active:border-theme-main_dark active:text-white disabled:bg-text-gray2 disabled:border-text-gray2 disabled:text-text-gray;
-  }
-
-  /* Button mode="secondary" */
-  .btn-secondary {
-    @apply bg-bg-blue1 border-bg-blue1 text-theme-main hover:bg-bg-blue1 hover:border-bg-blue1 hover:text-theme-main hover:shadow-button active:bg-bg-blue2 active:border-bg-blue2 active:text-theme-main disabled:bg-gray-3 disabled:border-gray-3 disabled:text-text-gray2;
-  }
-
-  /* Button mode="ghost" */
-  .btn-ghost {
-    @apply bg-bg-gray1 border-bg-gray1 text-text-black1 hover:bg-bg-gray1 hover:border-bg-gray1 hover:text-text-black1 hover:shadow-button active:bg-bg-blue2 active:border-bg-blue2 active:text-theme-main_dark disabled:bg-gray-3 disabled:border-gray-3 disabled:text-text-gray2;
-  }
-
-  /* Button mode="outline" */
-  .btn-outline {
-    @apply bg-transparent border-theme-main text-theme-main hover:bg-bg-blue1 hover:border-theme-main hover:text-theme-main hover:shadow-none active:bg-bg-blue2 active:border-theme-main active:text-theme-main disabled:bg-transparent disabled:border-text-gray disabled:text-text-gray;
-  }
-
-  /* Button mode="text" */
-  .btn-text {
-    @apply bg-transparent border-transparent text-text-black1 hover:bg-bg-blue1 hover:border-bg-blue1 hover:text-text-black1 hover:shadow-none active:bg-transparent active:border-transparent active:text-theme-main disabled:bg-transparent disabled:border-transparent disabled:text-text-gray;
-  }
-
-  /* Button mode="danger" */
-  .btn-danger {
-    @apply bg-text-red  border-text-red text-white hover:bg-[#A32F2F] hover:border-[#A32F2F] hover:text-white hover:shadow-none active:bg-[#822626] active:border-[#822626] active:text-white  disabled:bg-gray-1 disabled:border-gray-1 disabled:text-text-gray;
-  }
 }
 
 @layer base {
   * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
   }
 }
