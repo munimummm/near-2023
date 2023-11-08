@@ -4,7 +4,7 @@ import TextInput from 'ui/components/textinput/TextInput';
 import { useForm, useController, UseControllerProps } from 'react-hook-form';
 import Checkbox from 'ui/components/checkbox/Checkbox';
 import Button from 'ui/components/buttons/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { clsx } from 'clsx';
 interface LoginProps {
   email?: string;
@@ -19,7 +19,16 @@ export default function SignInPage() {
     },
     mode: 'onChange',
   });
-  const [userType, setUserType] = useState(true);
+
+  const toolgeid = [
+    { id: '개인회원', order: 'order-1' },
+    { id: '보호소 회원', order: 'order-3' },
+  ];
+  const [pick] = useState(toolgeid);
+  const [selected, setSelected] = useState<string[]>([toolgeid[0].id]);
+  useEffect(() => {
+    console.log(selected);
+  }, [selected]);
   return (
     <section className='py-[8.5rem] flex flex-col items-center'>
       <form action=''>
@@ -27,29 +36,33 @@ export default function SignInPage() {
           <legend className='m-auto'>
             <Logo size='lg' />
           </legend>
-          <option
-            onClick={() => setUserType((prev) => !prev)}
-            className={clsx(
-              'inline-block mt-20 font-normal text-[#8B8B8B]',
-              userType
-                ? 'text-theme-main_dark active:text-theme-main_dark'
-                : null,
-            )}
-          >
-            개인회원
-          </option>
-          <span className='mx-4 text-[#8B8B8B]'>|</span>
-          <option
-            onClick={() => setUserType((prev) => !prev)}
-            className={clsx(
-              'inline-block font-normal text-[#8B8B8B]',
-              userType
-                ? 'text-theme-main_dark active:text-theme-main_dark'
-                : null,
-            )}
-          >
-            보호소 회원
-          </option>
+          <section className='mt-20 flex fle'>
+            {pick.map((item) => {
+              return (
+                <option
+                  key={`item_${item.id}`}
+                  onClick={() => {
+                    !selected.includes(item.id)
+                      ? setSelected(() => [item.id])
+                      : setSelected(
+                          selected.filter((button) => button !== item.id),
+                        );
+                  }}
+                  className={clsx(
+                    item.order,
+                    'inline-block  font-normal text-[#8B8B8B]',
+                    !selected.includes(item.id)
+                      ? null
+                      : 'text-theme-main_dark active:text-theme-main_dark',
+                  )}
+                >
+                  {item.id}
+                </option>
+              );
+            })}
+            <span className='order-2 mx-4 text-[#8B8B8B]'>|</span>
+          </section>
+
           <div className='flex flex-col gap-6 my-6'>
             <TextInput
               name={'email'}
@@ -57,7 +70,11 @@ export default function SignInPage() {
               borderRadius={true}
               state={'default'}
               size={'md'}
-              placeholder='이메일을 입력해주세요.'
+              placeholder={
+                selected.includes('개인회원')
+                  ? '이메일을 입력해주세요.'
+                  : '보호소 번호를 입력해주세요.'
+              }
             />
             <TextInput
               name={'password'}
@@ -68,14 +85,17 @@ export default function SignInPage() {
               placeholder='비밀번호를 입력해주세요.'
             />
           </div>
-          <section className='flex mb-40'>
+          <section className='flex mobile:mb-40 tablet:mb-20 desktop:mb-20'>
             <Checkbox />
-            <span>로그인 상태 유지</span>
+            <span className='text-[#333] font-normal text-center leading-6'>
+              로그인 상태 유지
+            </span>
           </section>
-          <Button>로그인</Button>
+          <Button mode='main' className='w-full'>
+            로그인
+          </Button>
         </fieldset>
       </form>
-      아이디 찾기 | 비밀번호 찾기 | 회원가입
     </section>
   );
 }
