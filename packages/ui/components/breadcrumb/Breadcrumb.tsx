@@ -1,31 +1,36 @@
 import IconArrow from '../../assets/icons/breadcrumb/icon_breadcrumb_arrow.svg';
-// import Link from 'next/link';
-
-// type Item = {
-//   label: string;
-//   url: string;
-// };
 
 interface BreadcrumbProps {
-  // items?: Item[];
   items?: string[];
 }
 
-function Breadcrumb({ items = ['item'] }: BreadcrumbProps) {
+/**
+ *
+ * @author `송용수`
+ *
+ * @desc Breadcrumb UI 컴포넌트
+ *
+ * @param items
+ * — 배열에 들어간 순서대로 각 요소들 나열.
+ * - `필수 파라미터` — `X`
+ * - `기본값` — `''`
+ * - `타입` — `string[]`
+ */
+function Breadcrumb({ items = [''] }: BreadcrumbProps) {
   return (
-    <ol className='flex items-center gap-1'>
+    <ol className='flex items-center gap-2 mobile:gap-1'>
       {items?.map((val, idx) => (
         <>
-          {/* <Link href={val.url}> */}
           <li
-            key={idx}
-            className='text-[10px] text-[#A3A3A3] font-normal leading-3 last:text-[#242424]'
+            key={`${val}-${idx}`}
+            className='text-text-gray mobile:text-[0.625rem] mobile:font-normal mobile:leading-[0.625rem] tablet:text-[0.875rem] tablet:text-sm tablet:font-medium tablet:leading-tight desktop:text-4 desktop:text-base desktop:font-medium desktop:leading-normal last:text-text-black1'
           >
-            {/* {val.label} */}
             {val}
           </li>
-          {/* </Link> */}
-          {idx !== items.length - 1 ? <IconArrow width={4} height={8} /> : null}
+          {idx !== items.length - 1 ? (
+            // icon 들어오면 수정
+            <IconArrow width={6} height={10} />
+          ) : null}
         </>
       ))}
     </ol>
