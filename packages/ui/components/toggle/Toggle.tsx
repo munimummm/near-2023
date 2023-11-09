@@ -1,36 +1,68 @@
 'use client';
 
-import ToggleOn from '../../assets/icons/toggle/icon_toggle_on.svg';
-import ToggleOff from '../../assets/icons/toggle/icon_toggle_off.svg';
-import { useState } from 'react';
+import { useController, Control } from 'react-hook-form';
+import clsx from 'clsx';
+import { ReactNode } from 'react';
 
-interface ToggleProps {
-  size?: 'lg' | 'md' | 'sm';
-  isToggleOn?: boolean;
+interface ToggleCommonProps {
+  className?: string;
+  children?: ReactNode;
 }
 
-function Toggle({ size = 'lg', isToggleOn = false }: ToggleProps) {
-  const [toggle, setToggle] = useState(isToggleOn);
+interface ToggleProps {
+  name: string;
+  type?: string;
+  value?: string;
+  control?: Control;
+}
+
+function ToggleBackground({ className, children }: ToggleCommonProps) {
+  return (
+    <label
+      className={clsx(
+        'flex items-center mobile:w-10 mobile:h-[1.3125rem] tablet:w-[3.75rem] tablet:h-[1.875rem] desktop:w-20 desktop:h-10 p-0.5 rounded-full cursor-pointer',
+        className,
+      )}
+    >
+      {children}
+    </label>
+  );
+}
+
+function ToggleBall() {
+  return (
+    <div className='bg-white rounded-full mobile:w-[1.0625rem] mobile:h-[1.0625rem] tablet:w-[1.625rem] tablet:h-[1.625rem] desktop:w-9 desktop:h-9' />
+  );
+}
+
+function Toggle({ name, type = 'checkbox', control, value }: ToggleProps) {
+  const {
+    field: { onChange, value: selectedValue },
+  } = useController({
+    name,
+    control,
+  });
+
+  const isChecked = selectedValue === value;
 
   return (
-    <button
-      className='p-0 bg-transparent border-none cursor-default focus:outline-none'
-      onClick={() => {
-        setToggle((prev) => !prev);
-      }}
-    >
-      {toggle ? (
-        <ToggleOn
-          width={size === 'lg' ? '80' : size === 'md' ? '60' : '40'}
-          height={size === 'lg' ? '40' : size === 'md' ? '30' : '21'}
+    <div className='flex items-center justify-center'>
+      <ToggleBackground
+        className={`${
+          isChecked ? 'bg-theme-main justify-end' : 'bg-[#C6C6C6] justify-start'
+        }`}
+      >
+        <input
+          type={type}
+          className='hidden'
+          name={name}
+          value={value}
+          checked={isChecked}
+          onChange={onChange}
         />
-      ) : (
-        <ToggleOff
-          width={size === 'lg' ? '80' : size === 'md' ? '60' : '40'}
-          height={size === 'lg' ? '40' : size === 'md' ? '30' : '21'}
-        />
-      )}
-    </button>
+        <ToggleBall />
+      </ToggleBackground>
+    </div>
   );
 }
 
