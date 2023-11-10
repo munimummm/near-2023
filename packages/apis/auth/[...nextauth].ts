@@ -6,10 +6,6 @@ const authOptions: NextAuthOptions = {
         // credentials part
     ],
 
-    session: {
-        strategy: 'jwt',
-        maxAge: 30 * 24 * 60 * 60 //30일(맨 앞 숫자로 조정)
-    },
 
     callbacks: {
         async jwt({ token, user }) {
