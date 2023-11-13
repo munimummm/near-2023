@@ -19,6 +19,7 @@ export * from './components/comments/CommentInput';
 export * from './components/logo/Logo';
 export * from './components/textarea/TextArea';
 export * from './components/textarea/CommentBox';
+export * from './components/footer/FooterShadowButtons';
 export * from './components/imagebox/ImageBox';
 export * from './components/footer/FooterShadowBox';
 export * from './components/icon/IconText';
