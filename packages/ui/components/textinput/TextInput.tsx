@@ -7,9 +7,7 @@ import IconCancel from '../../assets/icons/textinput/icon_cancel.svg';
 import { useController, UseControllerProps } from 'react-hook-form';
 import { Icon } from '../icon/Icon';
 import { useState } from 'react';
-// import { clsx } from 'clsx';
-
-type WidthType = Record<number, string>;
+import { clsx } from 'clsx';
 
 export interface TextInputProps extends UseControllerProps {
   placeholder?: string;
@@ -17,7 +15,7 @@ export interface TextInputProps extends UseControllerProps {
   borderRadius?: boolean;
   isDisabled?: boolean;
   type?: string;
-  width?: number;
+  className?: string;
 }
 
 const CommonStyle =
@@ -35,24 +33,13 @@ const TextInputStyle = {
     'pr-10 font-normal bg-white text-[#C8C8C8] border-text-gray  border outline-text-gray focus:outline-theme-main focus:bg-white focus:text-[#333333]',
 };
 
-const WidthSize: WidthType = {
-  640: 'w-[40rem]',
-  720: 'w-[45rem]',
-  439: 'w-[27.4375rem]',
-  380: 'w-[23.75rem]',
-  420: 'w-[26.25rem]',
-  600: 'w-[37.5rem]',
-  416: 'w-[26rem]',
-  349: 'w-[21.8125rem]',
-};
-
 function TextInput({
   placeholder,
   type = 'text',
   state = 'enabled',
   borderRadius = false,
-  width = 349,
   isDisabled = false,
+  className = '',
   ...props
 }: TextInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -88,17 +75,17 @@ function TextInput({
   };
 
   return (
-    <div className={`relative`}>
+    <div className={`relative w-full`}>
       <input
         {...field}
         type={state === 'password' ? passwordType : type}
         placeholder={placeholder}
-        className={`
-        ${CommonStyle}
-        ${TextInputStyle[state]}   
-        ${WidthSize[width]}
-        ${borderRadius ? 'rounded-[3.75rem]' : ''}
-        `}
+        className={clsx(
+          CommonStyle,
+          TextInputStyle[state],
+          `${borderRadius ? 'rounded-[3.75rem]' : ''}`,
+          className,
+        )}
         disabled={isDisabled}
       />
       <div
