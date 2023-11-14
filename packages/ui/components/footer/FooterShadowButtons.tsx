@@ -8,8 +8,8 @@ function FooterShadowButtons() {
     <div>
       <FooterShadowBox>
         <div className='flex gap-8 desktop:gap-10 '>
-          <Button isRounded mode='Outline' size='sm' label='임시저장' />
-          <Button isRounded mode='Main' size='sm' label='등록하기' />
+          <Button mode='outline'>임시저장</Button>
+          <Button mode='main'>등록하기</Button>
         </div>
       </FooterShadowBox>
     </div>
