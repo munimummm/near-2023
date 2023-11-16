@@ -5,45 +5,23 @@ import useEmblaCarousel, {
 } from 'embla-carousel-react';
 import { Product } from './dummy';
 import { DotButton } from './CarouselDotButtons';
-import './css/carousel.css';
+import styles from './carousel.module.css';
 // import Image from 'next/image';
 import Tabs from 'ui/components/tabs/Tabs';
 import Link from 'next/link';
+import { MoreLink } from './MoreLink';
 
-import { Icon } from 'ui/components/icon/Icon';
-
-type TextPreviewProps = {
+type PreviewTextProps = {
   text: string;
 };
 
-type TitleMoreProps = {
-  title: string;
-  path: string;
-};
 type PropType = {
   slides: Product[];
   options?: EmblaOptionsType;
 };
-export function TitleMore({ title, path }: TitleMoreProps) {
-  return (
-    <Link
-      href={path}
-      className='relative flex items-center justify-center gap-[0.375rem] mb-8'
-    >
-      <div className='text-xl font-bold'>{title}</div>
-      <div>
-        <Icon sizes='sm' state='default' icon='ic_chevron_right' />
-      </div>
-    </Link>
-  );
-}
 
-export function TextPreview({ text }: TextPreviewProps) {
-  return (
-    <div>
-      <div className='px-8 mt-3 mb-8 h-[7.5rem]'>{text}</div>
-    </div>
-  );
+export function PreviewText({ text }: PreviewTextProps) {
+  return <div className='px-8 mt-3 mb-8 h-[7.5rem]'>{text}</div>;
 }
 
 const BottomCarousel: React.FC<PropType> = (props) => {
@@ -93,21 +71,21 @@ const BottomCarousel: React.FC<PropType> = (props) => {
     },
   ];
   return (
-    <div className='relative w-full p-6'>
-      <TitleMore path='/test' title='니어 소개 하기' />
+    <section className={styles.carousel}>
+      <MoreLink path='/test' title='니어 소개 하기' />
       <Tabs items={tabs} size='sm'>
-        <div className='pb-4 overflow-hidden' ref={emblaRef}>
-          <div className='flex -ml-4 touch-pan-y'>
+        <div className={styles.carousel__viewport} ref={emblaRef}>
+          <div className={styles.carousel__container}>
             {slides.map((slide, index) => (
-              <div className='relative min-w-0 pl-4 embla__slide ' key={index}>
+              <div className={styles.carousel__slide} key={index}>
                 <Link href={'/test'}>
                   <img
-                    className='embla__slide__img'
+                    className={styles.carousel__slide__img}
                     src={slide.imageurl}
-                    alt='Your alt text'
+                    alt='Home 2'
                   />
                 </Link>
-                <TextPreview text={slide.text} />
+                <PreviewText text={slide.text} />
               </div>
             ))}
           </div>
@@ -130,7 +108,7 @@ const BottomCarousel: React.FC<PropType> = (props) => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

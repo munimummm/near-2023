@@ -5,7 +5,7 @@ import useEmblaCarousel, {
 } from 'embla-carousel-react';
 import { Product } from './dummy';
 import { DotButton } from './CarouselDotButtons';
-import './css/carousel.css';
+import styles from './carousel.module.css';
 // import Image from 'next/image';
 
 type PropType = {
@@ -43,21 +43,21 @@ const TopCarousel: React.FC<PropType> = (props) => {
     emblaApi.on('select', onSelect);
   }, [emblaApi, onInit, onSelect]);
   return (
-    <div className='relative w-full p-6'>
-      <div className='overflow-hidden' ref={emblaRef}>
-        <div className='flex -ml-4 touch-pan-y'>
+    <section className={styles.carousel}>
+      <div className={styles.carousel__viewport} ref={emblaRef}>
+        <div className={styles.carousel__container}>
           {slides.map((product, index) => (
-            <div className='relative min-w-0 pl-4 embla__slide ' key={index}>
+            <div className={styles.carousel__slide} key={index}>
               <img
-                className='embla__slide__img'
+                className={styles.carousel__slide__img}
                 src={product.imageurl}
-                alt='Your alt text'
+                alt='Home'
               />
             </div>
           ))}
         </div>
       </div>
-      <div className='flex items-center justify-center'>
+      <div className='flex items-center justify-center '>
         {scrollSnaps.map((_, index) => (
           <div key={index} className='flex items-center justify-center p-2.5'>
             <DotButton
@@ -74,7 +74,7 @@ const TopCarousel: React.FC<PropType> = (props) => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
