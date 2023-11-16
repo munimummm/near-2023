@@ -44,6 +44,12 @@ module.exports = {
       maxWidth: {
         mw: '1440px',
       },
+      boxShadow: {
+        button: '0px 2px 4px 0px rgb(52 60 68 / 0.16)',
+        card: '0px 4px 15px rgb(128 128 128 / 0.10)',
+        'card-hover': '0px 3px 16px 0px rgb(0 0 0 / 0.25)',
+        modal: '0px 0px 30px 2px rgb(0 0 0 / 0.25)',
+      },
     },
   },
   plugins: [],

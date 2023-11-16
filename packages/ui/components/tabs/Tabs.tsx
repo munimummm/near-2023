@@ -20,10 +20,10 @@ function Tabs({ tabs, size = 'sm' }: TabsProps) {
 
   const TabsSize =
     size === 'sm'
-      ? 'mobile:h-[40px] mobile:font-semibold mobile:text-base px-4 py-2'
-      : 'h-[48px] font-bold text-xl px-6 py-3';
+      ? 'mobile:h-[2.5rem] mobile:font-semibold mobile:text-base px-4 py-2'
+      : 'h-[3rem] font-bold text-xl px-6 py-3';
 
-  const TabsGap = size === 'sm' ? ' mobile:gap-[21px]' : 'gap-[32px]';
+  const TabsGap = size === 'sm' ? ' mobile:gap-[1.3125rem]' : 'gap-[2rem]';
 
   return (
     <div className={`flex flex-row ${TabsGap}`}>

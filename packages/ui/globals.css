@@ -25,6 +25,12 @@
 
 @layer components {
   .layout_max_width {
-    @apply desktop:max-w-mw mx-auto;
+    @apply mx-auto desktop:max-w-mw;
+  }
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
   }
 }

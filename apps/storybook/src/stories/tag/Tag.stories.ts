@@ -16,11 +16,7 @@ const meta = {
   argTypes: {
     mode: {
       control: 'radio',
-      options: ['Main', 'Gray', 'Transparent', 'Stroke'],
-    },
-    size: {
-      control: 'radio',
-      options: ['lg', 'sm'],
+      options: ['main', 'gray', 'stroke', 'translucent'],
     },
   },
 } satisfies Meta<typeof Tag>;
@@ -31,9 +27,15 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Main: Story = {
   args: {
-    mode: 'Main',
-    size: 'lg',
-    label: 'Tag',
-    hasDelete: false,
+    mode: 'main',
+    children: 'Tag',
+    hasX: false,
+    handleTagClick: () => {
+      alert(`Tag clicked`);
+    },
+    handleXClick: (e) => {
+      e.stopPropagation();
+      alert('X clicked');
+    },
   },
 };
