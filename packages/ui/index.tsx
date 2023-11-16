@@ -25,3 +25,5 @@ export * from './components/texteditor/TextEditorReader';
 export * from './components/texteditor/TextEditorWriter';
 export * from './components/footer/FooterShadowBox';
 export * from './components/icon/IconText';
+export * from './components/texteditor/TextEditorReader';
+export * from './components/texteditor/TextEditorWriter';

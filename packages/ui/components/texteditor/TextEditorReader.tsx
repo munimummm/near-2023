@@ -1,17 +1,13 @@
-import dynamic from 'next/dynamic';
+'use client';
+import { useController } from 'react-hook-form';
+import { ReactQuill } from './ReactQuill';
 
 interface QuillReaderProps {
   content: string;
-  // onChange: () => void;
 }
 
-const QuillNoSSRWrapper = dynamic(() => import('react-quill'), {
-  ssr: false,
-  loading: () => <p>Loading...</p>,
-});
-
 function TextEditorReader({ content }: QuillReaderProps) {
-  return <QuillNoSSRWrapper value={content} readOnly theme='bubble' />;
+  return <ReactQuill value={content} theme='bubble' readOnly />;
 }
 
 export default TextEditorReader;

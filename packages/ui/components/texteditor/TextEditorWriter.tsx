@@ -1,43 +1,25 @@
+'use client';
 import 'react-quill/dist/quill.snow.css';
-import dynamic from 'next/dynamic';
+import { useController, UseControllerProps } from 'react-hook-form';
+import { ReactQuill, modules, formats } from './ReactQuill';
 
-const Writer = dynamic(() => import('react-quill'), {
-  ssr: false,
-  loading: () => <p>Loading ...</p>,
-});
+interface QuillEditorProps extends UseControllerProps {
+  placeholder?: string;
+}
 
-const modules = {
-  toolbar: [
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-    ['bold', 'italic', 'strike'],
-    [{ list: 'ordered' }, { list: 'bullet' }],
-    [{ align: [] }],
-  ],
-  clipboard: {
-    //HTML을 붙여 넣을 때 줄 바꿈을 추가 false
-    matchVisual: false,
-  },
-};
-const formats = [
-  'header', // header: [1, 2, 3, 4, 5, 6, false]
-  'bold',
-  'italic',
-  'strike',
-  'list', // list: 'ordered' and list: 'bullet'
-  'align',
-];
-
-function TextEditorWriter() {
+function TextEditorWriter({ placeholder, ...props }: QuillEditorProps) {
+  const { field } = useController(props);
   return (
-    <div className=''>
-      <Writer
-        className='w-[480px] h-[350px]'
-        modules={modules}
-        theme='snow'
-        formats={formats}
-        placeholder={'내용을 입력해주세요'}
-      />
-    </div>
+    <ReactQuill
+      {...field}
+      className='w-full h-[37rem] desktop:h-[16.1875rem] tablet:h-[16.1875rem]'
+      modules={modules}
+      theme='snow'
+      formats={formats}
+      value={field.value}
+      onChange={field.onChange}
+      placeholder={placeholder}
+    />
   );
 }
 
