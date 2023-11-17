@@ -27,8 +27,5 @@
     "apps/*",
     "packages/*",
     "supabase"
-  ],
-  "dependencies": {
-    "next-auth": "^4.24.4"
-  }
+  ]
 }

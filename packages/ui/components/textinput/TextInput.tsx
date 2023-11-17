@@ -80,7 +80,7 @@ function TextInput({
         return <IconSearch />;
       case 'password':
         return (
-          <button onClick={passwordVisible}>
+          <button type='button' onClick={passwordVisible}>
             {isPasswordVisible ? (
               <Icon icon='ic_visible' sizes='sm' state='mild' />
             ) : (

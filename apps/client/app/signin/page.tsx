@@ -1,19 +1,21 @@
 'use client';
 import Logo from 'ui/components/logo/Logo';
 import TextInput from 'ui/components/textinput/TextInput';
-import { useForm } from 'react-hook-form';
+import { useForm } from '@near/react-hook-form';
 import Checkbox from 'ui/components/checkbox/Checkbox';
 import { ButtonXL } from 'ui/components/buttons/Button';
 import { useState } from 'react';
-import { clsx } from 'clsx';
+import { clsx } from '@near/clsx';
 import Google from 'ui/assets/icons/social/google.svg';
-import { signIn } from 'next-auth/react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { useRouter } from 'next/navigation';
+import { handleSignUp, SignupProps } from '@near/apis';
 interface LoginProps {
   email?: string;
   password?: string;
 }
 
-export default function SignInPage() {
+export default function SignIn() {
   const { control, handleSubmit, reset } = useForm<LoginProps>({
     defaultValues: {
       email: '',
@@ -29,21 +31,101 @@ export default function SignInPage() {
 
   const [pick] = useState(toggleId);
   const [selected, setSelected] = useState<string[]>([toggleId[0].id]);
+  const [error, setError] = useState(false);
+  const router = useRouter();
+  const supabase = createClientComponentClient();
 
+  //   const handleSignUp = async () => {
+  //     const { data } = await supabase.auth.signUp({
+  //       email: 'near_test2@near.com',
+  //       password: 'rkskek123!!',
+  //       options: {
+  //         data: {
+  //           role: 'shelter_user',
+  //           shelter_name: 'test',
+  //           ceo_phone: 'test',
+  //           shelter_address: 'test',
+  //           shelter_detail_address: 'test',
+  //           shelter_type: 'test',
+  //           shelter_scale: 'test',
+  //           ceo_name: 'test',
+  //           marketing_agree: false,
+  //           shelter_cooperation: false,
+  //           register_number: 'test',
+  //           // role: 'normal_user',
+  //           // birth: 'test',
+  //           // phone: 'test',
+  //           // name: 'test',
+  //           // address: 'test',
+  //           // detail_address: 'test',
+  //           // level: 'test',
+  //           // shelter_scale: 'test',
+  //           // ceo_name: 'test',
+  //           // marketing_agree: false,
+  //           // user_img_path: 'test.jpg',
+  //         },
+  //       },
+  //     });
+  //
+  //     console.log(data);
+  //
+  //     // router.refresh();
+  //   };
+
+  const userData: SignupProps = {
+    email: 'near_testt@near.com',
+    password: 'rkskek123!!',
+    role: 'shelter_user',
+    shelter_data: {
+      shelter_name: 'test',
+      ceo_phone: 'test',
+      shelter_address: 'test',
+      shelter_detail_address: 'test',
+      shelter_type: 'test',
+      shelter_scale: 'test',
+      ceo_name: 'test',
+      marketing_agree: false,
+      shelter_cooperation: false,
+      register_number: 'test',
+    },
+  };
+  // () => handleSignUp(userData);
   return (
     <main className='py-[8.5rem] flex flex-col items-center'>
-      <button
+      <button type='submit' onClick={() => handleSignUp(userData)}>
+        가입 테스트
+      </button>
+      {/* <button
         type='submit'
-        onClick={() => {
-          signIn('credentials', {
-            email: 'test@near.com',
-            password: 'rkskek123!!',
-          });
-        }}
+     
+          async () => {
+            await supabase.auth.signInWithPassword({
+              email: 'test@near.com',
+              password: 'rkskek123!!',
+            });
+
+            const {
+              data: { user: session },
+            } = await supabase.auth.getUser();
+            console.log(session);
+            router.refresh();
+          }
+        }
       >
         테스트 버튼
-      </button>
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
+      </button> */}
+      <form
+        onSubmit={handleSubmit(async (data) => {
+          console.log(data);
+          const { error } = await supabase.auth.signInWithPassword({
+            email: 'tesfft@near.com',
+            password: 'rkskek123!!',
+          });
+          if (error) {
+            setError(true);
+          }
+        })}
+      >
         <fieldset>
           <legend className='m-auto'>
             <Logo size='lg' />
@@ -56,11 +138,7 @@ export default function SignInPage() {
                 key={`item_${item.id}`}
                 onClick={() => {
                   reset();
-                  !selected.includes(item.id)
-                    ? setSelected(() => [item.id])
-                    : setSelected(
-                        selected.filter((button) => button !== item.id),
-                      );
+                  setSelected(() => [item.id]);
                 }}
                 className={clsx(
                   item.order,
@@ -77,31 +155,54 @@ export default function SignInPage() {
           <span className='order-2 mx-4 text-[#8B8B8B]'>|</span>
         </section>
 
-        <div className='flex flex-col gap-6 my-6'>
-          <TextInput
-            width={420}
-            name={'email'}
-            type='email'
-            control={control}
-            borderRadius={true}
-            state={'default'}
-            size={'lg'}
-            placeholder={
-              selected.includes('개인회원')
-                ? '이메일을 입력해주세요.'
-                : '보호소 번호를 입력해주세요.'
-            }
-          />
-          <TextInput
-            width={420}
-            type='password'
-            name={'password'}
-            control={control}
-            borderRadius={true}
-            state={'default'}
-            size={'lg'}
-            placeholder='비밀번호를 입력해주세요.'
-          />
+        <div className='flex flex-col gap-6 my-6 '>
+          <div className='relative'>
+            <TextInput
+              width={420}
+              name={'email'}
+              type='email'
+              control={control}
+              borderRadius={true}
+              state={error ? 'error' : 'default'}
+              size={'lg'}
+              aria-errormessage='이메일을 다시 확인해주세요'
+              placeholder={
+                selected.includes('개인회원')
+                  ? '이메일을 입력해주세요.'
+                  : '발급받은 이메일을 입력해주세요.'
+              }
+            />
+            {error && (
+              <p
+                id='이메일을 다시 확인해주세요'
+                className='text-[0.75rem] text-[#CC3B3B] mt-[0.204375rem] pl-4 absolute'
+              >
+                이메일을 다시 확인해주세요
+              </p>
+            )}
+          </div>
+
+          <div className='relative'>
+            <TextInput
+              width={420}
+              type='password'
+              name={'password'}
+              control={control}
+              borderRadius={true}
+              state={error ? 'error' : 'password'}
+              size={'lg'}
+              aria-errormessage='비밀번호를 다시 확인해주세요'
+              placeholder='비밀번호를 입력해주세요.'
+            />
+            {error && (
+              <p
+                id='비밀번호를 다시 확인해주세요'
+                className='text-[0.75rem] text-[#CC3B3B] mt-[0.204375rem] pl-4 absolute'
+              >
+                비밀번호를 다시 입력해주세요
+              </p>
+            )}
+          </div>
         </div>
         <section
           className='flex mobile:pb-40 tablet:pb-20 desktop:pb-20

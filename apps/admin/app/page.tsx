@@ -19,7 +19,7 @@ export default function Page() {
       </span>
       <span className='text-white'>
         process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY:
-        <b>{process.env.SUPABASE_SERVICE_KEY}</b>
+        {/* <b>{process.env.SUPABASE_SERVICE_KEY}</b> */}
       </span>
       <span className='text-white'>
         isUserLoadingState(recoil):<b>{recoilTest + ''}</b>
