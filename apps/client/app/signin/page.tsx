@@ -158,13 +158,13 @@ export default function SignIn() {
         <div className='flex flex-col gap-6 my-6 '>
           <div className='relative'>
             <TextInput
-              width={420}
+              // className={'w-[26.25rem]'}
               name={'email'}
               type='email'
               control={control}
               borderRadius={true}
               state={error ? 'error' : 'default'}
-              size={'lg'}
+              // size={'lg'}
               aria-errormessage='이메일을 다시 확인해주세요'
               placeholder={
                 selected.includes('개인회원')
@@ -184,13 +184,13 @@ export default function SignIn() {
 
           <div className='relative'>
             <TextInput
-              width={420}
+              // width={420}
               type='password'
               name={'password'}
               control={control}
               borderRadius={true}
               state={error ? 'error' : 'password'}
-              size={'lg'}
+              // size={'lg'}
               aria-errormessage='비밀번호를 다시 확인해주세요'
               placeholder='비밀번호를 입력해주세요.'
             />
@@ -210,7 +210,12 @@ export default function SignIn() {
           '
         >
           <Checkbox
-            singleText='로그인 상태 유지'
+            labelType='singletext'
+            control={control}
+            name='checkbox_login'
+            type='checkbox'
+            label='로그인 상태 유지'
+
             // isChecked={false && 'signipud'}
           />
           {/* <span className='text-[#333] font-normal leading-6'>
