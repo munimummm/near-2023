@@ -20,7 +20,7 @@ function CommentBox() {
         /> */}
       </div>
       <div className='flex justify-end text-xl font-bold'>
-        <Button mode='Secondary' size='sm' isRounded={false} label='댓글등록' />
+        {/* <Button mode='Secondary' size='sm' isRounded={false} label='댓글등록' /> */}
       </div>
     </div>
   );
