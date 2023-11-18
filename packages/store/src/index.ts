@@ -5,6 +5,7 @@ export * from './initRecoil';
 
 // atoms
 export * from './atoms/user';
+export * from './atoms/autoLogin';
 
 // selectors
 export * from './selectors/userEmail';

@@ -4,7 +4,7 @@ import TextInput from 'ui/components/textinput/TextInput';
 import { useForm } from '@near/react-hook-form';
 import Checkbox from 'ui/components/checkbox/Checkbox';
 import { ButtonXL } from 'ui/components/buttons/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { clsx } from '@near/clsx';
 import Google from 'ui/assets/icons/social/google.svg';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
@@ -34,6 +34,16 @@ export default function SignIn() {
   const [error, setError] = useState(false);
   const router = useRouter();
   const supabase = createClientComponentClient();
+
+  useEffect(() => {
+    console.log(selected);
+    const test = async () => {
+      // const { data } = await supabase.auth.getUser();
+      const { data, error } = await supabase.auth.getSession();
+      console.log(data);
+    };
+    test();
+  }, [selected]);
 
   //   const handleSignUp = async () => {
   //     const { data } = await supabase.auth.signUp({
@@ -92,35 +102,17 @@ export default function SignIn() {
   // () => handleSignUp(userData);
   return (
     <main className='py-[8.5rem] flex flex-col items-center'>
-      <button type='submit' onClick={() => handleSignUp(userData)}>
-        가입 테스트
-      </button>
-      {/* <button
-        type='submit'
-     
-          async () => {
-            await supabase.auth.signInWithPassword({
-              email: 'test@near.com',
-              password: 'rkskek123!!',
-            });
-
-            const {
-              data: { user: session },
-            } = await supabase.auth.getUser();
-            console.log(session);
-            router.refresh();
-          }
-        }
-      >
-        테스트 버튼
-      </button> */}
       <form
         onSubmit={handleSubmit(async (data) => {
           console.log(data);
-          const { error } = await supabase.auth.signInWithPassword({
-            email: 'tesfft@near.com',
-            password: 'rkskek123!!',
-          });
+          const { data: session, error } =
+            await supabase.auth.signInWithPassword({
+              email: selected.includes('개인회원')
+                ? data.email || ''
+                : `${data.email}@near.com`,
+              password: 'rkskek123!!',
+            });
+          console.log(session);
           if (error) {
             setError(true);
           }
@@ -138,6 +130,7 @@ export default function SignIn() {
                 key={`item_${item.id}`}
                 onClick={() => {
                   reset();
+                  setError(false);
                   setSelected(() => [item.id]);
                 }}
                 className={clsx(
@@ -160,7 +153,7 @@ export default function SignIn() {
             <TextInput
               // className={'w-[26.25rem]'}
               name={'email'}
-              type='email'
+              type='text'
               control={control}
               borderRadius={true}
               state={error ? 'error' : 'default'}
@@ -169,7 +162,7 @@ export default function SignIn() {
               placeholder={
                 selected.includes('개인회원')
                   ? '이메일을 입력해주세요.'
-                  : '발급받은 이메일을 입력해주세요.'
+                  : '발급 받은 아이디를 입력해주세요.'
               }
             />
             {error && (
@@ -177,7 +170,9 @@ export default function SignIn() {
                 id='이메일을 다시 확인해주세요'
                 className='text-[0.75rem] text-[#CC3B3B] mt-[0.204375rem] pl-4 absolute'
               >
-                이메일을 다시 확인해주세요
+                {selected.includes('개인회원')
+                  ? '이메일을 다시 확인해주세요'
+                  : '아이디를 다시 확인해주세요'}
               </p>
             )}
           </div>
