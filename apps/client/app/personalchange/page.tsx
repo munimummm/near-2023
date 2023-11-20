@@ -75,7 +75,7 @@ const PersonalChange = () => {
                             <div>생년월일</div>
                             <div className="mobile:flex mobile:flex-row mobile:w-[26.125rem] desktop:w-[43.1875rem]">
                                 <div className="mobile:flex mobile:justify-between mobile:w-[21.8125rem] mobile:mr-[0.75rem] desktop:w-[43.1875rem]">
-                                    <TextInput control={control} borderRadius= {true} placeholder='성함을 입력하세요' name={'name'}/>
+                                    <TextInput control={control} borderRadius= {true} placeholder='성함을 입력하세요' name={'birth'}/>
                                 </div>
                                 <Tag mode="gray" isFlat={true}>달력</Tag>
                             </div>
@@ -83,13 +83,13 @@ const PersonalChange = () => {
                         <div className="mobile:flex mobile:justify-center mobile:h-[5.75rem] mobile:grid desktop:mb-[1.625rem]">
                             <div>이메일</div>
                             <div className="mobile:w-[26rem] desktop:w-[43.1875rem]">
-                                <TextInput control={control} borderRadius= {true} placeholder='이메일을 입력하세요' name={'name'}/>
+                                <TextInput control={control} borderRadius= {true} placeholder='이메일을 입력하세요' name={'email'}/>
                             </div>
                         </div>
                         <div className="mobile:flex mobile:justify-center mobile:h-[5.75rem] mobile:grid desktop:mb-[1.625rem]">
                             <div>전화번호</div>
                             <div className="mobile:w-[26rem] desktop:w-[43.1875rem]">
-                                <TextInput control={control} borderRadius= {true} placeholder='전화번호를 입력하세요 ' name={'name'}/>
+                                <TextInput control={control} borderRadius= {true} placeholder='전화번호를 입력하세요 ' name={'phone'}/>
                             </div>
                         </div>
                         <div className="mobile:flex mobile:justify-center mobile:h-[9.25rem] mobile:grid 
@@ -98,19 +98,18 @@ const PersonalChange = () => {
                             <div>
                                 <div className="flex mobile:flex-row w-[26.125rem] mb-[0.5rem] desktop:w-[43.1875rem]">
                                     <div className="flex mobile:justify-between w-[21.8125rem] mr-[0.75rem] desktop:w-[43.1875rem]">
-                                        <TextInput control={control} borderRadius= {true} placeholder='주소를 입력하세요' name={'name'}/>
+                                        <TextInput control={control} borderRadius= {true} placeholder='주소를 입력하세요' name={'address'}/>
                                     </div>
                                     <Tag mode="gray" isFlat={true}>입력</Tag>
                                 </div>
                                 <div>
-                                    <TextInput control={control} borderRadius= {true} placeholder='주소를 입력하세요' name={'name'}/>
+                                    <TextInput control={control} borderRadius= {true} placeholder='주소를 입력하세요' name={'detailaddress'}/>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="mobile:flex mobile: mobile:h-[8rem] mobile:items-center mobile:justify-center
-                                    desktop:relative
-                    ">
+                                    desktop:relative">
                         <div className="desktop:absolute right-[5.0625rem]">
                             <ButtonXL>변경하기</ButtonXL>
                         </div>
