@@ -9,30 +9,89 @@ import FooterShadowBox from "ui/components/footer/FooterShadowBox";
 import Logo from "ui/components/logo/Logo";
 import Tag from "ui/components/tag/Tag";
 import TextInput from "ui/components/textinput/TextInput";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'
+import { Modal } from "antd";
+import DaumPostcode from 'react-daum-postcode';
+
 
 type FormValues = {
-    
+    birth?: string
+    email?: string
+    password? : string
+    pwcheck?: string
+    name?: string
+    phone?: string
+    address?: string
+    detail?: string
+    all?: string
+    member?: string
+    site?: string
+    marketing?:string
+    info?: string
 }
 
 const SignupClient = () => {
-    const { handleSubmit, control } = useForm<FormValues>({
+    const { handleSubmit, control, setValue } = useForm<FormValues>({
         defaultValues :{
-            
+            birth: "",
+            email: "",
+            password : "",
+            pwcheck: "",
+            name: "",
+            phone: "",
+            address: "",
+            detail: "",
+            all: "",
+            member: "",
+            site: "",
+            marketing: "",
+            info: ""
         },
         mode: "onChange"
     })
 
     const genderOptions = ["수컷", "암컷"]
     const [gender, setGender] = useState<string>("")
+    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+    const [isOpen, setIsOpen] = useState(false);
 
     const onClickSubmit = async (data: FormValues) => {
         console.log("data", data);   
     }
 
+    const onClickDatePicker = () => {
+        const date = selectedDate;
+        const value = date?.getFullYear() + "." + date?.getMonth() + "." + date?.getDate()
+
+        setValue("birth", value)
+    }
+
+    // const handleComplete = (data: any) => {
+    //     setValue("address", data.address);
+
+    //     onToggleModal();
+    // } 
+
+    const onToggleModal = () => {
+        setIsOpen((prev) => !prev);
+    }
+
     console.log(gender)
 
     return (
-       <form onSubmit={handleSubmit(onClickSubmit)}>
+        <form onSubmit={handleSubmit(onClickSubmit)}>
+            {isOpen && (
+                <Modal
+                        open={isOpen}
+                        onOk={onToggleModal}
+                        onCancel={onToggleModal}
+                >
+                        <DaumPostcode
+                            // onComplete={handleComplete}
+                        />
+                </Modal>
+            )}
             <section>
                 <div className="mobile:flex mobile:justify-center mobile:mt-[8.0625rem] mobile:mb-[4rem]">
                     <Logo size="lg"/>
@@ -53,13 +112,13 @@ const SignupClient = () => {
                         <div className="grid px-[6%] mobile:h-[5.75rem]">
                             <div>비밀번호</div>
                             <div className="">
-                                <TextInput control={control} state="password" placeholder="비밀번호를 입력하세요" borderRadius={true} name={'password'}/>
+                                <TextInput control={control} type="password" placeholder="비밀번호를 입력하세요" borderRadius={true} name={'password'}/>
                             </div>
                         </div>
                         <div className="grid px-[6%] mobile:h-[5.75rem]">
                             <div>비밀번호 확인</div>
                             <div className="">
-                                <TextInput control={control} state="password" placeholder="비밀번호를 재입력하세요" borderRadius={true} name={'pwcheck'}/>
+                                <TextInput control={control} type="password" placeholder="비밀번호를 재입력하세요" borderRadius={true} name={'pwcheck'}/>
                             </div>
                         </div>
                         <div className="grid px-[6%] mobile:h-[5.75rem]">
@@ -70,15 +129,20 @@ const SignupClient = () => {
                         </div>
                         <div className="flex justify-between p-[6%] mobile:h-[5.75rem]">
                             <div>성별</div>
-                            <div>
+                            <div className="z-10">
                                 <Dropdown options={genderOptions} defaultText="" setValue={setGender}/>
                             </div>
                         </div>
                         <div className="grid px-[6%] mobile:h-[5.75rem]">
                             <div>생년월일</div>
                             <div className="flex gap-x-3">
-                                <TextInput control={control} placeholder="yyyy.mm.dd" borderRadius={true} name={'birth'}/>
-                                <Tag mode="gray" isFlat={true}>달력</Tag>
+                                <TextInput control={control} placeholder="yyyy.mm.dd"  borderRadius={true} name={'birth'}/>
+                                <Tag mode="gray" isFlat={true} handleTagClick={onClickDatePicker}>
+                                    <DatePicker
+                                        dateFormat="yyyy년 MM월 dd일"
+                                        selected={selectedDate}
+                                        onChange={(date) => setSelectedDate(date)}/>
+                                </Tag>
                             </div>
                         </div>
                         <div className="grid px-[6%] mobile:h-[5.75rem]">
@@ -92,7 +156,7 @@ const SignupClient = () => {
                             <div className="grid gap-y-2 mt-[0.625rem]">
                                 <div className="flex gap-x-3">
                                     <TextInput control={control} placeholder="주소를 입력하세요" borderRadius={true} name={'address'}/>
-                                    <Tag mode="gray" isFlat={true}>입력</Tag>
+                                    <Tag mode="gray" isFlat={true} handleTagClick={onToggleModal}>입력</Tag>
                                 </div>
                                 <div>
                                     <TextInput control={control} placeholder="상세주소를 입력하세요" borderRadius={true} name={'detail'}/>
@@ -102,13 +166,13 @@ const SignupClient = () => {
                         </div>
                         <div className="m-auto grid gap-y-2 mobile:w-[26.25rem] mobile:h-[16rem] mobile:mt-[5rem]">
                             <div className="border-b-2 h-[2.5rem]">
-                                <CheckBox control={control} labelType="singletext" name={"all"} type="checkbox" label="전체동의"/>
+                                <CheckBox control={control} value="all" labelType="singletext" name={"all"} type="checkbox" label="전체동의"/>
                             </div>
                             <div className="grid gap-y-4">
-                                <CheckBox control={control} labelType="singletext" name={"all"} type="checkbox" label="(필수) 개인 회원 약관에 동의"/>
-                                <CheckBox control={control} labelType="singletext" name={"all"} type="checkbox" label="(필수) 개인정보 수집 및 이용 동의"/>
-                                <CheckBox control={control} labelType="singletext" name={"all"} type="checkbox" label="(필수) 위치기반 서비스 이용에 동의"/>
-                                <CheckBox control={control} labelType="singletext" name={"all"} type="checkbox" label="(선택) 마케팅 정보 수신 동의 및 마케팅"/>
+                                <CheckBox control={control} value="member" labelType="singletext" name={"member"} type="checkbox" label="(필수) 개인 회원 약관에 동의"/>
+                                <CheckBox control={control} value="info" labelType="singletext" name={"info"} type="checkbox" label="(필수) 개인정보 수집 및 이용 동의"/>
+                                <CheckBox control={control} value="site" labelType="singletext" name={"site"} type="checkbox" label="(필수) 위치기반 서비스 이용에 동의"/>
+                                <CheckBox control={control} value="marketing" labelType="singletext" name={"marketing"} type="checkbox" label="(선택) 마케팅 정보 수신 동의 및 마케팅"/>
                             </div>
                         </div>
                     </div>
