@@ -28,16 +28,19 @@ const SignupShelter = () => {
                             회원가입
                         </div>
                     </div>
-                    <div className='mt-[1rem] h-[46rem]'>
-                        <div className='pt-[0.5rem] pl-[2rem] h-[5.75rem]'>
-                            <div className='mb-[1rem]'>
-                                보호소 등록 번호
+                    <div className='mt-[1rem] h-[46rem] grid'>
+                        {/* <div className='pt-[0.5rem] pl-[2rem] h-[5.75rem]'>
+                            <div className='flex'>
+                                <div className='mb-[1rem]'>
+                                    보호소 등록 번호
+                                </div>
+                                <Tooltips content=''/>
                             </div>
                                 <div className='flex flex-row justify-between'>
                                     <TextInput control={control} placeholder='4~20자리/영문,숫자 사용' borderRadius= {true} name={'register'}/>
                                     <Tag mode='gray' isFlat={true}>검색</Tag>
                                 </div>
-                        </div>
+                        </div> */}
                         <div className='pt-[0.5rem] pl-[2rem] h-[5.75rem]'>
                             <div className='mb-[1rem]'>
                                 보호소 명
@@ -124,7 +127,7 @@ const SignupShelter = () => {
                         </div>
                     </div>
                     <div className='h-[7.875rem] mt-[8.0625rem] pt-[2.125rem] pl-[1.875rem]'>
-                        <ButtonXL mode='main' children="변경하기"/>
+                        <ButtonXL mode='main' children="가입완료"/>
                     </div>
                 </div>
             </div>
