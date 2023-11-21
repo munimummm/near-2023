@@ -2,6 +2,24 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 const supabase = createClientComponentClient();
 
+// const userData: SignupProps = {
+//   email: 'near_testt@near.com',
+//   password: 'rkskek123!!',
+//   role: 'shelter_user',
+//   shelter_data: {
+//     shelter_name: 'test',
+//     ceo_phone: 'test',
+//     shelter_address: 'test',
+//     shelter_detail_address: 'test',
+//     shelter_type: 'test',
+//     shelter_scale: 'test',
+//     ceo_name: 'test',
+//     marketing_agree: false,
+//     shelter_cooperation: false,
+//     register_number: 'test',
+//   },
+// };
+// () => handleSignUp(userData);
 export interface SignupProps {
   email: string;
   password: string;

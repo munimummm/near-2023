@@ -69,24 +69,6 @@ export default function SignIn() {
     })();
   }, [selected, ischecked]);
 
-  const userData: SignupProps = {
-    email: 'near_testt@near.com',
-    password: 'rkskek123!!',
-    role: 'shelter_user',
-    shelter_data: {
-      shelter_name: 'test',
-      ceo_phone: 'test',
-      shelter_address: 'test',
-      shelter_detail_address: 'test',
-      shelter_type: 'test',
-      shelter_scale: 'test',
-      ceo_name: 'test',
-      marketing_agree: false,
-      shelter_cooperation: false,
-      register_number: 'test',
-    },
-  };
-  // () => handleSignUp(userData);
   return (
     <main className='py-[8.5rem] flex flex-col items-center'>
       <form
@@ -210,7 +192,7 @@ export default function SignIn() {
           <>
             <ul className='text-[#8B8B8B] flex flex-col items-center gap-8 mt-8'>
               <li>다른 계정으로 로그인</li>
-              <ul className='flex gap-6'>
+              {/* <ul className='flex gap-6'>
                 <li className='text-[0.75rem] text-center'>
                   <button
                     type='button'
@@ -239,7 +221,7 @@ export default function SignIn() {
                     />
                   </button>
                 </li>
-              </ul>
+              </ul> */}
             </ul>
           </>
         )}
