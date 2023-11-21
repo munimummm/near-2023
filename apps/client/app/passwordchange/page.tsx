@@ -2,15 +2,25 @@
 
 import { useForm } from "react-hook-form";
 import TextInput from "ui/components/textinput/TextInput"
-import {  ButtonXL } from "ui/components/buttons/Button" 
+import { ButtonXL } from "ui/components/buttons/Button" 
+import { useRouter } from "next/navigation";
+import { useState } from 'react';
 
 const PasswordChange = () => {
+    const router = useRouter();
     const { control } = useForm({
         defaultValues :{
             
         },
         mode: "onChange"
     });
+
+    const [color, setColor] = useState<boolean>(false)
+
+    const onClickPersonalPage = () => {
+        router.push('/personalchange')
+        setColor(true)
+    }
 
     return (
         <div>
@@ -24,8 +34,13 @@ const PasswordChange = () => {
                     </div>
                     <div className="mobile:flex flex-row justify-between w-[12.5rem]
                                     tablet:ml-[2.5rem]">
-                        <div className="text-slate-300">개인 정보</div>
-                        <div className="text-slate-300">비밀번호 변경</div>
+                    {color === false ? (
+                            <div className="text-slate-300"  onClick={onClickPersonalPage}>개인 정보</div>
+                        ) : (
+                            <div className="text-indigo-900"  onClick={onClickPersonalPage}>개인 정보</div>
+                        )
+                    }
+                    <div className="text-indigo-900">비밀번호 변경</div>
                     </div>
                 </div>
                 <div className="mobile:flex mobile:flex-col">
