@@ -9,7 +9,7 @@ import FooterShadowBox from "ui/components/footer/FooterShadowBox";
 import Logo from "ui/components/logo/Logo";
 import Tag from "ui/components/tag/Tag";
 import TextInput from "ui/components/textinput/TextInput";
-import DatePicker from 'react-datepicker';
+// import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 import { Modal } from "antd";
 import DaumPostcode from 'react-daum-postcode';
@@ -53,7 +53,7 @@ const SignupClient = () => {
 
     const genderOptions = ["수컷", "암컷"]
     const [gender, setGender] = useState<string>("")
-    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+    // const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [isOpen, setIsOpen] = useState(false);
 
     const onClickSubmit = async (data: FormValues) => {
@@ -61,17 +61,17 @@ const SignupClient = () => {
     }
 
     const onClickDatePicker = () => {
-        const date = selectedDate;
-        const value = date?.getFullYear() + "." + date?.getMonth() + "." + date?.getDate()
+        // const date = selectedDate;
+        // const value = date?.getFullYear() + "." + date?.getMonth() + "." + date?.getDate()
 
-        setValue("birth", value)
+        // setValue("birth", value)
     }
 
-    // const handleComplete = (data: any) => {
-    //     setValue("address", data.address);
+    const handleComplete = (data: any) => {
+        setValue("address", data.address);
 
-    //     onToggleModal();
-    // } 
+        onToggleModal();
+    } 
 
     const onToggleModal = () => {
         setIsOpen((prev) => !prev);
@@ -88,7 +88,7 @@ const SignupClient = () => {
                         onCancel={onToggleModal}
                 >
                         <DaumPostcode
-                            // onComplete={handleComplete}
+                            onComplete={handleComplete}
                         />
                 </Modal>
             )}
@@ -138,10 +138,10 @@ const SignupClient = () => {
                             <div className="flex gap-x-3">
                                 <TextInput control={control} placeholder="yyyy.mm.dd"  borderRadius={true} name={'birth'}/>
                                 <Tag mode="gray" isFlat={true} handleTagClick={onClickDatePicker}>
-                                    <DatePicker
+                                    {/* <DatePicker
                                         dateFormat="yyyy년 MM월 dd일"
                                         selected={selectedDate}
-                                        onChange={(date) => setSelectedDate(date)}/>
+                                        onChange={(date) => setSelectedDate(date)}/> */}
                                 </Tag>
                             </div>
                         </div>
@@ -166,13 +166,13 @@ const SignupClient = () => {
                         </div>
                         <div className="m-auto grid gap-y-2 mobile:w-[26.25rem] mobile:h-[16rem] mobile:mt-[5rem]">
                             <div className="border-b-2 h-[2.5rem]">
-                                <CheckBox control={control} value="all" labelType="singletext" name={"all"} type="checkbox" label="전체동의"/>
+                                <CheckBox control={control} labelType="singletext" name={"all"} type="checkbox" label="전체동의"/>
                             </div>
                             <div className="grid gap-y-4">
-                                <CheckBox control={control} value="member" labelType="singletext" name={"member"} type="checkbox" label="(필수) 개인 회원 약관에 동의"/>
-                                <CheckBox control={control} value="info" labelType="singletext" name={"info"} type="checkbox" label="(필수) 개인정보 수집 및 이용 동의"/>
-                                <CheckBox control={control} value="site" labelType="singletext" name={"site"} type="checkbox" label="(필수) 위치기반 서비스 이용에 동의"/>
-                                <CheckBox control={control} value="marketing" labelType="singletext" name={"marketing"} type="checkbox" label="(선택) 마케팅 정보 수신 동의 및 마케팅"/>
+                                <CheckBox control={control} labelType="singletext" name={"member"} type="checkbox" label="(필수) 개인 회원 약관에 동의"/>
+                                <CheckBox control={control} labelType="singletext" name={"info"} type="checkbox" label="(필수) 개인정보 수집 및 이용 동의"/>
+                                <CheckBox control={control} labelType="singletext" name={"site"} type="checkbox" label="(필수) 위치기반 서비스 이용에 동의"/>
+                                <CheckBox control={control} labelType="singletext" name={"marketing"} type="checkbox" label="(선택) 마케팅 정보 수신 동의 및 마케팅"/>
                             </div>
                         </div>
                     </div>
