@@ -9,16 +9,17 @@ import FooterShadowBox from "ui/components/footer/FooterShadowBox";
 import Logo from "ui/components/logo/Logo";
 import Tag from "ui/components/tag/Tag";
 import TextInput from "ui/components/textinput/TextInput";
-// import DatePicker from 'react-datepicker';
+import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { Modal } from "antd";
 import DaumPostcode from 'react-daum-postcode';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 
 type FormValues = {
     birth?: string
     email?: string
-    password? : string
+    password? : string | undefined
     pwcheck?: string
     name?: string
     phone?: string
@@ -29,9 +30,11 @@ type FormValues = {
     site?: string
     marketing?:string
     info?: string
+    role?: 'normal_user';
 }
 
 const SignupClient = () => {
+    const supabase = createClientComponentClient();
     const { handleSubmit, control, setValue } = useForm<FormValues>({
         defaultValues :{
             birth: "",
@@ -53,18 +56,44 @@ const SignupClient = () => {
 
     const genderOptions = ["수컷", "암컷"]
     const [gender, setGender] = useState<string>("")
-    // const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [isOpen, setIsOpen] = useState(false);
 
-    const onClickSubmit = async (data: FormValues) => {
-        console.log("data", data);   
+    const fetchProfile = async () => {
+        try {
+            let { data: user_profile, error } = await supabase
+                .from('user_profile')
+                .select('*')
+                
+                if(user_profile) {
+                    console.log("data", user_profile);
+                    console.log(error);
+                }
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
+    fetchProfile();
+
+    const onClickSubmit = async (userData: FormValues) => {
+        try {
+           const ClientUser = await supabase.auth.signUp({
+               email: userData.email,
+               password: userData.password
+           })
+
+           console.log(ClientUser);
+        } catch(error){
+            console.log(error);
+        }
     }
 
     const onClickDatePicker = () => {
-        // const date = selectedDate;
-        // const value = date?.getFullYear() + "." + date?.getMonth() + "." + date?.getDate()
+        const date = selectedDate;
+        const value = date?.getFullYear() + "." + date?.getMonth() + "." + date?.getDate()
 
-        // setValue("birth", value)
+        setValue("birth", value)
     }
 
     const handleComplete = (data: any) => {
@@ -138,10 +167,10 @@ const SignupClient = () => {
                             <div className="flex gap-x-3">
                                 <TextInput control={control} placeholder="yyyy.mm.dd"  borderRadius={true} name={'birth'}/>
                                 <Tag mode="gray" isFlat={true} handleTagClick={onClickDatePicker}>
-                                    {/* <DatePicker
+                                    <DatePicker
                                         dateFormat="yyyy년 MM월 dd일"
                                         selected={selectedDate}
-                                        onChange={(date) => setSelectedDate(date)}/> */}
+                                        onChange={(date) => setSelectedDate(date)}/>
                                 </Tag>
                             </div>
                         </div>
