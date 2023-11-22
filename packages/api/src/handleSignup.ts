@@ -21,7 +21,7 @@ const supabase = createClientComponentClient();
 // };
 // () => handleSignUp(userData);
 export interface SignupProps {
-  email: string;
+  email?: string;
   password: string;
   role: 'shelter_user' | 'normal_user';
   shelter_data?: {
@@ -67,7 +67,7 @@ export const handleSignUp = async (userData: SignupProps) => {
   await supabase.auth.signUp({
     email:
       userData.role === 'normal_user'
-        ? userData.email
+        ? (userData.email as string)
         : `near${countShelterUserId}@near.com`,
     password: userData.password,
     options: {
