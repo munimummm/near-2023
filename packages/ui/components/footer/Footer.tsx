@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Logo from '../logo/Logo';
 import Copyright from '../copyright/Copyright';
-import { useInnerWidthState } from '../../../apis/src/useInnerWidthState';
+import { useInnerWidthState } from '../../../api/src/useInnerWidthState';
 
 interface FooterLinkProps {
   href: string;
