@@ -7,6 +7,6 @@ type Props = {
   children: ReactNode;
 };
 
-export default function ReactCookies({ children }: Props) {
+export function ReactCookies({ children }: Props) {
   return <CookiesProvider>{children}</CookiesProvider>; // RecoilRoot로 children 요소를 감싸주었다.
 }

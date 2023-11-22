@@ -17,6 +17,6 @@ export const Main: Story = {
   args: {
     subheading1: '뭔가의 소제목',
     subheading2: '뭔가의 소제목',
-    subheading3: '뭔가의 소제목'
+    subheading3: '뭔가의 소제목',
   },
 };

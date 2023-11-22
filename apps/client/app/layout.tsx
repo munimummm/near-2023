@@ -1,6 +1,7 @@
+'use client';
 import Providers from '@near/react-query/src/initReactQuery';
 import Recoil from '@near/store/src/initRecoil';
-import ReactCookies from '@near/react-cookie/src/initcookie';
+import { ReactCookies } from '@near/react-cookie';
 import 'ui/globals.css';
 
 export default function RootLayout({
@@ -9,7 +10,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <html lang='ko'>
       <body>
         <Providers>
           <ReactCookies>

@@ -19,7 +19,6 @@ export const Main: Story = {
     money: '20만원',
     surgery: '중성화 수술',
     inoculation: '접종 1회',
-    test: '사상충 검사기트'
+    test: '사상충 검사기트',
   },
 };
-
