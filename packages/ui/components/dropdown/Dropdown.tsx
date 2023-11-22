@@ -1,31 +1,29 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import IconDropdown from '../../assets/icons/dropdown/icon_dropdown.svg';
-
+import { useController, UseControllerProps } from 'react-hook-form';
 interface DropdownProps {
   defaultText: string;
   isDisabled?: boolean;
 }
+type FormValues = {
+  FirstName: string;
+};
 
 interface DropdownOptionsProps {
   options: string[];
   setValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const DropdownOptions = ({ options, setValue }: DropdownOptionsProps) => {
+const DropdownOptions = (props: UseControllerProps<FormValues>) => {
+  const { field, fieldState } = useController(props);
   return (
     <>
-      {options.map((val, idx) => (
-        // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
-        <li
-          key={val + idx}
-          className='inline-flex items-start justify-start w-full px-4 py-2 text-base font-normal tracking-tight bg-white text-[#242424] border-none grow shrink basis-0 hover:bg-indigo-50'
-          onClick={() => setValue(val)}
-        >
-          {val}
-        </li>
-      ))}
+      <li
+        {...field}
+        className='inline-flex items-start justify-start w-full px-4 py-2 text-base font-normal tracking-tight bg-white text-[#242424] border-none grow shrink basis-0 hover:bg-indigo-50'
+      ></li>
     </>
   );
 };
@@ -38,12 +36,14 @@ const Dropdown = ({
   const [isVisible, setIsVisible] = useState(false);
   const [value, setValue] = useState(defaultText);
 
+  useEffect(() => {}, []);
   return (
     <>
       <button>테스트</button>
       <div className='text-[#242424]'>
         <ul className='w-[184px] bg-white drop-shadow-md last:rounded-b-lg first:rounded-t-lg'>
           <li
+            value={'서울 특별시'}
             // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
             tabIndex={0}
             className='py-2 pl-4 pr-[0.875rem] disabled:text-neutral-50 hover:bg-bg-blue1'
