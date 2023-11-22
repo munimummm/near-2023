@@ -40,7 +40,47 @@ const Dropdown = ({
 
   return (
     <>
-      <button
+      <button>테스트</button>
+      <div className='text-[#242424]'>
+        <ul className='w-[184px] bg-white drop-shadow-md last:rounded-b-lg first:rounded-t-lg'>
+          <li
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+            tabIndex={0}
+            className='py-2 pl-4 pr-[0.875rem] disabled:text-neutral-50 hover:bg-bg-blue1'
+          >
+            <span>서울 특별시</span>
+          </li>
+          <li
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+            tabIndex={0}
+            className='py-2 pl-4 pr-[0.875rem]'
+          >
+            <span>서울 특별시</span>
+          </li>
+          <li
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+            tabIndex={0}
+            className='py-2 pl-4 pr-[0.875rem]'
+          >
+            <span>서울 특별시</span>
+          </li>
+          <li
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+            tabIndex={0}
+            className='py-2 pl-4 pr-[0.875rem]'
+          >
+            <span>서울 특별시</span>
+          </li>
+          <li
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+            tabIndex={0}
+            className='py-2 pl-4 pr-[0.875rem]'
+          >
+            <span>서울 특별시</span>
+          </li>
+        </ul>
+      </div>
+      {/* <button
         className='flex justify-center items-center gap-1.5 px-4 py-2 bg-white text-neutral-800 text-base font-normal tracking-tight rounded border border-[#A3A3A3] hover:border-[#A3A3A3] focus:border-[#312E81] disabled:bg-zinc-100 disabled:text-neutral-400 disabled:hover:border-[#A3A3A3] active:border-neutral-400 active:bg-indigo-50 focus:outline-none disabled:cursor-not-allowed'
         onClick={() => setIsVisible((prev) => !prev)}
         disabled={isDisabled}
@@ -55,7 +95,7 @@ const Dropdown = ({
         <ul className='w-full flex flex-col items-start gap-0.5 py-1 list-none overflow-y-scroll no-scrollbar shadow'>
           <DropdownOptions options={options} setValue={setValue} />
         </ul>
-      ) : null}
+      ) : null} */}
     </>
   );
 };
