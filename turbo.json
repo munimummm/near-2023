@@ -33,7 +33,6 @@
     },
     "storybook": {
       "cache": false,
-      "persistent": true,
       "outputs": []
     },
     "chromatic": {
