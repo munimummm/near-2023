@@ -1,6 +1,5 @@
 'use client';
 import Logo from 'ui/components/logo/Logo';
-import Image from 'next/image';
 import Link from 'next/link';
 import TextInput from 'ui/components/textinput/TextInput';
 import { useForm } from '@near/react-hook-form';
@@ -9,9 +8,8 @@ import { ButtonXL } from 'ui/components/buttons/Button';
 import { useEffect, useState } from 'react';
 import { clsx } from '@near/clsx';
 import { useCookies } from '@near/react-cookie';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createClientComponentClient } from '@near/supabase';
 import { useRouter } from 'next/navigation';
-import { SignupProps, handleSocialSignin } from '@near/apis';
 
 interface LoginProps {
   email?: string;
@@ -41,12 +39,11 @@ export default function SignIn() {
   const [error, setError] = useState(false);
   const [ischecked, setIschecked] = useState<boolean>();
   const supabase = createClientComponentClient();
-  const [cookies, setCookie, removeCookie] = useCookies([
+  const [cookies, setCookie] = useCookies([
     'sb-ztcvdzkqqrglziiavupe-auth-token',
   ]);
 
   useEffect(() => {
-    console.log(ischecked);
     if (ischecked !== undefined && ischecked === false) {
       setCookie(
         'sb-ztcvdzkqqrglziiavupe-auth-token',
@@ -67,19 +64,18 @@ export default function SignIn() {
         router.push('/');
       }
     })();
-  }, [selected, ischecked]);
+  }, [selected, ischecked, setCookie, cookies, supabase.auth, router]);
 
   return (
     <main className='py-[8.5rem] flex flex-col items-center'>
       <form
         onSubmit={handleSubmit(async (data) => {
-          const { data: session, error } =
-            await supabase.auth.signInWithPassword({
-              email: selected.includes('개인회원')
-                ? data.email || ''
-                : `${data.email}@near.com`,
-              password: data.password || '',
-            });
+          const { error } = await supabase.auth.signInWithPassword({
+            email: selected.includes('개인회원')
+              ? data.email || ''
+              : `${data.email}@near.com`,
+            password: data.password || '',
+          });
 
           if (error) {
             setError(true);
@@ -169,11 +165,7 @@ export default function SignIn() {
             )}
           </div>
         </div>
-        <section
-          className='flex mobile:pb-40 tablet:pb-20 desktop:pb-20
-  
-          '
-        >
+        <section className='flex mobile:pb-40 tablet:pb-20 desktop:pb-20'>
           <Checkbox
             isResponsive={false}
             labelType='singletext'
