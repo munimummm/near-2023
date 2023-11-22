@@ -1,22 +1,69 @@
-import Image from 'next/image';
-import ToggleOn from '../../assets/icons/toggle/icon_toggle_on.svg';
-import ToggleOff from '../../assets/icons/toggle/icon_toggle_off.svg';
+'use client';
 
-interface ToggleProps {
-  isToggleOn: boolean;
-  size: 'lg' | 'md' | 'sm';
+import { useController, Control } from 'react-hook-form';
+import clsx from 'clsx';
+import { ReactNode } from 'react';
+
+interface ToggleCommonProps {
+  className?: string;
+  children?: ReactNode;
 }
 
-const Toggle = ({ isToggleOn, size }: ToggleProps) => {
+interface ToggleProps {
+  name: string;
+  type?: string;
+  value?: string;
+  control?: Control;
+}
+
+function ToggleBackground({ className, children }: ToggleCommonProps) {
   return (
-    <Image
-      className='cursor-pointer'
-      src={isToggleOn ? ToggleOn : ToggleOff}
-      width={size === 'lg' ? 80 : size === 'md' ? 56 : 40}
-      height={size === 'lg' ? 40 : size === 'md' ? 24 : 16}
-      alt='토글 아이콘'
-    />
+    <label
+      className={clsx(
+        'flex items-center mobile:w-10 mobile:h-[1.3125rem] tablet:w-[3.75rem] tablet:h-[1.875rem] desktop:w-20 desktop:h-10 p-0.5 rounded-full cursor-pointer',
+        className,
+      )}
+    >
+      {children}
+    </label>
   );
-};
+}
+
+function ToggleBall() {
+  return (
+    <div className='bg-white rounded-full mobile:w-[1.0625rem] mobile:h-[1.0625rem] tablet:w-[1.625rem] tablet:h-[1.625rem] desktop:w-9 desktop:h-9' />
+  );
+}
+
+function Toggle({ name, type = 'checkbox', control, value }: ToggleProps) {
+  const {
+    field: { onChange, value: selectedValue },
+  } = useController({
+    name,
+    control,
+  });
+
+  const isChecked = selectedValue === value;
+
+  return (
+    <div className='flex items-center justify-center'>
+      <ToggleBackground
+        className={`${
+          isChecked ? 'bg-theme-main justify-end' : 'bg-[#C6C6C6] justify-start'
+        }`}
+      >
+        <input
+          type={type}
+          className='hidden'
+          name={name}
+          value={value}
+          checked={isChecked}
+          onChange={onChange}
+        />
+        <ToggleBall />
+      </ToggleBackground>
+    </div>
+  );
+}
 
 export default Toggle;

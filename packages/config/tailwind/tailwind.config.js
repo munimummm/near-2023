@@ -33,6 +33,23 @@ module.exports = {
         black: '#000000',
         white: '#FFFFFF',
       },
+      screens: {
+        mobile: '480px',
+        // => @media (min-width: 480px) { ... }
+        tablet: '768px',
+        // => @media (min-width: 768px) { ... }
+        desktop: '1440px',
+        // => @media (min-width: 1440px) { ... }
+      },
+      maxWidth: {
+        mw: '1440px',
+      },
+      boxShadow: {
+        button: '0px 2px 4px 0px rgb(52 60 68 / 0.16)',
+        card: '0px 4px 15px rgb(128 128 128 / 0.10)',
+        'card-hover': '0px 3px 16px 0px rgb(0 0 0 / 0.25)',
+        modal: '0px 0px 30px 2px rgb(0 0 0 / 0.25)',
+      },
     },
   },
   plugins: [],

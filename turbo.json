@@ -5,8 +5,9 @@
     "NODE_ENV",
     "NEXT_PUBLIC_SUPABASE_URL",
     "NEXT_PUBLIC_SUPABASE_ANON_KEY",
-    "NEXT_PUBLIC_SUPABASE_SERVICE_KEY"
+    "SUPABASE_SERVICE_KEY"
   ],
+
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
@@ -31,6 +32,8 @@
       "outputs": []
     },
     "storybook": {
+      "cache": false,
+      "persistent": true,
       "outputs": []
     },
     "chromatic": {

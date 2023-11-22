@@ -27,5 +27,8 @@
     "apps/*",
     "packages/*",
     "supabase"
-  ]
+  ],
+  "dependencies": {
+  
+  }
 }

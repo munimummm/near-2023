@@ -1,5 +1,6 @@
 import Providers from '@near/react-query/src/initReactQuery';
 import Recoil from '@near/store/src/initRecoil';
+import ReactCookies from '@near/react-cookie/src/initcookie';
 import 'ui/globals.css';
 
 export default function RootLayout({
@@ -11,7 +12,9 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         <Providers>
-          <Recoil>{children}</Recoil>
+          <ReactCookies>
+            <Recoil>{children}</Recoil>
+          </ReactCookies>
         </Providers>
       </body>
     </html>
