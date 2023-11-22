@@ -15,6 +15,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Main: Story = {
   args: {
-    shelter: '으아앙아'
+    shelter: '으아앙아',
   },
 };
