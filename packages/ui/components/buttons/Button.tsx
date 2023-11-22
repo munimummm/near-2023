@@ -243,7 +243,6 @@ export function ButtonETC({
   isDisabled = false,
   children,
   onClick,
-  onlyIcon = false,
   className = '',
 }: ButtonProps) {
   return (
