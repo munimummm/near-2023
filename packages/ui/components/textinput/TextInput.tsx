@@ -16,6 +16,7 @@ export interface TextInputProps extends UseControllerProps {
   isDisabled?: boolean;
   type?: string;
   className?: string;
+  inputProps?: React.HTMLProps<HTMLInputElement>;
 }
 
 const CommonStyle =
@@ -40,6 +41,7 @@ function TextInput({
   borderRadius = false,
   isDisabled = false,
   className = '',
+  inputProps,
   ...props
 }: TextInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -73,10 +75,10 @@ function TextInput({
         return null;
     }
   };
-
   return (
     <div className={`relative w-full`}>
       <input
+        {...inputProps}
         {...field}
         type={state === 'password' ? passwordType : type}
         placeholder={placeholder}
@@ -106,3 +108,4 @@ function TextInput({
   );
 }
 export default TextInput;
+// 이미지 컴포넌트, 텍스트 인풋 컴포넌트 수정
