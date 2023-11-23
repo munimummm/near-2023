@@ -7,7 +7,7 @@ type PropType = PropsWithChildren<
   >
 >;
 
-export const DotButton: React.FC<PropType> = (props) => {
+export const CarouselButton: React.FC<PropType> = (props) => {
   const { children, ...restProps } = props;
 
   return (
