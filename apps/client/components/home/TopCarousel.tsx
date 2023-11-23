@@ -3,13 +3,13 @@ import useEmblaCarousel, {
   EmblaCarouselType,
   EmblaOptionsType,
 } from 'embla-carousel-react';
-import { Product } from './dummy';
-import { DotButton } from './CarouselDotButtons';
+import { TopData } from './dummy';
+import { CarouselButton } from './CarouselButton';
 import styles from './carousel.module.css';
-// import Image from 'next/image';
+import Image from 'next/image';
 
 type PropType = {
-  slides: Product[];
+  slides: TopData[];
   options?: EmblaOptionsType;
 };
 
@@ -48,10 +48,11 @@ const TopCarousel: React.FC<PropType> = (props) => {
         <div className={styles.carousel__container}>
           {slides.map((product, index) => (
             <div className={styles.carousel__slide} key={index}>
-              <img
+              <Image
+                fill
                 className={styles.carousel__slide__img}
                 src={product.imageurl}
-                alt='Home'
+                alt='Home Carousel 1'
               />
             </div>
           ))}
@@ -60,7 +61,7 @@ const TopCarousel: React.FC<PropType> = (props) => {
       <div className='flex items-center justify-center '>
         {scrollSnaps.map((_, index) => (
           <div key={index} className='flex items-center justify-center p-2.5'>
-            <DotButton
+            <CarouselButton
               onClick={() => scrollTo(index)}
               className={`
           rounded-full border cursor-pointer
