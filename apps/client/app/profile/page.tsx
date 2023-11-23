@@ -1,12 +1,19 @@
 'use client';
 import TextInput from 'ui/components/textinput/TextInput';
-import { useForm } from 'react-hook-form';
+import { useForm } from '@near/react-hook-form';
 // import { Icon } from 'ui/components/icon/Icon';
-import Button from 'ui/components/buttons/Button';
+import { ButtonXL } from 'ui/components/buttons/Button';
 import Tag from 'ui/components/tag/Tag';
 import Image from 'next/image';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import InputFileButton from 'ui/components/Inputfilebutton/InputFileButton';
+// import { SupabaseClient } from '@near/supabase';
+// import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+
+import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
+// const supabaseUrl = 'https://ztcvdzkqqrglziiavupe.supabase.co';
+// const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
+// const supabase = createClient(supabaseUrl, supabaseKey);
 
 type PetTypes = {
   name?: string;
@@ -16,6 +23,7 @@ type PetTypes = {
   image?: string;
   message?: string;
 };
+
 // 프로필	사진 첨부	파일형식: jpg, jpeg, png,  형식의 파일만 지원함
 // 		용량 :  5mb 이하 파일만 전송 가능
 // 		첨부 개수 : 1회 최대 1개의 파일을 첨부 가능
@@ -75,21 +83,22 @@ function Page() {
       weight: '',
       // age: 0,
       intro: '',
-      image: '/default.jpg',
+      image: '',
     },
     mode: 'onChange',
   });
-  const onSubmit = (data) => {
+
+  const onSubmit = async (data) => {
     console.log(data);
   };
   return (
-    <div className='flex flex-col pt-11 tablet:pt-[4.25rem] desktop:pt-[4.25rem] gap-4 w-[480px] tablet:w-[768px] desktop:w-[1440px]'>
+    <div className='flex flex-col pt-11 tablet:pt-[4.25rem] desktop:pt-[4.25rem] gap-4 w-[30rem] tablet:w-[48rem] desktop:w-[90rem] mb-40'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1 className='flex justify-center py-10 text-xl font-bold tablet:justify-start desktop:justify-start tablet:py-8 desktop:py-8 tablet:px-20 desktop:px-20'>
           반려동물 정보
         </h1>
         <div className='flex justify-center'>
-          <div className='flex flex-col items-start tablet: w-[480px] gap-4 p-8'>
+          <div className='flex flex-col items-start tablet: w-[30rem] gap-4 p-8'>
             <ImageUpload setValue={setValue} />
 
             <div className='flex flex-col w-full gap-4 py-2'>
@@ -188,9 +197,9 @@ function Page() {
             반려동물 추가하기
             <Icon icon='ic_add' state='mild' sizes='lg'></Icon>
           </div> */}
-            <Button mode='main' type='submit'>
-              확인하기
-            </Button>
+            <FooterShadowBox>
+              <ButtonXL type='submit'>확인하기</ButtonXL>
+            </FooterShadowBox>
           </div>
         </div>
       </form>
