@@ -9,7 +9,13 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  argTypes: {},
+  argTypes: {
+    labelType: {
+      table: {
+        disabled: true,
+      },
+    },
+  },
   decorators: [FormDecorator],
 } satisfies Meta<typeof Checkbox>;
 
@@ -20,27 +26,27 @@ type Story = StoryObj<typeof meta>;
 export const NoText: Story = {
   args: {
     name: 'group1',
-    value: 'option1',
     labelType: 'notext',
     isDisabled: false,
+    isResponsive: true,
   },
 };
 
 export const SingleText: Story = {
   args: {
+    name: 'group2',
     label: 'Text',
-    name: 'group1',
-    value: 'option1',
     labelType: 'singletext',
     isDisabled: false,
+    isResponsive: true,
   },
 };
+
 export const MultipleText: Story = {
   args: {
+    name: 'group3',
     label: 'Text',
     multipleLabel: 'SubText',
-    name: 'group2',
-    value: 'option1',
     labelType: 'multipletext',
     isDisabled: false,
   },

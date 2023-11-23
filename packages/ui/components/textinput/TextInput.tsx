@@ -7,48 +7,31 @@ import IconCancel from '../../assets/icons/textinput/icon_cancel.svg';
 import { useController, UseControllerProps } from 'react-hook-form';
 import { Icon } from '../icon/Icon';
 import { useState } from 'react';
-
-type WidthType = Record<number, string>;
+import { clsx } from 'clsx';
 
 export interface TextInputProps extends UseControllerProps {
   placeholder?: string;
   state?: 'default' | 'enabled' | 'error' | 'success' | 'search' | 'password';
   borderRadius?: boolean;
-  size?: 'lg' | 'md' | 'sm';
   isDisabled?: boolean;
   type?: string;
-  width?: number;
+  className?: string;
+  inputProps?: React.HTMLProps<HTMLInputElement>;
 }
 
 const CommonStyle =
-  'w-full h-full pl-5 pr-10 rounded-[0.25rem] focus-outline-4 active:bg-gray-3 active:text-[#333333] ';
+  'p-5 py-2 text-sm rounded focus-outline-4 active:bg-gray-3 active:text-[#333333] w-full ';
 
 const TextInputStyle = {
   default:
     'font-normal bg-white text-[#C8C8C8] border-text-gray  border outline-text-gray focus:outline-theme-main focus:bg-white focus:text-[#333333]',
   enabled:
     'font-normal bg-gray-3 text-[#C8C8C8] focus:outline-theme-main focus:bg-white focus:text-[#333333]',
-  error: 'border-text-red border-2 focus:outline-text-red',
-  success: 'border-[#00AE46] border-2  focus:outline-[#00AE46]',
-  search: 'pl-[3.25rem] active:pr-10 focus:',
+  error: 'pr-10 border-text-red border-2 focus:outline-text-red',
+  success: 'pr-10 border-[#00AE46] border-2  focus:outline-[#00AE46]',
+  search: 'pr-10 pl-[3.25rem]  active:pr-10 focus:',
   password:
-    'font-normal bg-white text-[#C8C8C8] border-text-gray  border outline-text-gray focus:outline-theme-main focus:bg-white focus:text-[#333333]',
-};
-
-const InputSize = {
-  lg: `h-10 text-base`,
-  md: `h-8 text-sm`,
-  sm: 'h-6 text-xs',
-};
-const WidthSize: WidthType = {
-  640: 'w-[40rem]',
-  720: 'w-[45rem]',
-  439: 'w-[27.4375rem]',
-  380: 'w-[23.75rem]',
-  420: 'w-[26.25rem]',
-  600: 'w-[37.5rem]',
-  416: 'w-[26rem]',
-  349: 'w-[21.8125rem]',
+    'pr-10 font-normal bg-white text-[#C8C8C8] border-text-gray  border outline-text-gray focus:outline-theme-main focus:bg-white focus:text-[#333333]',
 };
 
 function TextInput({
@@ -56,9 +39,9 @@ function TextInput({
   type = 'text',
   state = 'enabled',
   borderRadius = false,
-  size = 'md',
-  width = 349,
   isDisabled = false,
+  className = '',
+  inputProps,
   ...props
 }: TextInputProps) {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -80,7 +63,7 @@ function TextInput({
         return <IconSearch />;
       case 'password':
         return (
-          <button onClick={passwordVisible}>
+          <button type='button' onClick={passwordVisible}>
             {isPasswordVisible ? (
               <Icon icon='ic_visible' sizes='sm' state='mild' />
             ) : (
@@ -92,18 +75,19 @@ function TextInput({
         return null;
     }
   };
-
   return (
-    <div className={`relative ${InputSize[size]} ${WidthSize[width]} `}>
+    <div className={`relative w-full`}>
       <input
+        {...inputProps}
         {...field}
         type={state === 'password' ? passwordType : type}
         placeholder={placeholder}
-        className={`
-        ${CommonStyle}
-        ${TextInputStyle[state]}     
-        ${borderRadius ? 'rounded-[3.75rem]' : ''}
-        `}
+        className={clsx(
+          CommonStyle,
+          TextInputStyle[state],
+          `${borderRadius ? 'rounded-[3.75rem]' : ''}`,
+          className,
+        )}
         disabled={isDisabled}
       />
       <div
@@ -124,3 +108,4 @@ function TextInput({
   );
 }
 export default TextInput;
+// 이미지 컴포넌트, 텍스트 인풋 컴포넌트 수정
