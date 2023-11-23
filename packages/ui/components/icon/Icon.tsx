@@ -20,6 +20,7 @@ const ICON_NAME = {
   ic_hidden: 'ic_hidden',
   ic_caution: 'ic_caution',
   ic_add: 'ic_add',
+  ic_check: 'ic_check',
 } as const;
 
 const ICON_RESPONSIVE_SIZE = {
@@ -35,7 +36,9 @@ const States = {
   active: '#3730a3',
   negative: '#cc3b3b',
   positive: '#00AE46',
+  selected: '#267EF8',
   mild: '#A3A3A3',
+  bold: '#060606',
 } as const;
 
 export type IconName = (typeof ICON_NAME)[keyof typeof ICON_NAME];
@@ -46,7 +49,14 @@ export type IconResponsiveSize =
 interface IconProps {
   icon: IconName;
   sizes: IconResponsiveSize;
-  state: 'default' | 'active' | 'negative' | 'positive' | 'mild';
+  state:
+    | 'default'
+    | 'active'
+    | 'negative'
+    | 'positive'
+    | 'selected'
+    | 'mild'
+    | 'bold';
 
   //state: 'default' | 'active' | 'negative'
 }

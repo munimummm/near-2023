@@ -1,101 +1,115 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 'use client';
+import { useState } from 'react';
+import { clsx } from '@near/clsx';
+import { useForm, useController, Control } from 'react-hook-form';
+import { Icon } from '../icon/Icon';
 
-import { useEffect, useState } from 'react';
-import IconDropdown from '../../assets/icons/dropdown/icon_dropdown.svg';
-import { useController, UseControllerProps } from 'react-hook-form';
-interface DropdownProps {
-  defaultText: string;
-  isDisabled?: boolean;
-}
-type FormValues = {
-  FirstName: string;
-};
-
-interface DropdownOptionsProps {
-  options: string[];
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+interface CustomSelectProps {
+  name: string;
+  control: Control;
+  handlesubmit: () => void;
+  className: string;
+  options?: string[];
+  // 더 구체적인 타입 사용이 가능하면 사용하세요 (e.g., Control<FieldValues>)
 }
 
-const DropdownOptions = (props: UseControllerProps<FormValues>) => {
-  const { field, fieldState } = useController(props);
+const items = [
+  'option1',
+  'option2',
+  'option3',
+  'option4',
+  'option5',
+  'option6',
+  'option7',
+];
+
+const gender = ['option1', 'option2', 'option3'];
+
+const CustomDropDownSelect = ({
+  name,
+  control,
+  handlesubmit,
+  className,
+  options = items,
+}: CustomSelectProps) => {
+  const {
+    field: { ref, onChange, value },
+    fieldState,
+  } = useController({
+    name,
+    control,
+  });
+  const handleItemClick = (selectedValue: any) => {
+    onChange(selectedValue);
+    handlesubmit();
+  };
   return (
-    <>
-      <li
-        {...field}
-        className='inline-flex items-start justify-start w-full px-4 py-2 text-base font-normal tracking-tight bg-white text-[#242424] border-none grow shrink basis-0 hover:bg-indigo-50'
-      ></li>
-    </>
+    /* eslint-disable jsx-a11y/click-events-have-key-events */
+    <ul
+      className={clsx(
+        'w-[184px] bg-white drop-shadow-md mt-2 rounded-lg',
+        className,
+      )}
+    >
+      {options.map((item, index) => {
+        return (
+          <li
+            key={item}
+            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+            tabIndex={0}
+            className={clsx(
+              'flex justify-between cursor-pointer',
+              'py-2 pl-4 pr-[0.875rem] disabled:text-neutral-50 hover:bg-bg-blue1',
+              value === item ? 'bg-bg-blue2 text-[#3730A3]' : null,
+              index === 0 ? 'rounded-t-lg hover:rounded-t-lg' : null,
+              index === options.length - 1
+                ? 'rounded-b-lg hover:rounded-b-lg'
+                : null,
+            )}
+            onClick={() => handleItemClick(item)}
+          >
+            {item}
+            {value === item && (
+              <Icon icon={'ic_check'} sizes={'xs'} state={'active'} />
+            )}
+          </li>
+        );
+      })}
+      <input type='hidden' ref={ref} value={value || ''} />
+    </ul>
   );
 };
 
-const Dropdown = ({
-  defaultText = 'Dropdown',
-  options = ['Option A', 'Option B', 'Option C'],
-  isDisabled = false,
-}: DropdownProps & DropdownOptionsProps) => {
+const Dropdown = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [value, setValue] = useState(defaultText);
+  const [value, setValue] = useState('20개씩 보기');
+  const { handleSubmit, control } = useForm();
 
-  useEffect(() => {}, []);
   return (
     <>
-      <button>테스트</button>
-      <div className='text-[#242424]'>
-        <ul className='w-[184px] bg-white drop-shadow-md last:rounded-b-lg first:rounded-t-lg'>
-          <li
-            value={'서울 특별시'}
-            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-            tabIndex={0}
-            className='py-2 pl-4 pr-[0.875rem] disabled:text-neutral-50 hover:bg-bg-blue1'
-          >
-            <span>서울 특별시</span>
-          </li>
-          <li
-            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-            tabIndex={0}
-            className='py-2 pl-4 pr-[0.875rem]'
-          >
-            <span>서울 특별시</span>
-          </li>
-          <li
-            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-            tabIndex={0}
-            className='py-2 pl-4 pr-[0.875rem]'
-          >
-            <span>서울 특별시</span>
-          </li>
-          <li
-            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-            tabIndex={0}
-            className='py-2 pl-4 pr-[0.875rem]'
-          >
-            <span>서울 특별시</span>
-          </li>
-          <li
-            // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-            tabIndex={0}
-            className='py-2 pl-4 pr-[0.875rem]'
-          >
-            <span>서울 특별시</span>
-          </li>
-        </ul>
-      </div>
-      {/* <button
-        className='flex justify-center items-center gap-1.5 px-4 py-2 bg-white text-neutral-800 text-base font-normal tracking-tight rounded border border-[#A3A3A3] hover:border-[#A3A3A3] focus:border-[#312E81] disabled:bg-zinc-100 disabled:text-neutral-400 disabled:hover:border-[#A3A3A3] active:border-neutral-400 active:bg-indigo-50 focus:outline-none disabled:cursor-not-allowed'
-        onClick={() => setIsVisible((prev) => !prev)}
-        disabled={isDisabled}
+      <button
+        onClick={() => (isVisible ? setIsVisible(false) : setIsVisible(true))}
+        className={clsx(
+          'rounded-full flex items-center gap-[0.375rem] bg-white px-4 py-2',
+          'border border-text-gray',
+        )}
       >
         {value}
-        <IconDropdown
-          className='w-5 h-5'
-          fill={isDisabled ? '#A3A3A3' : '#242424'}
-        />
+        <Icon icon={'ic_chevron_down_bold'} sizes={'sm'} state={'bold'} />
       </button>
-      {isVisible ? (
-        <ul className='w-full flex flex-col items-start gap-0.5 py-1 list-none overflow-y-scroll no-scrollbar shadow'>
-          <DropdownOptions options={options} setValue={setValue} />
-        </ul>
-      ) : null} */}
+      <form className='relative'>
+        <CustomDropDownSelect
+          name={'test'}
+          control={control}
+          handlesubmit={handleSubmit((data) => {
+            setValue(data['test']);
+            setIsVisible(false);
+            console.log(data);
+          })}
+          className={isVisible ? 'visible absolute' : 'hidden'}
+        />
+      </form>
     </>
   );
 };
