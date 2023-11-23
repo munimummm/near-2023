@@ -126,7 +126,7 @@ const PersonalChange = () => {
                         )}
                     </div>
                 </div> 
-                <div className=" m-auto mobile:flex mobile:flex-col mobile:bg-blue-200 mobile:w-[480px] mobile:h-[1000px]
+                <div className=" m-auto mobile:flex mobile:flex-col mobile:w-[480px] mobile:h-[1000px]
                                  tablet:w-[480px] tablet:h-[902px]
                                  desktop:w-[1440px] desktop:h-[1057px]">
                     <div className="mobile:h-[14rem] mobile:relative 
