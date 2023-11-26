@@ -23,9 +23,34 @@ const ColorStyle = {
 };
 
 /**
+ * @author `송용수`
+ *
+ * @desc Tag UI 컴포넌트
+ *
+ * @param mode
+ * — (`'main'` | `'gray'` | `'stroke'` | `'translucent'`)
+ * 버튼 색상 관련 테마를 제어하는 값. (Figma 참고)
+ *
+ * @param handleTagClick
+ * — (`React.MouseEventHandler<HTMLButtonElement>`)
+ * 태그 버튼의 클릭 이벤트 동작 함수. 작성 시 `(e) => {e.stopPropagation(); ... }` 방식으로 작성해야 함
+ *
+ * @param hasX
+ * — (`boolean`)
+ * 태그 내부에 X 버튼이 들어갈지 여부
  *
  * @param handleXClick
+ * — (`React.MouseEventHandler<HTMLButtonElement>`)
+ * 태그 내부 X 버튼의 클릭 이벤트 동작 함수.
  * 작성 시 `(e) => {e.stopPropagation(); ... }` 방식으로 작성해야 함
+ *
+ * @param children
+ * — (`ReactNode`)
+ * 태그 내부에 들어갈 요소 (string, 이미지 등)
+ *
+ * @param className
+ * — (`string`)
+ * 태그에 적용할 className
  */
 const Tag = ({
   mode = 'main',
@@ -50,7 +75,10 @@ const Tag = ({
       {hasX ? (
         <button
           className='bg-transparent border-none w-[0.5625rem] h-[0.5625rem] cursor-pointer'
-          onClick={handleXClick}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleXClick;
+          }}
         >
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -60,8 +88,8 @@ const Tag = ({
             fill='none'
           >
             <path
-              fill-rule='evenodd'
-              clip-rule='evenodd'
+              fillRule='evenodd'
+              clipRule='evenodd'
               d='M4.49744 5.29813L7.79324 8.59232L8.50052 7.88539L5.20472 4.59119L8.50074 1.29678L7.79346 0.589844L4.49744 3.88426L1.20142 0.589844L0.494141 1.29678L3.79016 4.59119L0.494359 7.88539L1.20164 8.59232L4.49744 5.29813Z'
               fill={`${
                 mode === 'main'
