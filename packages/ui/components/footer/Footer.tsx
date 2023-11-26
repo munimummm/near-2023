@@ -16,7 +16,7 @@ function FooterMenuItem({ path, title }: Menu) {
       key={title}
       href={path}
       className='text-lg flex 
-          px-[10px]
+          px-2.5
           tablet:px-6 tablet:py-2.5 tablet:items-center tablet:justify-center
           desktop:px-6 desktop:py-2.5 desktop:text-xl
           '
@@ -42,9 +42,9 @@ function Footer() {
       <div>
         <div
           className='flex tablet:flex-col desktop:flex-row w-full px-10 py-16 tablet:px-0
-        gap-[27px] tablet:gap-4 desktop:gap-48  tablet:items-center desktop:justify-center'
+        gap-[1.6875rem] tablet:gap-4 desktop:gap-48  tablet:items-center desktop:justify-center'
         >
-          <section className='flex justify-center items-center h-[30px]'>
+          <section className='flex justify-center items-center h-[1.875rem]'>
             <Logo size={width > 1439 ? 'lg' : 'sm'} />
           </section>
           <nav className='flex flex-wrap font-normal text-theme-main_dark mobile:gap-1 mobile:items-start tablet:gap-2 tablet:items-center tablet:justify-center desktop:gap-4 '>
@@ -58,7 +58,7 @@ function Footer() {
           </nav>
         </div>
       </div>
-      <section className='flex flex-col w-full gap-[22.5px] tablet:gap-[2.5625rem] desktop:gap-[3.9375rem] text-center'>
+      <section className='flex flex-col w-full gap-[1.4063rem] tablet:gap-[2.5625rem] desktop:gap-[3.9375rem] text-center'>
         <hr className='w-full border border-theme-main' />
         <Copyright size={width > 767 ? 'lg' : 'sm'} />
       </section>
