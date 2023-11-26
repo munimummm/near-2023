@@ -1,6 +1,6 @@
 {
   "editor.tokenColorCustomizations": {
-    "comments": "#30486e",
+    "comments": "#565656",
     "textMateRules": []
   },
   "files.exclude": {

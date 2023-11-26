@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
 import Dropdown from 'ui/components/dropdown/Dropdown';
 import { FormDecorator } from '../../../.storybook/decorators/FormDecorator';
 
@@ -14,7 +13,12 @@ const meta = {
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  argTypes: {},
+  argTypes: {
+    arrayType: {
+      control: 'radio',
+      option: ['type_LOCAL', 'type_SHOWLIST'],
+    },
+  },
   decorators: [FormDecorator],
 } satisfies Meta<typeof Dropdown>;
 
@@ -23,5 +27,13 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Main: Story = {
-  args: {},
+  args: {
+    name: 'selectOption',
+    arrayType: 'LOCAL',
+    additionalHandleSubmit() {
+      console.log('react-hook-form');
+    },
+    className: '',
+    control: undefined,
+  },
 };

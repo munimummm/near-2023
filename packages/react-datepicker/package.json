@@ -1,12 +1,16 @@
 {
-  "name": "@near/react-daum-postcode",
+  "name": "@near/react-datepicker",
   "version": "0.0.0",
   "license": "MIT",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "react-datepicker": "^4.21.0",
-    "@types/react-datepicker": "^4.19.3"
+    "react-datepicker": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/react-datepicker": "4.19.3"
   }
 }

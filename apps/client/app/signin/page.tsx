@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import Logo from 'ui/components/logo/Logo';
 import Link from 'next/link';
@@ -47,7 +48,7 @@ export default function SignIn() {
     if (ischecked !== undefined && ischecked === false) {
       setCookie(
         'sb-ztcvdzkqqrglziiavupe-auth-token',
-        { ...cookies }['sb-ztcvdzkqqrglziiavupe-auth-token'],
+        cookies && { ...cookies }['sb-ztcvdzkqqrglziiavupe-auth-token'],
         {
           expires: new Date(Date.now() + 3600 * 24 * 1000),
         },
@@ -64,7 +65,7 @@ export default function SignIn() {
         router.push('/');
       }
     })();
-  }, [selected, ischecked, setCookie, cookies, supabase.auth, router]);
+  }, [selected, ischecked, supabase.auth, router]);
 
   return (
     <main className='py-[8.5rem] flex flex-col items-center'>

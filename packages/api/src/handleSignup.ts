@@ -14,9 +14,7 @@ const supabase = createClientComponentClient();
 //     shelter_type: 'test',
 //     shelter_scale: 'test',
 //     ceo_name: 'test',
-//     marketing_agree: false,
-//     shelter_cooperation: false,
-//     register_number: 'test',
+//     marketing_agree: false,]//     register_number: 'test',
 //   },
 // };
 // () => handleSignUp(userData);
@@ -49,29 +47,35 @@ const changeCount = async () => {
   const { count, error } = await supabase
     .from('shelter_profile')
     .select('*', { count: 'exact', head: true });
+
   if (count === null || error) {
     throw new Error(error?.message);
   }
   const changeCount = (count + 1)?.toString().padStart(4, '0');
+  console.log(changeCount);
 
   return { changeCount };
 };
 
 export const handleSignUp = async (userData: SignupProps) => {
   const countShelterUserId = (await changeCount()).changeCount;
-  await supabase.auth.signUp({
-    email:
-      userData.role === 'normal_user'
-        ? (userData.email as string)
-        : `near${countShelterUserId}@near.com`,
-    password: userData.password as string,
-    options: {
-      data: {
-        role: userData.role,
-        ...(userData.role === 'normal_user'
-          ? userData.normal_data
-          : userData.shelter_data),
+  if (userData.role !== undefined) {
+    await supabase.auth.signUp({
+      email:
+        userData.role === 'normal_user'
+          ? (userData.email as string)
+          : `near${countShelterUserId}@near.com`,
+      password: userData.password as string,
+      options: {
+        data: {
+          role: userData.role,
+          ...(userData.role === 'normal_user'
+            ? userData.normal_data
+            : userData.shelter_data),
+        },
       },
-    },
-  });
+    });
+  } else {
+    throw new Error('role을 지정하지 않았습니다.');
+  }
 };
