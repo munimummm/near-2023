@@ -90,7 +90,6 @@ const SignupClient = () => {
 
   // const [checkList, setCheckList] = useState<string[]>([]);
 
-  // 중복 확인 기능
   const fetchProfile = async () => {
     setMessageOpen(true);
     try {
