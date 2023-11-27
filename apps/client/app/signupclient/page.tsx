@@ -88,7 +88,7 @@ const SignupClient = () => {
   const [pwcheckmsg, setPkcheckmsg] = useState<string>('');
   const [passwordOpen, setPasswordOpen] = useState(false);
 
-  const [checkList, setCheckList] = useState<string[]>([]);
+  // const [checkList, setCheckList] = useState<string[]>([]);
 
   // 중복 확인 기능
   const fetchProfile = async () => {
@@ -169,11 +169,11 @@ const SignupClient = () => {
   };
 
   // 체크박스 전체 동의
-  const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.checked
-      ? setCheckList(['all', 'member', 'site', 'info', 'marketing'])
-      : setCheckList([]);
-  };
+  // const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   e.target.checked
+  //     ? setCheckList(['all', 'member', 'site', 'info', 'marketing'])
+  //     : setCheckList([]);
+  // };
 
   useEffect(() => {
     if (getValues('all') === true) {
@@ -182,7 +182,7 @@ const SignupClient = () => {
       setValue('info', true);
       setValue('marketing', true);
     }
-  }, [checkList]);
+  });
 
   console.log(gender);
 
@@ -356,7 +356,7 @@ const SignupClient = () => {
               </div>
             </div>
             <div className='m-auto grid gap-y-2 mobile:w-[26.25rem] mobile:h-[16rem] mobile:mt-[5rem]'>
-              <div className='border-b-2 h-[2.5rem]' onChange={handleSelectAll}>
+              <div className='border-b-2 h-[2.5rem]'>
                 <CheckBox
                   control={control}
                   labelType='singletext'
