@@ -58,11 +58,7 @@ function Top({
         className={clsx(
           'z-10 sticky top-0 w-screen min-w-[30rem] my-0 mx-auto flex flex-col items-center mobile:px-4 mobile:py-[0.8125rem] tablet:px-4 tablet:py-[0.8125rem] desktop:px-12 desktop:pt-[2.625rem] desktop:pb-[6.875rem]',
           `${BackgroundColorStyle[backgroundColor]}`,
-          `${
-            hasBoxShadow
-              ? 'shadow-[0_0.5rem_0.25rem_-0.25rem_rgba(128,128,128,0.1)]'
-              : 'shadow-none'
-          }`,
+          `${hasBoxShadow ? 'shadow-top' : 'shadow-none'}`,
           `${className}`,
         )}
       >
