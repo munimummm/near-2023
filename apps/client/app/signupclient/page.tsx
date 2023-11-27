@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from '@near/react-hook-form';
 import { ButtonXL } from 'ui/components/buttons/Button';
 import CheckBox from 'ui/components/checkbox/Checkbox';
@@ -175,14 +175,14 @@ const SignupClient = () => {
   //     : setCheckList([]);
   // };
 
-  useEffect(() => {
-    if (getValues('all') === true) {
-      setValue('member', true);
-      setValue('site', true);
-      setValue('info', true);
-      setValue('marketing', true);
-    }
-  });
+  // useEffect(() => {
+  //   if (getValues('all') === true) {
+  //     setValue('member', true);
+  //     setValue('site', true);
+  //     setValue('info', true);
+  //     setValue('marketing', true);
+  //   }
+  // });
 
   console.log(gender);
 
