@@ -24,6 +24,5 @@ type Story = StoryObj<typeof meta>;
 export const Main: Story = {
   args: {
     name: 'toggle1',
-    value: 'option1',
   },
 };
