@@ -50,6 +50,7 @@ module.exports = {
         card: '0px 4px 15px rgb(128 128 128 / 0.10)',
         'card-hover': '0px 3px 16px 0px rgb(0 0 0 / 0.25)',
         modal: '0px 0px 30px 2px rgb(0 0 0 / 0.25)',
+        top: '0 0.5rem 0.25rem -0.25rem rgb(128 128 128 / 0.1)',
       },
     },
   },
