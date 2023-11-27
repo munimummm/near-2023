@@ -64,7 +64,8 @@ export default function SignIn() {
         router.push('/');
       }
     })();
-  }, [selected, ischecked, setCookie, cookies, supabase.auth, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selected, ischecked]);
 
   return (
     <main className='py-[8.5rem] flex flex-col items-center'>
