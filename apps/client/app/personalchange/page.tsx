@@ -71,11 +71,7 @@ const PersonalChange = () => {
     onToggleModal();
   };
 
-  const onClickSubmit = async (
-    userData: FormValues,
-    e: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    e.preventDefault();
+  const onClickSubmit = async (userData: FormValues) => {
     let { data: user_profile, error } = await supabase
       .from('user_profile')
       .update({
@@ -123,13 +119,13 @@ const PersonalChange = () => {
         >
           <div className='text-indigo-900'>개인 정보</div>
           {color === false ? (
-            <div className='text-slate-300' onClick={onClickPasswordChange}>
+            <button className='text-slate-300' onClick={onClickPasswordChange}>
               비밀번호 변경
-            </div>
+            </button>
           ) : (
-            <div className='text-indigo-900' onClick={onClickPasswordChange}>
+            <button className='text-indigo-900' onClick={onClickPasswordChange}>
               비밀번호 변경
-            </div>
+            </button>
           )}
         </div>
       </div>

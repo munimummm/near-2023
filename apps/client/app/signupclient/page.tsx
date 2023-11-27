@@ -184,12 +184,6 @@ const SignupClient = () => {
     }
   }, [checkList]);
 
-  // const shouldChecked = () => {
-  //     if(getValues("member") === false || getValues("info") === false || getValues("site") === false) {
-  //         alert("필수 약관에 동의해 주세요")
-  //     }
-  // }
-
   console.log(gender);
 
   return (
