@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { clsx } from '@near/clsx';
 import { MenuOptionTabsContentProps } from '../MenuOptionTabsContent';

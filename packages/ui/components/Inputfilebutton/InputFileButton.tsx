@@ -1,4 +1,4 @@
-'use Client';
+'use client';
 
 import { useRef } from 'react';
 
@@ -18,7 +18,7 @@ function InputFileButton({ onChange, onClick }: InputFileButtonProps) {
         onChange={onChange}
       />
       <button
-        className='py-2.5 px-6 text-sm rounded-[2.5rem] ox-border border-[0.0938rem] bg-transparent border-theme-main text-theme-main hover:bg-bg-blue1 hover:border-theme-main hover:text-theme-main hover:shadow-none'
+        className='py-2.5 px-6 text-sm rounded-[2.5rem] box-border border-[0.0938rem] bg-transparent border-theme-main text-theme-main hover:bg-bg-blue1 hover:border-theme-main hover:text-theme-main hover:shadow-none'
         onClick={() => {
           onClick();
           fileInputRef.current?.click();

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 
 interface DotPaginationProps {
@@ -12,7 +14,7 @@ function DotPagination({ total, size }: DotPaginationProps) {
     setCurrentPage(index);
   };
 
-  const sizeGap = size === 'lg' && 'gap-[8px]';
+  const sizeGap = size === 'lg' && 'gap-2';
 
   return (
     <div className={`flex items-center justify-center ${sizeGap}`}>
@@ -23,8 +25,8 @@ function DotPagination({ total, size }: DotPaginationProps) {
             rounded-full border cursor-pointer
             ${
               currentPage === index
-                ? 'bg-theme-main w-[12px] h-[12px]'
-                : 'bg-text-gray2 w-[8px] h-[8px]'
+                ? 'bg-theme-main w-3 h-3'
+                : 'bg-text-gray2 w-2 h-2'
             }
           `}
             onClick={() => onSelect(index)}
