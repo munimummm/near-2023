@@ -16,6 +16,7 @@ function RoundImageSection({ src, alt, text }) {
 function page() {
   return (
     <main className='pt-[4.5rem]'>
+      <div className='layout_max_width'></div>
       <header className=' tablet:py-6 tablet:px-11'>
         <h2 className='text-2xl pt-2.5 pb-[1.625rem] px-8 font-bold tablet:text-4xl desktop:text-5xl'>
           About us
