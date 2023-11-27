@@ -1,3 +1,5 @@
+'use client';
+
 import TopMenuBarIcons, { TopMenuBarIconsProps } from './TopMenuBarIcons';
 
 function TopMenuBar({

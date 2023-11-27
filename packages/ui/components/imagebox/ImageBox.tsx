@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useRef, ChangeEvent } from 'react';
 import Image from 'next/image';
 import IconImageDefault from '../../assets/icons/imagebox/icon_imagebox_default.svg';
@@ -25,7 +27,7 @@ interface ImageBoxProps {
 
 const ImageBoxStyles = {
   imageButton:
-    'flex items-center justify-center  bg-white border-[1.5px] border-text-gray rounded',
+    'flex items-center justify-center  bg-white border-[0.0938rem] border-text-gray rounded',
   imagePreview: 'relative  rounded-lg border-text-gray',
   imagePreviewImage: 'object-cover w-full h-full rounded-md',
   deleteButton:
@@ -36,14 +38,14 @@ const sizes = {
   sm: {
     button: 'w-20 h-20',
     preview: 'w-20 h-20',
-    deleteButton: 'top-[-8px] right-[-8px] w-[16px] h-[16px]',
-    titleImage: 'w-[80px] h-[16px]',
+    deleteButton: '-top-2 -right-2 w-4 h-4',
+    titleImage: 'w-20 h-4',
   },
   lg: {
     button: 'w-40 h-40',
     preview: 'w-40 h-40',
-    deleteButton: 'top-[-16px] right-[-16px] w-[32px] h-[32px]',
-    titleImage: 'w-[160px] h-[32px]',
+    deleteButton: '-top-4 -right-4 -w-8 -h-8',
+    titleImage: 'w-[10rem] h-8',
   },
 };
 

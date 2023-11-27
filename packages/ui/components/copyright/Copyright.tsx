@@ -10,7 +10,7 @@ function Copyright({ size = 'lg' }: CopyrightProps) {
   return (
     <div className='flex flex-col items-center justify-center'>
       {size === 'lg' ? (
-        <span className={`${BASE_CLASSES} text-lg leading-[18px]`}>
+        <span className={`${BASE_CLASSES} text-lg leading-[1.125rem]`}>
           {`Copyright © 2023 고장난 로켓 | All Rights Reserved`}
         </span>
       ) : (

@@ -1,4 +1,5 @@
 'use client';
+
 import 'react-quill/dist/quill.snow.css';
 import { useController, UseControllerProps } from 'react-hook-form';
 import { ReactQuill, modules, formats } from './ReactQuill';

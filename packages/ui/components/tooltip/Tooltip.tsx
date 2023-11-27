@@ -1,4 +1,6 @@
-import React, { useState, ReactNode } from 'react';
+'use client';
+
+import { useState, ReactNode } from 'react';
 import IconError from '../../assets/icons/textinput/icon_error.svg';
 
 interface TooltipsProps {

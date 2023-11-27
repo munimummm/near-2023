@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -86,7 +88,7 @@ function PostThumbnailCard({
   return (
     <Link
       href={href}
-      className='flex items-center h-20 px-4 mobile:[30rem] gap-5 tablet:w-[40.25rem] tablet:px desktop:w-[40.25rem]'
+      className='flex items-center h-20 px-4 mobile:w-[30rem] gap-5 tablet:w-[40.25rem] desktop:w-[40.25rem]'
     >
       <PostThumbnailImage src={src} />
       <PostThumbnailText
