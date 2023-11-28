@@ -1,13 +1,13 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
+import { useForm } from '@near/react-hook-form';
 import TextInput from 'ui/components/textinput/TextInput';
 import { ButtonXL } from 'ui/components/buttons/Button';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Modal } from 'antd';
+import { Modal } from '@near/antd';
 
 interface FormValues {
   currentpw?: string;
@@ -37,19 +37,22 @@ const PasswordChange = () => {
   const [pwcheckmsg, setPkcheckmsg] = useState<string>('');
   const [passwordOpen, setPasswordOpen] = useState<boolean>(false);
 
-  const fetchSession = async () => {
-    try {
-      const { data } = await supabase.auth.getSession();
-      let userId = data.session?.user.id;
+  useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        const { data } = await supabase.auth.getSession();
+        let userId = data.session?.user.id;
 
-      if (!userId) {
-        router.push('/');
+        if (!userId) {
+          router.push('/');
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  fetchSession();
+    };
+    fetchSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // 비밀번호 체크 함수
   const passwordValidation = () => {
@@ -83,7 +86,6 @@ const PasswordChange = () => {
     }
 
     setIsModalOpen(true);
-    // router.push('/');
   };
 
   const handleOk = () => {
@@ -134,7 +136,7 @@ const PasswordChange = () => {
                   borderRadius={true}
                   placeholder='현재 비밀번호를 입력하세요'
                   name={'currentpw'}
-                  rules={{ required: false }}
+                  rules={{ required: true }}
                 />
               </div>
             </div>
@@ -151,7 +153,7 @@ const PasswordChange = () => {
                   placeholder='변경할 비밀번호를 입력하세요'
                   name={'changepw'}
                   rules={{
-                    required: false,
+                    required: true,
                     minLength: 8,
                     maxLength: 16,
                     pattern: {
@@ -177,7 +179,7 @@ const PasswordChange = () => {
                   placeholder='변경할 비밀번호를 입력하세요'
                   name={'pwcheck'}
                   rules={{
-                    required: false,
+                    required: true,
                     onChange: () => passwordValidation(),
                   }}
                 />

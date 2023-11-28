@@ -173,7 +173,6 @@ const SignupClient = () => {
   };
 
   const all = watch('all');
-
   // 체크박스 전체 동의
   useEffect(() => {
     if (all === true) {
@@ -182,7 +181,8 @@ const SignupClient = () => {
       setValue('site', true);
       setValue('marketing', true);
     }
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -213,7 +213,7 @@ const SignupClient = () => {
                       placeholder='이메일을 입력하세요'
                       borderRadius={true}
                       name={'email'}
-                      rules={{ required: false }}
+                      rules={{ required: true }}
                     />
                     <div className='w-[9.0625rem]'>
                       <Tag mode='gray' handleTagClick={fetchProfile}>
@@ -237,7 +237,7 @@ const SignupClient = () => {
                       borderRadius={true}
                       name={'password'}
                       rules={{
-                        required: false,
+                        required: true,
                         minLength: 8,
                         maxLength: 16,
                         // 영문 숫자 특수조합 8자리 이상
@@ -262,7 +262,7 @@ const SignupClient = () => {
                       borderRadius={true}
                       name={'pwcheck'}
                       rules={{
-                        required: false,
+                        required: true,
                         onChange: () => passwordValidation(),
                       }}
                     />
@@ -280,7 +280,7 @@ const SignupClient = () => {
                       borderRadius={true}
                       name={'name'}
                       rules={{
-                        required: false,
+                        required: true,
                         minLength: {
                           value: 2,
                           message: '최소 2글자 이상 입력하세요',
@@ -325,7 +325,7 @@ const SignupClient = () => {
                       placeholder='번호를 입력하세요'
                       borderRadius={true}
                       name={'phone'}
-                      rules={{ required: false }}
+                      rules={{ required: true }}
                     />
                   </div>
                 </div>
@@ -338,7 +338,7 @@ const SignupClient = () => {
                         placeholder='주소를 입력하세요'
                         borderRadius={true}
                         name={'address'}
-                        rules={{ required: false }}
+                        rules={{ required: true }}
                       />
                       <div className='mobile:w-[4.375rem] tablet:w-[6.25rem]'>
                         <Tag mode='gray' handleTagClick={onToggleModal}>
@@ -352,7 +352,7 @@ const SignupClient = () => {
                         placeholder='상세주소를 입력하세요'
                         borderRadius={true}
                         name={'detail'}
-                        rules={{ required: false }}
+                        rules={{ required: true }}
                       />
                     </div>
                     <span className='text-xs pl-2'>

@@ -3,15 +3,15 @@
 import { ButtonXL, ButtonXS } from 'ui/components/buttons/Button';
 import ImageBox from 'ui/components/imagebox/ImageBox';
 import TextInput from 'ui/components/textinput/TextInput';
-import { useForm } from 'react-hook-form';
+import { useForm } from '@near/react-hook-form';
 import Tag from 'ui/components/tags/Tag';
 import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DatePicker } from '@near/react-datepicker';
 import './datepicker/datepicker.css';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Modal } from 'antd';
+import { Modal } from '@near/antd';
 import { DaumPostcode } from '@near/react-daum-postcode';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
@@ -45,19 +45,22 @@ const PersonalChange = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const fetchSession = async () => {
-    try {
-      const { data } = await supabase.auth.getSession();
-      let userId = data.session?.user.id;
+  useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        const { data } = await supabase.auth.getSession();
+        let userId = data.session?.user.id;
 
-      if (!userId) {
-        router.push('/');
+        if (!userId) {
+          router.push('/');
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  fetchSession();
+    };
+    fetchSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onClickPasswordChange = () => {
     router.push('/passwordchange');

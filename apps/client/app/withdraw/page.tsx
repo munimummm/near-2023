@@ -1,9 +1,9 @@
 'use client';
 
 import CheckBox from 'ui/components/checkbox/Checkbox';
-import { useForm } from 'react-hook-form';
+import { useForm } from '@near/react-hook-form';
 import { ButtonXL } from 'ui/components/buttons/Button';
-import { Modal } from 'antd';
+import { Modal } from '@near/antd';
 import { useState } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import FooterShadowBox from 'ui/components/footer/FooterShadowBox';

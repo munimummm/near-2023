@@ -4,7 +4,7 @@ import TextInput from 'ui/components/textinput/TextInput';
 import { ButtonXL } from 'ui/components/buttons/Button';
 import Logo from 'ui/components/logo/Logo';
 import Checkbox from 'ui/components/checkbox/Checkbox';
-import { useForm } from 'react-hook-form';
+import { useForm } from '@near/react-hook-form';
 import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
 import { useState, useEffect } from 'react';
 import { SignupProps, handleSignUp } from '@near/apis';
@@ -99,7 +99,8 @@ const SignupShelter = () => {
       setValue('site', true);
       setValue('marketing', true);
     }
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -124,7 +125,7 @@ const SignupShelter = () => {
                       placeholder='텍스트를 입력하세요'
                       borderRadius={true}
                       name={'shelter_name'}
-                      rules={{ required: false }}
+                      rules={{ required: true }}
                     />
                   </div>
                 </div>
@@ -147,7 +148,7 @@ const SignupShelter = () => {
                       placeholder='텍스트를 입력하세요'
                       borderRadius={true}
                       name={'ceo_name'}
-                      rules={{ required: false }}
+                      rules={{ required: true }}
                     />
                   </div>
                 </div>
@@ -159,7 +160,7 @@ const SignupShelter = () => {
                       placeholder='텍스트를 입력하세요'
                       borderRadius={true}
                       name={'ceo_phone'}
-                      rules={{ required: false }}
+                      rules={{ required: true }}
                     />
                   </div>
                 </div>
@@ -173,7 +174,7 @@ const SignupShelter = () => {
                       type='password'
                       name={'password'}
                       rules={{
-                        required: false,
+                        required: true,
                         minLength: 8,
                         maxLength: 16,
                         pattern: {
@@ -197,7 +198,7 @@ const SignupShelter = () => {
                       type='password'
                       name={'pwcheck'}
                       rules={{
-                        required: false,
+                        required: true,
                         onChange: () => passwordValidation(),
                       }}
                     />
