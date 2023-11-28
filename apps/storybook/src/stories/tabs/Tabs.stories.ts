@@ -22,7 +22,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    tabs: [
+    items: [
       { label: 'Tab 1', value: 'tab1' },
       { label: 'Tab 2', value: 'tab2' },
       { label: 'Tab 3', value: 'tab3' },
