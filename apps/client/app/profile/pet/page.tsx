@@ -6,7 +6,7 @@ import { ButtonXL } from 'ui/components/buttons/Button';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
 import RadioTag from 'ui/components/tags/RadioTag';
-import { sb } from '@near/supabase';
+import { supabase } from '@near/supabase';
 import { useRouter } from 'next/navigation';
 
 // interface Props {
@@ -26,7 +26,7 @@ interface UserPetType {
 function UserPetProfilePage() {
   const router = useRouter();
   const [userId, setUserId] = useState<string | null>(null);
-  const supabase = createClientComponentClient();
+  const supabaseAuth = createClientComponentClient();
   const {
     control,
     handleSubmit,
@@ -45,7 +45,7 @@ function UserPetProfilePage() {
   useEffect(() => {
     const fetchSession = async () => {
       try {
-        const { data } = await supabase.auth.getSession();
+        const { data } = await supabaseAuth.auth.getSession();
         if (data && data.session) {
           setUserId(data.session.user.id);
         }
@@ -63,7 +63,7 @@ function UserPetProfilePage() {
       ...formData,
       id: userId,
     };
-    const { error } = await sb
+    const { error } = await supabase
       .from('user_pet_profile')
       .insert([petProfileData]);
     if (error) {
