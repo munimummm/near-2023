@@ -19,7 +19,14 @@ function TopMenuBarIcons({
 }: TopMenuBarIconsProps) {
   return (
     <section className='flex items-center justify-between w-full max-w-[84rem]'>
-      <Logo />
+      <Logo
+        size='sm'
+        className='inline-block mobile:inline-block tablet:inline-block desktop:hidden'
+      />
+      <Logo
+        size='lg'
+        className='hidden mobile:hidden tablet:hidden desktop:inline-block'
+      />
       <ul className='mobile:hidden tablet:hidden desktop:flex desktop:items-center desktop:gap-10'>
         {MenuOptionTabsContent.map((menuOptionTab, index) => {
           return (
@@ -39,7 +46,7 @@ function TopMenuBarIcons({
         {isLogin ? (
           <>
             <Link
-              className='mobile:text-sm tablet:text-sm text-text-black1'
+              className='mobile:text-sm tablet:text-sm desktop:text-lg text-text-black1'
               href={'/profile'}
             >
               프로필
