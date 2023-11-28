@@ -14,9 +14,9 @@ function ProfileBoxSection() {
         name={data.name}
         email={data.email}
       />
-      {/* <AddPet backgroundColor='white' href={'/profile'} /> */}
+      {/* <AddPet backgroundColor='white' href={'/profile/pet'} /> */}
       <ModifyPet
-        href={`/profile/pet/${petData.id}`}
+        href={`/profile/pet`}
         name={petData.name}
         src={petData.src}
         gender={petData.gender}
