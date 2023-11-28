@@ -184,7 +184,7 @@ function CardWithLike({
           <div className='w-full h-[0.0625rem] bg-white' />
           <Link
             className='flex items-center mobile:gap-2 tablet:gap-3 desktop:gap-3'
-            href={`/근처동물/${petData.lost_pet_id}`}
+            href={`/pet/${petData.lost_pet_id}`}
             onClick={(e) => e.stopPropagation()}
           >
             <span className='text-center text-white font-normal mobile:leading-[0.625rem] mobile:tracking-wide tablet:text-sm tablet:leading-tight tablet:tracking-widest desktop:text-sm desktop:leading-tight desktop:tracking-widest'>

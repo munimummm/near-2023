@@ -1,20 +1,50 @@
 'use client';
 
-// import { useRecoilValue, userEmailState } from '@near/store';
 import TopCarousel from '../components/home/TopCarousel';
 import BottomCarousel from '../components/home/BottomCarousel';
 import { TopData } from '../components/home/dummy';
 import { BottomData } from '../components/home/dummy';
+import { Footer, Top, TopSuspense } from 'ui';
+import HomeNearPets from '../components/home/homeNearPets';
+import HomeVolunteerPoster from '../components/home/homeVolunteerPoster';
+import { useEffect, useState } from 'react';
+import { Cookies } from '@near/react-cookie';
+import HomeNearNews from '../components/home/homeNearNews';
+
 export default function Page() {
-  // const recoilTest = useRecoilValue(userEmailState);
+  const [isLogin, setIsLogin] = useState<boolean>();
+
+  useEffect(() => {
+    const cookies = new Cookies();
+    if (cookies.get('sb-ztcvdzkqqrglziiavupe-auth-token')) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, []);
 
   return (
-    <div className='flex justify-center'>
-      <div className='layout_max_width '>
+    <>
+      {typeof isLogin !== 'undefined' ? (
+        <Top isLogin={isLogin} />
+      ) : (
+        <TopSuspense />
+      )}
+      <main className='w-full flex flex-col gap-[7.5rem] mobile:gap-[7.5rem] tablet:gap-[11.25rem] desktop:gap-60'>
         <TopCarousel slides={TopData} />
-        <div className='w-full h-[500px] bg-black'></div>
+        {typeof isLogin !== 'undefined' ? (
+          <HomeNearPets isLogin={isLogin} />
+        ) : null}
         <BottomCarousel slides={BottomData} />
-      </div>
-    </div>
+        {typeof isLogin !== 'undefined' ? (
+          isLogin ? (
+            <HomeNearNews />
+          ) : (
+            <HomeVolunteerPoster />
+          )
+        ) : null}
+      </main>
+      <Footer />
+    </>
   );
 }
