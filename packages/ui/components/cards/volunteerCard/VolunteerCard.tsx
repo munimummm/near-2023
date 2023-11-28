@@ -79,7 +79,7 @@ function VolunteerCard({
   subTitle,
 }: VolunteerCardProps & VolunteerCardLinkProps) {
   return (
-    <div className='w-[22.625rem] h-[10.5rem] p-4 relative overflow-hidden rounded-[0.625rem] object-cover flex flex-col items-end'>
+    <div className='w-[22.625rem] h-[10.5rem] p-4 relative overflow-hidden rounded-[0.625rem] object-cover flex flex-col justify-end'>
       <Image src={src} fill alt='봉사활동 이미지' />
       <DetailLink id={id} />
       <div className='z-[2] flex flex-col gap-1 justify-end'>
