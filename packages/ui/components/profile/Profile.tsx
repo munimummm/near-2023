@@ -1,8 +1,8 @@
 'use client';
 
 import IconProfileImageDefault from '../../assets/icons/profile/icon_profile_default.svg';
-import IconProfileMdLgDefault from  '../../assets/icons/profile/icon_profile_md_lg.svg'
-import IconProfileNotificationDot from '../../assets/icons/profile/notificationdot.svg'
+import IconProfileMdLgDefault from '../../assets/icons/profile/icon_profile_md_lg.svg';
+import IconProfileNotificationDot from '../../assets/icons/profile/notificationdot.svg';
 
 interface ProfileProps {
   // ProfileImageUrl?: string;
@@ -18,9 +18,11 @@ const Profile = ({ nickname, daysAgo }: ProfileProps) => {
       </div>
       <div className=''>
         <div className='md:relative z-0'>
-          <IconProfileNotificationDot className={'hidden md:block absolute left-0 top-0.5'}/>
+          <IconProfileNotificationDot
+            className={'hidden md:block absolute left-0 top-0.5'}
+          />
         </div>
-        <IconProfileMdLgDefault className={'hidden md:block'}/>
+        <IconProfileMdLgDefault className={'hidden md:block'} />
       </div>
       <div className='flex flex-col gap-1'>
         <span className='text-sm font-bold text-black'>{nickname}</span>
