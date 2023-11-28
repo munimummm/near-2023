@@ -62,11 +62,7 @@ function Top({
           `${className}`,
         )}
       >
-        <TopMenuBar
-          isLogin={isLogin}
-          handleSignOut={handleSignOut}
-          setIsHamburgerMenuVisible={setIsHamburgerMenuVisible}
-        />
+        <TopMenuBar setIsHamburgerMenuVisible={setIsHamburgerMenuVisible} />
       </header>
       {isHamburgerMenuVisible ? (
         <HamburgerMenu

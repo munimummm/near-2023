@@ -2,7 +2,9 @@
 
 import HamburgerMenuTabs from './HamburgerMenuTabs';
 import { MenuOptionTabsContent } from '../MenuOptionTabsContent';
-
+import { Session, createClientComponentClient } from '@near/supabase';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 interface HamburgerMenuProps {
   isLogin: boolean;
   setIsHamburgerMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,11 +30,31 @@ interface HamburgerMenuProps {
  */
 function HamburgerMenu({
   isLogin,
-  handleSignOut,
   setIsHamburgerMenuVisible,
 }: HamburgerMenuProps) {
+  const supabase = createClientComponentClient();
+  const [userSession, setuserSession] = useState<Session | null>();
+  const router = useRouter();
+  async function getUserSession() {
+    const { data, error } = await supabase.auth.getSession();
+    if (data) {
+      setuserSession(data.session);
+    }
+    if (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getUserSession();
+  }, []);
+
+  async function handleSignOut() {
+    await supabase.auth.signOut();
+    router.refresh();
+    setIsHamburgerMenuVisible(false);
+  }
   return (
-    <div className='fixed top-0 left-0 z-50 flex-col items-stretch w-screen h-screen p-8 overflow-scroll bg-white mobile:flex tablet:flex desktop:hidden'>
+    <div className='fixed top-0 right-0 z-50 flex-col items-stretch w-1/2 h-screen p-8 overflow-scroll bg-white mobile:flex tablet:flex desktop:hidden'>
       {/* Menu Close Button */}
       <div className='flex justify-end w-full'>
         <button
@@ -57,7 +79,7 @@ function HamburgerMenu({
       </div>
 
       <li className='flex justify-center items-center w-full gap-[2.625rem] pt-[6.25rem] pb-[5rem]'>
-        {isLogin ? (
+        {userSession ? (
           <>
             <HamburgerMenuTabs size='sm' href='/profile'>
               프로필
