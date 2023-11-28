@@ -1,5 +1,5 @@
 import { Icon } from './Icon';
-import clsx from 'clsx';
+import { clsx } from '@near/clsx';
 import IconWrapper from './IconWrapper';
 import type { IconResponsiveSize, IconName } from './Icon';
 

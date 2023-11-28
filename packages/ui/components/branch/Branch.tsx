@@ -6,8 +6,8 @@ interface BranchProps {
 
 const Branch = ({ count }: BranchProps) => {
   return (
-    <div className={'w-[238px] h-[83px] pl-8'}>
-      <div className={'w-24 h-[83px]'}>
+    <div className={'w-[14.875rem] h-[5.1875rem] pl-8'}>
+      <div className={'w-24 h-[5.1875rem]'}>
         <div className={'mb-2.5'}>
           <span>전국</span>
         </div>

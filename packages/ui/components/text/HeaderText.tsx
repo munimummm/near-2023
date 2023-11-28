@@ -1,6 +1,6 @@
 'use client';
 
-interface HeaderTextProps {}
+// interface HeaderTextProps {}
 
 const HeaderText = () => {
   return (
