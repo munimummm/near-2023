@@ -1,5 +1,4 @@
 'use client';
-
 import Pointer from '../../assets/icons/map/icon_pointer.svg';
 
 interface MapPointerProps {

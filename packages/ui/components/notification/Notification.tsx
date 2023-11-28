@@ -9,7 +9,7 @@ const Notification = ({ time, number }: NotificationProps) => {
   return (
     <div
       className={
-        'w-[19.938rem] h-[6.188rem] px-4 pt-2 md:w-[45rem] border-b border-slate-500'
+        'w-[19.938rem] h-[6.188rem] px-4 pt-2 md:w-[45rem] h-[6.5rem] border-b border-slate-500'
       }
     >
       <div className={'md:flex justify-between'}>
