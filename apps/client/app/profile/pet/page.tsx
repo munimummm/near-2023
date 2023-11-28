@@ -70,7 +70,7 @@ function UserPetProfilePage() {
       console.error('데이터 추가 실패:', error);
     }
     console.log('데이터 추가 성공:', petProfileData);
-    router.push('/');
+    router.push(`/profile`);
   };
 
   return (
