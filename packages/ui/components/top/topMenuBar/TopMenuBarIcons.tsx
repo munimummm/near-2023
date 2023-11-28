@@ -5,18 +5,36 @@ import { Icon } from '../../icon/Icon';
 import Logo from '../../logo/Logo';
 import { MenuOptionTabsContent } from '../MenuOptionTabsContent';
 import TopMenuTabs from './TopMenuTabs';
-
+import { Session, createClientComponentClient } from '@near/supabase';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 export interface TopMenuBarIconsProps {
-  isLogin: boolean;
   setIsHamburgerMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  handleSignOut?: () => void;
 }
 
-function TopMenuBarIcons({
-  isLogin,
-  handleSignOut,
-  setIsHamburgerMenuVisible,
-}: TopMenuBarIconsProps) {
+function TopMenuBarIcons({ setIsHamburgerMenuVisible }: TopMenuBarIconsProps) {
+  const supabase = createClientComponentClient();
+  const [userSession, setuserSession] = useState<Session | null>();
+  const router = useRouter();
+  async function getUserSession() {
+    const { data, error } = await supabase.auth.getSession();
+    if (data) {
+      setuserSession(data.session);
+    }
+    if (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleSignOut() {
+    await supabase.auth.signOut();
+    router.refresh();
+  }
+  useEffect(() => {
+    getUserSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userSession]);
+
   return (
     <section className='flex items-center justify-between w-full max-w-[84rem]'>
       <Logo
@@ -43,7 +61,7 @@ function TopMenuBarIcons({
         })}
       </ul>
       <div className='flex items-center mobile:gap-6 tablet:gap-6 desktop:gap-8'>
-        {isLogin ? (
+        {userSession ? (
           <>
             <Link
               className='mobile:text-sm tablet:text-sm desktop:text-lg text-text-black1'

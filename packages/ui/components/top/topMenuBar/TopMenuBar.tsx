@@ -2,17 +2,9 @@
 
 import TopMenuBarIcons, { TopMenuBarIconsProps } from './TopMenuBarIcons';
 
-function TopMenuBar({
-  isLogin,
-  handleSignOut,
-  setIsHamburgerMenuVisible,
-}: TopMenuBarIconsProps) {
+function TopMenuBar({ setIsHamburgerMenuVisible }: TopMenuBarIconsProps) {
   return (
-    <TopMenuBarIcons
-      isLogin={isLogin}
-      handleSignOut={handleSignOut}
-      setIsHamburgerMenuVisible={setIsHamburgerMenuVisible}
-    />
+    <TopMenuBarIcons setIsHamburgerMenuVisible={setIsHamburgerMenuVisible} />
   );
 }
 
