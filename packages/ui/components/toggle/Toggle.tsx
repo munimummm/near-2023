@@ -1,7 +1,7 @@
 'use client';
 
 import { useController, Control } from 'react-hook-form';
-import clsx from 'clsx';
+import { clsx } from '@near/clsx';
 import { ReactNode } from 'react';
 
 interface ToggleCommonProps {
@@ -12,7 +12,6 @@ interface ToggleCommonProps {
 interface ToggleProps {
   name: string;
   type?: string;
-  value?: string;
   control?: Control;
 }
 
@@ -35,30 +34,46 @@ function ToggleBall() {
   );
 }
 
-function Toggle({ name, type = 'checkbox', control, value }: ToggleProps) {
-  const {
-    field: { onChange, value: selectedValue },
-  } = useController({
+/**
+ * @author `송용수`
+ *
+ * @desc Toggle UI 컴포넌트. `react-hook-form` 라이브러리의 `useController`를 사용하여 `name`, `control`을 받아옴.
+ *
+ * @param name
+ * — (`string`)
+ * `react-hook-form` 관련 props (필수)
+ *
+ * @param type
+ * — (`string`)
+ * `input` 태그의 `type` 속성 값. 기본값은 `'checkbox'`
+ *
+ * @param control
+ * — (`Control`)
+ * `react-hook-form` 관련 props
+ */
+function Toggle({ name, type = 'checkbox', control }: ToggleProps) {
+  const { field } = useController({
     name,
     control,
   });
-
-  const isChecked = selectedValue === value;
 
   return (
     <div className='flex items-center justify-center'>
       <ToggleBackground
         className={`${
-          isChecked ? 'bg-theme-main justify-end' : 'bg-[#C6C6C6] justify-start'
+          !!field.value
+            ? 'bg-theme-main justify-end'
+            : 'bg-[#C6C6C6] justify-start'
         }`}
       >
         <input
           type={type}
           className='hidden'
-          name={name}
-          value={value}
-          checked={isChecked}
-          onChange={onChange}
+          name={field.name}
+          value={field.value}
+          checked={!!field.value}
+          onChange={field.onChange}
+          onBlur={field.onBlur}
         />
         <ToggleBall />
       </ToggleBackground>

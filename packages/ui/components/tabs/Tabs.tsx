@@ -1,17 +1,23 @@
-import { useState } from 'react';
+'use client';
 
-interface TabProps {
+import { useState } from 'react';
+// import Link from 'next/link';
+// import { useSelectedLayoutSegment } from 'next/navigation';
+
+type Item = {
   label: string;
   value: string;
-}
+  path?: string;
+};
 
 interface TabsProps {
-  tabs: TabProps[];
+  items: Item[];
   size?: 'sm' | 'lg';
+  children?: React.ReactNode;
 }
 
-function Tabs({ tabs, size = 'sm' }: TabsProps) {
-  const [selectedTab, setSelectedTab] = useState(tabs[0].value);
+function Tabs({ children, items, size = 'sm' }: TabsProps) {
+  const [selectedTab, setSelectedTab] = useState(items[0].value);
 
   const onSelect = (value: string) => {
     setSelectedTab(value);
@@ -25,23 +31,26 @@ function Tabs({ tabs, size = 'sm' }: TabsProps) {
   const TabsGap = size === 'sm' ? ' mobile:gap-[1.3125rem]' : 'gap-[2rem]';
 
   return (
-    <div className={`flex flex-row ${TabsGap}`}>
-      {tabs.map((tab) => (
-        <button
-          key={tab.label}
-          onClick={() => onSelect(tab.value)}
-          className={`
+    <div className=''>
+      <div className={`flex flex-row items-center justify-center ${TabsGap}`}>
+        {items.map((item) => (
+          <button
+            key={item.label}
+            onClick={() => onSelect(item.value)}
+            className={`
             inline-flex items-center justify-center
             ${TabsSize}  
             ${
-              selectedTab === tab.value
+              selectedTab === item.value
                 ? 'text-theme-main_light'
                 : 'text-text-gray hover:text-theme-main_light'
             }`}
-        >
-          {tab.label}
-        </button>
-      ))}
+          >
+            {item.label}
+          </button>
+        ))}
+      </div>
+      {children}
     </div>
   );
 }

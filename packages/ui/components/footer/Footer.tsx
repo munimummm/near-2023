@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Logo from '../logo/Logo';
 import Copyright from '../copyright/Copyright';
-import { useInnerWidthState } from '@near/utils';
+// import { useInnerWidthState } from '@near/utils';
 
 interface Menu {
   title: string;
@@ -27,7 +27,7 @@ function FooterMenuItem({ path, title }: Menu) {
 }
 
 function Footer() {
-  const [{ width }] = useInnerWidthState();
+  // const [{ width }] = useInnerWidthState();
 
   const links = [
     { path: '/', title: 'Home' },
@@ -45,7 +45,14 @@ function Footer() {
         gap-[1.6875rem] tablet:gap-4 desktop:gap-48  tablet:items-center desktop:justify-center'
         >
           <section className='flex justify-center items-center h-[1.875rem]'>
-            <Logo size={width > 1439 ? 'lg' : 'sm'} />
+            <Logo
+              size='sm'
+              className='inline-block mobile:inline-block tablet:inline-block desktop:hidden'
+            />
+            <Logo
+              size='lg'
+              className='hidden mobile:hidden tablet:hidden desktop:inline-block'
+            />
           </section>
           <nav className='flex flex-wrap font-normal text-theme-main_dark mobile:gap-1 mobile:items-start tablet:gap-2 tablet:items-center tablet:justify-center desktop:gap-4 '>
             {links.map((link) => (
@@ -60,7 +67,7 @@ function Footer() {
       </div>
       <section className='flex flex-col w-full gap-[1.4063rem] tablet:gap-[2.5625rem] desktop:gap-[3.9375rem] text-center'>
         <hr className='w-full border border-theme-main' />
-        <Copyright size={width > 767 ? 'lg' : 'sm'} />
+        <Copyright />
       </section>
     </footer>
   );

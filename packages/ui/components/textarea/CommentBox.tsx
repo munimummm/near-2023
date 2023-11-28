@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-import Button from '../buttons/Button';
+// import { useState } from 'react';
+// import Button from '../buttons/Button';
 import IconProfileImageDefault from '../../assets/icons/profile/icon_profile_default.svg';
-import TextArea from './TextArea';
+// import TextArea from './TextArea';
 
 function CommentBox() {
   return (

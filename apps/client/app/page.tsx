@@ -1,35 +1,50 @@
 'use client';
 
-import { useRecoilValue, userEmailState } from '@near/store';
+import TopCarousel from '../components/home/TopCarousel';
+import BottomCarousel from '../components/home/BottomCarousel';
+import { TopData } from '../components/home/dummy';
+import { BottomData } from '../components/home/dummy';
+import { Footer, Top, TopSuspense } from 'ui';
+import HomeNearPets from '../components/home/homeNearPets';
+import HomeVolunteerPoster from '../components/home/homeVolunteerPoster';
+import { useEffect, useState } from 'react';
+import { Cookies } from '@near/react-cookie';
+import HomeNearNews from '../components/home/homeNearNews';
 
 export default function Page() {
-  const recoilTest = useRecoilValue(userEmailState);
+  const [isLogin, setIsLogin] = useState<boolean>();
+
+  useEffect(() => {
+    const cookies = new Cookies();
+    if (cookies.get('sb-ztcvdzkqqrglziiavupe-auth-token')) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, []);
 
   return (
-    <div className='bg-black flex justify-center'>
-      <div
-        className='layout_max_width bg-blue-700
-    '
-      >
-        <span className='text-white'>
-          process.env.NODE_ENV:<b>{process.env.NODE_ENV}</b>
-        </span>
-        <span className='text-white'>
-          process.env.NEXT_PUBLIC_SUPABASE_URL:
-          <b>{process.env.NEXT_PUBLIC_SUPABASE_URL}</b>
-        </span>
-        <span className='text-white'>
-          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY:
-          <b>{process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}</b>
-        </span>
-        <span className='text-white'>
-          process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY:
-          {/* <b>{process.env.SUPABASE_SERVICE_KEY}</b> */}
-        </span>
-        <span className='text-white'>
-          userEmailState(recoil):<b>{recoilTest + ''}</b>
-        </span>
-      </div>
-    </div>
+    <>
+      {typeof isLogin !== 'undefined' ? (
+        <Top isLogin={isLogin} />
+      ) : (
+        <TopSuspense />
+      )}
+      <main className='w-full flex flex-col gap-[7.5rem] mobile:gap-[7.5rem] tablet:gap-[11.25rem] desktop:gap-60'>
+        <TopCarousel slides={TopData} />
+        {typeof isLogin !== 'undefined' ? (
+          <HomeNearPets isLogin={isLogin} />
+        ) : null}
+        <BottomCarousel slides={BottomData} />
+        {typeof isLogin !== 'undefined' ? (
+          isLogin ? (
+            <HomeNearNews />
+          ) : (
+            <HomeVolunteerPoster />
+          )
+        ) : null}
+      </main>
+      <Footer />
+    </>
   );
 }

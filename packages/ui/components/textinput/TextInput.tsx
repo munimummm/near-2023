@@ -7,7 +7,7 @@ import IconCancel from '../../assets/icons/textinput/icon_cancel.svg';
 import { useController, UseControllerProps } from 'react-hook-form';
 import { Icon } from '../icon/Icon';
 import { useState } from 'react';
-import { clsx } from 'clsx';
+import { clsx } from '@near/clsx';
 
 export interface TextInputProps extends UseControllerProps {
   placeholder?: string;
