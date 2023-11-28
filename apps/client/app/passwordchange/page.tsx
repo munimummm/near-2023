@@ -41,10 +41,11 @@ const PasswordChange = () => {
     const fetchSession = async () => {
       try {
         const { data } = await supabase.auth.getSession();
-        let userId = data.session?.user.id;
 
-        if (!userId) {
+        if (!data.session) {
           router.push('/');
+        } else {
+          console.log('session error');
         }
       } catch (error) {
         console.log(error);
