@@ -28,7 +28,5 @@ export const Main: Story = {
     src: 'https://picsum.photos/seed/picsum/200/300',
     gender: '남',
     age: 2,
-    comment:
-      '바비는 똑똑하고 장난기가 많아요. 바비는 똑똑하고 장난기가 많아요. 바비는 똑똑하고 장난기가 많아요.',
   },
 };
