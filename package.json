@@ -2,11 +2,15 @@
   "name": "near-2023",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
+    "build-dev": "dotenv -e .env.development -- turbo run build",
+    "build-prod": "dotenv -e .env.production -- turbo run build",
+    "dev": "dotenv -e .env.development -- turbo run dev",
+    "dev-local": "dotenv -e .env.development.local -- turbo run dev",
+    "storybook": "dotenv -e .env.development -- turbo run storybook --filter=storybook",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "chromatic": "turbo run chromatic --filter=storybook "
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
@@ -15,7 +19,7 @@
     "eslint-config-custom": "*",
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
-    "prettier": "^2.8.8",
+    "prettier": "2.8.8",
     "turbo": "latest"
   },
   "packageManager": "npm@9.5.1",

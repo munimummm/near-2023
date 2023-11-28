@@ -11,8 +11,15 @@
   "dependencies": {
     "@near/apis": "*",
     "@near/config": "*",
+    "@near/embla-carousel": "*",
     "@near/react-query": "*",
+    "@near/react-quill": "*",
     "@near/store": "*",
+    "@near/svgr": "*",
+    "@near/clsx":"*",
+    "@near/react-hook-form": "*",
+    "@near/react-cookie": "*",
+    "@near/supabase": "*",
     "next": "^13.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -25,6 +32,6 @@
     "dotenv-cli": "^7.3.0",
     "eslint-config-custom": "*",
     "tsconfig": "*",
-    "typescript": "^4.5.3"
+    "typescript": "^5.2.2"
   }
 }
