@@ -10,7 +10,7 @@ interface ModifyPetProps {
   src: string;
   gender: '남' | '여';
   age: number;
-  comment: string;
+  // comment: string;
   className?: string;
 }
 
@@ -39,10 +39,6 @@ interface ModifyPetProps {
  * — (`number`)
  * 반려동물 나이 (필수)
  *
- * @param comment
- * — (`string`)
- * 반려동물 한줄 소개 (필수)
- *
  * @param className
  * — (`string`)
  * 컴포넌트에 적용할 className
@@ -53,7 +49,7 @@ function ModifyPet({
   name,
   gender,
   age,
-  comment,
+  // comment,
   className,
 }: ModifyPetProps) {
   return (
@@ -91,9 +87,9 @@ function ModifyPet({
             </span>
             <span className='text-text-gray text-[0.625rem] font-normal leading-3'>{`${gender} / ${age}살`}</span>
           </div>
-          <span className='text-xs font-normal tracking-tight text-text-black1 line-clamp-1'>
+          {/* <span className='text-xs font-normal tracking-tight text-text-black1 line-clamp-1'>
             {comment}
-          </span>
+          </span> */}
         </div>
       </div>
     </section>
