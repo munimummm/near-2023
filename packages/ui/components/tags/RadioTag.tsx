@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react';
 import { useController, Control } from 'react-hook-form';
-import clsx from 'clsx';
+import { clsx } from '@near/clsx';
 
 interface RadioTagProps {
   name: string;
@@ -80,7 +80,7 @@ const RadioTag = ({
     <label
       className={clsx(
         BaseStyle,
-        ColorStyle[isChecked ? 'gray' : 'main'],
+        ColorStyle[isChecked ? 'main' : 'gray'],
         className,
       )}
     >
@@ -112,7 +112,7 @@ const RadioTag = ({
               fillRule='evenodd'
               clipRule='evenodd'
               d='M4.49744 5.29813L7.79324 8.59232L8.50052 7.88539L5.20472 4.59119L8.50074 1.29678L7.79346 0.589844L4.49744 3.88426L1.20142 0.589844L0.494141 1.29678L3.79016 4.59119L0.494359 7.88539L1.20164 8.59232L4.49744 5.29813Z'
-              fill={`${!isChecked ? '#fff' : '#242424'}`}
+              fill={`${isChecked ? '#fff' : '#242424'}`}
             />
           </svg>
         </button>

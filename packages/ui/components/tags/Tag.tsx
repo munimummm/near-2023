@@ -1,5 +1,7 @@
+'use client';
+
 import { ReactNode } from 'react';
-import clsx from 'clsx';
+import { clsx } from '@near/clsx';
 
 interface TagProps {
   mode?: 'main' | 'gray' | 'stroke' | 'translucent';

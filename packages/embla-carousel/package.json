@@ -1,0 +1,14 @@
+{
+  "name": "@near/embla-carousel",
+  "version": "0.0.0",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "embla-carousel-react": "^8.0.0-rc13"
+  }
+}

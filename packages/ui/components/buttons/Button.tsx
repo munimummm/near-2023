@@ -1,6 +1,7 @@
+'use client';
+
 import { ReactNode } from 'react';
-import { clsx } from 'clsx';
-import '../../globals.css';
+import { clsx } from '@near/clsx';
 
 type ButtonType = {
   type: 'button' | 'submit' | 'reset';

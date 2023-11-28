@@ -10,6 +10,7 @@
 
   "pipeline": {
     "build": {
+      "cache": false,
       "dependsOn": ["^build"],
       "outputs": [
         ".next/**",
@@ -29,6 +30,7 @@
       "cache": false
     },
     "deploy": {
+      "dependsOn": ["build", "lint"],
       "outputs": []
     },
     "storybook": {

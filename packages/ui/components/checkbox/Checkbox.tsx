@@ -1,7 +1,7 @@
 'use client';
 
 import { useController, Control } from 'react-hook-form';
-import clsx from 'clsx';
+import { clsx } from '@near/clsx';
 import { ReactNode } from 'react';
 
 interface CheckboxCommonProps {
@@ -75,6 +75,51 @@ function CheckboxSubText({
   );
 }
 
+/**
+ * @author `송용수`
+ *
+ * @desc Checkbox UI 컴포넌트. `react-hook-form` 라이브러리의 `useController`를 사용하여 `name`, `control`을 받아옴.
+ *
+ * @param name
+ * — (`string`)
+ * `react-hook-form` 관련 props (필수)
+ *
+ * @param type
+ * — (`string`)
+ * `input` 태그의 `type` 속성 값. 기본값은 `'checkbox'`
+ *
+ * @param control
+ * — (`Control`)
+ * `react-hook-form` 관련 props
+ *
+ * @param isDisabled
+ * — (`boolean`)
+ * `input` 태그의 `disabled` 속성 값. 기본값은 `false`
+ *
+ * @param isResponsive
+ * — (`boolean`)
+ * `input` 태그의 반응형 여부를 결정하는 `responsive` 속성 값. 기본값은 `true`
+ *
+ * @param labelType
+ * — (`'notext' | 'singletext' | 'multipletext'`)
+ * 체크박스의 레이블 타입. 기본값은 `'notext'`
+ *
+ * @param label
+ * — (`ReactNode`)
+ * 체크박스의 레이블
+ *
+ * @param labelClassName
+ * — (`string`)
+ * 체크박스의 레이블에 적용할 className
+ *
+ * @param multipleLabel
+ * — (`ReactNode`)
+ * 체크박스의 레이블 타입이 `'multipletext'`일 때, 레이블 아래에 들어갈 서브 레이블
+ *
+ * @param multipleLabelClassName
+ * — (`string`)
+ * 체크박스의 `labelType`이 `'multipletext'`일 때, 서브 레이블에 적용할 className
+ */
 function CheckBox({
   type = 'checkbox',
   name,
