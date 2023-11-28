@@ -6,9 +6,7 @@ import { Session, createClientComponentClient } from '@near/supabase';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 interface HamburgerMenuProps {
-  isLogin: boolean;
   setIsHamburgerMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  handleSignOut?: () => void;
 }
 
 /**
@@ -28,13 +26,11 @@ interface HamburgerMenuProps {
  * — (`React.Dispatch<React.SetStateAction<boolean>>`)
  * 햄버거 메뉴 컴포넌트 렌더링 여부를 변경하는 함수 (필수)
  */
-function HamburgerMenu({
-  isLogin,
-  setIsHamburgerMenuVisible,
-}: HamburgerMenuProps) {
+function HamburgerMenu({ setIsHamburgerMenuVisible }: HamburgerMenuProps) {
   const supabase = createClientComponentClient();
   const [userSession, setuserSession] = useState<Session | null>();
   const router = useRouter();
+
   async function getUserSession() {
     const { data, error } = await supabase.auth.getSession();
     if (data) {
@@ -44,8 +40,10 @@ function HamburgerMenu({
       console.log(error);
     }
   }
+
   useEffect(() => {
     getUserSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function handleSignOut() {
@@ -53,6 +51,7 @@ function HamburgerMenu({
     router.refresh();
     setIsHamburgerMenuVisible(false);
   }
+
   return (
     <div className='fixed top-0 right-0 z-50 flex-col items-stretch w-1/2 h-screen p-8 overflow-scroll bg-white mobile:flex tablet:flex desktop:hidden'>
       {/* Menu Close Button */}

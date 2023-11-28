@@ -44,10 +44,8 @@ const BackgroundColorStyle = {
  * 컴포넌트에 적용할 `className`
  */
 function Top({
-  isLogin,
   backgroundColor = 'white',
   hasBoxShadow = true,
-  handleSignOut,
   className = '',
 }: TopProps) {
   const [isHamburgerMenuVisible, setIsHamburgerMenuVisible] = useState(false);
@@ -65,11 +63,7 @@ function Top({
         <TopMenuBar setIsHamburgerMenuVisible={setIsHamburgerMenuVisible} />
       </header>
       {isHamburgerMenuVisible ? (
-        <HamburgerMenu
-          isLogin={isLogin}
-          handleSignOut={handleSignOut}
-          setIsHamburgerMenuVisible={setIsHamburgerMenuVisible}
-        />
+        <HamburgerMenu setIsHamburgerMenuVisible={setIsHamburgerMenuVisible} />
       ) : null}
     </>
   );
