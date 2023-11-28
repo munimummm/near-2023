@@ -158,7 +158,7 @@ export default function SignIn() {
                   id='비밀번호를 다시 확인해주세요'
                   className='text-[0.75rem] text-[#CC3B3B] mt-[0.204375rem] pl-4 absolute'
                 >
-                  비밀번호를 다시 입력해주세요
+                  비밀번호를 다시 확인해주세요
                 </p>
               )}
             </div>
@@ -177,12 +177,12 @@ export default function SignIn() {
             로그인
           </ButtonXL>
         </form>
-        <section>
-          {selected.includes('개인회원') && (
+        {/* <section> */}
+        {/* {selected.includes('개인회원') && (
             <>
-              <ul className='text-[#8B8B8B] flex flex-col items-center gap-8 mt-8'>
-                {/* <li>다른 계정으로 로그인</li> */}
-                {/* <ul className='flex gap-6'>
+              <ul className='text-[#8B8B8B] flex flex-col items-center gap-8 mt-8'> */}
+        {/* <li>다른 계정으로 로그인</li> */}
+        {/* <ul className='flex gap-6'>
                   <li className='text-[0.75rem] text-center'>
                     <button
                       type='button'
@@ -212,10 +212,10 @@ export default function SignIn() {
                     </button>
                   </li>
                 </ul> */}
-              </ul>
+        {/* </ul>
             </>
-          )}
-        </section>
+          )} */}
+        {/* </section> */}
         <section className='mt-8 text-[#8B8B8B] font-normal text-center'>
           <Link className='after:content-["|"] after:mx-4' href={''}>
             아이디 찾기

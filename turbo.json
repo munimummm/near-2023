@@ -29,6 +29,7 @@
       "cache": false
     },
     "deploy": {
+      "dependsOn": ["build", "lint"],
       "outputs": []
     },
     "storybook": {
