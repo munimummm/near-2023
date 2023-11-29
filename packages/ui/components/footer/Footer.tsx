@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import Logo from '../logo/Logo';
 import Copyright from '../copyright/Copyright';
-// import { useInnerWidthState } from '@near/utils';
 
 interface Menu {
   title: string;
@@ -27,8 +26,6 @@ function FooterMenuItem({ path, title }: Menu) {
 }
 
 function Footer() {
-  // const [{ width }] = useInnerWidthState();
-
   const links = [
     { path: '/', title: 'Home' },
     { path: '/aboutus', title: 'About us' },
@@ -38,10 +35,10 @@ function Footer() {
   ];
 
   return (
-    <footer className='bg-white desktop:px-16'>
+    <footer className='py-8 bg-white desktop:px-16'>
       <div>
         <div
-          className='flex tablet:flex-col desktop:flex-row w-full px-10 py-16 tablet:px-0
+          className='flex tablet:flex-col desktop:flex-row w-full px-10 py-10 tablet:px-0
         gap-[1.6875rem] tablet:gap-4 desktop:gap-48  tablet:items-center desktop:justify-center'
         >
           <section className='flex justify-center items-center h-[1.875rem]'>
