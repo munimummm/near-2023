@@ -1,0 +1,7 @@
+.react-datepicker__input-container input {
+  display: none;
+}
+
+.react-datepicker__triangle {
+  display: none;
+}
