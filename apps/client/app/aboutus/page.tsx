@@ -1,10 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Footer, Top, TopSuspense } from 'ui';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { Session, createClientComponentClient } from '@near/supabase';
+import { Footer, Top } from 'ui';
 
 function RoundImageSection({ src, alt, text }) {
   return (
@@ -18,32 +15,9 @@ function RoundImageSection({ src, alt, text }) {
 }
 
 function AboutusPage() {
-  const router = useRouter();
-  const supabase = createClientComponentClient();
-  const [userSession, setuserSession] = useState<Session | null>();
-
-  async function getUserSession() {
-    const { data, error } = await supabase.auth.getSession();
-    if (data) {
-      setuserSession(data.session);
-    }
-    if (error) {
-      console.log(error);
-    }
-  }
-
-  if (userSession === null) {
-    router.push('/');
-  }
-
-  useEffect(() => {
-    getUserSession();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   return (
     <>
-      {userSession ? <Top /> : <TopSuspense />}
+      <Top />
       <main className='pt-[4.5rem]'>
         <div className='layout_max_width'>
           <header className=' tablet:py-6 tablet:px-11'>
