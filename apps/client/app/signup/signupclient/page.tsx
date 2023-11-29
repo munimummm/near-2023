@@ -88,7 +88,7 @@ const SignupClient = () => {
       marketing: false,
       info: false,
     },
-    mode: 'onSubmit',
+    mode: 'onChange',
   });
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
@@ -193,7 +193,7 @@ const SignupClient = () => {
       handleSignUp(userData);
 
       if (data) {
-        router.push('/login');
+        router.push('../signup/signupsuccess');
       } else {
         console.log('데이터를 입력하세요');
       }
@@ -308,7 +308,11 @@ const SignupClient = () => {
                         },
                       }}
                     />
-                    {errors.password && <p>{errors.password.message}</p>}
+                    {errors.password && (
+                      <p className='text-[0.9375rem] text-red-600'>
+                        {errors.password.message}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className='grid px-[6%] mobile:h-[5.75rem]'>
@@ -327,7 +331,7 @@ const SignupClient = () => {
                     />
                   </div>
                   {passwordOpen && (
-                    <div className='text-xs pl-[20px]'>{pwcheckmsg}</div>
+                    <div className='text-xs pl-[1.25rem]'>{pwcheckmsg}</div>
                   )}
                 </div>
                 <div className='grid px-[6%] mobile:h-[5.75rem]'>
@@ -346,7 +350,11 @@ const SignupClient = () => {
                         },
                       }}
                     />
-                    {errors.name && <p>{errors.name.message}</p>}
+                    {errors.name && (
+                      <p className='text-[0.9375rem] text-red-600'>
+                        {errors.name.message}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className='grid px-[6%] mobile:h-[5.75rem]'>

@@ -100,10 +100,12 @@ const PersonalChange = () => {
   const fetchId = async () => {
     try {
       let { data, error } = await supabase.from('user_profile').select('id');
+      console.log(data);
 
       profileId = data?.map((idx) => {
         return idx.id;
       });
+      console.log(profileId);
 
       if (error instanceof Error) {
         console.log(error);
@@ -133,7 +135,7 @@ const PersonalChange = () => {
     if (user_profile) {
       console.log('변경');
     }
-    router.push('/');
+    router.push('../profile');
   };
 
   return (

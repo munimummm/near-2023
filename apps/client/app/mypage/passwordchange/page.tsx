@@ -91,6 +91,7 @@ const PasswordChange = () => {
 
   const handleOk = () => {
     setIsModalOpen(false);
+    router.push('../profile');
   };
 
   return (

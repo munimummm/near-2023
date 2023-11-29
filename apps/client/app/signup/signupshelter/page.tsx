@@ -146,7 +146,7 @@ const SignupShelter = () => {
       handleSignUp(userData);
 
       if (data) {
-        router.push('/login');
+        router.push('../signup/signupsuccess');
       }
     } catch (error) {
       console.log(error);
@@ -249,7 +249,11 @@ const SignupShelter = () => {
                         },
                       }}
                     />
-                    {errors.password && <p>{errors.password.message}</p>}
+                    {errors.password && (
+                      <p className='text-[0.9375rem] text-red-600'>
+                        {errors.password.message}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className='pt-[0.5rem] h-[5.75rem] mb-[1rem]'>
