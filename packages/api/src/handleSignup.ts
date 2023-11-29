@@ -22,23 +22,23 @@ const supabase = createClientComponentClient();
 // () => handleSignUp(userData);
 export interface SignupProps {
   email?: string;
-  password: string;
-  role: 'shelter_user' | 'normal_user';
+  password?: string;
+  role?: 'shelter_user' | 'normal_user';
   shelter_data?: {
-    shelter_name: string;
-    ceo_phone: string;
+    shelter_name?: string;
+    ceo_phone?: string;
     shelter_address: string;
     shelter_detail_address: string;
     shelter_type: string;
     shelter_scale: string;
-    ceo_name: string;
+    ceo_name?: string;
     marketing_agree: boolean;
     shelter_cooperation: boolean;
     register_number: string;
   };
   normal_data?: {
-    name: string;
-    phone: string;
+    name?: string;
+    phone?: string;
     shelter_address: string;
     shelter_detail_address: string;
     shelter_type: string;
@@ -69,7 +69,7 @@ export const handleSignUp = async (userData: SignupProps) => {
       userData.role === 'normal_user'
         ? (userData.email as string)
         : `near${countShelterUserId}@near.com`,
-    password: userData.password,
+    password: userData.password as string,
     options: {
       data: {
         role: userData.role,
