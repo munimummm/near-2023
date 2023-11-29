@@ -5,20 +5,47 @@ import { CardWithLike, HeaderButton, HeaderSubTitle, HeaderTitle } from 'ui';
 import { DummyNearPets } from '../dummy';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { Session, createClientComponentClient } from '@near/supabase';
 
-function HomeNearPets({ isLogin }: { isLogin: boolean }) {
+function HomeNearPets() {
   const router = useRouter();
   const [data, setData] = useState(DummyNearPets);
   const [isClient, setIsClient] = useState(false);
-
+  const supabase = createClientComponentClient();
+  const [userSession, setuserSession] = useState<Session | null>();
+  const [name, setName] = useState<string | null>();
   const handleIsLiked = (index: number) => {
     let newData = [...data];
     newData[index].isLiked = !newData[index].isLiked;
     setData(newData);
   };
 
+  async function getUserSession() {
+    const { data, error } = await supabase.auth.getSession();
+    if (data) {
+      setuserSession(data.session);
+    }
+
+    if (data.session?.user.role === 'normal_user') {
+      const { data: user } = await supabase.from('user_profile').select('name');
+      user && setName(user[0].name);
+    }
+    if (data.session?.user.role === 'shelter_user') {
+      const { data: user } = await supabase
+        .from('shelter_profile')
+        .select('shelter_name');
+      user && setName(user[0].shelter_name);
+    }
+
+    if (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     setIsClient(true);
+    getUserSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -34,15 +61,15 @@ function HomeNearPets({ isLogin }: { isLogin: boolean }) {
         <div className='flex flex-col items-center justify-center gap-1 mobile:gap-1 tablet:gap-2 tablet:py-[2.125rem] desktop:gap-2 desktop:py-[2.125rem]'>
           <HeaderTitle
             title={
-              isLogin ? '우리 동네 근처 (NEAR) 관리 동물' : '니어 관리 동물'
+              userSession ? '우리 동네 근처 (NEAR) 관리 동물' : '니어 관리 동물'
             }
           >
             <HeaderButton href='/pet' />
           </HeaderTitle>
           <HeaderSubTitle
             subTitle={
-              isLogin
-                ? `OOO님의 근처 보호소에 들어와 니어 서비스에서 관리 중인 동물입니다.`
+              userSession
+                ? `${name} 님의 근처 보호소에 들어와 니어 서비스에서 관리 중인 동물입니다.`
                 : '보호소에 들어와 니어 서비스에 등록되어 관리중인 동물입니다.'
             }
           />
@@ -60,7 +87,7 @@ function HomeNearPets({ isLogin }: { isLogin: boolean }) {
                   isLiked={item.isLiked}
                   setIsLiked={() => handleIsLiked(index)}
                   handleLikeButtonClick={
-                    isLogin
+                    userSession
                       ? () => {
                           handleIsLiked(index);
                         }
