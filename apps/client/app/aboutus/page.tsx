@@ -30,10 +30,10 @@ function page() {
             </h3>
             <p className='items-center justify-center px-8 text-sm text-center whitespace-pre-line tablet:text-base desktop:text-lg'>
               {`농림축산식품부의 조사에 따르면 2017년부터 2021년까지 `}
-              <strong>매년 10만 마리이상</strong>
+              <strong>매년 10만 마리 이상</strong>
               {`의 유기 동물이 발생하고 있습니다.
             개의 경우 법적으로 등록이 의무화되어 있어 수치를 어림짐작
-            할수있지만, 고양이는 정확한 수치를 알아내는것 조차 쉽지 않습니다.`}
+            할 수 있지만, 고양이는 정확한 수치를 알아내는 것 조차 쉽지 않습니다.`}
             </p>
             <div className='flex flex-col gap-8 mt-4 desktop:flex-row'>
               <div>
@@ -112,8 +112,8 @@ function page() {
             </div>
             <p className='px-8 text-sm text-center whitespace-pre-line tablet:text-base desktop:text-lg'>
               {`우리는 이 서비스가 언젠가 종료되길 원합니다.
-                우리 주변의 모든 동물들이행복한 삶을 살아
-            더이상 이 서비스를 찾지 않는 세상을 희망합니다.`}
+                우리 주변의 모든 동물들이 행복한 삶을 살아
+            더 이상 이 서비스를 찾지 않는 세상을 희망합니다.`}
             </p>
           </section>
           <section></section>
