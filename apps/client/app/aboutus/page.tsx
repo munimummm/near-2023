@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { Footer, Top, TopSuspense } from 'ui';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { Session, createClientComponentClient } from '@near/supabase';
 
 function RoundImageSection({ src, alt, text }) {
@@ -18,7 +17,6 @@ function RoundImageSection({ src, alt, text }) {
 }
 
 function AboutusPage() {
-  const router = useRouter();
   const supabase = createClientComponentClient();
   const [userSession, setuserSession] = useState<Session | null>();
 
@@ -33,7 +31,7 @@ function AboutusPage() {
   }
 
   if (userSession === null) {
-    router.push('/');
+    // router.push('/');
   }
 
   useEffect(() => {
