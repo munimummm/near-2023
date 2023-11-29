@@ -56,10 +56,7 @@ interface FormValues {
   address?: string;
   detail?: string;
   all?: boolean;
-  member?: boolean;
-  site?: boolean;
-  marketing?: boolean;
-  info?: boolean;
+  checkbox?: boolean;
 }
 
 const SignupClient = () => {
@@ -83,10 +80,7 @@ const SignupClient = () => {
       address: '',
       detail: '',
       all: false,
-      member: false,
-      site: false,
-      marketing: false,
-      info: false,
+      checkbox: false,
     },
     mode: 'onChange',
   });
@@ -235,13 +229,9 @@ const SignupClient = () => {
   // 체크박스 전체 동의
   useEffect(() => {
     if (all === true) {
-      setValue('member', true);
-      setValue('info', true);
-      setValue('site', true);
-      setValue('marketing', true);
+      setValue('checkbox', true);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   return (
     <div>
@@ -433,8 +423,6 @@ const SignupClient = () => {
                       control={control}
                       labelType='singletext'
                       name={'all'}
-                      type='checkbox'
-                      isResponsive={true}
                       label='전체동의'
                     />
                   </div>
@@ -442,33 +430,25 @@ const SignupClient = () => {
                     <CheckBox
                       control={control}
                       labelType='singletext'
-                      name={'member'}
-                      type='checkbox'
-                      isResponsive={true}
+                      name={'checkbox'}
                       label='(필수) 개인 회원 약관에 동의'
                     />
                     <CheckBox
                       control={control}
                       labelType='singletext'
-                      name={'info'}
-                      type='checkbox'
-                      isResponsive={true}
+                      name={'checkbox'}
                       label='(필수) 개인정보 수집 및 이용 동의'
                     />
                     <CheckBox
                       control={control}
                       labelType='singletext'
-                      name={'site'}
-                      type='checkbox'
-                      isResponsive={true}
+                      name={'checkbox'}
                       label='(필수) 위치기반 서비스 이용에 동의'
                     />
                     <CheckBox
                       control={control}
                       labelType='singletext'
-                      name={'marketing'}
-                      type='checkbox'
-                      isResponsive={true}
+                      name={'checkbox'}
                       label='(선택) 마케팅 정보 수신 동의 및 마케팅'
                     />
                   </div>

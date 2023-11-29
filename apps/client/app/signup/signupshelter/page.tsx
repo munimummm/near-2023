@@ -47,11 +47,9 @@ interface ShelterProps {
   ceo_phone?: string;
   password?: string;
   all?: boolean;
-  member?: boolean;
-  site?: boolean;
-  info?: boolean;
-  marketing?: boolean;
+  checkbox?: boolean;
   pwcheck?: string;
+  shelter?: 'public' | 'private';
 }
 
 const SignupShelter = () => {
@@ -70,10 +68,8 @@ const SignupShelter = () => {
       ceo_name: '',
       ceo_phone: '',
       all: false,
-      member: false,
-      site: false,
-      info: false,
-      marketing: false,
+      checkbox: false,
+      shelter: undefined,
     },
     mode: 'onChange',
   });
@@ -158,13 +154,10 @@ const SignupShelter = () => {
   // 체크박스 전체 동의
   useEffect(() => {
     if (all === true) {
-      setValue('member', true);
-      setValue('info', true);
-      setValue('site', true);
-      setValue('marketing', true);
+      setValue('checkbox', true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   return (
     <div>
@@ -196,10 +189,14 @@ const SignupShelter = () => {
                 <div className=' flex flex-row justify-between pt-[2rem] h-[5.75rem]'>
                   <div className='mb-[1rem]'>보호소 유형</div>
                   <div className='w-[230px] flex justify-between'>
-                    <RadioTag name={'public'} control={control}>
+                    <RadioTag name={'shelter'} control={control} value='public'>
                       시보호소
                     </RadioTag>
-                    <RadioTag name={'private'} control={control}>
+                    <RadioTag
+                      name={'shelter'}
+                      control={control}
+                      value='private'
+                    >
                       사설 보호소
                     </RadioTag>
                   </div>
@@ -291,7 +288,7 @@ const SignupShelter = () => {
                   <div className='h-[1.5rem] flex flex-row mt-[1.5rem]'>
                     <div className='mt-[0.125rem]'>
                       <Checkbox
-                        name={'member'}
+                        name={'chekcbox'}
                         control={control}
                         labelType='singletext'
                         label='(필수) 개인 회원 약관에 동의'
@@ -301,7 +298,7 @@ const SignupShelter = () => {
                   <div className='h-[1.5rem] flex flex-row mt-[1.5rem]'>
                     <div className='mt-[0.125rem]'>
                       <Checkbox
-                        name={'info'}
+                        name={'chekcbox'}
                         control={control}
                         labelType='singletext'
                         label='(필수) 개인정보 수집 및 이용 동의'
@@ -311,7 +308,7 @@ const SignupShelter = () => {
                   <div className='h-[1.5rem] flex flex-row mt-[1.5rem]'>
                     <div className='mt-[0.125rem]'>
                       <Checkbox
-                        name={'site'}
+                        name={'chekcbox'}
                         control={control}
                         labelType='singletext'
                         label='(필수) 위치기반 서비스 이용에 동의'
@@ -321,7 +318,7 @@ const SignupShelter = () => {
                   <div className='h-[1.5rem] flex flex-row mt-[1.5rem]'>
                     <div className='mt-[0.125rem]'>
                       <Checkbox
-                        name={'marketing'}
+                        name={'chekcbox'}
                         control={control}
                         labelType='singletext'
                         label='(선택) 마케팅 정보 수신 동의 및 마케팅'
