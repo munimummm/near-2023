@@ -75,7 +75,7 @@ const PasswordChange = () => {
   };
 
   const onClickPersonalPage = () => {
-    router.push('/personalchange');
+    router.push('../profile/personalpage');
     setColor(true);
   };
 
@@ -132,7 +132,7 @@ const PasswordChange = () => {
         </div>
         <div className='mobile:flex mobile:flex-col'>
           <div className='mobile:h-[37.5rem] mobile:mt-[1rem] desktop:h-[760px]'>
-            <div
+            {/* <div
               className='mobile:flex mobile:justify-center mobile:h-[5.75rem] mobile:grid moible:mb-[0.625rem]
                                         tablet:mb-[1.5rem]
                                         desktop:mb-[1.625rem]'
@@ -147,7 +147,7 @@ const PasswordChange = () => {
                   rules={{ required: true }}
                 />
               </div>
-            </div>
+            </div> */}
             <div
               className='mobile:flex mobile:justify-center mobile:h-[5.75rem] mobile:grid moible:mb-[0.625rem]
                                         tablet:mb-[1.5rem]
@@ -168,11 +168,15 @@ const PasswordChange = () => {
                       value:
                         /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/,
                       message:
-                        '영문 & 숫자 & 특수조합 포함 8자리 이상 입력하세요',
+                        '영문 & 숫자 & 특수문자조합 포함 8자리 이상 입력하세요',
                     },
                   }}
                 />
-                {errors.changepw && <p>{errors.changepw.message}</p>}
+                {errors.changepw && (
+                  <p className='text-[0.9375rem] text-red-600'>
+                    {errors.changepw.message}
+                  </p>
+                )}
               </div>
             </div>
             <div
@@ -193,7 +197,9 @@ const PasswordChange = () => {
                 />
               </div>
               {passwordOpen && (
-                <div className='text-xs pl-[20px]'>{pwcheckmsg}</div>
+                <div className='text-xs pl-[1.25rem] text-red-600'>
+                  {pwcheckmsg}
+                </div>
               )}
             </div>
           </div>

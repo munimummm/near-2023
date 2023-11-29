@@ -47,7 +47,10 @@ interface ShelterProps {
   ceo_phone?: string;
   password?: string;
   all?: boolean;
-  checkbox?: boolean;
+  member?: boolean;
+  info?: boolean;
+  site?: boolean;
+  marketing?: boolean;
   pwcheck?: string;
   shelter?: 'public' | 'private';
 }
@@ -68,7 +71,10 @@ const SignupShelter = () => {
       ceo_name: '',
       ceo_phone: '',
       all: false,
-      checkbox: false,
+      member: false,
+      info: false,
+      site: false,
+      marketing: false,
       shelter: undefined,
     },
     mode: 'onChange',
@@ -154,7 +160,10 @@ const SignupShelter = () => {
   // 체크박스 전체 동의
   useEffect(() => {
     if (all === true) {
-      setValue('checkbox', true);
+      setValue('member', true);
+      setValue('info', true);
+      setValue('site', true);
+      setValue('marketing', true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   });
@@ -182,8 +191,19 @@ const SignupShelter = () => {
                       placeholder='텍스트를 입력하세요'
                       borderRadius={true}
                       name={'shelter_name'}
-                      rules={{ required: true }}
+                      rules={{
+                        required: true,
+                        minLength: {
+                          value: 2,
+                          message: '2글자 이상 입력하세요',
+                        },
+                      }}
                     />
+                    {errors.shelter_name && (
+                      <p className='text-[0.9375rem] text-red-600'>
+                        {errors.shelter_name.message}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className=' flex flex-row justify-between pt-[2rem] h-[5.75rem]'>
@@ -242,7 +262,7 @@ const SignupShelter = () => {
                           value:
                             /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/,
                           message:
-                            '영문 & 숫자 & 특수조합 포함 8자리 이상 입력하세요',
+                            '영문 & 숫자 & 특수문자조합 포함 8자리 이상 입력하세요',
                         },
                       }}
                     />
@@ -269,7 +289,9 @@ const SignupShelter = () => {
                     />
                   </div>
                   {passwordOpen && (
-                    <div className='text-xs pl-[20px]'>{pwcheckmsg}</div>
+                    <div className='text-xs pl-[1.25rem] text-red-600'>
+                      {pwcheckmsg}
+                    </div>
                   )}
                 </div>
               </div>
@@ -288,7 +310,7 @@ const SignupShelter = () => {
                   <div className='h-[1.5rem] flex flex-row mt-[1.5rem]'>
                     <div className='mt-[0.125rem]'>
                       <Checkbox
-                        name={'chekcbox'}
+                        name={'member'}
                         control={control}
                         labelType='singletext'
                         label='(필수) 개인 회원 약관에 동의'
@@ -298,7 +320,7 @@ const SignupShelter = () => {
                   <div className='h-[1.5rem] flex flex-row mt-[1.5rem]'>
                     <div className='mt-[0.125rem]'>
                       <Checkbox
-                        name={'chekcbox'}
+                        name={'info'}
                         control={control}
                         labelType='singletext'
                         label='(필수) 개인정보 수집 및 이용 동의'
@@ -308,7 +330,7 @@ const SignupShelter = () => {
                   <div className='h-[1.5rem] flex flex-row mt-[1.5rem]'>
                     <div className='mt-[0.125rem]'>
                       <Checkbox
-                        name={'chekcbox'}
+                        name={'site'}
                         control={control}
                         labelType='singletext'
                         label='(필수) 위치기반 서비스 이용에 동의'
@@ -318,7 +340,7 @@ const SignupShelter = () => {
                   <div className='h-[1.5rem] flex flex-row mt-[1.5rem]'>
                     <div className='mt-[0.125rem]'>
                       <Checkbox
-                        name={'chekcbox'}
+                        name={'marketing'}
                         control={control}
                         labelType='singletext'
                         label='(선택) 마케팅 정보 수신 동의 및 마케팅'

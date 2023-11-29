@@ -29,7 +29,12 @@ interface FormValues {
 const PersonalChange = () => {
   const supabase = createClientComponentClient();
   const router = useRouter();
-  const { control, setValue, handleSubmit } = useForm<FormValues>({
+  const {
+    control,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({
     defaultValues: {
       birth: '',
       address: '',
@@ -70,7 +75,7 @@ const PersonalChange = () => {
   }, []);
 
   const onClickPasswordChange = () => {
-    router.push('/passwordchange');
+    router.push('../profile/passwordchange');
     setColor(true);
   };
 
@@ -225,19 +230,21 @@ const PersonalChange = () => {
                     borderRadius={true}
                     placeholder='성함을 입력하세요'
                     name={'name'}
-                    rules={{ required: true }}
+                    rules={{
+                      required: true,
+                      minLength: {
+                        value: 2,
+                        message: '2글자 이상 입력해 주세요',
+                      },
+                    }}
                   />
+                  {errors.name && (
+                    <p className='text-[0.9375rem] text-red-600'>
+                      {errors.name.message}
+                    </p>
+                  )}
                 </div>
               </div>
-              {/* <div
-                className='mobile:flex mobile:justify-center mobile:justify-between mobile:items-center mobile:h-[4rem] mobile:w-[26rem] mobile:m-auto
-                                        desktop:w-[43.1875rem] desktop:mb-[1.625rem]'
-              >
-                <div>성별</div>
-                <Tag mode='gray' isFlat={true}>
-                  선택
-                </Tag>
-              </div> */}
               <div
                 className='mobile:flex mobile:justify-center mobile:h-[5.75rem] mobile:grid
                                         desktop:grid desktop:mb-[1.625rem]'
@@ -250,6 +257,7 @@ const PersonalChange = () => {
                       borderRadius={true}
                       placeholder='생년월일을 입력하세요'
                       name={'birth'}
+                      rules={{ required: true }}
                     />
                   </div>
                   <Tag
@@ -281,8 +289,20 @@ const PersonalChange = () => {
                     borderRadius={true}
                     placeholder='이메일을 입력하세요'
                     name={'email'}
-                    rules={{ required: true }}
+                    rules={{
+                      required: true,
+                      pattern: {
+                        value:
+                          /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                        message: '이메일 형식에 맞게 입력해 주세요',
+                      },
+                    }}
                   />
+                  {errors.email && (
+                    <p className='text-[0.9375rem] text-red-600'>
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
               </div>
               <div className='mobile:flex mobile:justify-center mobile:h-[5.75rem] mobile:grid desktop:mb-[1.625rem]'>
@@ -310,6 +330,7 @@ const PersonalChange = () => {
                         borderRadius={true}
                         placeholder='주소를 입력하세요'
                         name={'address'}
+                        rules={{ required: true }}
                       />
                     </div>
                     <Tag
