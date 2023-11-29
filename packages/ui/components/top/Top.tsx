@@ -6,7 +6,6 @@ import TopMenuBar from './topMenuBar/TopMenuBar';
 import HamburgerMenu from './hamburgerMenu/HamburgerMenu';
 
 interface TopProps {
-  isLogin: boolean;
   backgroundColor?: 'white' | 'transparent';
   hasBoxShadow?: boolean;
   handleSignOut?: () => void;
