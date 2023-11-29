@@ -1,10 +1,11 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 'use client';
 
 import HamburgerMenuTabs from './HamburgerMenuTabs';
 import { MenuOptionTabsContent } from '../MenuOptionTabsContent';
 import { Session, createClientComponentClient } from '@near/supabase';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+
 interface HamburgerMenuProps {
   setIsHamburgerMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -29,7 +30,6 @@ interface HamburgerMenuProps {
 function HamburgerMenu({ setIsHamburgerMenuVisible }: HamburgerMenuProps) {
   const supabase = createClientComponentClient();
   const [userSession, setuserSession] = useState<Session | null>();
-  const router = useRouter();
 
   async function getUserSession() {
     const { data, error } = await supabase.auth.getSession();
@@ -48,8 +48,8 @@ function HamburgerMenu({ setIsHamburgerMenuVisible }: HamburgerMenuProps) {
 
   async function handleSignOut() {
     await supabase.auth.signOut();
-    router.refresh();
     setIsHamburgerMenuVisible(false);
+    if (typeof window !== 'undefined') window.location.reload();
   }
 
   return (
@@ -84,7 +84,7 @@ function HamburgerMenu({ setIsHamburgerMenuVisible }: HamburgerMenuProps) {
               프로필
             </HamburgerMenuTabs>
             <div className='bg-black w-[0.0625rem] h-[1.25rem]' />
-            <HamburgerMenuTabs size='sm' href='/' onClick={handleSignOut}>
+            <HamburgerMenuTabs size='sm' href={'/'} onClick={handleSignOut}>
               로그아웃
             </HamburgerMenuTabs>
           </>

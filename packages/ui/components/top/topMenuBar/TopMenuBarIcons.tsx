@@ -7,7 +7,7 @@ import { MenuOptionTabsContent } from '../MenuOptionTabsContent';
 import TopMenuTabs from './TopMenuTabs';
 import { Session, createClientComponentClient } from '@near/supabase';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+
 export interface TopMenuBarIconsProps {
   setIsHamburgerMenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -15,7 +15,7 @@ export interface TopMenuBarIconsProps {
 function TopMenuBarIcons({ setIsHamburgerMenuVisible }: TopMenuBarIconsProps) {
   const supabase = createClientComponentClient();
   const [userSession, setuserSession] = useState<Session | null>();
-  const router = useRouter();
+  // const router = useRouter();
   async function getUserSession() {
     const { data, error } = await supabase.auth.getSession();
     if (data) {
@@ -28,7 +28,7 @@ function TopMenuBarIcons({ setIsHamburgerMenuVisible }: TopMenuBarIconsProps) {
 
   async function handleSignOut() {
     await supabase.auth.signOut();
-    router.refresh();
+    if (typeof window !== 'undefined') window.location.reload();
   }
   useEffect(() => {
     getUserSession();
@@ -73,6 +73,7 @@ function TopMenuBarIcons({ setIsHamburgerMenuVisible }: TopMenuBarIconsProps) {
               className='mobile:text-sm tablet:text-sm desktop:text-lg text-text-black1'
               href={'/'}
               onClick={handleSignOut}
+              replace
             >
               로그아웃
             </Link>
