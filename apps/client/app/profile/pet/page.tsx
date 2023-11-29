@@ -6,7 +6,7 @@ import { ButtonXL } from 'ui/components/buttons/Button';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
 import RadioTag from 'ui/components/tags/RadioTag';
-import { supabase } from '@near/supabase';
+import { Session, supabase } from '@near/supabase';
 import { useRouter } from 'next/navigation';
 
 // interface Props {
@@ -25,8 +25,10 @@ interface UserPetType {
 
 function UserPetProfilePage() {
   const router = useRouter();
-  const [userId, setUserId] = useState<string | null>(null);
+  const [userSession, setuserSession] = useState<Session | null>();
+
   const supabaseAuth = createClientComponentClient();
+
   const {
     control,
     handleSubmit,
@@ -46,8 +48,8 @@ function UserPetProfilePage() {
     const fetchSession = async () => {
       try {
         const { data } = await supabaseAuth.auth.getSession();
-        if (data && data.session) {
-          setUserId(data.session.user.id);
+        if (data) {
+          setuserSession(data.session);
         }
       } catch (error) {
         console.error('실패', error);
@@ -55,13 +57,17 @@ function UserPetProfilePage() {
     };
 
     fetchSession();
+
+    if (!userSession) {
+      router.push('/');
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSubmit = async (formData) => {
     const petProfileData = {
       ...formData,
-      id: userId,
+      id: userSession?.user.id,
     };
     const { error } = await supabase
       .from('user_pet_profile')
