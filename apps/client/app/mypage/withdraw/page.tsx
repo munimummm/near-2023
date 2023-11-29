@@ -4,10 +4,11 @@ import CheckBox from 'ui/components/checkbox/Checkbox';
 import { useForm } from '@near/react-hook-form';
 import { ButtonXL } from 'ui/components/buttons/Button';
 import { Modal } from '@near/antd';
-import { useState } from 'react';
-import { createClientComponentClient } from '@near/supabase';
+import { useState, useEffect } from 'react';
+import { createClientComponentClient, Session } from '@near/supabase';
 import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
 import { useRouter } from 'next/navigation';
+import { Top, TopSuspense } from 'ui';
 
 interface FormValues {}
 const Withdraw = () => {
@@ -19,6 +20,29 @@ const Withdraw = () => {
   });
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [userSession, setUserSession] = useState<Session | null>();
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        const { data } = await supabase.auth.getSession();
+
+        if (data) {
+          setUserSession(data.session);
+        }
+
+        if (!data.session) {
+          router.push('/');
+        } else {
+          console.log('session error');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const onClickWithdraw = async (user: any) => {
     let { data, error } = await supabase.auth.admin.deleteUser(user);
@@ -41,7 +65,7 @@ const Withdraw = () => {
 
   return (
     <div>
-      <div></div>
+      <div>{userSession ? <Top /> : <TopSuspense />}</div>
       <form onSubmit={handleSubmit(onClickWithdraw)}>
         <div
           className='mobile:h-[3.125rem] mobile:w-[28.75rem] mobile:m-auto mobile:flex mobile:justify-center mobile:mt-[8.6875rem] mobile:font-bold mobile:text-[1.25rem] mobile:border-b-2

@@ -13,7 +13,8 @@ import './datepicker/datepicker.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Modal } from '@near/antd';
 import { DaumPostcode } from '@near/react-daum-postcode';
-import { createClientComponentClient } from '@near/supabase';
+import { createClientComponentClient, Session } from '@near/supabase';
+import { Top, TopSuspense } from 'ui';
 
 interface FormValues {
   id?: string;
@@ -44,11 +45,16 @@ const PersonalChange = () => {
   const [datePicker, setDatePicker] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [userSession, setUserSession] = useState<Session | null>();
 
   useEffect(() => {
     const fetchSession = async () => {
       try {
         const { data } = await supabase.auth.getSession();
+
+        if (data) {
+          setUserSession(data.session);
+        }
 
         if (!data.session) {
           router.push('/');
@@ -147,9 +153,10 @@ const PersonalChange = () => {
               <DaumPostcode onComplete={handleComplete} />
             </Modal>
           )}
+          <div>{userSession ? <Top /> : <TopSuspense />}</div>
           <div
-            className='mobile:flex mobile:flex-col mobile:justify-between mobile:items-center mobile:h-[6.25rem] mobile:mt-[8.25rem] mobile:mb-[2.5rem] 
-                                tablet:h-[9.25rem] tablet:grid tablet:justify-items-start'
+            className='mobile:flex mobile:flex-col mobile:justify-between mobile:items-center mobile:h-[6.25rem] mobile:mt-[5rem] mobile:mb-[2.5rem] 
+            tablet:h-[9.25rem] tablet:grid tablet:justify-items-start'
           >
             <div
               className='moblie:pb-[3rem] moblie:text-[1.25rem] mobile:font-bold tablet:font-bold

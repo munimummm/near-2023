@@ -6,8 +6,9 @@ import { ButtonXL } from 'ui/components/buttons/Button';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
-import { createClientComponentClient } from '@near/supabase';
+import { createClientComponentClient, Session } from '@near/supabase';
 import { Modal } from '@near/antd';
+import { Top, TopSuspense } from 'ui';
 
 interface FormValues {
   currentpw?: string;
@@ -36,11 +37,16 @@ const PasswordChange = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [pwcheckmsg, setPkcheckmsg] = useState<string>('');
   const [passwordOpen, setPasswordOpen] = useState<boolean>(false);
+  const [userSession, setUserSession] = useState<Session | null>();
 
   useEffect(() => {
     const fetchSession = async () => {
       try {
         const { data } = await supabase.auth.getSession();
+
+        if (data) {
+          setUserSession(data.session);
+        }
 
         if (!data.session) {
           router.push('/');
@@ -96,10 +102,10 @@ const PasswordChange = () => {
 
   return (
     <div>
-      <div></div>
+      <div>{userSession ? <Top /> : <TopSuspense />}</div>
       <form onSubmit={handleSubmit(onClickSubmit)}>
         <div
-          className='mobile:flex mobile:flex-col mobile:justify-between mobile:items-center mobile:h-[6.25rem] mobile:mt-[8.25rem] mobile:mb-[2.5rem] 
+          className='mobile:flex mobile:flex-col mobile:justify-between mobile:items-center mobile:h-[6.25rem] mobile:mt-[5rem] mobile:mb-[2.5rem] 
                                 tablet:h-[9.25rem] tablet:grid tablet:justify-items-start'
         >
           <div
