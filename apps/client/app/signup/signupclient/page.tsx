@@ -56,7 +56,10 @@ interface FormValues {
   address?: string;
   detail?: string;
   all?: boolean;
-  checkbox?: boolean;
+  member?: boolean;
+  info?: boolean;
+  site?: boolean;
+  marketing?: boolean;
 }
 
 const SignupClient = () => {
@@ -80,7 +83,10 @@ const SignupClient = () => {
       address: '',
       detail: '',
       all: false,
-      checkbox: false,
+      member: false,
+      info: false,
+      site: false,
+      marketing: false,
     },
     mode: 'onChange',
   });
@@ -229,7 +235,10 @@ const SignupClient = () => {
   // 체크박스 전체 동의
   useEffect(() => {
     if (all === true) {
-      setValue('checkbox', true);
+      setValue('member', true);
+      setValue('info', true);
+      setValue('site', true);
+      setValue('marketing', true);
     }
   });
 
@@ -271,7 +280,7 @@ const SignupClient = () => {
                     </div>
                   </div>
                   {messageOpen ? (
-                    <div className='text-xs pl-[1.25rem] text-red-500'>
+                    <div className='text-xs pl-[1.25rem] text-red-600'>
                       {message}
                     </div>
                   ) : null}
@@ -294,7 +303,7 @@ const SignupClient = () => {
                           value:
                             /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/,
                           message:
-                            '영문 & 숫자 & 특수조합 포함 8자리 이상 입력하세요',
+                            '영문 & 숫자 & 특수문자조합 포함 8자리 이상 입력하세요',
                         },
                       }}
                     />
@@ -321,7 +330,9 @@ const SignupClient = () => {
                     />
                   </div>
                   {passwordOpen && (
-                    <div className='text-xs pl-[1.25rem]'>{pwcheckmsg}</div>
+                    <div className='text-xs pl-[1.25rem] text-red-600'>
+                      {pwcheckmsg}
+                    </div>
                   )}
                 </div>
                 <div className='grid px-[6%] mobile:h-[5.75rem]'>
@@ -430,25 +441,25 @@ const SignupClient = () => {
                     <CheckBox
                       control={control}
                       labelType='singletext'
-                      name={'checkbox'}
+                      name={'member'}
                       label='(필수) 개인 회원 약관에 동의'
                     />
                     <CheckBox
                       control={control}
                       labelType='singletext'
-                      name={'checkbox'}
+                      name={'info'}
                       label='(필수) 개인정보 수집 및 이용 동의'
                     />
                     <CheckBox
                       control={control}
                       labelType='singletext'
-                      name={'checkbox'}
+                      name={'site'}
                       label='(필수) 위치기반 서비스 이용에 동의'
                     />
                     <CheckBox
                       control={control}
                       labelType='singletext'
-                      name={'checkbox'}
+                      name={'marketing'}
                       label='(선택) 마케팅 정보 수신 동의 및 마케팅'
                     />
                   </div>
