@@ -72,12 +72,16 @@ export default function SignIn() {
       <section className='layout_max_width'>
         <form
           onSubmit={handleSubmit(async (data) => {
-            const { error } = await supabase.auth.signInWithPassword({
-              email: selected.includes('개인회원')
-                ? data.email || ''
-                : `${data.email}@near.com`,
-              password: data.password || '',
-            });
+            const { data: user, error } =
+              await supabase.auth.signInWithPassword({
+                email: selected.includes('개인회원')
+                  ? data.email || ''
+                  : `${data.email}@near.com`,
+                password: data.password || '',
+              });
+            if (user) {
+              router.push('/');
+            }
             if (error) {
               setError(true);
             }
