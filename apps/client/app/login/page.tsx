@@ -223,7 +223,7 @@ export default function SignIn() {
           <Link className='after:content-["|"] after:mx-4' href={''}>
             비밀번호 찾기
           </Link>
-          <Link href={''}>회원가입하기</Link>
+          <Link href={'/signup'}>회원가입하기</Link>
         </section>
       </section>
     </main>
