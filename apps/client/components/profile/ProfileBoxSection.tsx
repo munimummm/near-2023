@@ -1,6 +1,10 @@
 import { ModifyPet, VerticalProfile } from 'ui';
 import { DummyPetProfile, DummyProfile } from './dummy';
 
+// interface ProfileBoxSectionProps {
+//   href: string;
+//   src: '/images/profile/img_profile_default.png';
+// }
 function ProfileBoxSection() {
   const data = DummyProfile;
   const petData = DummyPetProfile;
