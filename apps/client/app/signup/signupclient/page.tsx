@@ -239,7 +239,13 @@ const SignupClient = () => {
       setValue('info', true);
       setValue('site', true);
       setValue('marketing', true);
+    } else {
+      setValue('member', false);
+      setValue('info', false);
+      setValue('site', false);
+      setValue('marketing', false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   });
 
   return (
