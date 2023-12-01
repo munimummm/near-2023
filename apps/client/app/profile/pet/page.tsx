@@ -160,7 +160,7 @@ function UserPetProfilePage() {
                 <TextInput
                   control={control}
                   name='user_pet_age'
-                  placeholder='나이를 입력해주세요'
+                  placeholder='나이를 입력해 주세요'
                   state='default'
                   borderRadius
                 />
