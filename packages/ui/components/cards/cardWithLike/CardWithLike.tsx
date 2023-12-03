@@ -158,9 +158,9 @@ function LikeButton({
 function CardWithLike({
   src,
   tags,
-  isLiked,
-  setIsLiked,
-  handleLikeButtonClick,
+  // isLiked,
+  // setIsLiked,
+  // handleLikeButtonClick,
   petData,
 }: CardBlockProps & BackgroundImageProps & TagGroupProps & LikeButtonProps) {
   const [isClicked, setIsClicked] = useState(false);
@@ -171,11 +171,11 @@ function CardWithLike({
       onClick={() => setIsClicked((prev) => !prev)}
     >
       <BackgroundImage className={clsx('absolute top-0 left-0')} src={src} />
-      <LikeButton
+      {/* <LikeButton
         isLiked={isLiked}
         setIsLiked={setIsLiked}
         handleLikeButtonClick={handleLikeButtonClick}
-      />
+      /> */}
       {isClicked ? (
         <div className='background-white/[0.05] backdrop-blur-xl absolute flex flex-col justify-center items-center w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 mobile:gap-2 mobile:px-8 tablet:gap-5 tablet:px-9 desktop:gap-5 desktop:px-9 mobile:rounded-2xl tablet:rounded-3xl desktop:rounded-3xl'>
           <span className='text-center text-white mobile:text-2xl mobile:font-semibold tablet:text-5xl tablet:font-bold desktop:text-5xl desktop:font-bold'>
