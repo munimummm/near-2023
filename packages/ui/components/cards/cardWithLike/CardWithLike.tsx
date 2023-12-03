@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { clsx } from '@near/clsx';
 import Tag from '../../tags/Tag';
 import Link from 'next/link';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface CardBlockCommonProps {
   className?: string;
@@ -166,7 +166,6 @@ function CardWithLike({
   // setIsLiked,
   // handleLikeButtonClick,
   petData,
-  ...props
 }: CardBlockProps &
   BackgroundImageProps &
   TagGroupProps &

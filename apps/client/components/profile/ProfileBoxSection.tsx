@@ -1,6 +1,6 @@
-import { ButtonETC, ButtonXL, ButtonXS, ModifyPet, VerticalProfile } from 'ui';
+import { ModifyPet, VerticalProfile } from 'ui';
 // import { DummyPetProfile, DummyProfile } from './dummy';
-import { Session, createClientComponentClient } from '@near/supabase';
+import { createClientComponentClient } from '@near/supabase';
 import { useEffect, useState } from 'react';
 import { getUsersession, useRecoilValue } from '@near/store';
 interface ProfileBoxSectionProps {
