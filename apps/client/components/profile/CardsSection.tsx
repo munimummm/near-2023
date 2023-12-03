@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { SmallCard } from 'ui';
 import {
@@ -5,6 +7,8 @@ import {
   DummyCardListDiary,
   DummyCardListVolunteerReview,
 } from './dummy';
+import { getUsersession, useRecoilValue } from '@near/store';
+import { useEffect, useState } from 'react';
 
 interface CardSectionProps {
   text: string;
@@ -55,20 +59,30 @@ function CardSection({ text, href, data }: CardSectionProps) {
 }
 
 function CardsSection() {
+  const getSession = useRecoilValue(getUsersession);
+  const [role, setRole] = useState<string>();
+
+  useEffect(() => {
+    setRole(getSession?.user.role);
+  }, [getSession]);
   return (
     <section className='flex flex-col gap-6'>
       <CardSection
-        text={'내 봉사 후기'}
+        text={role === 'normal_user' ? '내 봉사 후기' : '보호 중 동물'}
         href={'/profile/volunteer/review'}
         data={DummyCardListVolunteerReview}
       />
       <CardSection
-        text={'내 임보일기'}
+        text={role === 'normal_user' ? '내 임보일기' : '봉사 공고 내역'}
         href={'/profile/tpdiary'}
         data={DummyCardListDiary}
       />
       <CardSection
-        text={'내 입양/임보 신청 내역'}
+        text={
+          role === 'normal_user'
+            ? '내 입양/임보 신청 내역'
+            : '입양/임보 공고 내역'
+        }
         href={'/profile/application'}
         data={DummyCardListApplication}
       />
