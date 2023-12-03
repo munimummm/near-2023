@@ -193,7 +193,7 @@ const SignupClient = () => {
       handleSignUp(userData);
 
       if (data) {
-        router.push('../signup/signupsuccess');
+        router.push('/signup/signupsuccess');
       } else {
         console.log('데이터를 입력하세요');
       }

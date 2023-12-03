@@ -16,6 +16,7 @@ export default function ProfilePage() {
   const [profile, setProfile] = useState<any[] | null>(null);
   const getUserSession = useRecoilValue(getUsersession);
 
+  useEffect(() => {}, [getUserSession]);
   async function getLoginUserProfile() {
     if (getUserSession?.user.role === 'normal_user') {
       const { data } = await supabase.from('user_profile').select('*');

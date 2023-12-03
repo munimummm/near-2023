@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { Icon } from '../../icon/Icon';
 
 interface VolunteerCardLinkProps {
   id: number;
@@ -16,11 +17,12 @@ interface VolunteerCardProps {
 function DetailLink({ id }: VolunteerCardLinkProps) {
   return (
     <Link
-      className='z-[2] rounded-full absolute top-[0.8125rem] right-[0.6875rem] no-underline flex justify-center items-center gap-[0.1875rem] w-[3.4375rem] h-4 bg-theme-main text-white text-[0.3987rem] font-semibold leading-[0.5981rem]'
+      className='z-[2] rounded-full absolute top-[0.8125rem] right-[0.6875rem] no-underline flex justify-center items-center gap-[0.1875rem] w-[3.4375rem] h-4 leading-none bg-theme-main text-white text-[0.3987rem] font-semibold'
       href={`/volunteer/${id}`}
     >
       자세히보기
-      <svg
+      <Icon icon={'ic_arrow_right'} sizes={'xs'} state={'invert'} />
+      {/* <svg
         width='8'
         height='8'
         viewBox='0 0 8 8'
@@ -46,7 +48,7 @@ function DetailLink({ id }: VolunteerCardLinkProps) {
             />
           </clipPath>
         </defs>
-      </svg>
+      </svg> */}
     </Link>
   );
 }

@@ -36,6 +36,7 @@ const States = {
   negative: '#cc3b3b',
   positive: '#00AE46',
   mild: '#A3A3A3',
+  invert: '#fff',
 } as const;
 
 export type IconName = (typeof ICON_NAME)[keyof typeof ICON_NAME];
@@ -46,7 +47,7 @@ export type IconResponsiveSize =
 interface IconProps {
   icon: IconName;
   sizes: IconResponsiveSize;
-  state: 'default' | 'active' | 'negative' | 'positive' | 'mild';
+  state: 'default' | 'active' | 'negative' | 'positive' | 'mild' | 'invert';
 
   //state: 'default' | 'active' | 'negative'
 }
@@ -56,7 +57,7 @@ export function Icon({ icon, state, sizes }: IconProps) {
   const { width, height, path, viewBox } = SVGICON[icon].size[sizes];
 
   return (
-    <i id={type} className='flex items-center'>
+    <i id={type} className={'flex items-center place-self-center'}>
       <svg
         width={width}
         height={height}
