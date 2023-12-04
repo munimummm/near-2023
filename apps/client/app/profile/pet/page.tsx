@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import TextInput from 'ui/components/textinput/TextInput';
 import { useForm } from '@near/react-hook-form';
 import { ButtonXL } from 'ui/components/buttons/Button';
-import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
 import RadioTag from 'ui/components/tags/RadioTag';
 import { Session, createClientComponentClient } from '@near/supabase';
 import { useRouter } from 'next/navigation';
@@ -81,12 +80,12 @@ function UserPetProfilePage() {
   return (
     <>
       {userSession ? <Top /> : <TopSuspense />}
-      <div className='flex flex-col pt-11 tablet:pt-[4.25rem] desktop:pt-[4.25rem] gap-4 w-[30rem] tablet:w-[48rem] desktop:w-[90rem] mb-40'>
+      <div className='flex flex-col pt-11 tablet:pt-[4.25rem] desktop:pt-[4.25rem] gap-4 w-[30rem] tablet:w-[48rem] desktop:w-[90rem] mb-28'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1 className='flex justify-center py-10 text-xl font-bold tablet:justify-start desktop:justify-start tablet:py-8 desktop:py-8 tablet:px-20 desktop:px-20'>
             반려동물 정보
           </h1>
-          <div className='flex justify-center'>
+          <div className='flex items-center justify-center'>
             <div className='flex flex-col items-start tablet: w-[30rem] gap-4 p-8'>
               <div className='flex flex-col w-full gap-4 py-2'>
                 <h2 className='text-lg text-left text-[#545454]'>이름</h2>
@@ -108,7 +107,7 @@ function UserPetProfilePage() {
                   }}
                 />
                 {errors.user_pet_name && (
-                  <span className='text-red-500'>
+                  <span className='pl-4 text-red-500'>
                     {errors.user_pet_name.message}
                   </span>
                 )}
@@ -161,15 +160,14 @@ function UserPetProfilePage() {
                 <TextInput
                   control={control}
                   name='user_pet_age'
-                  placeholder='나이를 입력 해주세요'
+                  placeholder='나이를 입력해 주세요'
                   state='default'
                   borderRadius
                 />
               </div>
-
-              <FooterShadowBox>
-                <ButtonXL type='submit'>확인하기</ButtonXL>
-              </FooterShadowBox>
+              <div className='py-24'>
+                <ButtonXL type='submit'>변경하기</ButtonXL>
+              </div>
             </div>
           </div>
         </form>
