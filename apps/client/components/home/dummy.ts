@@ -76,29 +76,41 @@ export const BottomData: BottomData[] = [
 export const DummyNearPets = [
   {
     cardNumber: 1,
-    src: '/images/image1.jpg',
-    tags: ['태그 1', '태그 2', '태그 3', '태그 4', '태그 5'],
+    src: '/mock/home/nearpet_thumbnail.jpg',
+    tags: ['수컷', '6개월 이하', '임보중', '배변훈련 완료', '타 동물 친화'],
     isLiked: false,
     petData: { lost_pet_id: 1, name: '세바스찬' },
   },
   {
     cardNumber: 2,
-    src: '/images/image1.jpg',
-    tags: ['태그 1', '태그 2', '태그 3', '태그 4', '태그 5'],
+    src: '/mock/home/nearpet_thumbnail.jpg',
+    tags: [
+      '어린이 친화',
+      '기본 훈련 완료',
+      '중성화 완료',
+      '8~18kg',
+      '기본 훈련 완료',
+    ],
     isLiked: false,
     petData: { lost_pet_id: 2, name: '덕구' },
   },
   {
     cardNumber: 3,
-    src: '/images/image1.jpg',
-    tags: ['태그 1', '태그 2', '태그 3', '태그 4', '태그 5'],
+    src: '/mock/home/nearpet_thumbnail.jpg',
+    tags: ['암컷', '낯가림', '단모', '중성화 완료', '8살 이상'],
     isLiked: false,
     petData: { lost_pet_id: 3, name: '상추' },
   },
   {
     cardNumber: 4,
-    src: '/images/image1.jpg',
-    tags: ['태그 1', '태그 2', '태그 3', '태그 4', '태그 5'],
+    src: '/mock/home/nearpet_thumbnail.jpg',
+    tags: [
+      '어린이 친화',
+      '산책 가능',
+      '중성화 완료',
+      '8~18kg',
+      '기본 훈련 완료',
+    ],
     isLiked: false,
     petData: { lost_pet_id: 4, name: '제니퍼' },
   },
@@ -111,28 +123,28 @@ export const DummyHomeVolunteerPoster = {
 
 export const DummyHomeJoinVolunteer = [
   {
-    src: '/images/volunteer/introduce.jpg',
+    src: '/mock/home/volunteer_thumbnail.jpg',
     id: 1,
     title: '청소봉사',
     subTitle:
       '보호소에 있는 견사와 배설물을 치우고, 배변패드 및 이불정리, 물걸레질 등이 주된 봉사내용 입니다.',
   },
   {
-    src: '/images/volunteer/introduce.jpg',
+    src: '/mock/home/volunteer_thumbnail.jpg',
     id: 2,
     title: '산책봉사',
     subTitle:
       '종일 견사에 있는 아이들과 산책을 하는 봉사활동입니다. 산책봉사를 통해 아이들의 스트레스 해소를 돕습니다.',
   },
   {
-    src: '/images/volunteer/introduce.jpg',
+    src: '/mock/home/volunteer_thumbnail.jpg',
     id: 3,
     title: '의료봉사',
     subTitle:
       '크고 작은 세균에 감염되거나, 때에 따라 접종과 중성화 수술 등의 검진과 치료를 담당하는 봉사활동입니다.',
   },
   {
-    src: '/images/volunteer/introduce.jpg',
+    src: '/mock/home/volunteer_thumbnail.jpg',
     id: 4,
     title: '미용봉사',
     subTitle:
@@ -144,33 +156,33 @@ export const DummyHomeNearNews = [
   {
     id: 1,
     category: '니어 소식',
-    title: '귀여운 아이들과 함께할 봉사자를 모집합니다.',
+    title: '한국 유기동물 문제의 심각성',
     date: '2023.3.4',
     author: '니어팀',
-    src: '/images/image1.jpg',
+    src: '/mock/home/newletter_thumbnail.jpg',
   },
   {
     id: 2,
     category: '니어 소식',
-    title: '귀여운 청소년들과 함께할 봉사자를 모집합니다.',
+    title: '유기동물 보호소의 종류',
     date: '2023.5.21',
     author: '니어팀',
-    src: '/images/image1.jpg',
+    src: '/mock/home/newletter_thumbnail.jpg',
   },
   {
     id: 3,
     category: '니어 소식',
-    title: '귀여운 중년들과 함께할 봉사자를 모집합니다.',
+    title: '유기동물 봉사활동은 어떤 영향을 줄 수 있나요?',
     date: '2023.8.2',
     author: '니어팀',
-    src: '/images/image1.jpg',
+    src: '/mock/home/newletter_thumbnail.jpg',
   },
   {
     id: 4,
     category: '니어 소식',
-    title: '귀여운 장년들과 함께할 봉사자를 모집합니다.',
+    title: '유기견 봉사활동에서 하는 일',
     date: '2023.11.14',
     author: '니어팀',
-    src: '/images/image1.jpg',
+    src: '/mock/home/newletter_thumbnail.jpg',
   },
 ];

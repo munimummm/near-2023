@@ -1,7 +1,7 @@
 import { clsx } from '@near/clsx';
 import { HeaderTitle, HeaderButton } from 'ui';
 import { DummyHomeVolunteerPoster } from '../dummy';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 function HomeVolunteerPoster() {
   const dummy = DummyHomeVolunteerPoster;
@@ -9,10 +9,10 @@ function HomeVolunteerPoster() {
   return (
     <section
       className={clsx(
-        'flex flex-col items-center justify-center w-full gap-10',
+        'flex flex-col items-center justify-center w-full',
         'mobile:gap-10',
-        'tablet:gap-20',
-        'desktop:gap-20',
+        'tablet:gap-6',
+        'desktop:gap-6',
       )}
     >
       <div className='flex flex-col items-center justify-center gap-1 mobile:gap-1 tablet:gap-2 tablet:py-[2.125rem] desktop:gap-2 desktop:py-[2.125rem]'>
@@ -22,8 +22,8 @@ function HomeVolunteerPoster() {
       </div>
 
       <div className='flex flex-col items-center justify-center w-full tablet:gap-4 desktop:gap-4'>
-        <div className='relative overflow-hidden w-full h-[12.6875rem] mobile:w-full mobile:h-[12.6875rem] tablet:w-full tablet:h-[18rem] desktop:w-full desktop:h-[18rem] desktop:object-cover'>
-          <Image src={dummy.url} fill alt='홈 봉사활동 독려 이미지' />
+        <div className='bg-gradient-to-r from-cyan-500 to-blue-500 relative overflow-hidden w-full h-[12.6875rem] mobile:w-full mobile:h-[12.6875rem] tablet:w-full tablet:h-[18rem] desktop:w-full desktop:h-[18rem] desktop:object-cover'>
+          {/* <Image src={dummy.url} fill alt='홈 봉사활동 독려 이미지' /> */}
         </div>
         <p
           className={clsx(
