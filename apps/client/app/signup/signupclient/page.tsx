@@ -7,6 +7,7 @@ import CheckBox from 'ui/components/checkbox/Checkbox';
 import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
 import Logo from 'ui/components/logo/Logo';
 import Tag from 'ui/components/tags/Tag';
+import './datepicker/datepicker.css';
 import TextInput from 'ui/components/textinput/TextInput';
 import { Modal } from '@near/antd';
 import { DaumPostcode } from '@near/react-daum-postcode';
@@ -206,7 +207,7 @@ const SignupClient = () => {
       }
 
       if (userData) {
-        router.push('../signup/signupsuccess');
+        router.push('/signup/signupsuccess');
       } else {
         return;
       }
@@ -266,6 +267,29 @@ const SignupClient = () => {
                 회원가입
               </div>
               <div className='mt-[3rem]'>
+                <div className='grid px-[6%] mobile:h-[5.75rem]'>
+                  <div>이름</div>
+                  <div>
+                    <TextInput
+                      control={control}
+                      placeholder='이름을 입력하세요'
+                      borderRadius={true}
+                      name={'name'}
+                      rules={{
+                        required: true,
+                        minLength: {
+                          value: 2,
+                          message: '최소 2글자 이상 입력하세요',
+                        },
+                      }}
+                    />
+                    {errors.name && (
+                      <p className='text-xs pl-[1.25rem] text-red-600'>
+                        {errors.name.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
                 <div className='grid pl-[6%] mobile:h-[5.75rem]'>
                   <div>이메일</div>
                   <div className='flex gap-x-3'>
@@ -341,32 +365,9 @@ const SignupClient = () => {
                   )}
                 </div>
                 <div className='grid px-[6%] mobile:h-[5.75rem]'>
-                  <div>이름</div>
-                  <div>
-                    <TextInput
-                      control={control}
-                      placeholder='이름을 입력하세요'
-                      borderRadius={true}
-                      name={'name'}
-                      rules={{
-                        required: true,
-                        minLength: {
-                          value: 2,
-                          message: '최소 2글자 이상 입력하세요',
-                        },
-                      }}
-                    />
-                    {errors.name && (
-                      <p className='text-xs pl-[1.25rem] text-red-600'>
-                        {errors.name.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                <div className='grid px-[6%] mobile:h-[5.75rem]'>
                   <div>생년월일</div>
                   <div className='flex gap-x-3'>
-                    <div className='w-[6.25rem]'>
+                    <div className='w-[26.125rem]'>
                       <DatepickerHeader />
                     </div>
                   </div>

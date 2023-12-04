@@ -57,7 +57,7 @@ const DatepickerHeader = () => {
   }, [selectedDate]);
 
   return (
-    <div className='flex justify-between w-[418px]'>
+    <div className='flex justify-between w-full'>
       <TextInput
         control={control}
         placeholder='yyyy-mm-dd'
@@ -122,7 +122,7 @@ const DatepickerHeader = () => {
           </div>
         )}
         selected={startDate}
-        popperPlacement='top-end'
+        popperPlacement='top-start'
         onChange={(date) => {
           setStartDate(date);
           setSelectedDate(date);

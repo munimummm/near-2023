@@ -101,7 +101,7 @@ const ShelterChange = () => {
       .eq('id', userSession?.id);
 
     if (shelter_profile != null) {
-      router.push('../profile');
+      router.push('/profile');
     }
 
     let { data: shelter_profile_detail } = await supabase
@@ -114,7 +114,7 @@ const ShelterChange = () => {
       .eq('id', userSession?.id);
 
     if (shelter_profile_detail != null) {
-      router.push('../profile');
+      router.push('/profile');
       console.log(shelter_profile_detail);
     }
 
