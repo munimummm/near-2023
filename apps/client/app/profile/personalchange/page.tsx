@@ -8,13 +8,13 @@ import Tag from 'ui/components/tags/Tag';
 import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { DatePicker } from '@near/react-datepicker';
 import './datepicker/datepicker.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Modal } from '@near/antd';
 import { DaumPostcode } from '@near/react-daum-postcode';
 import { createClientComponentClient, Session } from '@near/supabase';
 import { Top, TopSuspense } from 'ui';
+import DatepickerHeader from '../../../components/signup/DatapickerHeader';
 
 interface FormValues {
   id?: string;
@@ -47,8 +47,6 @@ const PersonalChange = () => {
   });
 
   const [color, setColor] = useState<boolean>(false);
-  const [datePicker, setDatePicker] = useState<boolean>(false);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [userSession, setUserSession] = useState<Session | null>();
 
@@ -78,22 +76,6 @@ const PersonalChange = () => {
     router.push('/profile/passwordchange');
     setColor(true);
   };
-
-  const onClickDatePicker = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setDatePicker(!datePicker);
-  };
-
-  const onChangebirth = () => {
-    const date = selectedDate;
-    const year = date?.getFullYear();
-    const month = Number(date?.getMonth()) + 1;
-    const day = date?.getDate();
-    const value = year + '.' + month + '.' + day;
-
-    setValue('birth', value);
-  };
-
   const onToggleModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsOpen((prev) => !prev);
@@ -252,15 +234,16 @@ const PersonalChange = () => {
                 <div>생년월일</div>
                 <div className='mobile:flex mobile:flex-row mobile:w-[26.125rem] desktop:w-[43.1875rem]'>
                   <div className='mobile:flex mobile:justify-between mobile:w-[21.8125rem] mobile:mr-[0.75rem] desktop:w-[43.1875rem]'>
-                    <TextInput
+                    {/* <TextInput
                       control={control}
                       borderRadius={true}
                       placeholder='생년월일을 입력하세요'
                       name={'birth'}
                       rules={{ required: true }}
-                    />
+                    /> */}
+                    <DatepickerHeader />
                   </div>
-                  <Tag
+                  {/* <Tag
                     mode='gray'
                     isFlat={false}
                     handleTagClick={onClickDatePicker}
@@ -278,7 +261,7 @@ const PersonalChange = () => {
                       setDatePicker(false);
                     }}
                     open={datePicker}
-                  />
+                  /> */}
                 </div>
               </div>
               <div className='mobile:flex mobile:justify-center mobile:h-[5.75rem] mobile:grid desktop:mb-[1.625rem]'>

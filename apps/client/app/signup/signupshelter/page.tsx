@@ -65,6 +65,7 @@ const SignupShelter = () => {
     getValues,
     watch,
     setValue,
+    setError,
   } = useForm<ShelterProps>({
     defaultValues: {
       shelter_name: '',
@@ -147,6 +148,26 @@ const SignupShelter = () => {
     try {
       handleSignUp(userData);
 
+      if (data.member === false) {
+        setError(
+          'member',
+          { message: '필수 항목을 체크하셔야 합니다' },
+          { shouldFocus: true },
+        );
+      } else if (data.info === false) {
+        setError(
+          'info',
+          { message: '필수 항목을 체크하셔야 합니다' },
+          { shouldFocus: true },
+        );
+      } else if (data.site === false) {
+        setError(
+          'site',
+          { message: '필수 항목을 체크하셔야 합니다' },
+          { shouldFocus: true },
+        );
+      }
+
       if (data) {
         router.push('/signup/signupsuccess');
       }
@@ -183,7 +204,7 @@ const SignupShelter = () => {
                 <Logo size='lg' />
               </div>
               <div className='m-auto mt-[4rem]'>
-                <div className='pt-[0.625rem] h-[4.375rem] pl-[2rem] font-bold border-b-4'>
+                <div className='pt-[0.625rem] h-[4.375rem] pl-[2rem] text-[1.25rem] font-bold border-b-4'>
                   회원가입
                 </div>
               </div>
@@ -193,7 +214,7 @@ const SignupShelter = () => {
                   <div className='flex flex-row'>
                     <TextInput
                       control={control}
-                      placeholder='텍스트를 입력하세요'
+                      placeholder='보호소 명을 입력하세요'
                       borderRadius={true}
                       name={'shelter_name'}
                       rules={{
@@ -226,36 +247,59 @@ const SignupShelter = () => {
                     </RadioTag>
                   </div>
                 </div>
-                <div className='pt-[0.5rem] h-[5.75rem]'>
+                <div className='pt-[0.5rem] h-[5.75rem] mb-[20px]'>
                   <div className='mb-[1rem]'>대표자 이름</div>
-                  <div className='flex flex-row'>
+                  <div className='flex flex-col w-full'>
                     <TextInput
                       control={control}
-                      placeholder='텍스트를 입력하세요'
+                      placeholder='대표자 이름을 입력하세요'
                       borderRadius={true}
                       name={'ceo_name'}
-                      rules={{ required: true }}
+                      rules={{
+                        required: true,
+                        maxLength: 12,
+                        pattern: {
+                          value: /^[ㄱ-ㅎ|가-힣]+$/,
+                          message: '한글만 입력이 가능합니다',
+                        },
+                      }}
                     />
+                    {errors.ceo_name && (
+                      <span className='text-xs pl-[1.25rem] text-red-600'>
+                        {errors.ceo_name.message}
+                      </span>
+                    )}
                   </div>
                 </div>
-                <div className='pt-[0.5rem] h-[5.75rem]'>
+                <div className='pt-[0.5rem] h-[5.75rem] mb-[20px]'>
                   <div className='mb-[1rem]'>대표자 전화번호</div>
-                  <div className='flex flex-row'>
+                  <div className='flex flex-col'>
                     <TextInput
                       control={control}
-                      placeholder='텍스트를 입력하세요'
+                      placeholder='전화번호를 입력하세요'
                       borderRadius={true}
                       name={'ceo_phone'}
-                      rules={{ required: true }}
+                      rules={{
+                        required: true,
+                        pattern: {
+                          value: /^[0-9]+$/,
+                          message: '숫자만 입력이 가능합니다.',
+                        },
+                      }}
                     />
+                    {errors.ceo_phone && (
+                      <p className='text-xs pl-[1.25rem] text-red-600'>
+                        {errors.ceo_phone.message}
+                      </p>
+                    )}
                   </div>
                 </div>
-                <div className='pt-[0.5rem] h-[5.75rem]'>
+                <div className='pt-[0.5rem] h-[5.75rem] mb-[20px]'>
                   <div className='mb-[1rem]'>비밀번호</div>
-                  <div className='flex flex-row'>
+                  <div className='flex flex-col'>
                     <TextInput
                       control={control}
-                      placeholder='텍스트를 입력하세요'
+                      placeholder='비밀번호를 입력하세요'
                       borderRadius={true}
                       type='password'
                       name={'password'}
@@ -272,7 +316,7 @@ const SignupShelter = () => {
                       }}
                     />
                     {errors.password && (
-                      <p className='text-[0.9375rem] text-red-600'>
+                      <p className='text-xs pl-[1.25rem] text-red-600'>
                         {errors.password.message}
                       </p>
                     )}
@@ -283,7 +327,7 @@ const SignupShelter = () => {
                   <div className='flex flex-row'>
                     <TextInput
                       control={control}
-                      placeholder='텍스트를 입력하세요'
+                      placeholder='비밀번호를 재입력하세요'
                       borderRadius={true}
                       type='password'
                       name={'pwcheck'}
