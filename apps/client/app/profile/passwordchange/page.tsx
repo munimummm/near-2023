@@ -97,7 +97,7 @@ const PasswordChange = () => {
 
   const handleOk = () => {
     setIsModalOpen(false);
-    router.push('../profile');
+    router.push('/profile');
   };
 
   return (
@@ -173,7 +173,7 @@ const PasswordChange = () => {
                   }}
                 />
                 {errors.changepw && (
-                  <p className='text-[0.9375rem] text-red-600'>
+                  <p className='text-xs pl-[1.25rem] pt-[0.3125rem] text-red-600'>
                     {errors.changepw.message}
                   </p>
                 )}

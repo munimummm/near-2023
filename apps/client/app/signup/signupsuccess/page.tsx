@@ -11,7 +11,7 @@ const SignupSuccess = () => {
   //   });
 
   const onClickPryProfile = () => {
-    router.push('../../profile/pet');
+    router.push('/profile/pet');
   };
 
   const onClickHome = () => {
