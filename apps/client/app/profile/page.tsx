@@ -11,7 +11,7 @@ import { Cookies } from '@near/react-cookie';
 
 export default function ProfilePage() {
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient({});
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<any[] | null>(null);
 
