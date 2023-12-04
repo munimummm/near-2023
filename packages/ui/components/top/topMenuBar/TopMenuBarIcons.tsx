@@ -33,7 +33,7 @@ function TopMenuBarIcons({ setIsHamburgerMenuVisible }: TopMenuBarIconsProps) {
   useEffect(() => {
     getUserSession();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userSession]);
+  }, []);
 
   return (
     <section className='flex items-center justify-between w-full max-w-[84rem]'>

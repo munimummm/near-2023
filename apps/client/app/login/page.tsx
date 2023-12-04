@@ -56,6 +56,7 @@ export default function SignIn() {
       setCookie(
         'sb-ztcvdzkqqrglziiavupe-auth-token',
         { ...cookies }['sb-ztcvdzkqqrglziiavupe-auth-token'],
+        {},
       );
     }
     (async () => {

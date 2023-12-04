@@ -75,7 +75,7 @@ const PersonalChange = () => {
   }, []);
 
   const onClickPasswordChange = () => {
-    router.push('../profile/passwordchange');
+    router.push('/profile/passwordchange');
     setColor(true);
   };
 
@@ -146,7 +146,7 @@ const PersonalChange = () => {
     if (user_profile) {
       console.log('변경');
     }
-    router.push('../profile');
+    router.push('/profile');
   };
 
   return (

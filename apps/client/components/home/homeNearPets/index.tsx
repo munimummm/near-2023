@@ -11,6 +11,7 @@ function HomeNearPets() {
   const router = useRouter();
   const [data, setData] = useState(DummyNearPets);
   const [isClient, setIsClient] = useState(false);
+  // const [saveIndex, setSavedIndex] = useState(-1);
   const supabase = createClientComponentClient();
   const [userSession, setuserSession] = useState<Session | null>();
   const [name, setName] = useState<string | null>();
@@ -95,6 +96,7 @@ function HomeNearPets() {
                           router.push('/login');
                         }
                   }
+                  cardNumber={item.cardNumber}
                 />
               </li>
             );

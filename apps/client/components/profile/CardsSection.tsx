@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { SmallCard } from 'ui';
 import {
@@ -10,6 +12,9 @@ interface CardSectionProps {
   text: string;
   href: string;
   data: { id: number; title: string; src: string }[];
+}
+interface CardGroupSectionProps {
+  userRole: string;
 }
 
 function CardSection({ text, href, data }: CardSectionProps) {
@@ -54,21 +59,27 @@ function CardSection({ text, href, data }: CardSectionProps) {
   );
 }
 
-function CardsSection() {
+function CardsSection(props: CardGroupSectionProps) {
+  const { userRole } = props;
+
   return (
     <section className='flex flex-col gap-6'>
       <CardSection
-        text={'내 봉사 후기'}
+        text={userRole === 'normal_user' ? '내 봉사 후기' : '보호 중 동물'}
         href={'/profile/volunteer/review'}
         data={DummyCardListVolunteerReview}
       />
       <CardSection
-        text={'내 임보일기'}
+        text={userRole === 'normal_user' ? '내 임보일기' : '봉사 공고 내역'}
         href={'/profile/tpdiary'}
         data={DummyCardListDiary}
       />
       <CardSection
-        text={'내 입양/임보 신청 내역'}
+        text={
+          userRole === 'normal_user'
+            ? '내 입양/임보 신청 내역'
+            : '입양/임보 공고 내역'
+        }
         href={'/profile/application'}
         data={DummyCardListApplication}
       />

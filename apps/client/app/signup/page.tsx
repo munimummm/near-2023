@@ -6,11 +6,11 @@ const SingupEntrance = () => {
   const router = useRouter();
 
   const onClicksingupClient = () => {
-    router.push('./signup/signupclient');
+    router.push('/signup/signupclient');
   };
 
   const onClicksingupShelter = () => {
-    router.push('./signup/signupshelter');
+    router.push('/signup/signupshelter');
   };
 
   return (
