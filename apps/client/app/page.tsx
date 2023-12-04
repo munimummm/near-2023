@@ -13,6 +13,7 @@ import HomeNearNews from '../components/home/homeNearNews';
 
 export default function Page() {
   const [isLogin, setIsLogin] = useState<boolean>();
+
   useEffect(() => {
     const cookies = new Cookies();
     if (cookies.get('sb-ztcvdzkqqrglziiavupe-auth-token')) {

@@ -75,24 +75,28 @@ export const BottomData: BottomData[] = [
 
 export const DummyNearPets = [
   {
+    cardNumber: 1,
     src: '/images/image1.jpg',
     tags: ['태그 1', '태그 2', '태그 3', '태그 4', '태그 5'],
     isLiked: false,
     petData: { lost_pet_id: 1, name: '세바스찬' },
   },
   {
+    cardNumber: 2,
     src: '/images/image1.jpg',
     tags: ['태그 1', '태그 2', '태그 3', '태그 4', '태그 5'],
     isLiked: false,
     petData: { lost_pet_id: 2, name: '덕구' },
   },
   {
+    cardNumber: 3,
     src: '/images/image1.jpg',
     tags: ['태그 1', '태그 2', '태그 3', '태그 4', '태그 5'],
     isLiked: false,
     petData: { lost_pet_id: 3, name: '상추' },
   },
   {
+    cardNumber: 4,
     src: '/images/image1.jpg',
     tags: ['태그 1', '태그 2', '태그 3', '태그 4', '태그 5'],
     isLiked: false,
@@ -107,32 +111,32 @@ export const DummyHomeVolunteerPoster = {
 
 export const DummyHomeJoinVolunteer = [
   {
-    src: '/images/image1.jpg',
+    src: '/images/volunteer/introduce.jpg',
     id: 1,
     title: '청소봉사',
     subTitle:
       '보호소에 있는 견사와 배설물을 치우고, 배변패드 및 이불정리, 물걸레질 등이 주된 봉사내용 입니다.',
   },
   {
-    src: '/images/image1.jpg',
+    src: '/images/volunteer/introduce.jpg',
     id: 2,
-    title: '노래봉사',
+    title: '산책봉사',
     subTitle:
-      '보호소에 있는 악보를 모으고, 음향점검 및 선정리, 3옥타브 돌파 등이 주된 봉사내용 입니다.',
+      '종일 견사에 있는 아이들과 산책을 하는 봉사활동입니다. 산책봉사를 통해 아이들의 스트레스 해소를 돕습니다.',
   },
   {
-    src: '/images/image1.jpg',
+    src: '/images/volunteer/introduce.jpg',
     id: 3,
-    title: '댄스봉사',
+    title: '의료봉사',
     subTitle:
-      '보호소에 있는 무대와 의상을 정리하고, 방송댄스 및 밸리댄스, 프리스타일 등이 주된 봉사내용 입니다.',
+      '크고 작은 세균에 감염되거나, 때에 따라 접종과 중성화 수술 등의 검진과 치료를 담당하는 봉사활동입니다.',
   },
   {
-    src: '/images/image1.jpg',
+    src: '/images/volunteer/introduce.jpg',
     id: 4,
-    title: '놀이봉사',
+    title: '미용봉사',
     subTitle:
-      '보호소에 있는 같이 놀 친구들을 만나고, 공던지기 및 달리기 등이 주된 봉사내용 입니다.',
+      '동물의 털 미용과 발톱 정리등을 담당해, 위생 및 청결을 책임집니다.',
   },
 ];
 

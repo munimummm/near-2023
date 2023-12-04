@@ -9,5 +9,11 @@ type Props = {
 };
 
 export default function Recoil({ children }: Props) {
-  return <RecoilRoot>{children}</RecoilRoot>; // RecoilRoot로 children 요소를 감싸주었다.
+  return (
+    <RecoilRoot>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        {children}
+      </React.Suspense>
+    </RecoilRoot>
+  ); // RecoilRoot로 children 요소를 감싸주었다.
 }

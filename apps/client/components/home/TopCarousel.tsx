@@ -52,6 +52,7 @@ const TopCarousel: React.FC<PropType> = (props) => {
             <div className={styles.carousel__slide} key={index}>
               <Image
                 fill
+                priority
                 className={styles.carousel__slide__img}
                 src={product.imageurl}
                 alt='Home Carousel 1'

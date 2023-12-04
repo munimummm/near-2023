@@ -75,7 +75,7 @@ const PasswordChange = () => {
   };
 
   const onClickPersonalPage = () => {
-    router.push('../profile/personalpage');
+    router.push('/profile/personalchange');
     setColor(true);
   };
 

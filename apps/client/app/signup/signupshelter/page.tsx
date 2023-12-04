@@ -148,7 +148,7 @@ const SignupShelter = () => {
       handleSignUp(userData);
 
       if (data) {
-        router.push('../signup/signupsuccess');
+        router.push('/signup/signupsuccess');
       }
     } catch (error) {
       console.log(error);
