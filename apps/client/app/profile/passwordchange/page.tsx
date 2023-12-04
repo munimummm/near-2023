@@ -48,11 +48,11 @@ const PasswordChange = () => {
           setUserSession(data.session);
         }
 
-        // if (!data.session) {
-        //   router.push('/');
-        // } else {
-        //   console.log('session error');
-        // }
+        if (!data.session) {
+          router.push('/');
+        } else {
+          console.log('session error');
+        }
       } catch (error) {
         console.log(error);
       }
