@@ -247,33 +247,56 @@ const SignupShelter = () => {
                     </RadioTag>
                   </div>
                 </div>
-                <div className='pt-[0.5rem] h-[5.75rem]'>
+                <div className='pt-[0.5rem] h-[5.75rem] mb-[20px]'>
                   <div className='mb-[1rem]'>대표자 이름</div>
-                  <div className='flex flex-row'>
+                  <div className='flex flex-col w-full'>
                     <TextInput
                       control={control}
                       placeholder='대표자 이름을 입력하세요'
                       borderRadius={true}
                       name={'ceo_name'}
-                      rules={{ required: true }}
+                      rules={{
+                        required: true,
+                        maxLength: 12,
+                        pattern: {
+                          value: /^[ㄱ-ㅎ|가-힣]+$/,
+                          message: '한글만 입력이 가능합니다',
+                        },
+                      }}
                     />
+                    {errors.ceo_name && (
+                      <span className='text-xs pl-[1.25rem] text-red-600'>
+                        {errors.ceo_name.message}
+                      </span>
+                    )}
                   </div>
                 </div>
-                <div className='pt-[0.5rem] h-[5.75rem]'>
+                <div className='pt-[0.5rem] h-[5.75rem] mb-[20px]'>
                   <div className='mb-[1rem]'>대표자 전화번호</div>
-                  <div className='flex flex-row'>
+                  <div className='flex flex-col'>
                     <TextInput
                       control={control}
                       placeholder='전화번호를 입력하세요'
                       borderRadius={true}
                       name={'ceo_phone'}
-                      rules={{ required: true }}
+                      rules={{
+                        required: true,
+                        pattern: {
+                          value: /^[0-9]+$/,
+                          message: '숫자만 입력이 가능합니다.',
+                        },
+                      }}
                     />
+                    {errors.ceo_phone && (
+                      <p className='text-xs pl-[1.25rem] text-red-600'>
+                        {errors.ceo_phone.message}
+                      </p>
+                    )}
                   </div>
                 </div>
-                <div className='pt-[0.5rem] h-[5.75rem]'>
+                <div className='pt-[0.5rem] h-[5.75rem] mb-[20px]'>
                   <div className='mb-[1rem]'>비밀번호</div>
-                  <div className='flex flex-row'>
+                  <div className='flex flex-col'>
                     <TextInput
                       control={control}
                       placeholder='비밀번호를 입력하세요'
@@ -293,7 +316,7 @@ const SignupShelter = () => {
                       }}
                     />
                     {errors.password && (
-                      <p className='text-[0.9375rem] text-red-600'>
+                      <p className='text-xs pl-[1.25rem] text-red-600'>
                         {errors.password.message}
                       </p>
                     )}
