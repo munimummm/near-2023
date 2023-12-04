@@ -61,7 +61,7 @@ function TagGroup({ tags, className }: TagGroupProps) {
     >
       <div className='flex justify-center gap-2  mobile:[&>*:nth-child(3)]:hidden mobile:[&>*:nth-child(4)]:hidden mobile:[&>*:nth-child(5)]:hidden tablet:[&>*:nth-child(3)]:flex tablet:[&>*:nth-child(4)]:flex tablet:[&>*:nth-child(5)]:flex desktop:[&>*:nth-child(3)]:flex desktop:[&>*:nth-child(4)]:flex desktop:[&>*:nth-child(5)]:flex'>
         {tags
-          ?.filter((value, idex) => idex < 3)
+          ?.filter((_, idex) => idex < 3)
           .map((val, idx) => {
             if (idx > 4) return;
             return (
@@ -76,7 +76,7 @@ function TagGroup({ tags, className }: TagGroupProps) {
       </div>
       <div className='justify-center gap-2 mobile:hidden tablet:flex desktop:flex'>
         {tags
-          ?.filter((value, idex) => idex > 2)
+          ?.filter((_, idex) => idex > 2)
           .map((val, idx) => {
             if (idx > 4) return;
             return (
@@ -199,25 +199,17 @@ function CardWithLike({
   LikeButtonProps &
   CardProps) {
   const [isClicked, setIsClicked] = useState(false);
-  const [is, setIs] = useState(-1);
 
-  useEffect(() => {
-    setIs(cardNumber);
-  }, [isClicked, is]);
-  useEffect(() => {}, [is]);
+  useEffect(() => {}, [isClicked]);
+  useEffect(() => {}, []);
 
   return (
     <button
       key={cardNumber}
       className='relative overflow-hidden cursor-default bg-gray-2 border-none mobile:w-[12.5rem] mobile:h-[12.5rem] mobile:rounded-2xl tablet:w-[17.6875rem] tablet:h-[23.5625rem] tablet:rounded-3xl desktop:w-[17.6875rem] desktop:h-[23.5625rem] desktop:rounded-3xl'
       onClick={() => {
-        // setIsClicked(!isClicked);
-        setIs(cardNumber);
         setIsClicked(true);
-        // if (is !== cardNumber) {
-        //   setIsClicked(false);
-        // }
-        console.log(is, cardNumber);
+
         console.log(isClicked);
       }}
     >
@@ -234,7 +226,11 @@ function CardWithLike({
 
       {isClicked ? (
         <div
-          onMouseLeave={() => setIsClicked(false)}
+          onMouseLeave={() => {
+            setTimeout(() => {
+              setIsClicked(false);
+            }, 150);
+          }}
           className='background-white backdrop-blur-xl absolute flex flex-col justify-center items-center w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 mobile:gap-2 mobile:px-8 tablet:gap-5 tablet:px-9 desktop:gap-5 desktop:px-9 mobile:rounded-2xl tablet:rounded-3xl desktop:rounded-3xl'
         >
           <span className='text-center text-white mobile:text-2xl mobile:font-semibold tablet:text-5xl tablet:font-bold desktop:text-5xl desktop:font-bold'>
