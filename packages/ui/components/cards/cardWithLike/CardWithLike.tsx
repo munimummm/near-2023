@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { clsx } from '@near/clsx';
-import Tag from '../../tags/Tag';
+
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
@@ -12,6 +12,7 @@ interface CardBlockCommonProps {
 
 interface BackgroundImageProps extends CardBlockCommonProps {
   src: string;
+  onMouseEnter?: () => void;
 }
 
 interface TagGroupProps extends CardBlockCommonProps {
@@ -38,9 +39,10 @@ interface CardBlockProps extends CardBlockCommonProps {
   petData: PetDataProps;
 }
 
-function BackgroundImage({ src }: BackgroundImageProps) {
+function BackgroundImage({ src, onMouseEnter }: BackgroundImageProps) {
   return (
     <Image
+      onMouseEnter={onMouseEnter}
       className={clsx('object-cover w-full h-full')}
       fill
       src={src}
@@ -51,28 +53,53 @@ function BackgroundImage({ src }: BackgroundImageProps) {
 
 function TagGroup({ tags, className }: TagGroupProps) {
   return (
-    <div
+    <section
       className={clsx(
-        'absolute flex justify-center w-full flex-wrap gap-2 mobile:bottom-[1.0625rem] tablet:bottom-[2.0625rem] desktop:bottom-[2.0625rem] mobile:[&>*:nth-child(3)]:hidden mobile:[&>*:nth-child(4)]:hidden mobile:[&>*:nth-child(5)]:hidden tablet:[&>*:nth-child(3)]:flex tablet:[&>*:nth-child(4)]:flex tablet:[&>*:nth-child(5)]:flex desktop:[&>*:nth-child(3)]:flex desktop:[&>*:nth-child(4)]:flex desktop:[&>*:nth-child(5)]:flex',
+        'absolute flex flex-col justify-center w-full gap-2 mobile:bottom-[1.0625rem] tablet:bottom-[2.0625rem] desktop:bottom-[2.0625rem] text-text-black1',
         className,
       )}
     >
-      {tags?.map((val, idx) => {
-        if (idx > 4) return;
-        return (
-          <Tag
-            className='z-10 cursor-default'
-            key={`${idx}-${val}`}
-            mode='translucent'
-            isFlat={true}
-            hasX={false}
-            handleTagClick={(e) => e.stopPropagation()}
-          >
-            {val}
-          </Tag>
-        );
-      })}
-    </div>
+      <div className='flex justify-center gap-2  mobile:[&>*:nth-child(3)]:hidden mobile:[&>*:nth-child(4)]:hidden mobile:[&>*:nth-child(5)]:hidden tablet:[&>*:nth-child(3)]:flex tablet:[&>*:nth-child(4)]:flex tablet:[&>*:nth-child(5)]:flex desktop:[&>*:nth-child(3)]:flex desktop:[&>*:nth-child(4)]:flex desktop:[&>*:nth-child(5)]:flex'>
+        {tags
+          ?.filter((value, idex) => idex < 3)
+          .map((val, idx) => {
+            if (idx > 4) return;
+            return (
+              <button
+                className='px-[0.875rem] py-2 whitespace-nowrap text-[0.75rem] rounded-full bg-white opacity-70 cursor-default'
+                key={idx}
+              >
+                {val}
+              </button>
+            );
+          })}
+      </div>
+      <div className='justify-center gap-2 mobile:hidden tablet:flex desktop:flex'>
+        {tags
+          ?.filter((value, idex) => idex > 2)
+          .map((val, idx) => {
+            if (idx > 4) return;
+            return (
+              <button
+                className='px-[0.875rem] py-2 whitespace-nowrap text-[0.75rem] rounded-full bg-white opacity-70 cursor-default'
+                key={idx}
+              >
+                {val}
+              </button>
+              // <Tag
+              //   className='z-10 cursor-default'
+              //   key={`${idx}-${val}`}
+              //   mode='translucent'
+              //   isFlat={true}
+              //   hasX={false}
+              //   handleTagClick={(e) => e.stopPropagation()}
+              // >
+              //   {val}
+              // </Tag>
+            );
+          })}
+      </div>
+    </section>
   );
 }
 
@@ -194,14 +221,22 @@ function CardWithLike({
         console.log(isClicked);
       }}
     >
-      <BackgroundImage className={clsx('absolute top-0 left-0')} src={src} />
+      <BackgroundImage
+        className={clsx('absolute top-0 left-0')}
+        src={src}
+        onMouseEnter={() => setIsClicked(true)}
+      />
       {/* <LikeButton
         isLiked={isLiked}
         setIsLiked={setIsLiked}
         handleLikeButtonClick={handleLikeButtonClick}
       /> */}
+
       {isClicked ? (
-        <div className='background-white/[0.05] backdrop-blur-xl absolute flex flex-col justify-center items-center w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 mobile:gap-2 mobile:px-8 tablet:gap-5 tablet:px-9 desktop:gap-5 desktop:px-9 mobile:rounded-2xl tablet:rounded-3xl desktop:rounded-3xl'>
+        <div
+          onMouseLeave={() => setIsClicked(false)}
+          className='background-white backdrop-blur-xl absolute flex flex-col justify-center items-center w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 mobile:gap-2 mobile:px-8 tablet:gap-5 tablet:px-9 desktop:gap-5 desktop:px-9 mobile:rounded-2xl tablet:rounded-3xl desktop:rounded-3xl'
+        >
           <span className='text-center text-white mobile:text-2xl mobile:font-semibold tablet:text-5xl tablet:font-bold desktop:text-5xl desktop:font-bold'>
             {petData.name}
           </span>

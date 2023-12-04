@@ -64,7 +64,7 @@ export function HeaderSubTitle({ subTitle, className }: HeaderSubTitleProps) {
   return (
     <span
       className={clsx(
-        'text-center text-text-black1 font-normal mobile:text-base tablet:text-lg desktop:text-lg',
+        'text-center text-theme-main_light font-normal mobile:text-base tablet:text-lg desktop:text-lg',
         className,
       )}
     >

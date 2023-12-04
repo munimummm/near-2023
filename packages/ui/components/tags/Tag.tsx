@@ -69,6 +69,7 @@ const Tag = ({
         BaseStyle,
         ColorStyle[mode],
         `${isFlat ? 'mobile:h-6 tablet:h-10 desktop:h-10' : ''}`,
+
         className,
       )}
       onClick={handleTagClick}
@@ -76,7 +77,7 @@ const Tag = ({
       {children}
       {hasX ? (
         <button
-          className='bg-transparent border-none w-[0.5625rem] h-[0.5625rem] cursor-pointer'
+          className='bg-transparent border-none cursor-pointer'
           onClick={(e) => {
             e.stopPropagation();
             handleXClick;

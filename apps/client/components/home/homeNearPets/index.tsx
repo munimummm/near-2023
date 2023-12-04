@@ -68,6 +68,7 @@ function HomeNearPets() {
             <HeaderButton href='/pet' />
           </HeaderTitle>
           <HeaderSubTitle
+            className=''
             subTitle={
               userSession
                 ? `${name} 님의 근처 보호소에 들어와 니어 서비스에서 관리 중인 동물입니다.`
