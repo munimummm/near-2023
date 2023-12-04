@@ -7,13 +7,14 @@ import {
   DummyCardListDiary,
   DummyCardListVolunteerReview,
 } from './dummy';
-import { getUsersession, useRecoilValue } from '@near/store';
-import { useEffect, useState } from 'react';
 
 interface CardSectionProps {
   text: string;
   href: string;
   data: { id: number; title: string; src: string }[];
+}
+interface CardGroupSectionProps {
+  userRole: string;
 }
 
 function CardSection({ text, href, data }: CardSectionProps) {
@@ -58,28 +59,24 @@ function CardSection({ text, href, data }: CardSectionProps) {
   );
 }
 
-function CardsSection() {
-  const getSession = useRecoilValue(getUsersession);
-  const [role, setRole] = useState<string>();
+function CardsSection(props: CardGroupSectionProps) {
+  const { userRole } = props;
 
-  useEffect(() => {
-    setRole(getSession?.user.role);
-  }, [getSession]);
   return (
     <section className='flex flex-col gap-6'>
       <CardSection
-        text={role === 'normal_user' ? '내 봉사 후기' : '보호 중 동물'}
+        text={userRole === 'normal_user' ? '내 봉사 후기' : '보호 중 동물'}
         href={'/profile/volunteer/review'}
         data={DummyCardListVolunteerReview}
       />
       <CardSection
-        text={role === 'normal_user' ? '내 임보일기' : '봉사 공고 내역'}
+        text={userRole === 'normal_user' ? '내 임보일기' : '봉사 공고 내역'}
         href={'/profile/tpdiary'}
         data={DummyCardListDiary}
       />
       <CardSection
         text={
-          role === 'normal_user'
+          userRole === 'normal_user'
             ? '내 입양/임보 신청 내역'
             : '입양/임보 공고 내역'
         }
