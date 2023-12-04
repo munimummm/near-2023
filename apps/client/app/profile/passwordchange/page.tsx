@@ -48,11 +48,11 @@ const PasswordChange = () => {
           setUserSession(data.session);
         }
 
-        if (!data.session) {
-          router.push('/');
-        } else {
-          console.log('session error');
-        }
+        // if (!data.session) {
+        //   router.push('/');
+        // } else {
+        //   console.log('session error');
+        // }
       } catch (error) {
         console.log(error);
       }
@@ -173,7 +173,7 @@ const PasswordChange = () => {
                   }}
                 />
                 {errors.changepw && (
-                  <p className='text-[0.9375rem] text-red-600'>
+                  <p className='text-xs pl-[1.25rem] pt-[0.3125rem] text-red-600'>
                     {errors.changepw.message}
                   </p>
                 )}

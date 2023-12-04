@@ -8,13 +8,11 @@ import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
 import Logo from 'ui/components/logo/Logo';
 import Tag from 'ui/components/tags/Tag';
 import TextInput from 'ui/components/textinput/TextInput';
-import { DatePicker } from '@near/react-datepicker';
-import './datepicker/datepicker.css';
-import 'react-datepicker/dist/react-datepicker.css';
 import { Modal } from '@near/antd';
 import { DaumPostcode } from '@near/react-daum-postcode';
 import { createClientComponentClient } from '@near/supabase';
 import { useRouter } from 'next/navigation';
+import DatepickerHeader from '../../../components/signup/DatapickerHeader';
 
 interface SignupProps {
   email?: string;
@@ -35,14 +33,12 @@ interface SignupProps {
   normal_data?: {
     name?: string;
     phone?: string;
-    shelter_address: string;
-    shelter_detail_address: string;
-    shelter_type: string;
-    shelter_scale: string;
-    ceo_name: string;
-    marketing_agree: boolean;
-    shelter_cooperation: boolean;
-    register_number: string;
+    birth?: string;
+    address?: string;
+    detail?: string;
+    member?: boolean;
+    info?: boolean;
+    site?: boolean;
   };
 }
 
@@ -72,9 +68,9 @@ const SignupClient = () => {
     getValues,
     watch,
     formState: { errors },
+    setError,
   } = useForm<FormValues>({
     defaultValues: {
-      birth: '',
       email: '',
       password: '',
       pwcheck: '',
@@ -91,9 +87,7 @@ const SignupClient = () => {
     mode: 'onChange',
   });
 
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [datePicker, setDatePicker] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('');
   const [messageOpen, setMessageOpen] = useState(false);
   const [pwcheckmsg, setPkcheckmsg] = useState<string>('');
@@ -178,44 +172,47 @@ const SignupClient = () => {
       role: 'normal_user',
       normal_data: {
         name: data.name,
+        birth: data.birth,
         phone: data.phone,
-        shelter_address: 'test',
-        shelter_detail_address: 'test',
-        shelter_type: 'test',
-        shelter_scale: 'test',
-        ceo_name: 'test',
-        marketing_agree: false,
-        shelter_cooperation: false,
-        register_number: 'test',
+        address: data.address,
+        detail: data.detail,
+        member: data.member,
+        info: data.info,
+        site: data.site,
       },
     };
     try {
       handleSignUp(userData);
 
-      if (data) {
+      console.log(userData);
+      if (data.member === false) {
+        setError(
+          'member',
+          { message: '필수 항목을 체크하셔야 합니다' },
+          { shouldFocus: true },
+        );
+      } else if (data.info === false) {
+        setError(
+          'info',
+          { message: '필수 항목을 체크하셔야 합니다' },
+          { shouldFocus: true },
+        );
+      } else if (data.site === false) {
+        setError(
+          'site',
+          { message: '필수 항목을 체크하셔야 합니다' },
+          { shouldFocus: true },
+        );
+      }
+
+      if (userData) {
         router.push('../signup/signupsuccess');
       } else {
-        console.log('데이터를 입력하세요');
+        return;
       }
     } catch (error) {
       console.log(error);
     }
-  };
-
-  // 달력 입력
-  const onClickDatePicker = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setDatePicker(!datePicker);
-  };
-
-  const onChangebirth = () => {
-    const date = selectedDate;
-    const year = date?.getFullYear();
-    const month = Number(date?.getMonth()) + 1;
-    const day = date?.getDate();
-    const value = year + '.' + month + '.' + day;
-
-    setValue('birth', value);
   };
 
   const handleComplete = (data: any) => {
@@ -279,11 +276,13 @@ const SignupClient = () => {
                       name={'email'}
                       rules={{ required: true }}
                     />
-                    <div className='w-[9.0625rem]'>
-                      <Tag mode='gray' handleTagClick={fetchProfile}>
-                        중복확인
-                      </Tag>
-                    </div>
+                    <Tag
+                      mode='gray'
+                      handleTagClick={fetchProfile}
+                      className='h-[2.1875rem] w-[9.375rem] mr-[1.875rem]'
+                    >
+                      중복확인
+                    </Tag>
                   </div>
                   {messageOpen ? (
                     <div className='text-xs pl-[1.25rem] text-red-600'>
@@ -314,7 +313,7 @@ const SignupClient = () => {
                       }}
                     />
                     {errors.password && (
-                      <p className='text-[0.9375rem] text-red-600'>
+                      <p className='text-xs pl-[1.25rem] text-red-600'>
                         {errors.password.message}
                       </p>
                     )}
@@ -358,7 +357,7 @@ const SignupClient = () => {
                       }}
                     />
                     {errors.name && (
-                      <p className='text-[0.9375rem] text-red-600'>
+                      <p className='text-xs pl-[1.25rem] text-red-600'>
                         {errors.name.message}
                       </p>
                     )}
@@ -367,27 +366,8 @@ const SignupClient = () => {
                 <div className='grid px-[6%] mobile:h-[5.75rem]'>
                   <div>생년월일</div>
                   <div className='flex gap-x-3'>
-                    <TextInput
-                      control={control}
-                      placeholder='yyyy-mm-dd'
-                      borderRadius={true}
-                      name={'birth'}
-                      rules={{ required: true }}
-                    />
                     <div className='w-[6.25rem]'>
-                      <Tag mode='gray' handleTagClick={onClickDatePicker}>
-                        선택
-                      </Tag>
-                      <DatePicker
-                        selected={selectedDate}
-                        popperPlacement='auto'
-                        onChange={(date: Date) => {
-                          onChangebirth();
-                          setSelectedDate(date);
-                          setDatePicker(false);
-                        }}
-                        open={datePicker}
-                      />
+                      <DatepickerHeader />
                     </div>
                   </div>
                 </div>
@@ -415,7 +395,11 @@ const SignupClient = () => {
                         rules={{ required: true }}
                       />
                       <div className='mobile:w-[4.375rem] tablet:w-[6.25rem]'>
-                        <Tag mode='gray' handleTagClick={onToggleModal}>
+                        <Tag
+                          mode='gray'
+                          handleTagClick={onToggleModal}
+                          className='h-[2.1875rem]'
+                        >
                           입력
                         </Tag>
                       </div>
@@ -443,7 +427,7 @@ const SignupClient = () => {
                       label='전체동의'
                     />
                   </div>
-                  <div className='grid gap-y-4'>
+                  <fieldset className='grid gap-y-4'>
                     <CheckBox
                       control={control}
                       labelType='singletext'
@@ -468,7 +452,12 @@ const SignupClient = () => {
                       name={'marketing'}
                       label='(선택) 마케팅 정보 수신 동의 및 마케팅'
                     />
-                  </div>
+                  </fieldset>
+                  {errors.member && (
+                    <p className='text-xs pl-[1.25rem] text-red-600'>
+                      {errors.member.message}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
