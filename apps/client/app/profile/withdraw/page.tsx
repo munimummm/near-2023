@@ -69,28 +69,27 @@ const Withdraw = () => {
       <form onSubmit={handleSubmit(onClickWithdraw)}>
         <div
           className='mobile:h-[3.125rem] mobile:w-[28.75rem] mobile:m-auto mobile:flex mobile:justify-center mobile:mt-[8.6875rem] mobile:font-bold mobile:text-[1.25rem] mobile:border-b-2
-                                tablet:flex tablet:justify-start tablet:pl-[77px] tablet:w-[740px] mobile:h-[50px]
-                                desktop:w-[1408px]
+                                tablet:flex tablet:justify-start tablet:pl-[4.8125rem] tablet:w-[46.25rem] mobile:h-[3.125rem]
+                                desktop:w-[88rem]
                 '
         >
           회원 탈퇴
         </div>
         <div
-          className='mobile:h-[16rem] mobile:mt-[6.4375rem] mobile:grid mobile:content-between mobile:mb-[279px]
-                                tablet:h-[404px] tablet:mt-[84px] tablet:pt-[32px]
-                                desktop:h-[662px] desktop:mt-[171px] desktop:pt-[32px] 
-                    '
+          className='mobile:h-[16rem] mobile:mt-[6.4375rem] mobile:grid mobile:content-between mobile:mb-[17.4375rem]
+                                tablet:h-[25.25rem] tablet:mt-[5.25rem] tablet:pt-[2rem]
+                                desktop:mt-[10.6875rem] desktop:pt-[2rem] '
         >
-          <div className='mobile:m-auto moible:flex mobile:justify-center mobile:w-[409px]'>
-            <div className='mobile:font-bold mobile:text-[1.5rem] mobile:flex justify-center mobile:mb-[24px]'>
+          <div className='mobile:m-auto moible:flex mobile:justify-center mobile:w-[25.5625rem]'>
+            <div className='mobile:font-bold mobile:text-[1.5rem] mobile:flex justify-center mobile:mb-[1.5rem]'>
               NEAR 회원에서 탈퇴하시나요?
             </div>
-            <ul className='list-disc mobile:text-[13px] mobile:ml-[15px]'>
+            <ul className='list-disc mobile:text-[0.8125rem] mobile:ml-[0.9375rem]'>
               <li className=' mobile:text-indigo-900 mobile:font-bold'>
                 {' '}
                 NEAR에서 임시 보호와 입양 절차를 진행할 수 없습니다.
               </li>
-              <ul className='list-disc mobile:text-[12px] mobile:ml-[20px] mobile:'>
+              <ul className='list-disc mobile:text-[0.75rem] mobile:ml-[1.25rem] mobile:'>
                 <li>
                   {' '}
                   신청하신 임시 보호 절차와 입양 절차가 있다면 자동으로
@@ -102,7 +101,7 @@ const Withdraw = () => {
                   회원 탈퇴를 할 수 없습니다.
                 </li>
               </ul>
-              <li className=' mobile:text-indigo-900 mobile:mt-[35px] mobile:font-bold'>
+              <li className=' mobile:text-indigo-900 mobile:mt-[2.1875rem] mobile:font-bold'>
                 {' '}
                 회원님의 작성하신 글은 모두 삭제됩니다.
               </li>
@@ -123,7 +122,7 @@ const Withdraw = () => {
           </FooterShadowBox>
           <Modal width={480} open={isModalOpen} footer={null}>
             <div className='mobile:flex flex-col mobile:items-center'>
-              <p className='mobile:my-[50px] mobile:font-bold'>
+              <p className='mobile:my-[3.125rem] mobile:font-bold'>
                 정상적으로 회원탈퇴가 진행되었습니다.
               </p>
               <ButtonXL onClick={handleOk}>확인</ButtonXL>

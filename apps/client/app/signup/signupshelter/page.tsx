@@ -65,6 +65,7 @@ const SignupShelter = () => {
     getValues,
     watch,
     setValue,
+    setError,
   } = useForm<ShelterProps>({
     defaultValues: {
       shelter_name: '',
@@ -147,6 +148,26 @@ const SignupShelter = () => {
     try {
       handleSignUp(userData);
 
+      if (data.member === false) {
+        setError(
+          'member',
+          { message: '필수 항목을 체크하셔야 합니다' },
+          { shouldFocus: true },
+        );
+      } else if (data.info === false) {
+        setError(
+          'info',
+          { message: '필수 항목을 체크하셔야 합니다' },
+          { shouldFocus: true },
+        );
+      } else if (data.site === false) {
+        setError(
+          'site',
+          { message: '필수 항목을 체크하셔야 합니다' },
+          { shouldFocus: true },
+        );
+      }
+
       if (data) {
         router.push('/signup/signupsuccess');
       }
@@ -183,7 +204,7 @@ const SignupShelter = () => {
                 <Logo size='lg' />
               </div>
               <div className='m-auto mt-[4rem]'>
-                <div className='pt-[0.625rem] h-[4.375rem] pl-[2rem] font-bold border-b-4'>
+                <div className='pt-[0.625rem] h-[4.375rem] pl-[2rem] text-[1.25rem] font-bold border-b-4'>
                   회원가입
                 </div>
               </div>
@@ -193,7 +214,7 @@ const SignupShelter = () => {
                   <div className='flex flex-row'>
                     <TextInput
                       control={control}
-                      placeholder='텍스트를 입력하세요'
+                      placeholder='보호소 명을 입력하세요'
                       borderRadius={true}
                       name={'shelter_name'}
                       rules={{
@@ -231,7 +252,7 @@ const SignupShelter = () => {
                   <div className='flex flex-row'>
                     <TextInput
                       control={control}
-                      placeholder='텍스트를 입력하세요'
+                      placeholder='대표자 이름을 입력하세요'
                       borderRadius={true}
                       name={'ceo_name'}
                       rules={{ required: true }}
@@ -243,7 +264,7 @@ const SignupShelter = () => {
                   <div className='flex flex-row'>
                     <TextInput
                       control={control}
-                      placeholder='텍스트를 입력하세요'
+                      placeholder='전화번호를 입력하세요'
                       borderRadius={true}
                       name={'ceo_phone'}
                       rules={{ required: true }}
@@ -255,7 +276,7 @@ const SignupShelter = () => {
                   <div className='flex flex-row'>
                     <TextInput
                       control={control}
-                      placeholder='텍스트를 입력하세요'
+                      placeholder='비밀번호를 입력하세요'
                       borderRadius={true}
                       type='password'
                       name={'password'}
@@ -283,7 +304,7 @@ const SignupShelter = () => {
                   <div className='flex flex-row'>
                     <TextInput
                       control={control}
-                      placeholder='텍스트를 입력하세요'
+                      placeholder='비밀번호를 재입력하세요'
                       borderRadius={true}
                       type='password'
                       name={'pwcheck'}
