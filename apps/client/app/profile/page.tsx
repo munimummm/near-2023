@@ -39,14 +39,15 @@ export default function ProfilePage() {
     })();
   }, []);
 
+  const cookies = new Cookies();
   useEffect(() => {
-    const cookies = new Cookies();
     if (cookies.get('sb-ztcvdzkqqrglziiavupe-auth-token') === undefined) {
       router.push('/');
     }
+
     getLoginUserProfile();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session]);
+  }, [cookies]);
 
   return (
     <>
