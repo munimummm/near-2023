@@ -1,7 +1,10 @@
 'use client';
 
+import { clsx } from '@near/clsx';
+
 interface BreadcrumbProps {
   items?: string[];
+  className?: string;
 }
 
 /**
@@ -12,10 +15,14 @@ interface BreadcrumbProps {
  * @param items
  * — (`string[]`)
  * 배열에 들어간 순서대로 각 요소들 나열.
+ *
+ * @param className
+ * — (`string`)
+ * 컴포넌트에 적용할 클래스.
  */
-function Breadcrumb({ items = [''] }: BreadcrumbProps) {
+function Breadcrumb({ items = [''], className }: BreadcrumbProps) {
   return (
-    <ol className='flex items-center gap-2 mobile:gap-1'>
+    <ol className={clsx('flex items-center gap-2 mobile:gap-1', className)}>
       {items?.map((val, idx) => (
         <>
           <li
