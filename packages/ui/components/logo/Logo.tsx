@@ -9,10 +9,10 @@ interface LogoProps {
 }
 
 function Logo({ size = 'sm', className }: LogoProps) {
-  const NearLogo = size === 'sm' ? NearLogoSmall : NearLogoLarge;
+  const NearLogo = size === 'sm' ? <NearLogoSmall /> : <NearLogoLarge />;
   return (
     <Link className={clsx(className)} href='/'>
-      <NearLogo />
+      {NearLogo}
     </Link>
   );
 }
