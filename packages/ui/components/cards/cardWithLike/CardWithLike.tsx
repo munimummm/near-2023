@@ -20,8 +20,8 @@ interface TagGroupProps extends CardBlockCommonProps {
 }
 
 interface LikeButtonProps extends CardBlockCommonProps {
-  isLiked: boolean;
-  setIsLiked: React.Dispatch<React.SetStateAction<boolean>>;
+  isLiked?: boolean;
+  setIsLiked?: React.Dispatch<React.SetStateAction<boolean>>;
   handleLikeButtonClick?: (
     e?: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => void;
@@ -65,12 +65,12 @@ function TagGroup({ tags, className }: TagGroupProps) {
           .map((val, idx) => {
             if (idx > 4) return;
             return (
-              <button
+              <div
                 className='px-[0.875rem] py-2 whitespace-nowrap text-[0.75rem] rounded-full bg-white opacity-70 cursor-default'
                 key={idx}
               >
                 {val}
-              </button>
+              </div>
             );
           })}
       </div>
@@ -80,12 +80,12 @@ function TagGroup({ tags, className }: TagGroupProps) {
           .map((val, idx) => {
             if (idx > 4) return;
             return (
-              <button
+              <div
                 className='px-[0.875rem] py-2 whitespace-nowrap text-[0.75rem] rounded-full bg-white opacity-70 cursor-default'
                 key={idx}
               >
                 {val}
-              </button>
+              </div>
               // <Tag
               //   className='z-10 cursor-default'
               //   key={`${idx}-${val}`}
@@ -231,7 +231,7 @@ function CardWithLike({
               setIsClicked(false);
             }, 150);
           }}
-          className='background-white backdrop-blur-xl absolute flex flex-col justify-center items-center w-full h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 mobile:gap-2 mobile:px-8 tablet:gap-5 tablet:px-9 desktop:gap-5 desktop:px-9 mobile:rounded-2xl tablet:rounded-3xl desktop:rounded-3xl'
+          className='absolute flex flex-col items-center justify-center w-full h-full -translate-x-1/2 -translate-y-1/2 background-white backdrop-blur-xl top-1/2 left-1/2 mobile:gap-2 mobile:px-8 tablet:gap-5 tablet:px-9 desktop:gap-5 desktop:px-9 mobile:rounded-2xl tablet:rounded-3xl desktop:rounded-3xl'
         >
           <span className='text-center text-white mobile:text-2xl mobile:font-semibold tablet:text-5xl tablet:font-bold desktop:text-5xl desktop:font-bold'>
             {petData.name}
@@ -256,7 +256,7 @@ function CardWithLike({
                 <path
                   d='M0.533203 1.06055L5.08066 5.03958L0.533203 9.0186'
                   stroke='#fff'
-                  stroke-width='1.13687'
+                  strokeWidth='1.13687'
                 />
               </svg>
             </div>

@@ -7,6 +7,6 @@
     "./tailwind/postcss.config.js"
   ],
   "devDependencies": {
-    "webpack-merge": "5.10.0"
+    "webpack-merge": "^5.10.0"
   }
 }
