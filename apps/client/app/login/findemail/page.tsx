@@ -1,21 +1,22 @@
 'use client';
 
 import { useForm } from '@near/react-hook-form';
-
-// import { createClientComponentClient } from '@near/supabase';
+import { useQuery } from '@near/react-query';
+import * as spinner from './spinner.json';
+import { createClientComponentClient } from '@near/supabase';
 import { useEffect, useRef, useState } from 'react';
 
 import { Button, Logo, TextInput } from 'ui';
-// const supabase = createClientComponentClient();
+const supabase = createClientComponentClient();
 
 interface FieldValues {
   phone?: string;
   number?: string;
 }
-// async function getProfile() {
-//   const { data } = await supabase.from('all_user_phone_list').select('*');
-//   return data;
-// }
+async function getProfile() {
+  const { data } = await supabase.from('all_user_phone_list').select('*');
+  return data;
+}
 
 const getSeconds = (time) => {
   const second = Number(time);
@@ -32,11 +33,11 @@ function FindEmail() {
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>();
+
   const ref = useRef<HTMLButtonElement>(null);
   const InitialTime = parseInt('60');
   const [time, setTime] = useState(InitialTime);
   const [show, setShow] = useState(false);
-  const [re] = useState(false);
 
   const timer = () => {
     const id = setTimeout(() => {
@@ -51,16 +52,18 @@ function FindEmail() {
       clearTimeout(timerId);
     }
 
+    return () => clearTimeout(timerId);
     ref.current?.addEventListener('click', () => {
       clearTimeout(timerId);
       setTime(InitialTime);
     });
-
-    return () => clearTimeout(timerId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [time, show, re]);
+  }, [time, show]);
 
-  // const { data, isLoading } = useQuery(['getuser-key'], () => getProfile());
+  const { data, isLoading } = useQuery(['getuser-key'], () => getProfile(), {
+    staleTime: 200000,
+  });
+  console.log(data);
 
   return (
     <>
@@ -102,7 +105,7 @@ function FindEmail() {
                   }}
                   className='bg-bg-blue1 border-bg-blue1 text-theme-main py-1 px-3 rounded-2xl text-sm font-medium  hover:bg-bg-blue1 hover:border-bg-blue1 hover:text-theme-main hover:shadow-button'
                 >
-                  <span className='text-xs whitespace-nowrap'>
+                  <span className=' text-xs whitespace-nowrap'>
                     인증번호 받기
                   </span>
                 </button>
@@ -124,24 +127,25 @@ function FindEmail() {
                     onClick={() => {
                       setShow(true);
                     }}
-                    className='bg-bg-blue1 border-bg-blue1 text-theme-main py-1 px-3 rounded-xl text-sm font-medium  hover:bg-bg-blue1 hover:border-bg-blue1 hover:text-theme-main hover:shadow-button'
+                    className='bg-bg-blue1 border-bg-blue1 text-theme-main py-1 px-3 rounded-3xl text-sm font-medium  hover:bg-bg-blue1 hover:border-bg-blue1 hover:text-theme-main hover:shadow-button'
                   >
+                    {spinner.assets}
                     <span className='text-xs whitespace-nowrap'>
                       인증번호 확인
                     </span>
                   </button>
                 </div>
 
-                <div className='text-end pr-2'>
+                <div className='text-end pr-2 mt-1'>
                   <small className='text-xs text-end'>
-                    인증 번호를 못받으셨나요?
+                    인증 번호를 못받으셨나요?&nbsp;&nbsp;
                   </small>
                   <button ref={ref} className='text-xs text-end font-semibold'>
                     &nbsp;인증 번호 다시 받기
                   </button>
                 </div>
                 <small className='block text-xs text-end pr-2 text-red-500'>
-                  유효시간: {getSeconds(time)}초
+                  유효 시간: {getSeconds(time)}초
                 </small>
 
                 <Button
