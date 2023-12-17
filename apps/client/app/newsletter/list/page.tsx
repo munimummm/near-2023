@@ -12,7 +12,7 @@ const NewsletterList = () => {
   // const router = useRouter();
   const supabase = createClientComponentClient();
   const [userSession, setUserSession] = useState<User | null>();
-  const [news, setNews] = useState<any[] | null>();
+  // const [news, setNews] = useState<any[] | null>();
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -34,23 +34,23 @@ const NewsletterList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    const fetchNewsletter = async () => {
-      let { data: newsletter, error } = await supabase
-        .from('newsletter')
-        .select('*');
+  // useEffect(() => {
+  //   const fetchNewsletter = async () => {
+  //     let { data: newsletter, error } = await supabase
+  //       .from('newsletter')
+  //       .select('*');
 
-      if (newsletter != null) {
-        setNews(newsletter);
-      }
+  //     if (newsletter != null) {
+  //       setNews(newsletter);
+  //     }
 
-      if (error instanceof Error) {
-        throw new Error(error.message);
-      }
-    };
-    fetchNewsletter();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //     if (error instanceof Error) {
+  //       throw new Error(error.message);
+  //     }
+  //   };
+  //   fetchNewsletter();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <div>
@@ -64,15 +64,7 @@ const NewsletterList = () => {
             <div className='font-bold text-[20px]'>NEAR 뉴스레터</div>
             {/* <div className='text-s'>더보기</div> */}
           </div>
-          {news?.map((index) => {
-            return (
-              <NewsletterCard
-                key={index}
-                subject={news && news[0].subject}
-                subheading={news && news[0].subheading}
-              />
-            );
-          })}
+          <NewsletterCard />;
           <div className='flex justify-center'>
             <button
               type='button'

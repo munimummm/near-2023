@@ -1,7 +1,6 @@
 'use client';
 
 import { User, createClientComponentClient } from '@near/supabase';
-import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import {
   Breadcrumb,
@@ -23,7 +22,6 @@ interface NewsletterHomeProps {
 
 const NewsletterHome = () => {
   const supabase = createClientComponentClient();
-  const { id } = useParams();
   const { control } = useForm<NewsletterHomeProps>({
     defaultValues: {
       search: '',
@@ -31,7 +29,7 @@ const NewsletterHome = () => {
     mode: 'onChange',
   });
   const [userSession, setUserSession] = useState<User | null>();
-  const [news, setNews] = useState<any[] | null>();
+  // const [news, setNews] = useState<any[] | null>();
 
   useEffect(() => {
     const fetchSession = async () => {
@@ -47,25 +45,23 @@ const NewsletterHome = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    const fetchNewsletter = async () => {
-      let { data: newsletter, error } = await supabase
-        .from('newsletter')
-        .select('*');
+  // useEffect(() => {
+  //   const fetchNewsletter = async () => {
+  //     let { data: newsletter, error } = await supabase
+  //       .from('newsletter')
+  //       .select('*');
 
-      if (newsletter != null) {
-        setNews(newsletter);
-      }
+  //     if (newsletter != null) {
+  //       setNews(newsletter);
+  //     }
 
-      if (error instanceof Error) {
-        throw new Error(error.message);
-      }
-    };
-    fetchNewsletter();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  console.log(id);
+  //     if (error instanceof Error) {
+  //       throw new Error(error.message);
+  //     }
+  //   };
+  //   fetchNewsletter();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <div>
@@ -118,15 +114,7 @@ const NewsletterHome = () => {
             </div>
             <div className='text-s'>더보기</div>
           </div>
-          {news?.map((el, index) => {
-            return (
-              <NewsletterCard
-                key={index}
-                subject={el.subject}
-                subheading={el.subheading}
-              />
-            );
-          })}
+          <NewsletterCard />
           <div className='flex justify-center'>
             <button
               type='button'

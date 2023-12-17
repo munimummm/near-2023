@@ -11,7 +11,7 @@ interface NewsletterDetail {
   subheading: string;
 }
 
-const NewsletterDetail = () => {
+const NewsletterDetail = ({ params }: { params: { id: number } }) => {
   const supabase = createClientComponentClient();
   const [userSession, setUserSession] = useState<User | null>();
   const [detail, setDetail] = useState<any[]>([]);
@@ -24,7 +24,10 @@ const NewsletterDetail = () => {
 
       let { data: newsletter, error } = await supabase
         .from('newsletter')
-        .select('*');
+        .select('*')
+        .eq('newsletter_id', params);
+
+      console.log(newsletter);
 
       if (user != null) {
         setUserSession(user);
@@ -41,6 +44,8 @@ const NewsletterDetail = () => {
     fetchSession();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  console.log(params);
 
   return (
     <div>
@@ -60,17 +65,14 @@ const NewsletterDetail = () => {
               {userSession?.email} |
             </div>
             <div className='ml-[10px] text-xs pt-[2px] tablet:pt-[10px]'>
-              {detail[0].created_at
-                .substr(0, 10)
-                .replace('-', '.')
-                .replace('-', '.')}
+              {/* {detail[0]?.created_at} */}
             </div>
           </div>
         </div>
         <div className='pl-[12px] mb-[48px]'>{detail[0]?.subheading}</div>
         <TopCarousel slides={TopData} />
         <div className='mt-[48px] px-[24px] mb-[364px]'>
-          {detail[0]?.article}
+          {/* {detail[0]?.article} */}
         </div>
       </section>
       <Footer />
