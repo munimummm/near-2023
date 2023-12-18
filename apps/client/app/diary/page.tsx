@@ -80,7 +80,7 @@ function DiaryHomePage() {
             <li key={`${item.lost_pet_id}_${index}`}>
               <CardItem
                 onClick={() =>
-                  router.push(`/diary/animaldetail/${item.lost_pet_id}`)
+                  router.push(`/diary/lostpetdetail/${item.lost_pet_id}`)
                 }
                 title={`${item.name}의 임보일기`}
               />

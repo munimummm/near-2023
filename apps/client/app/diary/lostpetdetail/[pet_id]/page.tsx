@@ -18,16 +18,20 @@ function LostpetDiaryDetail({ params }: Props) {
   const router = useRouter();
   const supabase = createClientComponentClient();
   const [diaryData, setDiaryData] = useState<any[]>([]);
+  //
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+  //
   const DiaryTabs = [
     { label: '최근 등록 순', value: 'latest' },
     { label: '오래된 순', value: 'oldest' },
   ];
 
   const fetchData = async () => {
+    //
     const { from, to } = getFromAndTo(currentPage, itemsPerPage);
+    //
     const { data, error, count } = await supabase
       .from('care_diary')
       .select('*', { count: 'exact' })
@@ -51,9 +55,11 @@ function LostpetDiaryDetail({ params }: Props) {
     }
   };
 
+  //
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+  //
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,7 +76,9 @@ function LostpetDiaryDetail({ params }: Props) {
                   일기 모아보기
                 </div>
                 <Button
-                  onClick={() => router.push(`/diary/write/${params.pet_id}`)}
+                  onClick={() =>
+                    router.push(`/diary/diarywrite/${params.pet_id}`)
+                  }
                   mode='main'
                 >
                   내 임보일기 쓰기

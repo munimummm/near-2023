@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { createClientComponentClient } from '@near/supabase';
 import ActiveStep from '../../../../components/pet/ActiveStep';
 import { useRouter } from 'next/navigation';
+
 interface AnimalApplyProps {
   lost_pet_id?: number;
   name: string;
@@ -73,7 +74,7 @@ function NearAnimalApplyPage({ params }: { params: { id: number } }) {
     router.push(`/pet/foster/${params.id}/applyinfo`);
   };
   const clickPrev = () => {
-    router.push('#');
+    router.push('/pet');
   };
 
   useEffect(() => {
