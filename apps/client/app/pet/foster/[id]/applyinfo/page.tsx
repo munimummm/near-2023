@@ -75,7 +75,6 @@ const ApplyInfo = (params) => {
   }, []);
 
   const handleChangeRelevent = async (value: string) => {
-    // relevent = `${value}`;
     setRelevent(`${value}`);
   };
   console.log(relevent);
@@ -85,7 +84,7 @@ const ApplyInfo = (params) => {
   };
 
   const onClickPrevious = async () => {
-    router.push('/pet/foster/' + `${params}` + '/petinfo');
+    router.push('/pet/foster/' + `${params}`);
   };
 
   const onSubmitApply = async (data: ApplyInfoProps) => {

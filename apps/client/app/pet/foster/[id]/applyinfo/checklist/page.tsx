@@ -2,6 +2,7 @@
 
 import { useForm } from '@near/react-hook-form';
 import { createClientComponentClient, Session } from '@near/supabase';
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import {
   Breadcrumb,
@@ -9,7 +10,7 @@ import {
   CheckBox,
   Footer,
   FooterShadowBox,
-  TextArea,
+  TextEditorWriter,
   Top,
   TopSuspense,
 } from 'ui';
@@ -44,6 +45,7 @@ const Checklist = () => {
       mode: 'onBlur',
     });
   const supabase = createClientComponentClient();
+  const router = useRouter();
   const [userSession, setUserSession] = useState<Session | null>();
   let { current: temp } = useRef([]) as string[] | any;
 
@@ -92,10 +94,11 @@ const Checklist = () => {
       console.log('지원 동기 및 각오를 입력해 주세요');
     }
 
+    router.push('/pet');
+
     if (error instanceof Error) {
       throw new Error(error.message);
     }
-    console.log(userData);
   };
 
   return (
@@ -311,11 +314,18 @@ const Checklist = () => {
         <section>
           <div className='h-[20.3125rem] grid mt-[3rem] flex justify-center'>
             <span className='text-xl'>임시 보호 지원 동기 및 각오</span>
-            <TextArea
+            {/* <TextArea
               name={'comment'}
               control={control}
               placeholder='강아지의 특이사항이나 상세 정보를 자유롭게 작성해 주세요'
-            />
+            /> */}
+            <div className='tablet:w-[34.375rem] desktop:w-[1000px]'>
+              <TextEditorWriter
+                name={'comment'}
+                control={control}
+                placeholder='강아지의 특이사항이나 상세 정보를 자유롭게 작성해 주세요'
+              />
+            </div>
           </div>
         </section>
         <section>
