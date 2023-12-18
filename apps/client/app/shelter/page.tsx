@@ -24,7 +24,7 @@ export interface ShelterProps {
 
 function ShelterTitle() {
   return (
-    <div className='flex flex-col gap-1 px-8 pt-2.5 pb-8 border-b border-b-text-gray'>
+    <div className='flex flex-col gap-1 px-8 py-8 border-b border-b-text-gray'>
       <div className='text-xs'>2023.12 기준</div>
       <div className='text-xl'>수도권 유기견 보호소 현황</div>
     </div>
