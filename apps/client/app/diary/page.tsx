@@ -2,10 +2,13 @@
 import { createClientComponentClient } from '@near/supabase';
 import { useEffect, useState } from 'react';
 import { Pagination } from 'ui';
-import Button from 'ui/components/buttons/Button';
+import CardItem from '../../components/diary/diaryCardItem';
+import { useRouter } from 'next/navigation';
+import { getFromAndTo } from '../../utils/getFromAndTo';
 
 interface DiaryProps {
-  subject: string;
+  name: string;
+  lost_pet_id: number;
 }
 
 function Top() {
@@ -18,82 +21,54 @@ function Top() {
         {`반려동물의 소중한 성장 과정을 
         임보일기로 기록하세요.`}
       </div>
-      <div className='absolute top-[8.375rem]  tablet:top-[19.4375rem] tablet:right-[2.8125rem] desktop:top-[35.625rem] desktop:right-[3.875rem]'>
-        <Button mode='main'>내 임보일기 쓰기</Button>
-      </div>
     </div>
   );
 }
-
-function CardItem({ subject }) {
+function DiaryHomeTitle() {
   return (
-    <div className='w-[13.9375rem] h-[17.125rem] shadow-md rounded-lg desktop:w-[26.25rem] desktop:h-[28.5rem] tablet:w-[22.5rem] tablet:h-[26.5rem] '>
-      <div>
-        {/* <Image ></Image> */}
-        <div>{subject}</div>
+    <div className='px-4 py-6 tablet:px-10 desktop:px-11'>
+      <div className='mb-4 text-2xl tablet:text-4xl desktop:text-4xl '>
+        전체 임보일기
       </div>
-    </div>
-  );
-}
-
-function CardSection({ subject }) {
-  return (
-    <div>
-      <div className='px-4 py-6 tablet:px-11 desktop:px-11'>
-        <div className='mb-4 text-2xl tablet:text-4xl desktop:text-4xl '>
-          전체 임보일기
-        </div>
-        <hr />
-      </div>
-      <div className='grid grid-cols-2 mt-12 desktop:grid-cols-3'>
-        <CardItem subject={subject} />
-        <CardItem subject={subject} />
-        <CardItem subject={subject} />
-        <CardItem subject={subject} />
-        <CardItem subject={subject} />
-        <CardItem subject={subject} />
-        <CardItem subject={subject} />
-        <CardItem subject={subject} />
-        <CardItem subject={subject} />
-        <CardItem subject={subject} />
-      </div>
+      <hr />
     </div>
   );
 }
 
 function DiaryHomePage() {
+  const router = useRouter();
   const supabase = createClientComponentClient();
   const [data, setData] = useState<DiaryProps[]>([]);
-  const [page, setPage] = useState(0);
-
-  const getFromAndTo = () => {
-    const ITEM_PAGE = 12;
-    let from = page * ITEM_PAGE;
-    let to = from + ITEM_PAGE;
-    // if (page > 0) {
-    //   from += 1;
-    // }
-    return { from, to };
-  };
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 2;
 
   const fetchData = async () => {
-    const { from, to } = getFromAndTo();
-    const { data, error } = await supabase
-      .from('shelter_profile')
-      .select('subject')
+    const { from, to } = getFromAndTo(currentPage, itemsPerPage);
+
+    const { data, error, count } = await supabase
+      .from('lost_pet_information')
+      .select('*', { count: 'exact' })
+      .eq('foster', true)
       .range(from, to);
     if (error) {
       console.log(error);
     }
     if (data) {
-      setPage(page + 1);
+      if (count) {
+        setTotalPages(Math.ceil(count / itemsPerPage));
+      }
       setData((cur) => [...cur, ...data]);
     }
 
-    console.log(from, to);
-    console.log(data?.length);
+    // console.log(from, to);
+    console.log(data);
+    console.log(count);
   };
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -102,8 +77,28 @@ function DiaryHomePage() {
   return (
     <div>
       <Top />
-      <CardSection subject={data} />
-      <Pagination total={data.length} />
+      <div>
+        <DiaryHomeTitle />
+        <ul className='grid grid-cols-2 px-[1.0625rem] gap-x-[0.875rem] gap-y-4 max-w-[30rem]  mt-9 tablet:gap-8 tablet:max-w-[48rem] desktop:max-w-[1440px] desktop:grid-cols-3'>
+          {data.map((item, index) => (
+            <li key={`${item.lost_pet_id}_${index}`}>
+              <CardItem
+                onClick={() =>
+                  router.push(`/diary/animaldetail/${item.lost_pet_id}`)
+                }
+                title={`${item.name}의 임보일기`}
+              />
+            </li>
+          ))}
+        </ul>
+        {totalPages > 1 && (
+          <Pagination
+            total={totalPages}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        )}
+      </div>
     </div>
   );
 }
