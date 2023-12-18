@@ -11,7 +11,7 @@ interface DiaryProps {
   lost_pet_id: number;
 }
 
-function Top() {
+function DiaryHomeTop() {
   return (
     <div className='relative flex justify-center tablet: w-full  bg-gray-500 h-52 tablet:h-[25rem] desktop:h-[44rem] mb-10 tablet:mb-16 desktop:mb-20'>
       <div className='absolute text-3xl font-normal text-white top-12 tablet:top-44 desktop:top-[24.5rem]  tablet:text-4xl tablet:font-bold desktop:font-bold desktop:text-4xl tablet:right-[3.375rem] desktop:right-[4.6875rem] '>
@@ -60,10 +60,6 @@ function DiaryHomePage() {
       }
       setData((cur) => [...cur, ...data]);
     }
-
-    // console.log(from, to);
-    console.log(data);
-    console.log(count);
   };
 
   const handlePageChange = (page: number) => {
@@ -76,7 +72,7 @@ function DiaryHomePage() {
 
   return (
     <div>
-      <Top />
+      <DiaryHomeTop />
       <div>
         <DiaryHomeTitle />
         <ul className='grid grid-cols-2 px-[1.0625rem] gap-x-[0.875rem] gap-y-4 max-w-[30rem]  mt-9 tablet:gap-8 tablet:max-w-[48rem] desktop:max-w-[1440px] desktop:grid-cols-3'>
