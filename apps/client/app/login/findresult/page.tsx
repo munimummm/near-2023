@@ -1,5 +1,6 @@
 'use client';
 
+import { createClientComponentClient } from '@near/supabase';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Button, Logo } from 'ui';
@@ -7,10 +8,18 @@ import { Button, Logo } from 'ui';
 function ResultPage() {
   const [resultEmail, setResultEmail] = useState<string | null>('');
   const router = useRouter();
+  const supabase = createClientComponentClient();
   useEffect(() => {
     typeof window !== 'undefined'
       ? setResultEmail(sessionStorage.getItem('findEmail'))
       : null;
+    (async () => {
+      const { data: session } = await supabase.auth.getSession();
+      if (session.session) {
+        router.push('/');
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -2,7 +2,7 @@
 import { useForm } from '@near/react-hook-form';
 import { createClientComponentClient } from '@near/supabase';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Logo, TextInput } from 'ui';
 function Page({ params }: { params: { id: string } }) {
   const supabase = createClientComponentClient();
@@ -13,6 +13,15 @@ function Page({ params }: { params: { id: string } }) {
     formState: { errors },
   } = useForm();
   const [showError, setShowError] = useState(false);
+  useEffect(() => {
+    (async () => {
+      const { data: session } = await supabase.auth.getSession();
+      if (session.session) {
+        router.push('/');
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const passwordValidation = () => {
     const newPassword = getValues('newPassword');
     const checkNewPassword = getValues('newPasswordCheck');
