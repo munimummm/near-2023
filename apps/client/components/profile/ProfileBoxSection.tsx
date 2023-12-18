@@ -42,7 +42,7 @@ function ProfileBoxSection({ ...props }: ProfileBoxSectionProps) {
         email={email}
       />
       {/* <AddPet backgroundColor='white' href={'/profile/pet'} /> */}
-      {props.userRole === 'normal_user' && (
+      {props.userRole === 'normal_user' && petProfile?.length !== 0 && (
         <ModifyPet
           href={`/profile/pet`}
           name={petProfile && petProfile[0].user_pet_name}
