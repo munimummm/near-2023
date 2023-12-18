@@ -14,19 +14,6 @@ interface Props {
   };
 }
 
-// function MainSection({ params }) {
-//   return (
-//     <div>
-//       <DiaryTitleImage
-//         intro={'한줄소개가 표시'}
-//         title={'흰둥이'}
-//         tags={['8개월', '여', '태그']}
-//         params={params}
-//       />
-//     </div>
-//   );
-// }
-
 function LostpetDiaryDetail({ params }: Props) {
   const router = useRouter();
   const supabase = createClientComponentClient();
@@ -119,12 +106,5 @@ function LostpetDiaryDetail({ params }: Props) {
     </div>
   );
 }
-
-// function LostpetDiaryDetail({ params }: Props) {
-//   // console.log(params);
-//   return (
-
-//   );
-// }
 
 export default LostpetDiaryDetail;
