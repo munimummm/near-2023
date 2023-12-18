@@ -8,12 +8,13 @@ import FooterShadowBox from 'ui/components/footer/FooterShadowBox';
 import Logo from 'ui/components/logo/Logo';
 import Tag from 'ui/components/tags/Tag';
 import './datepicker/datepicker.css';
-import TextInput from 'ui/components/textinput/TextInput';
+import { TextInput } from 'ui';
 import { Modal } from '@near/antd';
 import { DaumPostcode } from '@near/react-daum-postcode';
 import { createClientComponentClient } from '@near/supabase';
 import { useRouter } from 'next/navigation';
 import DatepickerHeader from '../../../components/signup/DatapickerHeader';
+import Link from 'next/link';
 
 interface SignupProps {
   email?: string;
@@ -429,24 +430,30 @@ const SignupClient = () => {
                     />
                   </div>
                   <fieldset className='grid gap-y-4'>
-                    <CheckBox
-                      control={control}
-                      labelType='singletext'
-                      name={'member'}
-                      label='(필수) 개인 회원 약관에 동의'
-                    />
-                    <CheckBox
-                      control={control}
-                      labelType='singletext'
-                      name={'info'}
-                      label='(필수) 개인정보 수집 및 이용 동의'
-                    />
-                    <CheckBox
-                      control={control}
-                      labelType='singletext'
-                      name={'site'}
-                      label='(필수) 위치기반 서비스 이용에 동의'
-                    />
+                    <Link href={'/signup/personal'}>
+                      <CheckBox
+                        control={control}
+                        labelType='singletext'
+                        name={'member'}
+                        label='(필수) 개인 회원 약관에 동의'
+                      />
+                    </Link>
+                    <Link href={'/signup/info'}>
+                      <CheckBox
+                        control={control}
+                        labelType='singletext'
+                        name={'info'}
+                        label='(필수) 개인정보 수집 및 이용 동의'
+                      />
+                    </Link>
+                    <Link href={'/signup/site'}>
+                      <CheckBox
+                        control={control}
+                        labelType='singletext'
+                        name={'site'}
+                        label='(필수) 위치기반 서비스 이용에 동의'
+                      />
+                    </Link>
                     <CheckBox
                       control={control}
                       labelType='singletext'
