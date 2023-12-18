@@ -10,5 +10,5 @@ export const MenuOptionTabsContent: MenuOptionTabsContentProps[] = [
   { href: '/volunteer', name: 'NEAR 봉사' },
   { href: '/shelter', name: 'NEAR 보호소' },
   { href: '/newsletter', name: '뉴스레터' },
-  { href: '/tpdiary', name: '임보일기' },
+  { href: '/diary', name: '임보일기' },
 ];
