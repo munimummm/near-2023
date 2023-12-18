@@ -11,7 +11,11 @@ interface LogoProps {
 function Logo({ size = 'sm', className }: LogoProps) {
   const NearLogo = size === 'sm' ? <NearLogoSmall /> : <NearLogoLarge />;
   return (
-    <Link className={clsx(className)} href='/'>
+    <Link
+      onClick={() => sessionStorage.clear()}
+      className={clsx(className)}
+      href='/'
+    >
       {NearLogo}
     </Link>
   );

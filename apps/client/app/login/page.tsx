@@ -69,7 +69,7 @@ export default function SignIn() {
   }, [selected, ischecked]);
 
   return (
-    <main className='py-[8.5rem] flex flex-col items-center'>
+    <main className='pb-[8.5rem] mobile:mt-[8.5rem] tablet:mt-[8.5rem] desktop:mt-0 flex flex-col items-center'>
       <section className='layout_max_width'>
         <form
           onSubmit={handleSubmit(async (data) => {
@@ -220,10 +220,16 @@ export default function SignIn() {
           )} */}
         {/* </section> */}
         <section className='mt-8 text-[#8B8B8B] font-normal text-center'>
-          <Link className='after:content-["|"] after:mx-4' href={''}>
+          <Link
+            className='after:content-["|"] after:mx-4'
+            href={'/login/findemail'}
+          >
             아이디 찾기
           </Link>
-          <Link className='after:content-["|"] after:mx-4' href={''}>
+          <Link
+            className='after:content-["|"] after:mx-4'
+            href={'/login/findpassword'}
+          >
             비밀번호 찾기
           </Link>
           <Link href={'/signup'}>회원가입하기</Link>
