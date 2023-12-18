@@ -69,7 +69,7 @@ export default function SignIn() {
   }, [selected, ischecked]);
 
   return (
-    <main className='pb-[8.5rem] flex flex-col items-center'>
+    <main className='pb-[8.5rem] mobile:mt-[8.5rem] tablet:mt-[8.5rem] desktop:mt-0 flex flex-col items-center'>
       <section className='layout_max_width'>
         <form
           onSubmit={handleSubmit(async (data) => {

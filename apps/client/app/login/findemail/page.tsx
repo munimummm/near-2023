@@ -81,7 +81,7 @@ function FindEmail() {
   return (
     <>
       <form
-        className='my-8'
+        className='my-8 mobile:mt-[8.5rem] tablet:mt-[8.5rem] desktop:mt-0'
         onSubmit={handleSubmit((data) => {
           getProfile(data.phone as string);
 
