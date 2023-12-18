@@ -14,7 +14,8 @@ const NewsletterCard = () => {
     const fetchNewsletter = async () => {
       let { data: newsletter, error } = await supabase
         .from('newsletter')
-        .select('*');
+        .select('*')
+        .range(0, 5);
 
       if (newsletter) {
         setData(newsletter);
@@ -30,7 +31,7 @@ const NewsletterCard = () => {
 
   // const { subject, subheading } = props;
   return (
-    <div>
+    <div className='desktop:grid desktop:grid-cols-2'>
       {data.map((a, i) => {
         return (
           <div className='grid mt-[100px] flex justify-center' key={a}>

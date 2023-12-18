@@ -25,7 +25,7 @@ const NewsletterDetail = ({ params }: { params: { id: number } }) => {
       let { data: newsletter, error } = await supabase
         .from('newsletter')
         .select('*')
-        .eq('newsletter_id', params);
+        .eq('newsletter_id', Number(params.id));
 
       console.log(newsletter);
 
@@ -44,8 +44,6 @@ const NewsletterDetail = ({ params }: { params: { id: number } }) => {
     fetchSession();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log(params);
 
   return (
     <div>

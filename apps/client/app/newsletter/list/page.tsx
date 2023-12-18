@@ -3,7 +3,7 @@
 import { User, createClientComponentClient } from '@near/supabase';
 // import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Breadcrumb, Footer, Top, TopSuspense } from 'ui';
+import { Breadcrumb, Footer, Top, TopSuspense, Pagination } from 'ui';
 import NewsletterCard from '../../../components/newsletter/NewsletterCard';
 
 // interface NewsletterListProps {}
@@ -68,10 +68,13 @@ const NewsletterList = () => {
           <div className='flex justify-center'>
             <button
               type='button'
-              className='mt-[150px] w-[470px] h-[60px] bg-slate-200 rounded-lg flex items-center pl-[20px]'
+              className='mt-[150px] w-[470px] h-[60px] bg-slate-200 rounded-lg flex items-center pl-[20px] tablet:hidden'
             >
               더 많은 뉴스레터 보기
             </button>
+          </div>
+          <div className='tablet:flex tablet:justify-center tablet:mt-[100px] mobile:hidden'>
+            <Pagination total={5} />
           </div>
         </section>
         <div className='mt-[200px]'>

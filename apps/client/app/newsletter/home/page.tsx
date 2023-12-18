@@ -13,6 +13,7 @@ import {
 import NewsletterCard from '../../../components/newsletter/NewsletterCard';
 import { useForm } from '@near/react-hook-form';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 interface NewsletterHomeProps {
   subject?: string;
@@ -21,6 +22,7 @@ interface NewsletterHomeProps {
 }
 
 const NewsletterHome = () => {
+  const router = useRouter();
   const supabase = createClientComponentClient();
   const { control } = useForm<NewsletterHomeProps>({
     defaultValues: {
@@ -29,6 +31,7 @@ const NewsletterHome = () => {
     mode: 'onChange',
   });
   const [userSession, setUserSession] = useState<User | null>();
+  const [visible, setVisible] = useState<boolean>(false);
   // const [news, setNews] = useState<any[] | null>();
 
   useEffect(() => {
@@ -44,6 +47,14 @@ const NewsletterHome = () => {
     fetchSession();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const onClickMore = async () => {
+    setVisible(!visible);
+  };
+
+  const onClickList = async () => {
+    router.push('/newsletter/list');
+  };
 
   // useEffect(() => {
   //   const fetchNewsletter = async () => {
@@ -112,16 +123,22 @@ const NewsletterHome = () => {
             <div className='font-bold text-[20px]'>
               NEAR가 추천하는 뉴스레터
             </div>
-            <div className='text-s'>더보기</div>
+            <button className='text-s' onClick={onClickList}>
+              더보기
+            </button>
           </div>
           <NewsletterCard />
           <div className='flex justify-center'>
+            {/* {visible === true ? null : ( */}
             <button
               type='button'
               className='mt-[150px] w-[470px] h-[60px] bg-slate-200 rounded-lg flex items-center pl-[20px] tablet:hidden'
+              onClick={onClickMore}
             >
               더 많은 뉴스레터 보기
             </button>
+            {/* )} */}
+            {/* {visible && <NewsletterCard />} */}
           </div>
           <div className='tablet:flex tablet:justify-center tablet:mt-[100px] mobile:hidden'>
             <Pagination total={5} />
