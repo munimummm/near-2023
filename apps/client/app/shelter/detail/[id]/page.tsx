@@ -33,20 +33,7 @@ interface ShelterDetailProps {
 //   src: string;
 //   alt: string;
 // }
-// const Images = [
-//   {
-//     src: '/images/image1.jpg',
-//     alt: '1',
-//   },
-//   {
-//     src: '/images/image1.jpg',
-//     alt: '2',
-//   },
-//   {
-//     src: '/images/image1.jpg',
-//     alt: '3',
-//   },
-// ];
+
 export const dynamic = 'force-dynamic';
 
 // function ImageSection() {
@@ -166,20 +153,20 @@ function ShelterDetailPage({ params }: Props) {
 
   return (
     <div className='flex flex-col gap-12'>
-      <section>
-        <div className='pt-2.5 pl-8 pr-4 pb-8 border-b-text-gray border-b flex items-center justify-between'>
-          <div className='text-xl font-bold tablet:text-4xl desktop:text-5xl'>
-            00유기견 보호소
-          </div>
-        </div>
-      </section>
-      <section className='flex flex-col desktop:flex-row'>
-        <TopCarousel slides={TopData} isNotHome />
-        {/* <ImageSection></ImageSection> */}
-        {detail.map((item) => {
-          return (
+      {detail.map((item) => (
+        <div key={item.shelter_profile.id}>
+          <section>
+            <div className='flex items-center justify-between pt-8 pb-8 pl-8 pr-4 border-b border-b-text-gray'>
+              <div className='text-xl font-bold tablet:text-4xl desktop:text-5xl'>
+                {`${item.shelter_profile.shelter_name} `}
+              </div>
+            </div>
+          </section>
+          <section className='flex flex-col desktop:flex-row'>
+            <TopCarousel slides={TopData} isNotHome />
+            {/* <ImageSection></ImageSection> */}
+
             <ShelterDetailInfo
-              key={item.shelter_profile.id}
               shelterName={item.shelter_profile.shelter_name}
               shelterAddress={item.shelter_profile.shelter_address}
               shelterRace={'강아지, 고양이'}
@@ -188,9 +175,9 @@ function ShelterDetailPage({ params }: Props) {
               shelterSiteUrl={item.shelter_site_url}
               shelterInsta={item.shelter_intargram}
             />
-          );
-        })}
-      </section>
+          </section>
+        </div>
+      ))}
       <section>
         <div>
           <MoreLink path='/pet' title='니어 관리 동물' />

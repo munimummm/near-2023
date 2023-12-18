@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Map } from '@near/kakao-map';
 // import { useMap } from 'react-kakao-maps-sdk';
-// import useKakaoMap from './useKakaoMap';
+import useKakaoMap from './useKakaoMap';
 import { MarkerList } from './MarkerList';
 
 export interface MarkerData {
@@ -25,7 +25,7 @@ function NearMap({ shelters }: NearMapProps) {
   const [map, setMap] = useState<kakao.maps.Map | undefined>();
   // const [isOpen, setIsOpen] = useState(false);
 
-  // useKakaoMap();
+  useKakaoMap();
 
   // useEffect(() => {
   //   if (!(map && shelters)) return;
