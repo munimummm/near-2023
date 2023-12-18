@@ -1,9 +1,19 @@
 import dynamic from 'next/dynamic';
+import ReactQuill, { ReactQuillProps } from 'react-quill';
 
-export const ReactQuill = dynamic(() => import('react-quill'), {
-  ssr: false,
-  // loading: () => <p>Loading ...</p>,
-});
+interface ForwardedQuillComponent extends ReactQuillProps {
+  forwardedRef?: React.Ref<ReactQuill>;
+}
+
+export const QuillNoSSRWrapper = dynamic(
+  async () => {
+    const { default: QuillComponent } = await import('react-quill');
+    return function Quill({ forwardedRef, ...props }: ForwardedQuillComponent) {
+      return <QuillComponent ref={forwardedRef} {...props} />;
+    };
+  },
+  { ssr: false },
+);
 
 //툴바에 보여지는 시각적 옵션
 export const modules = {

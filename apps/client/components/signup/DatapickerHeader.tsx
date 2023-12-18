@@ -54,6 +54,7 @@ const DatepickerHeader = () => {
       setValue('birth', value);
     };
     onChangebirth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDate]);
 
   return (
