@@ -4,7 +4,7 @@ const { merge } = require('webpack-merge');
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['ui', 'config'],
-  webpack(config) {
+  webpack(config, { isServer }) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.('.svg'),
@@ -26,6 +26,13 @@ const nextConfig = {
           },
         ],
       },
+      // https://github.com/netlify/netlify-lambda/issues/179
+      externals: [
+        {
+          bufferutil: isServer && 'bufferutil',
+          'utf-8-validate': isServer && 'utf-8-validate',
+        },
+      ],
     });
   },
 };
