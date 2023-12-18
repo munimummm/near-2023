@@ -1,24 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+// import { useState } from 'react';
 import IconChevronLeft from '../../assets/icons/pagination/icon_chevron_left.svg';
 import IconChevronRight from '../../assets/icons/pagination/icon_chevron_right.svg';
 
 interface PaginationProps {
   total: number;
+  currentPage: number;
+  onPageChange: (page: number) => void;
 }
 
-function Pagination({ total }: PaginationProps) {
-  const [currentPage, setCurrentPage] = useState(1);
+function Pagination({ total, currentPage, onPageChange }: PaginationProps) {
+  // const totalPages = Math.ceil(total / PerPage);
+  // const [currentPage, setCurrentPage] = useState(1);
   const pages = Array.from({ length: total }, (_, i) => i + 1);
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
+  // const handlePageChange = (page: number) => {
+  //   setCurrentPage(page);
+  // };
 
   return (
-    <div className='flex items-center gap-3 '>
-      <button onClick={() => handlePageChange(Math.max(1, currentPage - 1))}>
+    <div className='flex items-center justify-center gap-3 mt-12 '>
+      <button onClick={() => onPageChange(Math.max(1, currentPage - 1))}>
         <IconChevronLeft />
       </button>
       {pages.map((page) => (
@@ -29,14 +32,14 @@ function Pagination({ total }: PaginationProps) {
                 ? 'text-theme-main font-medium'
                 : 'bg-white text-text-gray font-normal'
             }`}
-            onClick={() => handlePageChange(page)}
+            onClick={() => onPageChange(page)}
           >
             {page}
           </button>
         </div>
       ))}
       <button
-        onClick={() => handlePageChange(Math.min(total, currentPage + 1))}
+        onClick={() => onPageChange(Math.min(total, currentPage + 1))}
         className='hover:text-theme-main'
       >
         <IconChevronRight />

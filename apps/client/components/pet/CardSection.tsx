@@ -1,6 +1,6 @@
 'use client';
 
-import { ButtonMedium, CardWithLike, Icon, Pagination } from 'ui';
+import { ButtonMedium, CardWithLike, Icon } from 'ui';
 import { DummyNearPets } from './dummy';
 import { useRouter } from 'next/navigation';
 
@@ -40,7 +40,7 @@ function NearAnimalCardSection() {
           </li>
         ))}
       </ul>
-      <Pagination total={5} />
+      {/* <Pagination total={5} /> */}
     </section>
   );
 }

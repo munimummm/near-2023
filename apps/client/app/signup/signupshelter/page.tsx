@@ -10,6 +10,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import RadioTag from 'ui/components/tags/RadioTag';
 import { createClientComponentClient } from '@near/supabase';
+import Link from 'next/link';
 
 interface SignupProps {
   email?: string;
@@ -358,32 +359,38 @@ const SignupShelter = () => {
                 <div className='border-t-2 h-[13.25rem]'>
                   <div className='h-[1.5rem] flex flex-row mt-[1.5rem]'>
                     <div className='mt-[0.125rem]'>
-                      <Checkbox
-                        name={'member'}
-                        control={control}
-                        labelType='singletext'
-                        label='(필수) 개인 회원 약관에 동의'
-                      />
+                      <Link href={'/signup/personal'}>
+                        <Checkbox
+                          name={'member'}
+                          control={control}
+                          labelType='singletext'
+                          label='(필수) 개인 회원 약관에 동의'
+                        />
+                      </Link>
                     </div>
                   </div>
                   <div className='h-[1.5rem] flex flex-row mt-[1.5rem]'>
                     <div className='mt-[0.125rem]'>
-                      <Checkbox
-                        name={'info'}
-                        control={control}
-                        labelType='singletext'
-                        label='(필수) 개인정보 수집 및 이용 동의'
-                      />
+                      <Link href={'/signup/info'}>
+                        <Checkbox
+                          name={'info'}
+                          control={control}
+                          labelType='singletext'
+                          label='(필수) 개인정보 수집 및 이용 동의'
+                        />
+                      </Link>
                     </div>
                   </div>
                   <div className='h-[1.5rem] flex flex-row mt-[1.5rem]'>
                     <div className='mt-[0.125rem]'>
-                      <Checkbox
-                        name={'site'}
-                        control={control}
-                        labelType='singletext'
-                        label='(필수) 위치기반 서비스 이용에 동의'
-                      />
+                      <Link href={'/signup/site'}>
+                        <Checkbox
+                          name={'site'}
+                          control={control}
+                          labelType='singletext'
+                          label='(필수) 위치기반 서비스 이용에 동의'
+                        />
+                      </Link>
                     </div>
                   </div>
                   <div className='h-[1.5rem] flex flex-row mt-[1.5rem]'>
