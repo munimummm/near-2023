@@ -22,10 +22,6 @@ interface Props {
 //   alt: string;
 // }
 
-// function Header({ date, title, tags }) {
-//   return (
-
-// }
 // function ImageSection() {
 //   return (
 //     <div>
