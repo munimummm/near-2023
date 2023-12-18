@@ -9,15 +9,17 @@ import { TopData } from './dummy';
 import { CarouselButton } from './CarouselButton';
 import styles from './carousel.module.css';
 import Image from 'next/image';
+import { clsx } from '@near/clsx';
 
 type PropType = {
   slides: TopData[];
   options?: EmblaOptionsType;
+  isNotHome?: boolean;
 };
 
-const TopCarousel: React.FC<PropType> = (props) => {
-  const { slides } = props;
-  const options: EmblaOptionsType = {};
+const TopCarousel: React.FC<PropType> = ({ slides, options, isNotHome }) => {
+  // const { slides } = props;
+  // const options: EmblaOptionsType = {};
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
@@ -49,7 +51,16 @@ const TopCarousel: React.FC<PropType> = (props) => {
       <div className={styles.carousel__viewport} ref={emblaRef}>
         <div className={styles.carousel__container}>
           {slides.map((product, index) => (
-            <div className={styles.carousel__slide} key={index}>
+            <div
+              className={clsx(
+                `${
+                  isNotHome
+                    ? styles.isNotHome_carousel__slide
+                    : styles.carousel__slide
+                }`,
+              )}
+              key={index}
+            >
               <Image
                 fill
                 priority

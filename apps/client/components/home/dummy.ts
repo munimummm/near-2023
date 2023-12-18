@@ -186,3 +186,21 @@ export const DummyHomeNearNews = [
     src: '/mock/home/newletter_thumbnail.jpg',
   },
 ];
+export const DummyShelterVolunteerReview = [
+  {
+    id: 1,
+    tagName: '봉사후기',
+    title: '봉사에 봉사를 위한 봉사에 의한',
+    subTitle:
+      '인간은 무엇에 의해 살아가는가,  그것은 바로 칭찬과 연봉인상 그리고 봉사',
+    src: '/images/dog.png',
+  },
+  {
+    id: 2,
+    tagName: '봉사후기',
+    title: '봉사에 봉사를 위한 봉사에 의한',
+    subTitle:
+      '인간은 무엇에 의해 살아가는가,  그것은 바로 칭찬과 연봉인상 그리고 봉사',
+    src: '/images/dog.png',
+  },
+];

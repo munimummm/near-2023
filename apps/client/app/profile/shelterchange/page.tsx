@@ -151,6 +151,7 @@ const ShelterChange = () => {
 
   useEffect(() => {
     let watched = JSON.parse(localStorage.getItem('temp') as string);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     temp = watched;
     if (temp) {
       setValue('address', temp[0]);
@@ -276,7 +277,7 @@ const ShelterChange = () => {
             </section>
             <section className='mt-[3.125rem]'>
               <FooterShadowBox>
-                <div className='m-auto flex justify-centere'>
+                <div className='flex m-auto justify-centere'>
                   <ButtonETC mode='outline' onClick={onClickTempSave}>
                     임시 저장
                   </ButtonETC>
