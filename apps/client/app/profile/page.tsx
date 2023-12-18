@@ -37,6 +37,7 @@ export default function ProfilePage() {
         setSession(session.session);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const cookies = new Cookies();
