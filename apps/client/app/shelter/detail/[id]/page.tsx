@@ -1,9 +1,12 @@
 'use client';
 
-import Image from 'next/image';
+// import Image from 'next/image';
 import { ButtonXL, CardWithLike, Icon } from 'ui';
 // import { clsx } from '@near/clsx';
-import { DummyShelterVolunteerReview } from '../../../../components/home/dummy';
+import {
+  DummyShelterVolunteerReview,
+  TopData,
+} from '../../../../components/home/dummy';
 import ShelterVoluteerCard from '../../../../components/shelter/ShelterVoluteerCard';
 // import { MoreLink } from '../../../components/home/MoreLink';
 import { DummyNearPets } from '../../../../components/home/dummy';
@@ -12,6 +15,7 @@ import { createClientComponentClient } from '@near/supabase';
 import Link from 'next/link';
 import { ShelterProps } from '../../page';
 import { useRouter } from 'next/navigation';
+import TopCarousel from '../../../../components/home/TopCarousel';
 interface Props {
   params: {
     id: string;
@@ -25,54 +29,54 @@ interface ShelterDetailProps {
   shelter_profile: ShelterProps;
 }
 
-interface ImagePreviewProps {
-  src: string;
-  alt: string;
-}
-const Images = [
-  {
-    src: '/images/image1.jpg',
-    alt: '1',
-  },
-  {
-    src: '/images/image1.jpg',
-    alt: '2',
-  },
-  {
-    src: '/images/image1.jpg',
-    alt: '3',
-  },
-];
+// interface ImagePreviewProps {
+//   src: string;
+//   alt: string;
+// }
+// const Images = [
+//   {
+//     src: '/images/image1.jpg',
+//     alt: '1',
+//   },
+//   {
+//     src: '/images/image1.jpg',
+//     alt: '2',
+//   },
+//   {
+//     src: '/images/image1.jpg',
+//     alt: '3',
+//   },
+// ];
 export const dynamic = 'force-dynamic';
 
-function ImageSection() {
-  return (
-    <div>
-      <div className='mb-12 tablet:px-7 desktop:px-24 '>
-        <div className='flex items-center justify-center w-full'>
-          <div className=' relative  w-[480px] h-[341px] tablet:w-[662px]  desktop:w-[480px] '>
-            <Image fill src='/images/image1.jpg' alt='read' />
-          </div>
-        </div>
-        <div className='flex justify-center gap-4 mt-8 px-[0.4375rem]'>
-          {Images.map((image, index) => (
-            <div key={index}>
-              <ImagePreview src={image.src} alt={image.alt} />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
+// function ImageSection() {
+//   return (
+//     <div>
+//       <div className='mb-12 tablet:px-7 desktop:px-24 '>
+//         <div className='flex items-center justify-center w-full'>
+//           <div className=' relative  w-[480px] h-[341px] tablet:w-[662px]  desktop:w-[480px] '>
+//             <Image fill src='/images/image1.jpg' alt='read' />
+//           </div>
+//         </div>
+//         <div className='flex justify-center gap-4 mt-8 px-[0.4375rem]'>
+//           {Images.map((image, index) => (
+//             <div key={index}>
+//               <ImagePreview src={image.src} alt={image.alt} />
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
-function ImagePreview({ src, alt }: ImagePreviewProps) {
-  return (
-    <div className='relative w-20 h-20 '>
-      <Image fill src={src} alt={alt} />
-    </div>
-  );
-}
+// function ImagePreview({ src, alt }: ImagePreviewProps) {
+//   return (
+//     <div className='relative w-20 h-20 '>
+//       <Image fill src={src} alt={alt} />
+//     </div>
+//   );
+// }
 
 function ShelterDetailInfo({
   shelterName,
@@ -138,14 +142,9 @@ function MoreLink({ path, title }) {
 
 function ShelterDetailPage({ params }: Props) {
   const dummy = DummyShelterVolunteerReview;
-  const [data, setData] = useState(DummyNearPets);
+  const data = DummyNearPets;
   const [detail, setDetail] = useState<ShelterDetailProps[]>([]);
   const supabase = createClientComponentClient();
-  const handleIsLiked = (index: number) => {
-    let newData = [...data];
-    newData[index].isLiked = !newData[index].isLiked;
-    setData(newData);
-  };
 
   const fetchData = async () => {
     const { data, error } = await supabase
@@ -175,7 +174,8 @@ function ShelterDetailPage({ params }: Props) {
         </div>
       </section>
       <section className='flex flex-col desktop:flex-row'>
-        <ImageSection></ImageSection>
+        <TopCarousel slides={TopData} isNotHome />
+        {/* <ImageSection></ImageSection> */}
         {detail.map((item) => {
           return (
             <ShelterDetailInfo
@@ -193,19 +193,17 @@ function ShelterDetailPage({ params }: Props) {
       </section>
       <section>
         <div>
-          <MoreLink path='/' title='니어 관리 동물' />
+          <MoreLink path='/pet' title='니어 관리 동물' />
         </div>
         <ul className='overflow-x-auto grid grid-cols-2 grid-rows-2 gap-x-5 gap-y-7 place-items-center mobile:grid-cols-2 mobile:grid-rows-2 mobile:gap-x-5 mobile:gap-y-7 mobile:place-items-center tablet:grid-cols-4 tablet:grid-rows-1 tablet:gap-x-10 tablet:gap-y-0 tablet:place-items-center tablet:min-w-[78.25rem] desktop:grid-cols-4 desktop:grid-rows-1 desktop:gap-x-10 desktop:gap-y-0 desktop:place-items-center desktop:min-w-[78.25rem]'>
           {data.map((item, index) => {
             return (
               <li key={`home_near_pets_${index}`}>
                 <CardWithLike
-                  cardNumber={index}
                   petData={item.petData}
                   src={item.src}
                   tags={item.tags}
-                  isLiked={item.isLiked}
-                  setIsLiked={() => handleIsLiked(index)}
+                  cardNumber={item.cardNumber}
                 />
               </li>
             );
