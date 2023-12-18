@@ -3,7 +3,7 @@
 import { User, createClientComponentClient } from '@near/supabase';
 // import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Breadcrumb, Footer, Top, TopSuspense, Pagination } from 'ui';
+import { Breadcrumb, Footer, Top, TopSuspense } from 'ui';
 import NewsletterCard from '../../../components/newsletter/NewsletterCard';
 
 // interface NewsletterListProps {}
@@ -73,9 +73,9 @@ const NewsletterList = () => {
               더 많은 뉴스레터 보기
             </button>
           </div>
-          <div className='tablet:flex tablet:justify-center tablet:mt-[100px] mobile:hidden'>
+          {/* <div className='tablet:flex tablet:justify-center tablet:mt-[100px] mobile:hidden'>
             <Pagination total={5} />
-          </div>
+          </div> */}
         </section>
         <div className='mt-[200px]'>
           <Footer />

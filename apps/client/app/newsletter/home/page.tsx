@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import {
   Breadcrumb,
   Footer,
-  Pagination,
+  // Pagination,
   TextInput,
   Top,
   TopSuspense,
@@ -140,9 +140,9 @@ const NewsletterHome = () => {
             {/* )} */}
             {/* {visible && <NewsletterCard />} */}
           </div>
-          <div className='tablet:flex tablet:justify-center tablet:mt-[100px] mobile:hidden'>
+          {/* <div className='tablet:flex tablet:justify-center tablet:mt-[100px] mobile:hidden'>
             <Pagination total={5} />
-          </div>
+          </div> */}
         </section>
         <div className='mt-[200px]'>
           <Footer />
