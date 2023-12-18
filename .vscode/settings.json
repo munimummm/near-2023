@@ -12,5 +12,4 @@
     "**/Thumbs.db": true,
     "**/node_modules": false
   },
-  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
