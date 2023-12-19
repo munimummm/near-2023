@@ -12,7 +12,7 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
-    "chromatic": "dotenv -e .env.production turbo run chromatic --filter=storybook "
+    "chromatic": "dotenv -e .env.production -- turbo run chromatic --filter=storybook"
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
