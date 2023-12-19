@@ -1,13 +1,12 @@
 'use client';
-// import { useController } from 'react-hook-form';
-import { ReactQuill } from './ReactQuill';
+import { QuillNoSSRWrapper } from './ReactQuill';
 
 interface QuillReaderProps {
   content: string;
 }
 
 function TextEditorReader({ content }: QuillReaderProps) {
-  return <ReactQuill value={content} theme='bubble' readOnly />;
+  return <QuillNoSSRWrapper value={content} theme='bubble' readOnly />;
 }
 
 export default TextEditorReader;

@@ -20,6 +20,7 @@
     "@near/react-hook-form": "*",
     "@near/react-cookie": "*",
     "@near/supabase": "*",
+    "@near/kakao-map": "*",
     "@near/react-timer-hook" : "*",
     "next": "^13.4.1",
     "react": "^18.2.0",
