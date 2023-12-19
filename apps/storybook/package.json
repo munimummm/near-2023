@@ -37,7 +37,6 @@
     "eslint-config-custom": "*",
     "eslint-plugin-storybook": "^0.6.13",
     "storybook": "^7.4.0",
-    "storybook-addon-discussion": "^0.1.6",
     "tsconfig": "*"
   }
 }
