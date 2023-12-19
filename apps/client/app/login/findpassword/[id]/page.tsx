@@ -13,15 +13,17 @@ function Page({ params }: { params: { id: string } }) {
     formState: { errors },
   } = useForm();
   const [showError, setShowError] = useState(false);
-  useEffect(() => {
-    (async () => {
-      const { data: session } = await supabase.auth.getSession();
-      if (session.session) {
-        router.push('/');
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //
+  //   useEffect(() => {
+  //     (async () => {
+  //       const { data: session } = await supabase.auth.getSession();
+  //       if (session.session) {
+  //         router.push('/');
+  //       }
+  //     })();
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   }, []);
+
   const passwordValidation = () => {
     const newPassword = getValues('newPassword');
     const checkNewPassword = getValues('newPasswordCheck');
@@ -29,9 +31,8 @@ function Page({ params }: { params: { id: string } }) {
     newPassword !== checkNewPassword ? setShowError(true) : setShowError(false);
   };
   const router = useRouter();
-  async function updateUser(params: { email: string; password: string }) {
+  async function updateUser(params: { password: string }) {
     await supabase.auth.updateUser({
-      email: params.email,
       password: params.password,
     });
     router.push('/');
@@ -44,7 +45,6 @@ function Page({ params }: { params: { id: string } }) {
           className='w-80 flex flex-col layout_max_width desktop:mt-0 mobile:mt-[8.5rem] tablet:mt-[8.5rem]'
           onSubmit={handleSubmit((data) => {
             updateUser({
-              email: decodeURIComponent(params.id),
               password: data.newPassword,
             });
           })}

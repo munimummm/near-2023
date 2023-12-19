@@ -52,7 +52,7 @@ function Page() {
             })}
             className='flex gap-2 items-center mt-8'
           >
-            <TextInput defaultValue={''} control={control} name={'email'} />
+            <TextInput defaultValue='' control={control} name={'email'} />
             <button className='w-40 bg-theme-main px-1 py-2 rounded-md text-bg-white text-sm'>
               이메일 찾기
             </button>
@@ -66,15 +66,15 @@ function Page() {
                 type='button'
                 onClick={async () => {
                   if (data) {
-                    await supabase.auth.resetPasswordForEmail(
+                    alert('입력하신 메일의 메일함을 확인해주세요');
+                    return await supabase.auth.resetPasswordForEmail(
                       getValues().email,
                       {
-                        redirectTo: `https://nearbyyou.vercel.app/login/findpassword/${encodeURIComponent(
-                          getValues().email,
-                        )}`,
+                        redirectTo: `${
+                          process.env.NEXT_PUBLIC_SITE_URL || ''
+                        }/login/findpassword/update-password`,
                       },
                     );
-                    alert('메일함을 확인해주세요');
                   } else {
                     router.push('/signup');
                   }
