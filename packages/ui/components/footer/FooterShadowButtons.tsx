@@ -1,6 +1,6 @@
 'use client';
 
-import Button from '../buttons/Button';
+import { Button } from '../buttons/Button';
 import FooterShadowBox from './FooterShadowBox';
 
 function FooterShadowButtons() {

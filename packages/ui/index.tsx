@@ -8,7 +8,6 @@ export { default as Breadcrumb } from './components/breadcrumb/Breadcrumb';
 
 // buttons
 export * from './components/buttons/Button';
-export { default as Button } from './components/buttons/Button';
 export * from './components/buttons/GraphicButtons';
 export { default as GraphicButtons } from './components/buttons/GraphicButtons';
 export { default as PdfUploadButton } from './components/buttons/PdfUploadButton';
