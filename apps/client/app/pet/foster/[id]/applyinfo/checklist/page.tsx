@@ -77,6 +77,7 @@ const Checklist = () => {
 
   useEffect(() => {
     let watched = JSON.parse(localStorage.getItem('temp') as string);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     temp = watched;
     if (temp) {
       setValue('comment', temp[0]);
@@ -125,7 +126,7 @@ const Checklist = () => {
         </section>
         <section>
           <div className='h-[75.0625rem] grid pt-[1.875rem] mobile:px-[1.875rem] tablet:px-[3rem] desktop:px-[7.5rem] desktop:text-xl'>
-            <ul className='list-decimal grid'>
+            <ul className='grid list-decimal'>
               <li>
                 <div className='flex justify-between w-full'>
                   <a
