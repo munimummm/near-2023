@@ -2,7 +2,7 @@
 import { useForm } from '@near/react-hook-form';
 import { createClientComponentClient } from '@near/supabase';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button, Logo, TextInput } from 'ui';
 
 function Page() {
@@ -11,15 +11,15 @@ function Page() {
   const [data, setData] = useState(false);
   const [show, setShow] = useState(false);
   const { control, handleSubmit, getValues } = useForm();
-  useEffect(() => {
-    (async () => {
-      const { data: session } = await supabase.auth.getSession();
-      if (session.session) {
-        router.push('/');
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const { data: session } = await supabase.auth.getSession();
+  //     if (session.session) {
+  //       router.push('/');
+  //     }
+  //   })();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
   async function getProfile(text: string) {
     const { data } = await supabase
       .from('user_email_list')
