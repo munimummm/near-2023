@@ -4,7 +4,7 @@ import TextEditorWriter from 'ui/components/texteditor/TextEditorWriter';
 import { useForm } from 'react-hook-form';
 import TextInput from 'ui/components/textinput/TextInput';
 // import Breadcrumb from 'ui/components/breadcrumb/Breadcrumb';
-import ImageBox from 'ui/components/imagebox/ImageBox';
+import { ImageBox } from 'ui/components/imagebox/ImageBox';
 import { ButtonXL, RadioTag } from 'ui';
 import { Session, createClientComponentClient } from '@near/supabase';
 // import { useRouter } from 'next/navigation';

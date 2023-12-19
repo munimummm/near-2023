@@ -94,7 +94,7 @@ export function TitleImage({ size = 'sm' }: TitleImageProps) {
   );
 }
 
-function ImageBox({ size = 'sm' }: ImageBoxProps) {
+export function ImageBox({ size = 'sm' }: ImageBoxProps) {
   const [uploadedImages, setUploadedImages] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -140,5 +140,3 @@ function ImageBox({ size = 'sm' }: ImageBoxProps) {
     </div>
   );
 }
-
-export default ImageBox;

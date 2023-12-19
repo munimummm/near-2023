@@ -50,7 +50,6 @@ export { default as IconWrapper } from './components/icon/IconWrapper';
 
 // imagebox
 export * from './components/imagebox/ImageBox';
-export { default as ImageBox } from './components/imagebox/ImageBox';
 
 // Inputfilebutton
 export { default as InputFileButton } from './components/Inputfilebutton/InputFileButton';
