@@ -2,9 +2,9 @@
 import { useForm } from '@near/react-hook-form';
 import { createClientComponentClient } from '@near/supabase';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button, Logo, TextInput } from 'ui';
-function Page({ params }: { params: { id: string } }) {
+function Page() {
   const supabase = createClientComponentClient();
   const {
     control,
