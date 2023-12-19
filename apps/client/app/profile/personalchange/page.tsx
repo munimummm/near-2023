@@ -1,7 +1,7 @@
 'use client';
 
 import { ButtonXL, ButtonXS } from 'ui/components/buttons/Button';
-import ImageBox from 'ui/components/imagebox/ImageBox';
+import { ImageBox } from 'ui/components/imagebox/ImageBox';
 import TextInput from 'ui/components/textinput/TextInput';
 import { useForm } from '@near/react-hook-form';
 import Tag from 'ui/components/tags/Tag';
