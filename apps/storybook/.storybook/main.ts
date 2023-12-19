@@ -17,6 +17,7 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-onboarding'),
     getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('storybook-addon-discussion'),
     {
       name: '@storybook/addon-styling',
       options: {
@@ -35,12 +36,12 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
-  env: (config) => ({
-    ...config,
-    NEXT_PUBLIC_SUPABASE_URL: process.env.STORYBOOK_SUPABASE_URL as string,
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env
-      .STORYBOOK_SUPABASE_ANON_KEY as string,
-  }),
+  // env: (config) => ({
+  //   ...config,
+  //   NEXT_PUBLIC_SUPABASE_URL: process.env.STORYBOOK_SUPABASE_URL as string,
+  //   NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env
+  //     .STORYBOOK_SUPABASE_ANON_KEY as string,
+  // }),
   webpackFinal: async (config) => {
     const imageRule = config.module?.rules?.find((rule) => {
       const test = (rule as { test: RegExp }).test;
