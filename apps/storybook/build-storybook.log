@@ -1,14 +1,14 @@
 
 > storybook@0.1.0 build-storybook
-> storybook build --output-dir /var/folders/g5/c1_9vnn550x4zm_12qj6fr_r0000gn/T/chromatic--47515-q1ThycPah7zO
+> storybook build --output-dir /var/folders/g5/c1_9vnn550x4zm_12qj6fr_r0000gn/T/chromatic--50258-Aq7qYBuc6rgt
 
 @storybook/cli v7.4.0
 
-info => Cleaning outputDir: /var/folders/g5/c1_9vnn550x4zm_12qj6fr_r0000gn/T/chromatic--47515-q1ThycPah7zO
+info => Cleaning outputDir: /var/folders/g5/c1_9vnn550x4zm_12qj6fr_r0000gn/T/chromatic--50258-Aq7qYBuc6rgt
 info => Loading presets
 info => Building manager..
-info => Manager built (78 ms)
-info => Copying static files: /Users/choejiyeon/Desktop/Project/near-2023/node_modules/@storybook/manager/static at /var/folders/g5/c1_9vnn550x4zm_12qj6fr_r0000gn/T/chromatic--47515-q1ThycPah7zO/sb-common-assets
+info => Manager built (95 ms)
+info => Copying static files: /Users/choejiyeon/Desktop/Project/near-2023/node_modules/@storybook/manager/static at /var/folders/g5/c1_9vnn550x4zm_12qj6fr_r0000gn/T/chromatic--50258-Aq7qYBuc6rgt/sb-common-assets
 WARN No story files found for the specified pattern: src/**/*.mdx
 info Using Babel compiler
 info Addon-docs: using MDX2
@@ -126,11 +126,12 @@ info => Using default Webpack5 setup
 <s> [webpack.Progress] 15% building import loader ../../node_modules/style-loader/dist/cjs.js
 <s> [webpack.Progress] 15% building import loader ../../node_modules/css-loader/dist/cjs.js
 <s> [webpack.Progress] 15% building import loader ../../node_modules/postcss-loader/dist/cjs.js
-<s> [webpack.Progress] 15% building 0/1 entries 171/254 dependencies 10/99 modules
-<s> [webpack.Progress] 28% building 0/1 entries 500/565 dependencies 77/227 modules
-<s> [webpack.Progress] 32% building import loader ../../node_modules/@svgr/webpack/dist/index.js
-<s> [webpack.Progress] 32% building 0/1 entries 595/665 dependencies 113/282 modules
-<s> [webpack.Progress] 41% building 0/1 entries 1426/1500 dependencies 335/577 modules
+<s> [webpack.Progress] 15% building 0/1 entries 172/254 dependencies 10/100 modules
+<s> [webpack.Progress] 29% building 0/1 entries 500/566 dependencies 81/226 modules
+<s> [webpack.Progress] 31% building 0/1 entries 552/618 dependencies 100/253 modules
+<s> [webpack.Progress] 30% building import loader ../../node_modules/@svgr/webpack/dist/index.js
+<s> [webpack.Progress] 30% building 0/1 entries 596/660 dependencies 106/282 modules
+<s> [webpack.Progress] 43% building 0/1 entries 1500/1529 dependencies 362/589 modules
 <s> [webpack.Progress] 65% building 1/1 entries 1996/1996 dependencies 757/757 modules
 <s> [webpack.Progress] 65% building
 <s> [webpack.Progress] 69% building finish
@@ -576,4 +577,4 @@ WARN
 <s> [webpack.Progress] 99% cache shutdown
 <s> [webpack.Progress] 100% 
 
-info => Output directory: /var/folders/g5/c1_9vnn550x4zm_12qj6fr_r0000gn/T/chromatic--47515-q1ThycPah7zO
+info => Output directory: /var/folders/g5/c1_9vnn550x4zm_12qj6fr_r0000gn/T/chromatic--50258-Aq7qYBuc6rgt
