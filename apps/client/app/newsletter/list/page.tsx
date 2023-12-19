@@ -3,7 +3,13 @@
 import { User, createClientComponentClient } from '@near/supabase';
 // import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Breadcrumb, Footer, Top, TopSuspense, Pagination } from 'ui';
+import {
+  Breadcrumb,
+  Footer,
+  Top,
+  TopSuspense,
+  // Pagination
+} from 'ui';
 import NewsletterCard from '../../../components/newsletter/NewsletterCard';
 
 // interface NewsletterListProps {}
@@ -74,7 +80,7 @@ const NewsletterList = () => {
             </button>
           </div>
           <div className='tablet:flex tablet:justify-center tablet:mt-[100px] mobile:hidden'>
-            <Pagination total={5} />
+            {/* <Pagination total={5} /> */}
           </div>
         </section>
         <div className='mt-[200px]'>
