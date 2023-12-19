@@ -44,21 +44,24 @@ export default function SignIn() {
   ]);
 
   useEffect(() => {
-    if (ischecked !== undefined && ischecked === false) {
-      setCookie(
-        'sb-ztcvdzkqqrglziiavupe-auth-token',
-        { ...cookies }['sb-ztcvdzkqqrglziiavupe-auth-token'],
-        {
-          expires: new Date(Date.now() + 3600 * 24 * 1000),
-        },
-      );
-    } else {
-      setCookie(
-        'sb-ztcvdzkqqrglziiavupe-auth-token',
-        { ...cookies }['sb-ztcvdzkqqrglziiavupe-auth-token'],
-        {},
-      );
+    if (cookies['sb-ztcvdzkqqrglziiavupe-auth-token'] !== undefined) {
+      if (ischecked !== undefined && ischecked === false) {
+        setCookie(
+          'sb-ztcvdzkqqrglziiavupe-auth-token',
+          { ...cookies }['sb-ztcvdzkqqrglziiavupe-auth-token'],
+          {
+            expires: new Date(Date.now() + 3600 * 24 * 1000),
+          },
+        );
+      } else {
+        setCookie(
+          'sb-ztcvdzkqqrglziiavupe-auth-token',
+          { ...cookies }['sb-ztcvdzkqqrglziiavupe-auth-token'],
+          {},
+        );
+      }
     }
+
     (async () => {
       const { data: session } = await supabase.auth.getSession();
       if (session.session) {
