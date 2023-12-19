@@ -30,6 +30,10 @@ jobs:
           workingDir: apps/storybook/src
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
+        env: 
+        STORYBOOK_SUPABASE_URL: ${{ secrets.STORYBOOK_SUPABASE_URL }}
+        STORYBOOK_SUPABASE_ANON_KEY: ${{ secrets.STORYBOOK_SUPABASE_ANON_KEY }}
+        
 
       - name: Create comment PR
         uses: thollander/actions-comment-pull-request@v1
