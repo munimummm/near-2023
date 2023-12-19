@@ -15,6 +15,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Main: Story = {
   args: {
-    content: '툴팁입니다!',
+    content: '툴팁입니다!!',
   },
 };
