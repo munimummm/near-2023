@@ -1,8 +1,8 @@
 'use client';
 
-import { User, createClientComponentClient } from '@near/supabase';
+import { createClientComponentClient } from '@near/supabase';
 import { useEffect, useState } from 'react';
-import { Breadcrumb, Footer, ProfileImage, Tag, Top, TopSuspense } from 'ui';
+import { Breadcrumb, Footer, Tag, Top } from 'ui';
 import TopCarousel from '../../../../components/home/TopCarousel';
 import { TopData } from '../../../../components/home/dummy';
 
@@ -13,25 +13,23 @@ interface NewsletterDetail {
 
 const NewsletterDetail = ({ params }: { params: { id: number } }) => {
   const supabase = createClientComponentClient();
-  const [userSession, setUserSession] = useState<User | null>();
+  // const [userSession, setUserSession] = useState<User | null>();
   const [detail, setDetail] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchSession = async () => {
-      let {
-        data: { user },
-      } = await supabase.auth.getUser();
+      // let {
+      //   data: { user },
+      // } = await supabase.auth.getUser();
 
       let { data: newsletter, error } = await supabase
         .from('newsletter')
         .select('*')
         .eq('newsletter_id', Number(params.id));
 
-      console.log(newsletter);
-
-      if (user != null) {
-        setUserSession(user);
-      }
+      // if (user != null) {
+      //   setUserSession(user);
+      // }
 
       if (newsletter) {
         setDetail(newsletter);
@@ -48,7 +46,9 @@ const NewsletterDetail = ({ params }: { params: { id: number } }) => {
   return (
     <div>
       <section className='layout-max-width'>
-        <div>{userSession ? <Top /> : <TopSuspense />}</div>
+        <div>
+          <Top />
+        </div>
         <div className='mt-[6.25rem] pl-[2.5rem] mobile:mb-[1.875rem] desktop:mb-[4.8125rem]'>
           <Breadcrumb items={['뉴스레터', '전체 글', '상세 내용']} />
         </div>
@@ -58,11 +58,11 @@ const NewsletterDetail = ({ params }: { params: { id: number } }) => {
             {detail[0]?.subject}
           </div>
           <div className='mt-[0.625rem] flex'>
-            <ProfileImage src='/images/profile/img_profile_default.png' />
+            {/* <ProfileImage src='/images/profile/img_profile_default.png' /> */}
             <div className='ml-[0.625rem] text-xs pt-[0.125rem] tablet:pt-[0.625rem]'>
-              {userSession?.email} |
+              {/* {userSession?.email} | */}
             </div>
-            <div className='ml-[0.625rem] text-xs pt-[0.125rem] tablet:pt-[0.625rem]'>
+            <div className='text-xs pt-[0.125rem] tablet:pt-[0.625rem]'>
               {detail[0]?.created_at
                 .substr(0, 10)
                 .replace('-', '.')

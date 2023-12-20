@@ -39,24 +39,6 @@ const NewsletterList = () => {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, []);
 
-  // useEffect(() => {
-  //   const fetchNewsletter = async () => {
-  //     let { data: newsletter, error } = await supabase
-  //       .from('newsletter')
-  //       .select('*');
-
-  //     if (newsletter != null) {
-  //       setNews(newsletter);
-  //     }
-
-  //     if (error instanceof Error) {
-  //       throw new Error(error.message);
-  //     }
-  //   };
-  //   fetchNewsletter();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   return (
     <div>
       <section className='layout_max_width'>
