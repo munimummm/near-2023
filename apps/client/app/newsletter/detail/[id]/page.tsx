@@ -63,14 +63,17 @@ const NewsletterDetail = ({ params }: { params: { id: number } }) => {
               {userSession?.email} |
             </div>
             <div className='ml-[10px] text-xs pt-[2px] tablet:pt-[10px]'>
-              {/* {detail[0]?.created_at} */}
+              {detail[0]?.created_at
+                .substr(0, 10)
+                .replace('-', '.')
+                .replace('-', '.')}
             </div>
           </div>
         </div>
         <div className='pl-[12px] mb-[48px]'>{detail[0]?.subheading}</div>
         <TopCarousel slides={TopData} />
         <div className='mt-[48px] px-[24px] mb-[364px]'>
-          {/* {detail[0]?.article} */}
+          {detail[0]?.article}
         </div>
       </section>
       <Footer />

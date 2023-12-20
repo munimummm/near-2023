@@ -50,7 +50,12 @@ const NewsletterCard = () => {
                 <div className='absolute -bottom-10 bg-white shadow-xl pt-[24px] pl-[32px] mobile:w-[423px] mobile:h-[240px] tablet:w-[461px] tablet:h-[288px] desktop:w-[575px] desktop:h-[264px]'>
                   <div className='flex flex-row justify-between mobile:w-[170px] mobile:mb-[16px] tablet:w-[200px]'>
                     <Tag mode='main'>니어 소식</Tag>
-                    <div className='flex items-center'>2023.12.11</div>
+                    <div className='flex items-center'>
+                      {data[i].created_at
+                        .substr(0, 10)
+                        .replace('-', '.')
+                        .replace('-', '.')}
+                    </div>
                   </div>
                   <div className='grid flex flex-col w-[204px] h-[137px]'>
                     <Link
