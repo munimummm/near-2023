@@ -55,29 +55,15 @@ const NewsletterHome = () => {
     router.push('/newsletter/list');
   };
 
-  // useEffect(() => {
-  //   const fetchNewsletter = async () => {
-  //     let { data: newsletter, error } = await supabase
-  //       .from('newsletter')
-  //       .select('*');
-
-  //     if (newsletter != null) {
-  //       setNews(newsletter);
-  //     }
-
-  //     if (error instanceof Error) {
-  //       throw new Error(error.message);
-  //     }
-  //   };
-  //   fetchNewsletter();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  const handleSignOut = () => {
+    router.push('/');
+  };
 
   return (
     <div>
       <section className='layout_max_width'>
         <div>
-          <Top />
+          <Top handleSignOut={handleSignOut} />
         </div>
         <div className='mt-[6.25rem] pl-[2.5rem] mobile:mb-[1.875rem] desktop:mb-[4.8125rem]'>
           <Breadcrumb items={['뉴스레터', '홈']} />
