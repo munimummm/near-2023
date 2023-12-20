@@ -8,9 +8,7 @@ export { default as Breadcrumb } from './components/breadcrumb/Breadcrumb';
 
 // buttons
 export * from './components/buttons/Button';
-export { default as Button } from './components/buttons/Button';
 export * from './components/buttons/GraphicButtons';
-export { default as GraphicButtons } from './components/buttons/GraphicButtons';
 export { default as PdfUploadButton } from './components/buttons/PdfUploadButton';
 
 // cards
@@ -52,7 +50,6 @@ export { default as IconWrapper } from './components/icon/IconWrapper';
 
 // imagebox
 export * from './components/imagebox/ImageBox';
-export { default as ImageBox } from './components/imagebox/ImageBox';
 
 // Inputfilebutton
 export { default as InputFileButton } from './components/Inputfilebutton/InputFileButton';

@@ -94,16 +94,16 @@ const NewsletterHome = () => {
               NEAR 뉴스레터
             </div>
             <div className='flex flex-col w-[300px] h-[79px]'>
-              <span className='text-white text-xs'>
+              <span className='text-xs text-white'>
                 우리는 어쩌면 유기견에 대해 잘 모를 수도 있어요
               </span>
-              <span className='text-white text-xs'>
+              <span className='text-xs text-white'>
                 서로에 대해 조금씩 알아갈 수 있도록
               </span>
-              <span className='text-white text-xs'>
+              <span className='text-xs text-white'>
                 NEAR가 우리 근처의 유기견 이야기들을
               </span>
-              <span className='text-white text-xs'>
+              <span className='text-xs text-white'>
                 매주 한 번 전달해 드릴게요
               </span>
             </div>

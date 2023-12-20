@@ -21,7 +21,6 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const IsLogin: Story = {
   args: {
-    isLogin: true,
     backgroundColor: 'white',
     hasBoxShadow: true,
   },
@@ -29,7 +28,6 @@ export const IsLogin: Story = {
 
 export const IsNotLogin: Story = {
   args: {
-    isLogin: false,
     backgroundColor: 'white',
     hasBoxShadow: true,
   },

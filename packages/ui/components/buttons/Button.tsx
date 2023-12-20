@@ -90,7 +90,7 @@ const ButtonModeStyle = {
  * - `기본값` — ""
  * - `타입` — `string`
  */
-function Button({
+export function Button({
   type = 'button',
   mode = 'main',
   isDisabled = false,
@@ -469,5 +469,3 @@ export function ButtonMedium({
     </button>
   );
 }
-
-export default Button;

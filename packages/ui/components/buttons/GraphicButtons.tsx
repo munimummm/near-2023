@@ -24,7 +24,7 @@ function GraphicButton({ href, children }: GraphicButtonProps) {
  *
  * @desc profile 페이지의 그래픽 버튼 UI 컴포넌트
  */
-function GraphicButtons() {
+export function GraphicButtons() {
   return (
     <section className='flex items-center gap-20'>
       <GraphicButton href='/tpdiary'>
@@ -85,5 +85,3 @@ function GraphicButtons() {
     </section>
   );
 }
-
-export default GraphicButtons;

@@ -2,7 +2,7 @@
 import { useForm } from '@near/react-hook-form';
 import { createClientComponentClient } from '@near/supabase';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Button, Logo, TextInput } from 'ui';
 
 function Page() {
@@ -11,15 +11,26 @@ function Page() {
   const [data, setData] = useState(false);
   const [show, setShow] = useState(false);
   const { control, handleSubmit, getValues } = useForm();
-  useEffect(() => {
-    (async () => {
-      const { data: session } = await supabase.auth.getSession();
-      if (session.session) {
-        router.push('/');
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const getURL = () => {
+    let url =
+      process?.env?.NEXT_PUBLIC_SITE_URL ?? // Set this to your site URL in production env.
+      process?.env?.NEXT_PUBLIC_VERCEL_URL ?? // Automatically set by Vercel.
+      'http://localhost:3000/';
+    // Make sure to include `https://` when not localhost.
+    url = url.includes('http') ? url : `https://${url}`;
+    // Make sure to include a trailing `/`.
+    url = url.charAt(url.length - 1) === '/' ? url : `${url}/`;
+    return url;
+  };
+  // useEffect(() => {
+  //   (async () => {
+  //     const { data: session } = await supabase.auth.getSession();
+  //     if (session.session) {
+  //       router.push('/');
+  //     }
+  //   })();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
   async function getProfile(text: string) {
     const { data } = await supabase
       .from('user_email_list')
@@ -52,7 +63,7 @@ function Page() {
             })}
             className='flex gap-2 items-center mt-8'
           >
-            <TextInput defaultValue={''} control={control} name={'email'} />
+            <TextInput defaultValue='' control={control} name={'email'} />
             <button className='w-40 bg-theme-main px-1 py-2 rounded-md text-bg-white text-sm'>
               이메일 찾기
             </button>
@@ -66,15 +77,13 @@ function Page() {
                 type='button'
                 onClick={async () => {
                   if (data) {
-                    await supabase.auth.resetPasswordForEmail(
+                    alert('입력하신 메일의 메일함을 확인해주세요');
+                    return await supabase.auth.resetPasswordForEmail(
                       getValues().email,
                       {
-                        redirectTo: `https://nearbyyou.vercel.app/login/findpassword/${encodeURIComponent(
-                          getValues().email,
-                        )}`,
+                        redirectTo: `${getURL()}/login/findpassword/update-password`,
                       },
                     );
-                    alert('메일함을 확인해주세요');
                   } else {
                     router.push('/signup');
                   }

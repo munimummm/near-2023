@@ -5,15 +5,18 @@
     "build-dev": "dotenv -e .env.development -- turbo run build",
     "build-prod": "dotenv -e .env.production -- turbo run build",
     "dev": "dotenv -e .env.development -- turbo run dev",
+    "dev:client": "dotenv -e .env.development -- turbo run dev --filter=client",
+    "dev:admin": "dotenv -e .env.development -- turbo run dev --filter=admin",
     "dev-local": "dotenv -e .env.development.local -- turbo run dev",
     "storybook": "dotenv -e .env.development -- turbo run storybook --filter=storybook",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
-    "chromatic": "turbo run chromatic --filter=storybook "
+    "chromatic": "turbo run chromatic --filter=storybook"
   },
   "devDependencies": {
     "@turbo/gen": "^1.9.7",
+    "chromatic": "10.1.0",
     "dotenv-cli": "^7.3.0",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
@@ -27,8 +30,5 @@
     "apps/*",
     "packages/*",
     "supabase"
-  ],
-  "dependencies": {
-    
-  }
+  ]
 }
