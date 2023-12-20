@@ -79,9 +79,9 @@ const NewsletterList = () => {
               더 많은 뉴스레터 보기
             </button>
           </div>
-          <div className='tablet:flex tablet:justify-center tablet:mt-[100px] mobile:hidden'>
-            {/* <Pagination total={5} /> */}
-          </div>
+          {/* <div className='tablet:flex tablet:justify-center tablet:mt-[100px] mobile:hidden'>
+            <Pagination total={5} />
+          </div> */}
         </section>
         <div className='mt-[200px]'>
           <Footer />

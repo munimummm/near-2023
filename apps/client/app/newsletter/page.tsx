@@ -10,7 +10,7 @@ import {
   Top,
   TopSuspense,
 } from 'ui';
-import NewsletterCard from '../../../components/newsletter/NewsletterCard';
+import NewsletterCard from '../../components/newsletter/NewsletterCard';
 import { useForm } from '@near/react-hook-form';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -140,9 +140,9 @@ const NewsletterHome = () => {
             {/* )} */}
             {/* {visible && <NewsletterCard />} */}
           </div>
-          <div className='tablet:flex tablet:justify-center tablet:mt-[100px] mobile:hidden'>
-            {/* <Pagination total={5} /> */}
-          </div>
+          {/* <div className='tablet:flex tablet:justify-center tablet:mt-[100px] mobile:hidden'>
+            <Pagination total={5} />
+          </div> */}
         </section>
         <div className='mt-[200px]'>
           <Footer />
