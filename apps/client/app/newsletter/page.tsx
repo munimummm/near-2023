@@ -1,14 +1,13 @@
 'use client';
 
-import { User, createClientComponentClient } from '@near/supabase';
-import { useEffect, useState } from 'react';
+// import { User, createClientComponentClient } from '@near/supabase';
+import { useState } from 'react';
 import {
   Breadcrumb,
   Footer,
   // Pagination,
   TextInput,
   Top,
-  TopSuspense,
 } from 'ui';
 import NewsletterCard from '../../components/newsletter/NewsletterCard';
 import { useForm } from '@near/react-hook-form';
@@ -23,30 +22,30 @@ interface NewsletterHomeProps {
 
 const NewsletterHome = () => {
   const router = useRouter();
-  const supabase = createClientComponentClient();
+  // const supabase = createClientComponentClient();
   const { control } = useForm<NewsletterHomeProps>({
     defaultValues: {
       search: '',
     },
     mode: 'onChange',
   });
-  const [userSession, setUserSession] = useState<User | null>();
+  // const [userSession, setUserSession] = useState<User | null>();
   const [visible, setVisible] = useState<boolean>(false);
   // const [news, setNews] = useState<any[] | null>();
 
-  useEffect(() => {
-    const fetchSession = async () => {
-      let {
-        data: { user },
-      } = await supabase.auth.getUser();
+  // useEffect(() => {
+  //   const fetchSession = async () => {
+  //     let {
+  //       data: { user },
+  //     } = await supabase.auth.getUser();
 
-      if (user != null) {
-        setUserSession(user);
-      }
-    };
-    fetchSession();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //     if (user != null) {
+  //       setUserSession(user);
+  //     }
+  //   };
+  //   fetchSession();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const onClickMore = async () => {
     setVisible(!visible);
@@ -77,7 +76,9 @@ const NewsletterHome = () => {
   return (
     <div>
       <section className='layout_max_width'>
-        <div>{userSession ? <Top /> : <TopSuspense />}</div>
+        <div>
+          <Top />
+        </div>
         <div className='mt-[6.25rem] pl-[2.5rem] mobile:mb-[1.875rem] desktop:mb-[4.8125rem]'>
           <Breadcrumb items={['뉴스레터', '홈']} />
         </div>

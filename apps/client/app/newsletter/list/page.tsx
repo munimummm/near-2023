@@ -1,13 +1,12 @@
 'use client';
 
-import { User, createClientComponentClient } from '@near/supabase';
+// import { User, createClientComponentClient } from '@near/supabase';
 // import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import {
   Breadcrumb,
   Footer,
   Top,
-  TopSuspense,
   // Pagination
 } from 'ui';
 import NewsletterCard from '../../../components/newsletter/NewsletterCard';
@@ -16,29 +15,29 @@ import NewsletterCard from '../../../components/newsletter/NewsletterCard';
 
 const NewsletterList = () => {
   // const router = useRouter();
-  const supabase = createClientComponentClient();
-  const [userSession, setUserSession] = useState<User | null>();
+  // const supabase = createClientComponentClient();
+  // const [userSession, setUserSession] = useState<User | null>();
   // const [news, setNews] = useState<any[] | null>();
 
-  useEffect(() => {
-    const fetchSession = async () => {
-      let {
-        data: { user },
-      } = await supabase.auth.getUser();
+  // useEffect(() => {
+  //   const fetchSession = async () => {
+  //     let {
+  //       data: { user },
+  //     } = await supabase.auth.getUser();
 
-      if (user != null) {
-        setUserSession(user);
-      }
+  //     if (user != null) {
+  //       setUserSession(user);
+  //     }
 
-      // if (!data.session) {
-      //   router.push('/');
-      // } else {
-      //   console.log('session error');
-      // }
-    };
-    fetchSession();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //     // if (!data.session) {
+  //     //   router.push('/');
+  //     // } else {
+  //     //   console.log('session error');
+  //     // }
+  //   };
+  //   fetchSession();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   // useEffect(() => {
   //   const fetchNewsletter = async () => {
@@ -61,7 +60,9 @@ const NewsletterList = () => {
   return (
     <div>
       <section className='layout_max_width'>
-        <div>{userSession ? <Top /> : <TopSuspense />}</div>
+        <div>
+          <Top />
+        </div>
         <div className='mt-[6.25rem] pl-[2.5rem] mobile:mb-[1.875rem] desktop:mb-[4.8125rem]'>
           <Breadcrumb items={['뉴스레터', '전체 글']} />
         </div>
