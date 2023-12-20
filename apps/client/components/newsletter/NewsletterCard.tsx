@@ -34,7 +34,10 @@ const NewsletterCard = () => {
     <div className='desktop:grid desktop:grid-cols-2'>
       {data.map((a, i) => {
         return (
-          <div className='grid mt-[100px] flex justify-center' key={a}>
+          <div
+            className='grid mt-[100px] flex justify-center'
+            key={a.newsletter_id}
+          >
             <section className='layout-max-width'>
               <div className='mobile:relative mobile:flex mobile:justify-center tablet:w-[496px] tablet:h-[500px] tablet:flex tablet:justify-center desktop:w-[620px] desktop:h-[500px]'>
                 <Image

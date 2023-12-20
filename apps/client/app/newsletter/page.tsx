@@ -10,7 +10,7 @@ import {
   Top,
   TopSuspense,
 } from 'ui';
-import NewsletterCard from '../../../components/newsletter/NewsletterCard';
+import NewsletterCard from '../../components/newsletter/NewsletterCard';
 import { useForm } from '@near/react-hook-form';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
