@@ -186,6 +186,9 @@ function NearAnimalPostPage() {
                   );
                 })}
               </div>
+              <label className='text-[#545454] mt-6' htmlFor='rescueSpot'>
+                상세정보 및 특이사항
+              </label>
               <TextArea control={control} name='text' />
             </section>
           </fieldset>
