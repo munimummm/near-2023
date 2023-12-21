@@ -5,8 +5,11 @@ import { useForm } from '@near/react-hook-form';
 import { createClientComponentClient } from '@near/supabase';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Icon, Tag, TextArea, TextInput } from 'ui';
+import { Icon, RadioTag, Tag, TextArea, TextInput } from 'ui';
 import Top from 'ui/components/top/Top';
+import DatepickerHeader from '../../../components/signup/DatapickerHeader';
+import 'react-datepicker/dist/react-datepicker.css';
+import '../../signup/signupclient/datepicker/datepicker.css';
 
 const useMultipleSelection = (maxSelection: number) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
@@ -52,7 +55,7 @@ function NearAnimalPostPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const cookies = new Cookies();
-  const maxSelection = 3;
+  const maxSelection = 5;
   const { selectedItems, toggleItem, clearSelection } =
     useMultipleSelection(maxSelection);
   const TAG = [
@@ -112,44 +115,20 @@ function NearAnimalPostPage() {
               <label className='flex flex-col' htmlFor='shelterName'>
                 <span className='text-[#545454]'>보호소 이름</span>
                 <span className='font-semibold'>
-                  {`${name && name[0].shelter_name} 보호소`}
+                  {`${name && name[0]?.shelter_name} 보호소`}
                 </span>
               </label>
               <label className='text-[#545454]' htmlFor='rescueSpot'>
                 구조 장소
               </label>
               <div className='max-w-[553px] flex justify-center gap-3'>
-                <TextInput borderRadius control={control} name='rescueDate' />
-                <Tag
-                  mode='gray'
-                  className='text-sm desktop:text-sm tablet:text-sm h-[2.1875rem] whitespace-nowrap'
-                >
-                  입력
-                </Tag>
-              </div>
-              <label className='text-[#545454]' htmlFor='rescueSpot'>
-                구조일
-              </label>
-              <div className='max-w-[553px] flex justify-center gap-3'>
-                <TextInput borderRadius control={control} name='rescueDate' />
-                <Tag
-                  mode='gray'
-                  className='text-sm desktop:text-sm tablet:text-sm h-[2.1875rem] whitespace-nowrap'
-                >
-                  <Icon icon={'ic_calender'} sizes={'md'} state={'default'} />
-                </Tag>
-              </div>
-              <label className='text-[#545454]' htmlFor='rescueSpot'>
-                구조일
-              </label>
-              <div className='max-w-[553px] flex justify-center gap-3'>
-                <TextInput borderRadius control={control} name='rescueDate' />
-                <Tag
-                  mode='gray'
-                  className='text-sm desktop:text-sm tablet:text-sm h-[2.1875rem] whitespace-nowrap'
-                >
-                  <Icon icon={'ic_calender'} sizes={'md'} state={'default'} />
-                </Tag>
+                <TextInput
+                  className='desktop:w-[474px] tablet:w-[474px] mobile:w-[468px]'
+                  borderRadius
+                  control={control}
+                  name='rescueDate'
+                  placeholder='ex) 서울시 뚝섬유원지 부근'
+                />
               </div>
               <label className='text-[#545454]' htmlFor='rescueSpot'>
                 구조일
@@ -164,8 +143,137 @@ function NearAnimalPostPage() {
                   <Icon icon={'ic_calender'} sizes={'md'} state={'default'} />
                 </Tag>
               </div>
+              <label className='text-[#545454]' htmlFor='admission_date'>
+                입소일
+              </label>
+              <div className='max-w-[553px] flex justify-center gap-3'>
+                <TextInput
+                  borderRadius
+                  control={control}
+                  name='admission_date'
+                />
+                <DatepickerHeader />
+                <Tag
+                  type='button'
+                  mode='gray'
+                  className='text-sm desktop:text-sm tablet:text-sm h-[2.1875rem] whitespace-nowrap'
+                >
+                  <Icon icon={'ic_calender'} sizes={'md'} state={'default'} />
+                </Tag>
+              </div>
               <label className='text-[#545454]' htmlFor='rescueSpot'>
-                특징
+                보호 종료일
+              </label>
+              <div className='max-w-[553px] flex justify-center gap-3'>
+                <TextInput borderRadius control={control} name='rescueDate' />
+                <Tag
+                  type='button'
+                  mode='gray'
+                  className='text-sm desktop:text-sm tablet:text-sm h-[2.1875rem] whitespace-nowrap'
+                >
+                  <Icon icon={'ic_calender'} sizes={'md'} state={'default'} />
+                </Tag>
+              </div>
+              <div className='mobile:flex mobile:justify-between items-center desktop:block mobile:mt-4 tablet:block desktop:mt-0 tablet:mt-0'>
+                <label className='text-[#545454]' htmlFor='rescueSpot'>
+                  품종
+                </label>
+                <div className='flex gap-4 desktop:mt-4 tablet:mt-4'>
+                  <RadioTag
+                    className='desktop:w-[252px]  mobile:whitespace-nowrap'
+                    name={'residence'}
+                    value='apart'
+                    control={control}
+                  >
+                    강아지
+                  </RadioTag>
+                  <TextInput
+                    borderRadius
+                    className='h-8 desktop:w-[12.5rem] tablet:w-[12.5rem]'
+                    placeholder='ex) 포메라니안'
+                    name={'race_detail'}
+                    control={control}
+                  />
+                </div>
+              </div>
+              <div className='mobile:flex mobile:justify-between items-center desktop:block tablet:block mobile:mt-4 desktop:mt-0 tablet:mt-0'>
+                <label className='text-[#545454]' htmlFor='rescueSpot'>
+                  크기 <small>(단위: kG)</small>
+                </label>
+                <div className='flex items-center desktop:mt-4 tablet:mt-4r'>
+                  <TextInput
+                    borderRadius
+                    className='h-8 mobile:w-[200px]'
+                    placeholder='ex) 4'
+                    name={'race_detail'}
+                    control={control}
+                  />
+                </div>
+              </div>
+
+              <div className='mobile:flex mobile:justify-between items-center desktop:block tablet:block mobile:mt-4 desktop:mt-0 tablet:mt-0'>
+                <div className='text-[#545454]'>성별</div>
+                <div className='flex gap-4 desktop:mt-4 tablet:mt-4'>
+                  <RadioTag
+                    className='desktop:w-[252px]'
+                    name='gender'
+                    value='male'
+                    control={control}
+                  >
+                    수컷
+                  </RadioTag>
+                  <RadioTag
+                    className='desktop:w-[252px]'
+                    name='gender'
+                    value='female'
+                    control={control}
+                  >
+                    암컷
+                  </RadioTag>
+                </div>
+              </div>
+              <div className='mobile:flex mobile:justify-between items-center desktop:block tablet:block mobile:mt-4'>
+                <label className='text-[#545454]' htmlFor='rescueSpot'>
+                  추정나이
+                </label>
+                <div className='flex gap-4 desktop:mt-4 tablet:mt-4'>
+                  <TextInput
+                    borderRadius
+                    className='h-8 mobile:w-[200px]'
+                    placeholder='ex) 5'
+                    name={'race_detail'}
+                    control={control}
+                  />
+                </div>
+              </div>
+
+              <div className='mobile:flex mobile:justify-between items-center desktop:block tablet:block mobile:mt-4 desktop:mt-0 tablet:mt-0'>
+                <div className='text-[#545454]'>건강상태</div>
+                <div className='flex gap-4 desktop:mt-4 tablet:mt-4'>
+                  <RadioTag
+                    className='desktop:w-[252px] tablet:w-[252px]'
+                    name='health'
+                    value='양호'
+                    control={control}
+                  >
+                    양호
+                  </RadioTag>
+                  <RadioTag
+                    className='desktop:w-[252px] tablet:w-[252px]'
+                    name='health'
+                    value='주의 필요'
+                    control={control}
+                  >
+                    주의 필요
+                  </RadioTag>
+                </div>
+              </div>
+
+              <label
+                className='text-[#545454] mobile:mt-4'
+                htmlFor='rescueSpot'
+              >
+                특징 <small>(다섯개 선택해주세요)</small>
               </label>
               <div className='inline-grid grid-rows-2 mobile:grid-cols-4 tablet:grid-cols-4 desktop:grid-cols-7 gap-y-2 mobile:gap-x-3 tablet:gap-x-4 desktop:gap-x-4 justify-items-start desktop:w-3/4 w-fit'>
                 {TAG.map((item, index) => {
