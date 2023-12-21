@@ -11,6 +11,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='ko'>
+      <head>
+        <title>NEAR - 유기견종합정보플랫폼</title>
+      </head>
       <body>
         <Providers>
           <ReactCookies>
