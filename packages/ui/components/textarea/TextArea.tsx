@@ -28,7 +28,8 @@ const styles = {
   textareaContainer: 'relative w-full h-full rounded bg-[#F9F9F9]',
   textareaDefault:
     'w-full h-full p-3 pb-8 text-sm text-left resize-none text-text-gray rounded bg-[#F9F9F9]',
-  textareaFocused: 'focus:text-black focus:outline-theme-main',
+  textareaFocused:
+    'focus:text-black focus:outline-offset-[-1px] focus:outline-1 focus:outline-theme-main',
   textareaExceeding: 'focus:outline-text-red outline-text-red',
   counterContainer: 'absolute right-2 bottom-3',
   counterText: 'text-sm text-black',
@@ -62,7 +63,7 @@ function TextArea({
   const maxText = field.value?.length >= maxLength;
 
   return (
-    <div className={`h-[16.1875rem] ${WidthSize[size]}`}>
+    <div className={`h-[16.1875rem] ${WidthSize[size]} w-full `}>
       <div className={styles.textareaContainer}>
         <textarea
           {...field}
