@@ -11,6 +11,7 @@ interface TagProps {
   handleTagClick?: React.MouseEventHandler<HTMLButtonElement>;
   handleXClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
+  type?: 'submit' | 'button' | 'reset';
 }
 
 const BaseStyle =
@@ -62,6 +63,7 @@ const Tag = ({
   handleTagClick,
   handleXClick,
   className,
+  type = 'submit',
 }: TagProps) => {
   return (
     <button
@@ -72,6 +74,7 @@ const Tag = ({
 
         className,
       )}
+      type={type}
       onClick={handleTagClick}
     >
       {children}
