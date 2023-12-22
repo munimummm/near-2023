@@ -1,18 +1,12 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import TextInput from 'ui/components/textinput/TextInput';
 import { useForm } from '@near/react-hook-form';
 import { ButtonXL } from 'ui/components/buttons/Button';
 import RadioTag from 'ui/components/tags/RadioTag';
-import { Session, createClientComponentClient } from '@near/supabase';
+import { createClientComponentClient } from '@near/supabase';
 import { useRouter } from 'next/navigation';
-import { Footer, Top, TopSuspense } from 'ui';
-
-// interface Props {
-//   params: {
-//     username: string;
-//   };
-// }
+import { Footer, Top } from 'ui';
 
 interface UserPetType {
   user_pet_name?: string;
@@ -22,64 +16,66 @@ interface UserPetType {
   user_pet_type?: 'dog' | 'cat' | 'etc';
 }
 
-function UserPetProfilePage() {
+function UserPetProfilePage({ params }: { params: { id: number } }) {
   const router = useRouter();
-  const [userSession, setuserSession] = useState<Session | null>();
   const supabase = createClientComponentClient();
-
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<UserPetType>({
     defaultValues: {
       user_pet_name: '',
       user_pet_age: '',
       user_pet_gender: undefined,
-      user_pet_size: undefined,
+      user_pet_size: 0,
       user_pet_type: undefined,
     },
     mode: 'onChange',
   });
 
-  useEffect(() => {
-    const fetchSession = async () => {
-      try {
-        const { data } = await supabase.auth.getSession();
-        if (data) {
-          setuserSession(data.session);
-        }
-      } catch (error) {
-        console.error('실패', error);
+  const fetchData = async () => {
+    try {
+      const { data } = await supabase
+        .from('user_pet_profile')
+        .select('*')
+        .eq('user_pet_id', params.id);
+      if (data && data.length > 0) {
+        setValue('user_pet_name', data[0].user_pet_name || '');
+        setValue('user_pet_age', data[0].user_pet_age || '');
+        setValue('user_pet_gender', data[0].user_pet_gender || undefined);
+        setValue('user_pet_size', data[0].user_pet_size || undefined);
+        setValue('user_pet_type', data[0].user_pet_type || undefined);
       }
-    };
-
-    fetchSession();
-
-    if (!userSession) {
-      // router.push('/');
+    } catch (error) {
+      console.error('실패', error);
     }
+  };
+
+  useEffect(() => {
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSubmit = async (formData) => {
     const petProfileData = {
       ...formData,
-      id: userSession?.user.id,
+      user_pet_id: params.id,
     };
     const { error } = await supabase
       .from('user_pet_profile')
-      .insert([petProfileData]);
+      .update([petProfileData])
+      .eq('user_pet_id', params.id);
     if (error) {
       console.error('데이터 추가 실패:', error);
     }
     console.log('데이터 추가 성공:', petProfileData);
     router.push(`/profile`);
   };
-
   return (
     <>
-      {userSession ? <Top /> : <TopSuspense />}
+      <Top />
       <div className='flex flex-col pt-11 tablet:pt-[4.25rem] desktop:pt-[4.25rem] gap-4 w-[30rem] tablet:w-[48rem] desktop:w-[90rem] mb-28'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1 className='flex justify-center py-10 text-xl font-bold tablet:justify-start desktop:justify-start tablet:py-8 desktop:py-8 tablet:px-20 desktop:px-20'>

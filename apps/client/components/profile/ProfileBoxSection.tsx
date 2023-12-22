@@ -20,7 +20,7 @@ function ProfileBoxSection({ ...props }: ProfileBoxSectionProps) {
     if (props.userRole === 'normal_user') {
       const { data: pet } = await supabase
         .from('user_pet_profile')
-        .select('user_pet_age, user_pet_gender, user_pet_name');
+        .select('user_pet_age, user_pet_gender, user_pet_name, user_pet_id');
       setPetProfile(pet);
     }
   }
@@ -44,7 +44,7 @@ function ProfileBoxSection({ ...props }: ProfileBoxSectionProps) {
       {/* <AddPet backgroundColor='white' href={'/profile/pet'} /> */}
       {props.userRole === 'normal_user' && petProfile?.length !== 0 && (
         <ModifyPet
-          href={`/profile/pet`}
+          href={`/profile/pet/${petProfile && petProfile[0].user_pet_id}`}
           name={petProfile && petProfile[0].user_pet_name}
           src={'/images/profile/img_test.jpg'}
           gender={
