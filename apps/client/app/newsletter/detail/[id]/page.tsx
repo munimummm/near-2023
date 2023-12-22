@@ -72,7 +72,7 @@ const NewsletterDetail = ({ params }: { params: { id: number } }) => {
         </div>
         <div className='pl-[0.75rem] mb-[3rem]'>{detail[0]?.subheading}</div>
         <TopCarousel slides={TopData} />
-        <div className='mt-[3rem] px-[1.5rem] mb-[22.75rem]'>
+        <div className='mobile:w-full tablet:w-full desktop:w-full whitespace-pre-wrap mt-[3rem] px-[1.5rem] mb-[22.75rem]'>
           {detail[0]?.article}
         </div>
       </section>
