@@ -4,6 +4,7 @@ import { getYear, getMonth } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Tag, TextInput } from 'ui';
 import { useForm } from '@near/react-hook-form';
+import { ko } from 'date-fns/esm/locale';
 
 interface DatepickerProps {
   birth?: string;
@@ -130,6 +131,7 @@ const DatepickerHeader = () => {
           setSelectedDate(date);
         }}
         open={datePicker}
+        locale={ko}
       />
     </div>
   );
