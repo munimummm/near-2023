@@ -47,7 +47,7 @@ function NearNews() {
         {dummy.map((item, index) => (
           <li key={`home_news_${index}`}>
             <PostThumbnailCard
-              href={`/newsletter/${item.id}`}
+              href={`/newsletter/detail/${item.id}`}
               category={item.category}
               title={item.title}
               date={item.date}
