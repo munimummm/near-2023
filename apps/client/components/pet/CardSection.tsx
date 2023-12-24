@@ -1,26 +1,58 @@
 'use client';
 
-import { ButtonMedium, CardWithLike, Icon } from 'ui';
+import { ButtonMedium, CardWithLike, Icon, Pagination } from 'ui';
 import { DummyNearPets } from './dummy';
 import { useRouter } from 'next/navigation';
+import { Session, createClientComponentClient } from '@near/supabase';
+import { useEffect, useState } from 'react';
 
 function NearAnimalCardSection() {
   const router = useRouter();
   const data = DummyNearPets;
 
+  const supabase = createClientComponentClient();
+  const [userSession, setUserSession] = useState<Session | null>();
+
+  async function getUserSession() {
+    const { data, error } = await supabase.auth.getSession();
+    if (data) {
+      setUserSession(data.session);
+    }
+    if (error) {
+      console.log(error);
+    }
+  }
+
+  function handlePostButtonClick(url: string) {
+    router.push(url);
+  }
+
+  useEffect(() => {
+    getUserSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <section className='flex flex-col items-center w-full mt-[76px] mobile:mt-[76px] tablet:mt-[123px] desktop:mt-[65px]'>
       {/* 근처 동물 찾기, 유기견 등록하기 버튼 */}
       <div className='w-full flex justify-end items-center gap-6 pr-[1.875rem] desktop:mr-20'>
-        <ButtonMedium mode='outline'>
-          근처 동물 찾기
-          <Icon icon={'ic_chevron_down'} sizes={'md'} state={'active'} />
-        </ButtonMedium>
+        <div className='relative'>
+          <ButtonMedium mode='outline'>
+            근처 동물 찾기
+            <Icon icon={'ic_chevron_down'} sizes={'md'} state={'active'} />
+          </ButtonMedium>
+          {/* <div className='absolute z-10 flex flex-col mt-[0.625rem] -translate-x-1/2 bg-white py-2 pl-6 pr-4 border rounded-lg shadow left-1/2 border-text-gray'>
+            <span>asdasdasd</span>
+            <span>asdasdasd</span>
+            <span>asdasdasd</span>
+            <span>asdasdasd</span>
+          </div> */}
+        </div>
         <ButtonMedium
           className='h-10'
-          onClick={() => {
-            router.push('/pet/post');
-          }}
+          onClick={() =>
+            handlePostButtonClick(userSession ? `/pet/post` : '/login')
+          }
         >
           유기견 등록하기
         </ButtonMedium>
@@ -40,7 +72,7 @@ function NearAnimalCardSection() {
           </li>
         ))}
       </ul>
-      {/* <Pagination total={5} /> */}
+      <Pagination total={1} currentPage={1} onPageChange={function () {}} />
     </section>
   );
 }
