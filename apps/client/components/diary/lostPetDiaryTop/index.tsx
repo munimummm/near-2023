@@ -1,6 +1,5 @@
 'use client';
 import { Icon } from 'ui/components/icon/Icon';
-// import { Tag } from 'ui';
 import StoryTimeline from '../storyTimeLine';
 import { createClientComponentClient } from '@near/supabase';
 import { useEffect, useState } from 'react';
@@ -11,20 +10,6 @@ interface Props {
   params: {
     pet_id: string;
   };
-}
-// interface TagGroup {
-//   related_first_tag_group?: string | null;
-//   related_second_tag_group?: string | null;
-//   related_third_tag_group?: string | null;
-// }
-// interface LostPetDiaryProps {
-//   name?: string;
-//   admission_date?: string;
-//   recue_date?: string;
-//   created_at?: string;
-// }
-interface TagGroup {
-  tag_name: string;
 }
 
 interface PetData {
@@ -37,13 +22,12 @@ interface PetData {
   race: string;
   race_detail: string;
   recue_date?: string;
-  related_first_tag_group?: TagGroup;
-  related_second_tag_group?: TagGroup;
-  related_third_tag_group?: TagGroup;
+  tag?: string[];
   rescue_spot: string;
   shelter_id: string;
   size?: string | null;
   state_of_health: string;
+  comment?: string;
 }
 
 function TopImage() {
@@ -62,11 +46,7 @@ function LostPetDiaryTop({ params }: Props) {
   const fetchAnimal = async () => {
     const { data: petData, error } = await supabase
       .from('lost_pet_information')
-      .select(
-        `*,related_first_tag_group:related_first_tag(tag_name),
-      related_second_tag_group:related_second_tag(tag_name),
-      related_third_tag_group:related_third_tag(tag_name)`,
-      )
+      .select(`*`)
       .eq('lost_pet_id', params.pet_id);
 
     if (error) {
@@ -100,24 +80,26 @@ function LostPetDiaryTop({ params }: Props) {
 tablet:ml-10 tablet:mt-10 tablet:pt-[57px] tablet:gap-[26px] tablet:row-span-2 desktop:row-span-1'
           >
             <div className='flex gap-2 pl-6 mb-6 tablet:order-2'>
-              <Tag mode='gray'>{item.related_first_tag_group?.tag_name}</Tag>
-              <Tag mode='gray'>{item.related_second_tag_group?.tag_name}</Tag>
-              <Tag mode='gray'>{item.related_third_tag_group?.tag_name}</Tag>
+              {item.tag?.slice(0, 3).map((item, index) => (
+                <div key={index}>
+                  <Tag mode='gray'>{item}</Tag>
+                </div>
+              ))}
             </div>
-            <div className='flex items-center'>
+            <div className='flex items-center justify-between'>
               <div className='text-3xl font-bold text-white tablet:text-black pl-7 tablet:order-1'>
                 {item.name}의 일기
               </div>
-              <div className='hidden justify-center gap-4 tablet:flex pl-7  tablet:order-1 desktop:mr-[400px]'>
-                {/* <Icon state='default' icon='ic_heart' sizes={'md'} /> */}
-                {/* <IconText text='20' icon='ic_heart' sizes={'sm'} /> */}
-              </div>
+              {/* <div className='hidden justify-center gap-4 tablet:flex pl-7  tablet:order-1 desktop:mr-[400px]'>
+                <Icon state='default' icon='ic_heart' sizes={'md'} />
+                <IconText text='20' icon='ic_heart' sizes={'sm'} />
+              </div> */}
               <div className='order-3 hidden rotate-90 tablet:flex'>
                 <Icon state='default' icon='ic_more' sizes={'sm'} />
               </div>
             </div>
             <div className='text-xl font-normal text-white tablet:text-black pl-7 tablet:order-3 mb-9'>
-              안녕하세요 한줄소개입니다.
+              {item.comment}
             </div>
 
             <div className='flex gap-4 mb-8 pl-7 tablet:order-1 tablet:hidden'>

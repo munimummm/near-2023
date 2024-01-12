@@ -1,13 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
 import TextEditorWriter from 'ui/components/texteditor/TextEditorWriter';
-import { useForm } from 'react-hook-form';
+import { Control, useForm } from '@near/react-hook-form';
 import TextInput from 'ui/components/textinput/TextInput';
-// import Breadcrumb from 'ui/components/breadcrumb/Breadcrumb';
 import { ImageBox } from 'ui/components/imagebox/ImageBox';
 import { ButtonXL, RadioTag } from 'ui';
 import { Session, createClientComponentClient } from '@near/supabase';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 interface petData {
   name: string;
@@ -17,16 +16,23 @@ interface TagProps {
   tag_type: string;
   tag_name: string;
 }
-// interface TagGroupProps extends TagProps {
-//   name: string;
-// }
+interface DiaryTitleProps {
+  title: string;
+  subTitle: string;
+}
 
 interface CareDiaryType {
   subject?: string;
   article?: string;
 }
+interface TagSectionProps {
+  name: string;
+  title: string;
+  tags: TagProps[];
+  control: Control;
+}
 
-const DiaryTitle = ({ title, subTitle }) => (
+const DiaryTitle: React.FC<DiaryTitleProps> = ({ title, subTitle }) => (
   <div className='w-full'>
     <div className='mb-8  pl-8 pr-2.5 pt-2.5'>
       <p className='mb-1 text-xs  text-[#242424]'>{title}</p>
@@ -36,27 +42,48 @@ const DiaryTitle = ({ title, subTitle }) => (
   </div>
 );
 
+const TagGroup: React.FC<TagSectionProps> = ({
+  title,
+  tags,
+  control,
+  name,
+}) => (
+  <div className='flex flex-col items-start justify-center gap-4 px-8 py-2 bg-white'>
+    <div className='flex items-center gap-2.5 pl-1'>
+      <p className='text-lg text-[#545454]'>{title}</p>
+    </div>
+    <div className='flex flex-wrap gap-2'>
+      {tags.map((tag) => (
+        <RadioTag
+          key={tag.tag_id}
+          control={control}
+          name={name}
+          value={`${tag.tag_id}`}
+        >
+          {tag.tag_name}
+        </RadioTag>
+      ))}
+    </div>
+  </div>
+);
+
 function DiaryWritePage({ params }) {
-  // const router = useRouter();
+  const router = useRouter();
   const [userSession, setuserSession] = useState<Session | null>();
   const supabase = createClientComponentClient();
   const [characterTags, setCharacterTags] = useState<TagProps[]>([]);
   const [trainingTags, setTrainingTags] = useState<TagProps[]>([]);
   const [moodTags, setMoodTags] = useState<TagProps[]>([]);
   const [petData, setPetData] = useState<petData[]>([]);
-  console.log(params);
-  const {
-    control,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm<CareDiaryType>({
+  const { control, handleSubmit, watch } = useForm<CareDiaryType>({
     defaultValues: {
       subject: '',
       article: '',
     },
     mode: 'onChange',
   });
-
+  const watchedFields = watch();
+  const isFormFilled = watchedFields.subject && watchedFields.article;
   useEffect(() => {
     const fetchSession = async () => {
       try {
@@ -86,7 +113,6 @@ function DiaryWritePage({ params }) {
       console.error(error);
       return;
     }
-    console.log(tag_group);
     const characterTags = tag_group.filter(
       (tag) => tag.tag_type === 'care_diary_character',
     );
@@ -113,7 +139,6 @@ function DiaryWritePage({ params }) {
     }
     if (petData) {
       setPetData(petData);
-      console.log('펫', petData);
     }
   };
   const petName = petData[0]?.name;
@@ -127,7 +152,6 @@ function DiaryWritePage({ params }) {
   const onSubmit = async (formData) => {
     const petProfileData = {
       ...formData,
-      // id: userSession?.user.id,
       related_lost_pet_id: params.pet_id,
       id: userSession?.user.id,
     };
@@ -138,15 +162,13 @@ function DiaryWritePage({ params }) {
       console.error('데이터 추가 실패:', error);
     }
     console.log('데이터 추가 성공:', petProfileData);
-    // router.push(`/profile`);
+    router.push('/diary');
   };
 
   return (
     <div className='relative overflow-hidden bg-white '>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='pl-4 pt-6 pb-[9px] mb-12'>
-          {/* <Breadcrumb  items={['근처소식', '임보일기작성']} /> */}
-        </div>
+        <div className='pl-4 pt-6 pb-[9px] mb-12'></div>
         <div className=''>
           <DiaryTitle
             title={`${petName}의 일기`}
@@ -158,7 +180,7 @@ function DiaryWritePage({ params }) {
                 className='h-12'
                 name='subject'
                 control={control}
-                placeholder='제목을 입력해 주세요.'
+                placeholder='제목을 입력해주세요.'
               />
             </div>
             <div className='pb-12'>
@@ -167,69 +189,36 @@ function DiaryWritePage({ params }) {
             <div className='flex gap-4 my-8 px-9'>
               <ImageBox />
             </div>
-            {/* 이미지 부분 수정 */}
           </div>
         </div>
         <section className='flex flex-col gap-8'>
-          <div className='flex flex-col items-start justify-center gap-4 px-8 py-2 bg-white'>
-            <div className='flex items-center gap-2.5 pl-1'>
-              <p className='text-lg text-[#545454]'>성격</p>
-            </div>
-            <div className='flex flex-wrap gap-2'>
-              {characterTags.map((tag) => (
-                <div key={tag.tag_id}>
-                  <RadioTag
-                    control={control}
-                    name={`related_first_tag`}
-                    value={`${tag.tag_id}`}
-                  >
-                    {tag.tag_name}
-                  </RadioTag>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className='flex flex-col items-start justify-center gap-4 px-8 py-2 bg-white'>
-            <div className='flex items-center gap-2.5 pl-1'>
-              <p className='text-lg text-[#545454]'>훈련 / 건강상태</p>
-            </div>
-            <div className='flex flex-wrap gap-2'>
-              {trainingTags.map((tag) => (
-                <div key={tag.tag_id}>
-                  <RadioTag
-                    control={control}
-                    name={`related_second_tag`}
-                    value={`${tag.tag_id}`}
-                  >
-                    {tag.tag_name}
-                  </RadioTag>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className='flex flex-col items-start justify-center gap-4 px-8 py-2 bg-white'>
-            <div className='flex items-center gap-2.5 pl-1'>
-              <p className='text-lg text-[#545454]'>기분</p>
-            </div>
-            <div className='flex flex-wrap gap-2'>
-              {moodTags.map((tag) => (
-                <div key={tag.tag_id}>
-                  <RadioTag
-                    control={control}
-                    name={`related_third_tag`}
-                    value={`${tag.tag_id}`}
-                  >
-                    {tag.tag_name}
-                  </RadioTag>
-                </div>
-              ))}
-            </div>
-          </div>
+          <TagGroup
+            title='성격'
+            tags={characterTags}
+            control={control}
+            name='related_first_tag'
+          />
+          <TagGroup
+            title='훈련 / 건강상태'
+            tags={trainingTags}
+            control={control}
+            name='related_second_tag'
+          />
+          <TagGroup
+            title='기분'
+            tags={moodTags}
+            control={control}
+            name='related_third_tag'
+          />
         </section>
         <div className='flex justify-center px-4 py-24'>
-          <ButtonXL type='submit'>작성완료</ButtonXL>
+          {isFormFilled ? (
+            <ButtonXL type='submit'>작성완료</ButtonXL>
+          ) : (
+            <ButtonXL type='submit' isDisabled>
+              작성완료
+            </ButtonXL>
+          )}
         </div>
       </form>
     </div>
