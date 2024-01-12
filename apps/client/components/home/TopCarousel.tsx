@@ -81,8 +81,8 @@ const TopCarousel: React.FC<PropType> = ({ slides, options, isNotHome }) => {
           rounded-full border cursor-pointer
           ${
             index === selectedIndex
-              ? 'bg-theme-main w-[12px] h-[12px]'
-              : 'bg-text-gray2 w-[8px] h-[8px]'
+              ? 'bg-theme-main w-4 h-4'
+              : 'bg-text-gray2 w-3 h-3'
           }
         `}
             />
