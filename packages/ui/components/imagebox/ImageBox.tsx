@@ -53,6 +53,7 @@ function ImageButton({ onClick, size = 'sm' }: ImageButtonProps) {
   const sizeClasses = sizes[size].button;
   return (
     <button
+      type='button'
       onClick={onClick}
       className={`${ImageBoxStyles.imageButton} ${sizeClasses}`}
     >
