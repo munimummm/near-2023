@@ -9,7 +9,7 @@ function ShelterNumber({ total, nearTotal }: ShelterNumberProps) {
   return (
     <div className='flex py-2.5 my-4'>
       <div className='flex flex-col gap-2.5 border-r border-r-text-gray pl-8 pr-28'>
-        <div className='text-base'>서울</div>
+        <div className='text-base'>전체</div>
         <div className='flex items-end gap-1'>
           <div className='text-5xl font-bold text-theme-main_light'>
             {total}
@@ -33,7 +33,10 @@ function ShelterNumber({ total, nearTotal }: ShelterNumberProps) {
 function ShelterStatus({ totalShelters, nearTotal, shelters }) {
   return (
     <section>
-      <ShelterNumber total={totalShelters} nearTotal={nearTotal} />
+      <ShelterNumber
+        total={totalShelters.length}
+        nearTotal={nearTotal.length}
+      />
       <div className=''>
         <NearMap shelters={shelters} />
       </div>

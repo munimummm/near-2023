@@ -37,8 +37,8 @@ function ShelterHomePage() {
   const supabase = createClientComponentClient();
   const [shelters, setShelters] = useState<ShelterProps[]>([]);
   const [page, setPage] = useState(0);
-  const [totalShelters, setTotalShelters] = useState(0);
-  const [nearTotal, setNearTotal] = useState(0);
+  const [totalShelters, setTotalShelters] = useState<any[]>([]);
+  const [nearTotal, setNearTotal] = useState<any[]>([]);
 
   const getFromAndTo = () => {
     const ITEM_PER_PAGE = 4;
@@ -62,8 +62,9 @@ function ShelterHomePage() {
     const nearShelters = allShelters.filter(
       (shelter) => shelter.shelter_cooperation,
     );
-    setTotalShelters(allShelters.length);
-    setNearTotal(nearShelters.length);
+    console.log(allShelters);
+    setTotalShelters(allShelters);
+    setNearTotal(nearShelters);
   };
 
   const fetchData = async () => {
@@ -71,7 +72,6 @@ function ShelterHomePage() {
     const { data, error } = await supabase
       .from('shelter_profile')
       .select('*')
-      .eq('shelter_cooperation', true)
       .range(from, to);
 
     if (error) {
@@ -86,9 +86,10 @@ function ShelterHomePage() {
     return shelters.map((shelter) => ({
       title: shelter.shelter_name,
       address: shelter.shelter_address,
+      cooperation: shelter.shelter_cooperation,
     }));
   };
-  const mapData = sheltersMapData(shelters);
+  const mapData = sheltersMapData(totalShelters);
 
   useEffect(() => {
     fetchShelterCounts();

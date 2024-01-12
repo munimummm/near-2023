@@ -29,14 +29,17 @@ function ShelterList({ shelters, fetchData }) {
       </div>
       <div className='flex justify-end px-3 py-4'>드롭다운</div>
       <div className='grid desktop:grid-cols-2 gap-4 px-[13px] w-full '>
-        {shelters.map((shelter, index) => (
-          <ShleterListItem
-            shelterName={shelter.shelter_name || '보호소'}
-            key={index}
-            path={`/shelter/detail/${shelter.id}`}
-            cooperation={shelter.shelter_cooperation || false}
-          />
-        ))}
+        {shelters.map(
+          (shelter, index) =>
+            shelter.shelter_cooperation && (
+              <ShleterListItem
+                shelterName={shelter.shelter_name || '보호소'}
+                key={index}
+                path={`/shelter/detail/${shelter.id}`}
+                cooperation={shelter.shelter_cooperation || false}
+              />
+            ),
+        )}
       </div>
       <MoreListButton onClick={fetchData} text='더 많은 보호소 보기'>
         <Icon icon='ic_add' sizes='sm' state='mild' />

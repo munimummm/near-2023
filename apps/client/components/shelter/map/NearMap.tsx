@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import { Map } from '@near/kakao-map';
 // import { useMap } from 'react-kakao-maps-sdk';
@@ -10,10 +11,12 @@ export interface MarkerData {
     lng: number;
   };
   title?: string;
+  cooperation?: boolean;
 }
 export interface Address {
   title: string;
   address: string;
+  cooperation: boolean;
 }
 
 interface NearMapProps {
@@ -23,32 +26,7 @@ interface NearMapProps {
 function NearMap({ shelters }: NearMapProps) {
   const [markers, setMarkers] = useState<MarkerData[]>([]);
   const [map, setMap] = useState<kakao.maps.Map | undefined>();
-  // const [isOpen, setIsOpen] = useState(false);
-
   useKakaoMap();
-
-  // useEffect(() => {
-  //   if (!(map && shelters)) return;
-
-  //   const geocoder = new kakao.maps.services.Geocoder();
-
-  //   setMarkers([]);
-
-  //   shelters.forEach((address) => {
-  //     geocoder.addressSearch(address.address, (result, status) => {
-  //       if (status === kakao.maps.services.Status.OK) {
-  //         const coords = {
-  //           lat: parseFloat(result[0].y),
-  //           lng: parseFloat(result[0].x),
-  //         };
-  //         setMarkers((prev) => [
-  //           ...prev,
-  //           { position: coords, title: address.title },
-  //         ]);
-  //       }
-  //     });
-  //   });
-  // }, [map, shelters]);
 
   const getAddressCoords = (shelters) => {
     if (!(map && shelters)) return;
@@ -64,7 +42,11 @@ function NearMap({ shelters }: NearMapProps) {
             const coords = new kakao.maps.LatLng(coord.lat, coord.lng);
             setMarkers((prev) => [
               ...prev,
-              { position: coord, title: shelter.title },
+              {
+                position: coord,
+                title: shelter.title,
+                cooperation: shelter.cooperation,
+              },
             ]);
             resolve(coords);
           } else {
@@ -94,24 +76,3 @@ function NearMap({ shelters }: NearMapProps) {
 }
 
 export default NearMap;
-// {markers.map((marker, index) => (
-//   <MapMarker
-//     key={`${marker.title}-${index}`}
-//     position={marker.position}
-//     image={{
-//       src: '/images/shelter/marker.png',
-//       size: { width: 25, height: 34 },
-//     }}
-//     // onClick={(marker) => map.panTo(marker.getPosition())}
-//     // clickable={true} // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-//     // 마커에 마우스오버 이벤트를 등록합니다
-//     onMouseOver={() => setIsOpen(true)}
-//     onMouseOut={() => setIsOpen(false)}
-//   >
-//     {isOpen && (
-//       <div className='shadow-sm backdrop-blur-sm rounded-xl text-theme-main_light'>
-//         {marker.title}
-//       </div>
-//     )}
-//   </MapMarker>
-// ))}

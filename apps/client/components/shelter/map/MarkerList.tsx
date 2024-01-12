@@ -1,55 +1,52 @@
-import { MapMarker, MarkerClusterer } from '@near/kakao-map';
-// import { useState } from 'react';
+import { CustomOverlayMap, MapMarker, useMap } from '@near/kakao-map';
+import { MarkerData } from './NearMap';
 
-export interface MarkerData {
-  position: {
-    lat: number;
-    lng: number;
-  };
-  title?: string;
-}
 interface MarkerListProps {
   markers: MarkerData[];
 }
 
 export const MarkerList: React.FC<MarkerListProps> = ({ markers }) => {
-  // const [isOpen, setIsOpen] = useState(false);
-  // const map = useMap();
+  const map = useMap();
 
-  // const panTo = (lat: number, lng: number) => {
-  //   if (map) {
-  //     const moveCoord = new kakao.maps.LatLng(lat, lng);
+  const panTo = (lat: number, lng: number) => {
+    if (map) {
+      const moveCoord = new kakao.maps.LatLng(lat, lng);
 
-  //     map.setLevel(3);
-  //     map.panTo(moveCoord);
-  //   }
-  // };
+      map.setLevel(3);
+      map.panTo(moveCoord);
+    }
+  };
 
   return (
-    <MarkerClusterer
-      averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-      minLevel={10} // 클러스터 할 최소 지도 레벨
-    >
+    <div>
       {markers.map((marker, index) => (
-        <MapMarker
-          key={`${marker.title}-${index}`}
-          position={marker.position}
-          image={{
-            src: '/images/shelter/marker.png',
-            size: { width: 25, height: 34 },
-          }}
-          // onClick={() => panTo(marker.position.lat, marker.position.lng)}
-          // clickable={true} // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-          // onMouseOver={() => setIsOpen(true)}
-          // onMouseOut={() => setIsOpen(false)}
-        >
-          {/* {isOpen && (
-            <div className='shadow-sm backdrop-blur-sm rounded-xl text-theme-main_light'>
-              {marker.title}
+        <div key={`${marker.title}-${index}`}>
+          <MapMarker
+            position={marker.position}
+            onClick={() => panTo(marker.position.lat, marker.position.lng)}
+            image={{
+              src: '/images/shelter/marker.png',
+              size: { width: 25, height: 34 },
+              options: {
+                offset: {
+                  x: 12,
+                  y: -3,
+                }, // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+              },
+            }}
+          ></MapMarker>
+          <CustomOverlayMap position={marker.position} yAnchor={1}>
+            <div className='rounded-2xl border border-solid border-theme-main bg-gray-100 py-1 px-2 text-lg text-theme-main_light font-bold'>
+              <span>{marker.title}</span>
+              {marker.cooperation && (
+                <span className='ml-4 py-1 px-2 h-6 w-6 rounded-full bg-theme-main text-white'>
+                  N
+                </span>
+              )}
             </div>
-          )} */}
-        </MapMarker>
+          </CustomOverlayMap>
+        </div>
       ))}
-    </MarkerClusterer>
+    </div>
   );
 };
