@@ -8,7 +8,7 @@ export default function DiaryLayout({
   return (
     <>
       <Top />
-      <section className='pt-12'>{children}</section>
+      <section className='pt-12 desktop:pt-0'>{children}</section>
       <Footer />
     </>
   );
