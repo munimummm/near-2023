@@ -4,6 +4,7 @@ import { getYear, getMonth } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Tag, TextInput } from 'ui';
 import { useForm } from '@near/react-hook-form';
+import { ko } from 'date-fns/esm/locale';
 
 interface DatepickerProps {
   birth?: string;
@@ -22,20 +23,21 @@ const DatepickerHeader = () => {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [datePicker, setDatePicker] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const years = _.range(2000, getYear(new Date()) + 1, 1);
+  const years = _.range(1930, getYear(new Date()) + 1, 1);
   const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    '1월',
+    '2월',
+    '3월',
+    '4월',
+    '5월',
+    '6월',
+    '7월',
+    '8월',
+    '9월',
+    '9월',
+    '10월',
+    '11월',
+    '12월',
   ];
 
   const onClickDatePicker = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -129,6 +131,7 @@ const DatepickerHeader = () => {
           setSelectedDate(date);
         }}
         open={datePicker}
+        locale={ko}
       />
     </div>
   );

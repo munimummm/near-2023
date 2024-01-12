@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '../buttons/Button';
+import { ButtonETC } from '../buttons/Button';
 import FooterShadowBox from './FooterShadowBox';
 
 function FooterShadowButtons() {
@@ -8,8 +8,9 @@ function FooterShadowButtons() {
     <div>
       <FooterShadowBox>
         <div className='flex gap-8 desktop:gap-10 '>
-          <Button mode='outline'>임시저장</Button>
-          <Button mode='main'>등록하기</Button>
+          <ButtonETC type='submit' mode='main'>
+            등록하기
+          </ButtonETC>
         </div>
       </FooterShadowBox>
     </div>

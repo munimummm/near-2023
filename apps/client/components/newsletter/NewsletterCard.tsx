@@ -57,7 +57,7 @@ const NewsletterCard = () => {
                         .replace('-', '.')}
                     </div>
                   </div>
-                  <div className='grid flex flex-col w-[12.75rem] h-[8.5625rem]'>
+                  <div className='grid flex flex-col w-[28.125rem] h-[8.5625rem]'>
                     <Link
                       className='font-semibold text-[1.5rem] truncate ...'
                       href={`/newsletter/detail/${data[i].newsletter_id}`}
