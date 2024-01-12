@@ -13,8 +13,8 @@ interface DiaryProps {
 
 function DiaryHomeTop() {
   return (
-    <div className='relative flex justify-center tablet: w-full  bg-gray-500 h-52 tablet:h-[25rem] desktop:h-[44rem] mb-10 tablet:mb-16 desktop:mb-20'>
-      <div className='absolute text-3xl font-normal text-white top-12 tablet:top-44 desktop:top-[24.5rem]  tablet:text-4xl tablet:font-bold desktop:font-bold desktop:text-4xl tablet:right-[3.375rem] desktop:right-[4.6875rem] '>
+    <div className='relative flex justify-center tablet:w-full bg-scroll bg-cover bg-[url(/images/diary/diaryMain.jpg)]  bg-gray-500 h-52 tablet:h-[25rem] desktop:h-[40rem] mb-10 tablet:mb-16 desktop:mb-20'>
+      <div className='absolute text-3xl font-bold text-white top-12 tablet:top-44 desktop:top-[24.5rem] tablet:text-4xl desktop:text-4xl tablet:right-[3.375rem] desktop:right-[4.6875rem] '>
         NEAR 임보일기
       </div>
       <div className='absolute hidden font-medium text-2xl text-white text-right tablet:flex desktop:flex tablet:top-[13.6875rem] desktop:top-[27.875rem] tablet:right-[3.375rem] desktop:right-[4.6875rem]'>
